@@ -31,7 +31,7 @@
             <br />
             <asp:Button ID="btnLogin" runat="server" Text="登入" OnClick="btnLogin_Click" />
             <br />
-            <a href="CreateAccount.aspx" style="text-align: right">沒有帳號嗎?點擊申請!</a>
+            <a href="CreateAccount.aspx" style="text-align: right">沒有帳號嗎?點擊申請!123</a>
         </div>
     </form>
 </body>
