@@ -13,6 +13,7 @@
             <p>
                 Main Page
             </p>
+            <p>Main Page2</p>
         </div>
     </form>
 </body>
