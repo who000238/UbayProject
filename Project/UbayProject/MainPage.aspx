@@ -9,11 +9,15 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <p>
-                Main Page321
-            </p>
-            <p>Main Page2</p>
+        <div class="Header">
+           <div class="Header_Wrapper">
+
+           </div>
+        </div>
+        <div class="Body">
+           <div>
+
+           </div>
         </div>
     </form>
 </body>
