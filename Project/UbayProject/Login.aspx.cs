@@ -11,6 +11,7 @@ namespace UbayProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //檢查是否登入
 
         }
 

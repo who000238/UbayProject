@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="修改個人資料.cs" />
     <Compile Include="登入功能.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
