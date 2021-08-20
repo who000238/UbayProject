@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace 處裡貼文及留言的類別庫
+namespace 處理貼文及留言的類別庫
 {
     public class Class1
     {

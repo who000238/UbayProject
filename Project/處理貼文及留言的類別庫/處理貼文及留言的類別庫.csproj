@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>580cb039-0aa6-4e33-94df-3fd18778fb7d</ProjectGuid>
+    <ProjectGuid>263eb4cd-55e3-4fab-bc33-2710193f6f6f</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>處裡貼文及留言的類別庫</RootNamespace>
-    <AssemblyName>處裡貼文及留言的類別庫</AssemblyName>
+    <RootNamespace>處理貼文及留言的類別庫</RootNamespace>
+    <AssemblyName>處理貼文及留言的類別庫</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

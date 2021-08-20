@@ -7,11 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UbayProject", "UbayProject.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UbayProject.ORM", "..\UbayProject.ORM\UbayProject.ORM.csproj", "{C037FD6C-6F22-4AD1-ABE7-948313F558B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "登入功能的類別庫", "..\登入功能的類別庫\登入功能的類別庫.csproj", "{9C4CFD6F-9069-40A0-B283-89D46A9FFA0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "登入功能的類別庫", "..\登入功能的類別庫\登入功能的類別庫.csproj", "{79718B10-DCC2-45F9-8488-5AA7B22042A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "處理資料庫相關的類別庫", "..\處理資料庫相關的類別庫\處理資料庫相關的類別庫.csproj", "{26856ED8-A6FA-4444-B00F-8B0894B727E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "處理貼文及留言的類別庫", "..\處理貼文及留言的類別庫\處理貼文及留言的類別庫.csproj", "{263EB4CD-55E3-4FAB-BC33-2710193F6F6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "處裡貼文及留言的類別庫", "..\處裡貼文及留言的類別庫\處裡貼文及留言的類別庫.csproj", "{580CB039-0AA6-4E33-94DF-3FD18778FB7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "處理資料庫相關的類別庫", "..\處理資料庫相關的類別庫\處理資料庫相關的類別庫.csproj", "{6B60CBC7-6F7A-4823-8595-7CB0D06E55A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,18 +27,18 @@ Global
 		{C037FD6C-6F22-4AD1-ABE7-948313F558B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C037FD6C-6F22-4AD1-ABE7-948313F558B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C037FD6C-6F22-4AD1-ABE7-948313F558B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C4CFD6F-9069-40A0-B283-89D46A9FFA0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C4CFD6F-9069-40A0-B283-89D46A9FFA0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C4CFD6F-9069-40A0-B283-89D46A9FFA0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C4CFD6F-9069-40A0-B283-89D46A9FFA0D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{26856ED8-A6FA-4444-B00F-8B0894B727E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26856ED8-A6FA-4444-B00F-8B0894B727E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26856ED8-A6FA-4444-B00F-8B0894B727E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26856ED8-A6FA-4444-B00F-8B0894B727E2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{580CB039-0AA6-4E33-94DF-3FD18778FB7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{580CB039-0AA6-4E33-94DF-3FD18778FB7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{580CB039-0AA6-4E33-94DF-3FD18778FB7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{580CB039-0AA6-4E33-94DF-3FD18778FB7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79718B10-DCC2-45F9-8488-5AA7B22042A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79718B10-DCC2-45F9-8488-5AA7B22042A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79718B10-DCC2-45F9-8488-5AA7B22042A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79718B10-DCC2-45F9-8488-5AA7B22042A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{263EB4CD-55E3-4FAB-BC33-2710193F6F6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{263EB4CD-55E3-4FAB-BC33-2710193F6F6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{263EB4CD-55E3-4FAB-BC33-2710193F6F6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{263EB4CD-55E3-4FAB-BC33-2710193F6F6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B60CBC7-6F7A-4823-8595-7CB0D06E55A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B60CBC7-6F7A-4823-8595-7CB0D06E55A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B60CBC7-6F7A-4823-8595-7CB0D06E55A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B60CBC7-6F7A-4823-8595-7CB0D06E55A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
