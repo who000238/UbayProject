@@ -1,24 +1,60 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MainPage.aspx.cs" Inherits="UbayProject.MainPage" %>
+﻿<!DOCTYPE html>
+<html lang="en">
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--  -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!--  -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <style>
+        div {
+            border: 1px solid #000000;
+        }
+    </style>
 </head>
+
 <body>
-    <form id="form1" runat="server">
-        <div class="Header">
-           <div class="Header_Wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <p>LOGO</p>
 
-           </div>
+            </div>
+            <div class="col-8">
+                <p>PHOTO/AD</p>                
+            </div>
+            <div class="col-2">USER</div>
         </div>
-        <div class="Body">
-           <div>
-
-           </div>
+        <div class="row">
+            <div class="col-2">
+               <ul>
+                   <li>A版</li>
+                   <li>B版</li>
+                   <li>C版</li>
+               </ul>
+            </div>
+            <div class="col-8">
+               <p style="font-size:30px ; text-align:center" >主頁面</p>
+            </div>
+            <div class="col-2">
+                <p>PHOTO/AD</p>                
+            </div>
         </div>
-    </form>
+        <div>
+            <form>
+                <div>
+                    <label for="nikename" class="form-label" title="熱門文章" data-bs-toggle="tooltip" data-bs-placement="top"> 
+                        熱門文章
+                    </label>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>
