@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace 處理貼文及留言的類別庫
+namespace 處理資料庫相關的類別庫
 {
-    public class Class1
+    class 增加資料
     {
+        public static void 增加一筆資料()
+        {
+
+        }
     }
 }

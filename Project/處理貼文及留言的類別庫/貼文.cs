@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace 登入功能的類別庫
+namespace 處理貼文及留言的類別庫
 {
-    public class Class1
+    public class 貼文
     {
+        public static void 發佈貼文()
+        {
+
+        }
     }
 }
