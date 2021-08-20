@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UbayProject", "UbayProject.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UbayProject.ORM", "..\UbayProject.ORM\UbayProject.ORM.csproj", "{C037FD6C-6F22-4AD1-ABE7-948313F558B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "登入功能的類別庫", "..\登入功能的類別庫\登入功能的類別庫.csproj", "{79718B10-DCC2-45F9-8488-5AA7B22042A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "帳號相關功能的類別庫", "..\登入功能的類別庫\帳號相關功能的類別庫.csproj", "{79718B10-DCC2-45F9-8488-5AA7B22042A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "處理貼文及留言的類別庫", "..\處理貼文及留言的類別庫\處理貼文及留言的類別庫.csproj", "{263EB4CD-55E3-4FAB-BC33-2710193F6F6F}"
 EndProject
