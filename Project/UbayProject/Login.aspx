@@ -24,7 +24,7 @@
         </div>
         <div id="divInput">
             Account :
-            <asp:TextBox runat="server" ID="txtAccount"></asp:TextBox>
+            <asp:TextBox runat="server" ID="txtAccount" ></asp:TextBox>
             <br />
             Password : 
             <asp:TextBox runat="server" ID="txtPassowrd" TextMode="Password"></asp:TextBox>
