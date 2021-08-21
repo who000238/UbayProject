@@ -7,14 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace UbayProject
 {
-    public partial class MainPage : System.Web.UI.Page
+    public partial class SubPageMasterPage : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //檢查登入
-            //讀取session
-            //資料庫連線
-            //資料系結
+
         }
     }
 }

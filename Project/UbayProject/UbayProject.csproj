@@ -99,6 +99,8 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="Login.aspx" />
     <Content Include="MainPage.aspx" />
+    <Content Include="SubPage\TempAPage.aspx" />
+    <Content Include="SubPage\TempBPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +143,27 @@
       <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubMasterPage.Master.cs">
+      <DependentUpon>SubMasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubMasterPage.Master.designer.cs">
+      <DependentUpon>SubMasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SubPage\TempAPage.aspx.cs">
+      <DependentUpon>TempAPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubPage\TempAPage.aspx.designer.cs">
+      <DependentUpon>TempAPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubPage\TempBPage.aspx.cs">
+      <DependentUpon>TempBPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubPage\TempBPage.aspx.designer.cs">
+      <DependentUpon>TempBPage.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\bootstrap-grid.css.map" />
@@ -166,6 +189,7 @@
     <Content Include="js\bootstrap.js.map" />
     <Content Include="js\bootstrap.min.js.map" />
     <None Include="packages.config" />
+    <Content Include="SubMasterPage.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

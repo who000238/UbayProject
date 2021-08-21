@@ -11,17 +11,20 @@ namespace UbayProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //讀取session
+            //檢查登入
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            //檢查、Input
 
+            //讀取、Input
         }
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
-
+            //清除Input
         }
     }
 }
