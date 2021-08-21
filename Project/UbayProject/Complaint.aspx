@@ -20,7 +20,8 @@
                 帳號:<asp:TextBox ID="txtAccount" runat="server"></asp:TextBox><br />
                 申訴標題:<asp:TextBox ID="txtAreaTitle" runat="server"></asp:TextBox><br />
                 申訴內文:<textarea id="txtAreaInside" runat="server"></textarea><br />
-                <asp:Button ID="btnSubmit" runat="server" Text="Button" OnClick="btnSubmit_Click" />
+                <asp:Button ID="btnSubmit" runat="server" Text="送出" OnClick="btnSubmit_Click" /> &nbsp;&nbsp;
+                 <asp:Button ID="btnClear" runat="server" Text="重填" OnClick="btnClear_Click" />
             </div>
         </div>
     </form>
