@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace 處理資料庫相關的類別庫
 {
-    class Logger
+    public class Logger
     {
         public static void WriteLog(Exception ex)
         {
