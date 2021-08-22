@@ -36,8 +36,8 @@
         <div class="row">
             <div class="col-2">
                <ul>
-                   <li>A版</li>
-                   <li>B版</li>
+                   <li><a href="SubPage/TempAPage.aspx">A版</a></li>
+                   <li><a href="SubPage/TempBPage.aspx">B版</a></li>
                    <li>C版</li>
                </ul>
             </div>
@@ -59,5 +59,4 @@
         </div>
     </div>
 </body>
-
 </html>
