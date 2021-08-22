@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logger.cs" />
     <Compile Include="修改資料.cs" />
     <Compile Include="刪除資料.cs" />
     <Compile Include="增加資料.cs" />
