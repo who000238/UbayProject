@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ using 處理資料庫相關的類別庫;
 
 namespace 登入功能的類別庫
 {
-    public class 登入功能
+    public class 使用者相關功能
     {
         public static void 檢查目前是否已登入()
         {
@@ -83,5 +84,51 @@ namespace 登入功能的類別庫
 
         }
 
+        public static void 修改使用者資料() { }
+
+        public static void 申請帳號(string account,string pwd,string email, string userName)
+        {
+            string connStr = 資料庫相關.取得連線字串();
+            string dbCommand =
+                $@" INSERT INTO [dbo].[UserTable]
+                    (
+                        [userID]
+                        ,[account]
+                        ,[pwd]
+                        ,[userName]
+                        ,[Email]
+                        ,[blackList]
+                        ,[CreateDate]
+                        ,[userLevel]
+                    )
+                    VALUES
+                    (
+                        NEWID()
+                        ,@account
+                        ,@pwd
+                        ,@userName
+                        ,@userEmail
+                        ,'1'
+                        ,@createDate
+                        ,'1'
+                    ) ";
+
+            // connect db & execute
+
+            List<SqlParameter> paramList = new List<SqlParameter>();
+            paramList.Add(new SqlParameter("@account", account));
+            paramList.Add(new SqlParameter("@pwd", pwd));
+            paramList.Add(new SqlParameter("@userName", userName));
+            paramList.Add(new SqlParameter("@userEmail", email));
+            paramList.Add(new SqlParameter("@createDate", DateTime.Now));
+            try
+            {
+                int effectRows = 資料庫相關.ModifyData(connStr, dbCommand, paramList);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+            }
+        }
     }
 }
