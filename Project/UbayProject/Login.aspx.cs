@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using 登入功能的類別庫;
 
 namespace UbayProject
 {
@@ -13,24 +12,26 @@ namespace UbayProject
         protected void Page_Load(object sender, EventArgs e)
         {
             //檢查是否登入
-            if(this.Session["UserLoginInfo"] != null)
-            {
-                Response.Redirect("MainPage.aspx"); //若session存在、導至MainPage畫面
-            }
 
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string inp_Account = this.txtAccount.Text;
-            string inp_PWD = this.txtPassowrd.Text;
-            string msg;
-            if(!登入功能.嘗試登入(inp_Account,inp_PWD,out msg))
+            string acc = "Admin";
+            string pwd = "123";
+            string inp_acc = this.txtAccount.Text;
+            string inp_pwd = this.txtPassowrd.Text;
+            //判別是否為空值
+            if (string.IsNullOrWhiteSpace(inp_acc) || string.IsNullOrWhiteSpace(inp_pwd))
             {
-                Response.Write($"<script>alert('{msg}')</script>");
-                return;
+                Response.Write("<script>alert('帳號或密碼不得為空')</script>"); //使用alert告知使用者訊息
             }
+
+            if (string.Compare(acc, inp_acc, true) == 0 && (string.Compare(pwd, inp_pwd)==0))
+            {
+                Response.Write("<script>alert('Success')</script>");
                 Response.Redirect("MainPage.aspx");
+            }
         }
     }
 }

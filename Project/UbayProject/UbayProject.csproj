@@ -207,14 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
     <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\登入功能的類別庫\帳號相關功能的類別庫.csproj">
-      <Project>{79718B10-DCC2-45F9-8488-5AA7B22042A9}</Project>
-      <Name>帳號相關功能的類別庫</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
