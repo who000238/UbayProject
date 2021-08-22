@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,9 +42,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserInfoModel.cs" />
     <Compile Include="修改個人資料.cs" />
     <Compile Include="登入功能.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UbayProject.ORM\UbayProject.ORM.csproj">
+      <Project>{C037FD6C-6F22-4AD1-ABE7-948313F558B1}</Project>
+      <Name>UbayProject.ORM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\處理資料庫相關的類別庫\處理資料庫相關的類別庫.csproj">
+      <Project>{6B60CBC7-6F7A-4823-8595-7CB0D06E55A1}</Project>
+      <Name>處理資料庫相關的類別庫</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
