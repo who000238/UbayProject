@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using UbayProject.Auth;
 
 namespace UbayProject
 {
@@ -12,26 +13,28 @@ namespace UbayProject
         protected void Page_Load(object sender, EventArgs e)
         {
             //檢查是否登入
-
+            if (this.Session["UserLoginInfo"] != null)
+            {
+                Response.Redirect("/SystemAdmin/UserInfo.aspx");
+            }
+            else
+            {
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string acc = "Admin";
-            string pwd = "123";
+           
             string inp_acc = this.txtAccount.Text;
             string inp_pwd = this.txtPassowrd.Text;
-            //判別是否為空值
-            if (string.IsNullOrWhiteSpace(inp_acc) || string.IsNullOrWhiteSpace(inp_pwd))
-            {
-                Response.Write("<script>alert('帳號或密碼不得為空')</script>"); //使用alert告知使用者訊息
-            }
+            string msg;
 
-            if (string.Compare(acc, inp_acc, true) == 0 && (string.Compare(pwd, inp_pwd)==0))
+            if (!AuthManager.TryLogin(inp_acc,inp_pwd,out msg))
             {
-                Response.Write("<script>alert('Success')</script>");
-                Response.Redirect("MainPage.aspx");
+            Response.Write($"<script>alert('{msg}')</script>");
+                return;
             }
+            Response.Redirect("MainPage.aspx");
         }
     }
 }
