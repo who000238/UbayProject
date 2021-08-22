@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace 登入功能的類別庫
 {
@@ -25,7 +26,7 @@ namespace 登入功能的類別庫
 
         public static void 登出()
         {
-
+            HttpContext.Current.Session["UserLoginInfo"] = null;
         }
 
 
