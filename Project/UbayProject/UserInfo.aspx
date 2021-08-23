@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>UserInfoPage</title>
+    <title>使用者資訊頁面</title>
     <link rel="stylesheet" href="css/bootstrap.css" />
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -196,16 +196,22 @@
                             </tr>
                             <tr id="trUserSex">
                                 <td>性別</td>
-                                <td colspan="2"><asp:Label ID="lblUserSex" runat="server" Text="Label"></asp:Label></td>
+                                <td ><asp:Label ID="lblUserSex" runat="server" Text="Label"></asp:Label></td>
+                                <td>
+                                    <asp:Button class="btn btn-outline-light" ID="btnUpdateUserSex" runat="server" Text="設定性別" OnClick="btnUpdateUserIntro_Click" />
+                                </td>
 
                             </tr>
                             <tr id="trUserBirthday">
                                 <td>生日</td>
-                                <td colspan="2"><asp:Label ID="lblUserBirthday" runat="server" Text="Label"></asp:Label></td>
+                                <td><asp:Label ID="lblUserBirthday" runat="server" Text="Label"></asp:Label></td>
+                                <td>
+                                    <asp:Button class="btn btn-outline-light" ID="btnUpdateUserBirthday" runat="server" Text="設定生日" OnClick="btnUpdateUserIntro_Click" />
+                                </td>
                             </tr>
                             <tr id="trUserIntro">
                                 <td>自我介紹</td>
-                                <td><asp:Label ID="Label1" runat="server" Text="qwerqwerqwer qwerqwer qwerqwerqwer qwerqwer" ></asp:Label></td>
+                                <td><asp:Label ID="lblIntro" runat="server" Text="qwerqwerqwer qwerqwer qwerqwerqwer qwerqwer" ></asp:Label></td>
                                 <td>
                                     <asp:Button class="btn btn-outline-light" ID="btnUpdateUserIntro" runat="server" Text="修改自介" OnClick="btnUpdateUserIntro_Click" />
                                 </td>
