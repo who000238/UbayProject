@@ -69,6 +69,15 @@ namespace UbayProject
         protected global::System.Web.UI.WebControls.Label lblUserSex;
 
         /// <summary>
+        /// btnUpdateUserSex 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdateUserSex;
+
+        /// <summary>
         /// lblUserBirthday 控制項。
         /// </summary>
         /// <remarks>
@@ -78,13 +87,22 @@ namespace UbayProject
         protected global::System.Web.UI.WebControls.Label lblUserBirthday;
 
         /// <summary>
-        /// Label1 控制項。
+        /// btnUpdateUserBirthday 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Button btnUpdateUserBirthday;
+
+        /// <summary>
+        /// lblIntro 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIntro;
 
         /// <summary>
         /// btnUpdateUserIntro 控制項。

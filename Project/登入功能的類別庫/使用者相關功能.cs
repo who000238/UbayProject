@@ -86,7 +86,7 @@ namespace 登入功能的類別庫
 
         public static void 修改使用者資料() { }
 
-        public static void 申請帳號(string account,string pwd,string email, string userName)
+        public static void 申請帳號(string account, string pwd, string email, string userName)
         {
             string connStr = 資料庫相關.取得連線字串();
             string dbCommand =
@@ -130,5 +130,34 @@ namespace 登入功能的類別庫
                 Logger.WriteLog(ex);
             }
         }
+
+        //public static bool 查詢帳號是否重複(string account)
+        //{
+        //    string connStr = DBHelper.GetConnectionString();
+        //    string dbCommand =
+        //        $@" SELECT 
+        //                ID,
+        //                Caption,
+        //                Amount,
+        //                ActType,
+        //                CreateDate,
+        //                Body
+        //            FROM Accounting
+        //            WHERE id = @id AND UserID = @userID";
+
+        //    List<SqlParameter> list = new List<SqlParameter>();
+        //    list.Add(new SqlParameter("@id", id));
+        //    list.Add(new SqlParameter("@userID", userID));
+
+        //    try
+        //    {
+        //        if(資料庫相關.查詢單筆資料(connStr, dbCommand, list) != null)
+        //            return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return null;
+        //    }
     }
 }
