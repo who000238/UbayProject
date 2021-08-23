@@ -18,17 +18,17 @@ namespace UbayProject
 
         protected void btnUpdateUserName_Click(object sender, EventArgs e)
         {
-
+            //重新導向修改頁面，並只修改UserName
         }
 
         protected void btnUpdateUserIntro_Click(object sender, EventArgs e)
         {
-
+            //重新導向修改頁面，並只修改UserIntro
         }
 
         protected void btnUpdateUserPhoto_Click(object sender, EventArgs e)
         {
-
+            //重新導向修改頁面，並只修改UserPhoto
         }
     }
 }
