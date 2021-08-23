@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="UbayProject.Default" %>
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,7 +15,7 @@
     <script src="js/bootstrap.js"></script>
     <style>
         div {
-            border: 0px solid #000000;
+            border: 1px solid #000000;
         }
     </style>
 </head>
@@ -21,7 +23,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-2 ">
+            <div class="col-2">
                 <p>LOGO</p>
 
             </div>
@@ -29,24 +31,22 @@
                 <p>PHOTO/AD</p>                
             </div>
             <div class="col-2">
-                <a>user</a>
-                <a href="http://localhost:54101/Login.aspx">login</a>
+                  <a>user</a>
+                <a href="http://localhost:54101/Login.aspx">login</a><br />
                 <a href="UserInfo.aspx">使用者資訊</a>
+                  <br />
             </div>
         </div>
         <div class="row">
             <div class="col-2">
                <ul>
-                   <li></li>
-                   
+                   <li><asp:Label ID="Label1" runat="server" ></asp:Label></li>
                    <li>B版</li>
                    <li>C版</li>
                </ul>
             </div>
             <div class="col-8">
-               <p style="font-size:30px ; text-align:center" >
-                   <a href="http://localhost:54101/MainPage.aspx"></a>主頁面
-               </p>
+               <p style="font-size:30px ; text-align:center" >主頁面</p>
             </div>
             <div class="col-2">
                 <p>PHOTO/AD</p>                
@@ -63,5 +63,4 @@
         </div>
     </div>
 </body>
-
 </html>
