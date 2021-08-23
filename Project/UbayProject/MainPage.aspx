@@ -30,7 +30,9 @@
             </div>
             <div class="col-2">
                   <a>user</a>
-                <a href="http://localhost:54101/Login.aspx">login</a>
+                <a href="http://localhost:54101/Login.aspx">login</a><br />
+                <a href="UserInfo.aspx">使用者資訊</a>
+                  <br />
             </div>
         </div>
         <div class="row">

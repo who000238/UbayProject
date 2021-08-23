@@ -108,6 +108,7 @@
     <Content Include="MainPage.aspx" />
     <Content Include="SubPage\TempAPage.aspx" />
     <Content Include="SubPage\TempBPage.aspx" />
+    <Content Include="UpdateUserInfo.aspx" />
     <Content Include="UserInfo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -171,6 +172,13 @@
     </Compile>
     <Compile Include="SubPage\TempBPage.aspx.designer.cs">
       <DependentUpon>TempBPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateUserInfo.aspx.cs">
+      <DependentUpon>UpdateUserInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateUserInfo.aspx.designer.cs">
+      <DependentUpon>UpdateUserInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserInfo.aspx.cs">
       <DependentUpon>UserInfo.aspx</DependentUpon>

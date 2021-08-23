@@ -29,7 +29,10 @@
             <div class="col-8">
                 <p>PHOTO/AD</p>
             </div>
-            <div class="col-2">USER</div>
+            <div class="col-2">
+                USER
+                <a href="/UserInfo.aspx">使用者資訊</a>
+            </div>
         </div>
         <div class="row">
             <div class="col-2">
