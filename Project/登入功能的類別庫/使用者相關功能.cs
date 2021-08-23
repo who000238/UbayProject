@@ -131,33 +131,30 @@ namespace 登入功能的類別庫
             }
         }
 
-        //public static bool 查詢帳號是否重複(string account)
-        //{
-        //    string connStr = DBHelper.GetConnectionString();
-        //    string dbCommand =
-        //        $@" SELECT 
-        //                ID,
-        //                Caption,
-        //                Amount,
-        //                ActType,
-        //                CreateDate,
-        //                Body
-        //            FROM Accounting
-        //            WHERE id = @id AND UserID = @userID";
+        public static bool 查詢帳號是否重複(string account)
+        {
+            string connStr = 資料庫相關.取得連線字串();
+            string dbCommand =
+                $@" SELECT *FROM [UBayProject].[dbo].[UserTable]
+                        
+                    WHERE account = @account"
+                 ;
 
-        //    List<SqlParameter> list = new List<SqlParameter>();
-        //    list.Add(new SqlParameter("@id", id));
-        //    list.Add(new SqlParameter("@userID", userID));
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@account", account));
 
-        //    try
-        //    {
-        //        if(資料庫相關.查詢單筆資料(connStr, dbCommand, list) != null)
-        //            return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Logger.WriteLog(ex);
-        //        return null;
-        //    }
+            try
+            {
+                if (資料庫相關.查詢單筆資料(connStr, dbCommand, list) != null)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return false;
+            }
+        }
     }
 }
