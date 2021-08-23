@@ -26,7 +26,13 @@ namespace UbayProject
                 Response.Write($"<script>alert('{msg}')</script>");
                 return;
             }
-                Response.Redirect("MainPage.aspx");
+            Response.Redirect("MainPage.aspx");
+        }
+
+        protected void btnCancle_Click(object sender, EventArgs e)
+        {
+            //按下取消回到主選單頁面
+            Response.Redirect("MainPage.aspx");
         }
     }
 }
