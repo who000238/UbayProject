@@ -8,36 +8,16 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using 處理資料庫相關的類別庫;
 
 namespace UbayProject
 {
     public partial class Default : System.Web.UI.Page
     {
-        public static DataRow ReadDataRow(string connStr, string dbCommand, List<SqlParameter> list)
-        {
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                using (SqlCommand comm = new SqlCommand(dbCommand, conn))
-                {
-                    comm.Parameters.AddRange(list.ToArray());
-
-                    conn.Open();
-                    var reader = comm.ExecuteReader();
-
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-
-                    if (dt.Rows.Count == 0)
-                        return null;
-
-                    return dt.Rows[0];
-                }
-            }
-        }
+        
         public static DataRow GetMainCategory()
         {
-            string connStr = GetConnectionString();
+            string connStr = 資料庫相關.取得連線字串();
             string dbCommand =
             $@"SELECT TOP(1)  mainCategoryName
                FROM MainCategoryTable
@@ -46,14 +26,10 @@ namespace UbayProject
 
             List<SqlParameter> list = new List<SqlParameter>();
 
-            return ReadDataRow(connStr, dbCommand, list);
+            return 資料庫相關.查詢單筆資料(connStr, dbCommand, list);
         }
 
-        public static string GetConnectionString()
-        {
-            string val = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            return val;
-        }
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
