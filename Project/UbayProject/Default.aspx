@@ -13,7 +13,7 @@
     <script src="js/bootstrap.js"></script>
     <style>
         div {
-            border: 1px solid #000000;
+            border: 0px solid #000000;
         }
     </style>
 </head>
@@ -21,7 +21,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-2">
+            <div class="col-2 ">
                 <p>LOGO</p>
 
             </div>
@@ -36,7 +36,8 @@
         <div class="row">
             <div class="col-2">
                <ul>
-                   <li>A版</li>
+                   <li></li>
+                   
                    <li>B版</li>
                    <li>C版</li>
                </ul>
