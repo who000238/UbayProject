@@ -27,9 +27,16 @@
                 </div>
                 <div class="col-2">
                     <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>
-                    <asp:LinkButton ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>
+                    <asp:LinkButton ID="linkLogout" runat="server"  OnClick="linkLogout_Click">Logout</asp:LinkButton>
                     <a href="UserInfo.aspx">使用者資訊</a>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <asp:TextBox ID="SearchBar" class="form-control" runat="server" placeholder="搜尋"></asp:TextBox>
+                </div>
+                <div class="col-2"></div>
             </div>
             <div class="row">
                 <div class="col-2">

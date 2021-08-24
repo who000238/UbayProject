@@ -34,6 +34,13 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <asp:TextBox ID="SearchBar" class="form-control" runat="server" placeholder="搜尋"></asp:TextBox>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
                 <div class="col-2">
                     <ul>
                         <li><a href="TempAPage.aspx">A版</a></li>
