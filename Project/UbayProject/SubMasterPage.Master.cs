@@ -15,17 +15,17 @@ namespace UbayProject
             //檢查登入
             if (this.Session["UserLoginInfo"] != null)
             {
-                this.btnLogout.Visible = true;
+                this.linkLogout.Visible = true;
                 this.a_Login.Visible = false;
             }
             else
             {
-                this.btnLogout.Visible = false;
+                this.linkLogout.Visible = false;
                 this.a_Login.Visible = true;
             }
         }
 
-        protected void btnLogout_Click(object sender, EventArgs e)
+        protected void linkLogout_Click(object sender, EventArgs e)
         {
             使用者相關功能.登出();
             Response.Redirect("/MainPage.aspx");

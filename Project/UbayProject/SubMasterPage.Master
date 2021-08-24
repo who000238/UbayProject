@@ -28,8 +28,8 @@
                     <p>PHOTO/AD</p>
                 </div>
                 <div class="col-2">
-                    <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">login</a>
-                    <asp:Button ID="btnLogout" runat="server" Text="登出" class="btn btn-dark" OnClick="btnLogout_Click"/>
+                    <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>
+                    <asp:LinkButton ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>
                     <a href="UserInfo.aspx">使用者資訊</a>
                 </div>
             </div>
