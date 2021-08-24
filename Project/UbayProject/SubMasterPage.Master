@@ -82,11 +82,8 @@
             </div>
         </div>
          <div class="row postArea">
-        <div class="col-8">
+        <div class="col-12">
             <input type="text" class="form-control" name="postTitle" id="postTitle" placeholder="輸入標題"/>
-        </div>
-        <div class="col-4">
-            <p>放下拉式選單讓使用者選擇貼文版面</p>
         </div>
         <div>
             <textarea name="postInner" id="postInner" placeholder="輸入內文"></textarea>

@@ -14,7 +14,7 @@ namespace UbayProject
 {
     public partial class Default : System.Web.UI.Page
     {
-        
+
         public static DataRow GetMainCategory()
         {
             string connStr = 資料庫相關.取得連線字串();
@@ -29,7 +29,7 @@ namespace UbayProject
             return 資料庫相關.查詢單筆資料(connStr, dbCommand, list);
         }
 
-        
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
