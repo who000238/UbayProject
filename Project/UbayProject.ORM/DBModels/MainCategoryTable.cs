@@ -10,11 +10,10 @@ namespace UbayProject.ORM.DBModels
     public partial class MainCategoryTable
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int mainCategoryID { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(50)]
         public string mainCategoryName { get; set; }
 
         public DateTime createDate { get; set; }

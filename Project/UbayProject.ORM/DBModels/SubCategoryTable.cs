@@ -10,19 +10,18 @@ namespace UbayProject.ORM.DBModels
     public partial class SubCategoryTable
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int subCategoryID { get; set; }
+
+        public int mainCategoryID { get; set; }
 
         [Required]
         [StringLength(50)]
         public string subCategoryName { get; set; }
 
-        public int countOfPosts { get; set; }
+        public int? countOfPost { get; set; }
 
-        public int countOfViewers { get; set; }
+        public int? countOfViewers { get; set; }
 
-        public DateTime createDate { get; set; }
-
-        public int mainCategoryID { get; set; }
+        public DateTime? createDate { get; set; }
     }
 }

@@ -52,8 +52,8 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="DBModels\CommentTable.cs" />
-    <Compile Include="DBModels\ContextModel.cs" />
     <Compile Include="DBModels\MainCategoryTable.cs" />
+    <Compile Include="DBModels\ContextModel.cs" />
     <Compile Include="DBModels\PostTable.cs" />
     <Compile Include="DBModels\SubCategoryTable.cs" />
     <Compile Include="DBModels\UserTable.cs" />

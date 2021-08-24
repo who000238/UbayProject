@@ -10,22 +10,21 @@ namespace UbayProject.ORM.DBModels
     public partial class PostTable
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int postID { get; set; }
+
+        public Guid userID { get; set; }
+
+        public int subCategoryID { get; set; }
 
         [Required]
         [StringLength(50)]
         public string postTitle { get; set; }
 
-        public int countOfLikes { get; set; }
+        public int? countOfLikes { get; set; }
 
-        public int countOfUnlikes { get; set; }
+        public int? countOfUnlikes { get; set; }
 
-        public int countOfViewers { get; set; }
-
-        public Guid userID { get; set; }
-
-        public int subCategoryID { get; set; }
+        public int? countOfViewers { get; set; }
 
         public DateTime createDate { get; set; }
     }

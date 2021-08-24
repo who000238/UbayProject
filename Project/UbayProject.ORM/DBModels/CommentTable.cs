@@ -10,16 +10,15 @@ namespace UbayProject.ORM.DBModels
     public partial class CommentTable
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int commentID { get; set; }
-
-        [Required]
-        [StringLength(4000)]
-        public string comment { get; set; }
 
         public Guid userID { get; set; }
 
         public int postID { get; set; }
+
+        [Required]
+        [StringLength(4000)]
+        public string comment { get; set; }
 
         public DateTime createDate { get; set; }
     }
