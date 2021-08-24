@@ -12,8 +12,15 @@ namespace UbayProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //檢查是否登入
-
+            //檢查是否有登入狀態
+            //檢查是否有登入狀態
+            if (this.Session["UserLoginInfo"] != null)
+            {
+                Response.Redirect("MainPage.aspx");
+            }
+            else
+            {
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)

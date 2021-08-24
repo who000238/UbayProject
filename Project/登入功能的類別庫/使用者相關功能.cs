@@ -58,7 +58,7 @@ namespace 登入功能的類別庫
 
         public static void 登出()
         {
-
+            HttpContext.Current.Session["UserLoginInfo"] = null;
         }
 
         public static UserTable GetUserInfoByAccount(string account)
