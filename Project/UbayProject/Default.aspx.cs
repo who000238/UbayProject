@@ -17,7 +17,7 @@ namespace UbayProject
     public partial class Default : System.Web.UI.Page
     {
 
-        public static DataRow GetMainCategory()
+        public static DataTable GetMainCategory()
         {
             string connStr = 資料庫相關.取得連線字串();
             string dbCommand =
@@ -28,7 +28,7 @@ namespace UbayProject
 
             List<SqlParameter> list = new List<SqlParameter>();
 
-            return 資料庫相關.查詢單筆資料(connStr, dbCommand, list);
+            return 資料庫相關.查詢資料清單(connStr, dbCommand, list);
         }
 
        
@@ -41,6 +41,7 @@ namespace UbayProject
             //link.Text = GetMainCategory()["mainCategoryName"].ToString();
             //link.NavigateUrl = "SubPage/TempAPage.aspx";
 
+        
             using (ContextModel context = new ContextModel())
             {
                 var query =
