@@ -1,14 +1,12 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SubPageMasterPage.master.cs" Inherits="UbayProject.SubPageMasterPage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SubMasterPage.master.cs" Inherits="UbayProject.SubPageMasterPage" %>
 
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
-    <!--  -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <!--  -->
+    <title>MainPage</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <style>
@@ -20,50 +18,47 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-2">
-                <p>LOGO</p>
-
+    <form id="form1" runat="server">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <p>LOGO</p>
+                </div>
+                <div class="col-8">
+                    <p>PHOTO/AD</p>
+                </div>
+                <div class="col-2">
+                    <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">login</a>
+                    <asp:Button ID="btnLogout" runat="server" Text="登出" class="btn btn-dark" OnClick="btnLogout_Click"/>
+                    <a href="UserInfo.aspx">使用者資訊</a>
+                </div>
             </div>
-            <div class="col-8">
-                <p>PHOTO/AD</p>
-            </div>
-            <div class="col-2">
-                USER
-                <a href="/UserInfo.aspx">使用者資訊</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <ul>
-                    <li><a href="TempAPage.aspx">A版</a></li>
-                    <li><a href="TempBPage.aspx">B版</a></li>
-                    <li>C版</li>
-                </ul>
-            </div>
-            <div class="col-8">
-                <form>
-                    <div>
+            <div class="row">
+                <div class="col-2">
+                    <ul>
+                        <li><a href="TempAPage.aspx">A版</a></li>
+                        <li><a href="TempBPage.aspx">B版</a></li>
+                        <li>C版</li>
+                    </ul>
+                </div>
+                <div class="col-8">
+                    <form>
                         <div>
-                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                            </asp:ContentPlaceHolder>
+                            <div>
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
+                <div class="col-2">
+                    <p>PHOTO/AD</p>
+                </div>
             </div>
-            <div class="col-2">
-                <p>PHOTO/AD</p>
+            <div style="text-align: center">
+                <p>這邊放使用者控制項</p>
             </div>
         </div>
-        <div style="text-align: center">
-            <p>這邊放使用者控制項</p>
-        </div>
-    </div>
-
-
-
-
-
+    </form>
 </body>
 </html>
