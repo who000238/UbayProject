@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using 登入功能的類別庫;
 
 namespace UbayProject
 {
@@ -11,7 +12,23 @@ namespace UbayProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //檢查登入
+            if (this.Session["UserLoginInfo"] != null)
+            {
+                this.linkLogout.Visible = true;
+                this.a_Login.Visible = false;
+            }
+            else
+            {
+                this.linkLogout.Visible = false;
+                this.a_Login.Visible = true;
+            }
+        }
 
+        protected void linkLogout_Click(object sender, EventArgs e)
+        {
+            使用者相關功能.登出();
+            Response.Redirect("/MainPage.aspx");
         }
     }
 }
