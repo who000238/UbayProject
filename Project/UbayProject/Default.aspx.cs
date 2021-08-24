@@ -16,7 +16,7 @@ namespace UbayProject
 {
     public partial class Default : System.Web.UI.Page
     {
-        
+
         public static DataRow GetMainCategory()
         {
             string connStr = 資料庫相關.取得連線字串();
