@@ -13,6 +13,23 @@
         div {
             border: 1px solid #000000;
         }
+         #postInner{
+            width:100%;
+            height: 100%;
+        }
+        .postArea{
+            position: fixed;
+            bottom:0px;
+            width:100%;
+            height: 20%;
+        }
+        #postSubmit{
+            position:absolute;
+            width: 60px;
+            height: 35px;
+            bottom: 10px;
+            right: 20px;
+        }
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -30,7 +47,7 @@
                 <div class="col-2">
                     <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>
                     <asp:LinkButton ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>
-                    <a href="UserInfo.aspx">使用者資訊</a>
+                    <a href="/UserInfo.aspx">使用者資訊</a>
                 </div>
             </div>
             <div class="row">
@@ -49,14 +66,12 @@
                     </ul>
                 </div>
                 <div class="col-8">
-                    <form>
                         <div>
                             <div>
                                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                                 </asp:ContentPlaceHolder>
                             </div>
                         </div>
-                    </form>
                 </div>
                 <div class="col-2">
                     <p>PHOTO/AD</p>
@@ -66,6 +81,18 @@
                 <p>這邊放使用者控制項</p>
             </div>
         </div>
+         <div class="row postArea">
+        <div class="col-8">
+            <input type="text" class="form-control" name="postTitle" id="postTitle" placeholder="輸入標題"/>
+        </div>
+        <div class="col-4">
+            <p>放下拉式選單讓使用者選擇貼文版面</p>
+        </div>
+        <div>
+            <textarea name="postInner" id="postInner" placeholder="輸入內文"></textarea>
+        </div>
+        <button class="btn btn-outline-primary" id="postSubmit">送出</button>
+    </div>
     </form>
 </body>
 </html>

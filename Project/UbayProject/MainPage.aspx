@@ -13,6 +13,7 @@
         div {
             border: 1px solid #000000;
         }
+
     </style>
 </head>
 <body>
@@ -54,13 +55,11 @@
                 </div>
             </div>
             <div>
-                <form>
                     <div>
                         <label for="nickname" class="form-label" title="熱門文章" data-bs-toggle="tooltip" data-bs-placement="top">
                             熱門文章
                         </label>
                     </div>
-                </form>
             </div>
         </div>
     </form>
