@@ -21,7 +21,7 @@ namespace UbayProject
             string dbCommand =
             $@"SELECT TOP(1)  mainCategoryName
                FROM MainCategoryTable
-               ORDER BY mainCategoryID DESC
+               ORDER BY mainCategoryID ASC
                 ";
 
             List<SqlParameter> list = new List<SqlParameter>();
@@ -33,7 +33,11 @@ namespace UbayProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
-         this.Label1.Text = GetMainCategory()["mainCategoryName"].ToString();
+         //this.Label1.Text = GetMainCategory()["mainCategoryName"].ToString();
+            HyperLink link = new HyperLink();
+            Page.Controls.Add(link);
+            link.Text = GetMainCategory()["mainCategoryName"].ToString();
+            link.NavigateUrl = "http://localhost:54101/MainPage.aspx";
         }
     }
 }

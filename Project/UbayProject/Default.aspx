@@ -40,7 +40,9 @@
         <div class="row">
             <div class="col-2">
                <ul>
-                   <li><asp:Label ID="Label1" runat="server" ></asp:Label></li>
+                   <li><%--<asp:Label ID="Label1" runat="server" ></asp:Label>--%>
+
+                   </li>
                    <li>B版</li>
                    <li>C版</li>
                </ul>
