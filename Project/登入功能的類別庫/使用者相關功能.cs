@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -17,10 +18,73 @@ namespace 登入功能的類別庫
 
         }
 
-        public static void 取得目前登入者的資訊()
+        public static UserModel 取得目前登入者的資訊()
         {
+            string account = HttpContext.Current.Session["UserLoginInfo"] as string;
 
+            if (account == null)
+                return null;
+
+            DataRow dr = 以帳號取得使用者資訊(account);
+            if (dr == null)
+            {
+                HttpContext.Current.Session["UserLoginInfo"] = null;
+                return null;
+            }
+
+            UserModel model = new UserModel();
+            model.userID = dr["userID"].ToString();
+            model.userName = dr["userName"].ToString();
+            model.account = dr["account"].ToString();
+            model.createDate = DateTime.Parse(dr["createDate"].ToString());
+            model.userLevel = dr["userLevel"].ToString();
+            model.sex = dr["sex"].ToString();
+            model.email = dr["email"].ToString();
+            model.birthday = DateTime.Parse(dr["birthday"].ToString());
+            model.photoURL = dr["photoURL"].ToString();
+            model.intro = dr["intro"].ToString();
+            model.favoritePosts = dr["favoritePosts"].ToString();
+            model.blackList = dr["blackList"].ToString();
+
+            return model;
         }
+
+        public static DataRow 以帳號取得使用者資訊(string account)
+        {
+            string connectionString = 資料庫相關.取得連線字串();
+            string dbCommandString =
+                @" SELECT 
+                        [userID]
+                        ,[userName]
+                        ,[account]
+                        ,[createDate]
+                        ,[userLevel] 
+                        ,[sex] 
+                        ,[email]
+                        ,[birthday]
+                        ,[photoURL]
+                        ,[intro]
+                        ,[favoritePosts]
+                        ,[blackList]
+                    FROM UserTable
+                    WHERE [Account] = @account
+                ";
+
+
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@account", account));
+
+            try
+            {
+                return 資料庫相關.查詢單筆資料(connectionString, dbCommandString, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }
+
 
         public static bool 嘗試登入(string account, string pwd, out string errorMsg)
         {
