@@ -60,16 +60,16 @@ namespace UbayProject
                      join sub in context.SubCategoryTables
                      on main.mainCategoryID
                      equals sub.mainCategoryID
-                     select sub.subCategoryName) ;
-               
-                
-                    foreach (var subName in query4)
-                    {
-                        HyperLink link = new HyperLink();
-                        this.ContentPlaceHolder1.Controls.Add(link);
-                        link.Text = subName + "</br>";
-                        link.NavigateUrl = $"SubPage/{subName.ToString()}.aspx";
-                    }
+                     select sub.subCategoryName);
+
+
+                foreach (var subName in query4)
+                {
+                    HyperLink link = new HyperLink();
+                    this.ContentPlaceHolder1.Controls.Add(link);
+                    link.Text = subName + "</br>";
+                    link.NavigateUrl = $"SubPage/{subName.ToString()}.aspx";
+                }
             }
 
             //using (ContextModel context = new ContextModel())
@@ -86,37 +86,37 @@ namespace UbayProject
             //        link.NavigateUrl = $"SubPage/{subCategoryID.ToString()}.aspx";
             //    }
             //}
-
-        protected void linkLogout_Click(object sender, EventArgs e)
-        {
-            使用者相關功能.登出();
-            Response.Redirect("/MainPage.aspx");
         }
-
-
-        protected void postSubmit_Click(object sender, EventArgs e)
-        {
-            string txtTitle = this.postTitle.Text;
-            string txtInner = this.postInner.Text;
-
-            if(string.IsNullOrWhiteSpace(txtTitle)||
-                string.IsNullOrWhiteSpace(txtInner))
+            protected void linkLogout_Click(object sender, EventArgs e)
             {
-                Response.Write("<script>alert('標題和內文不得為空')</script>");
-                return;
+                使用者相關功能.登出();
+                Response.Redirect("/MainPage.aspx");
             }
-            UserModel currentUser = 使用者相關功能.取得目前登入者的資訊();
-            string userID = currentUser.userID;
 
-            createPost(txtTitle, txtInner, userID);
-            Response.Write("<script>alert('貼文新増成功')</script>");
 
-        }
-        public static void createPost(string title,string inner, string userID)
-        {
-            string connStr = 資料庫相關.取得連線字串();
-            string dbCommand =
-                $@" INSERT INTO PostTable
+            protected void postSubmit_Click(object sender, EventArgs e)
+            {
+                string txtTitle = this.postTitle.Text;
+                string txtInner = this.postInner.Text;
+
+                if (string.IsNullOrWhiteSpace(txtTitle) ||
+                    string.IsNullOrWhiteSpace(txtInner))
+                {
+                    Response.Write("<script>alert('標題和內文不得為空')</script>");
+                    return;
+                }
+                UserModel currentUser = 使用者相關功能.取得目前登入者的資訊();
+                string userID = currentUser.userID;
+
+                createPost(txtTitle, txtInner, userID);
+                Response.Write("<script>alert('貼文新増成功')</script>");
+
+            }
+            public static void createPost(string title, string inner, string userID)
+            {
+                string connStr = 資料庫相關.取得連線字串();
+                string dbCommand =
+                    $@" INSERT INTO PostTable
                     (
                          postTitle
                         ,countOfLikes
@@ -154,31 +154,30 @@ namespace UbayProject
 
 
 
-            // connect db & execute
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                using (SqlCommand comm = new SqlCommand(dbCommand, conn))
+                // connect db & execute
+                using (SqlConnection conn = new SqlConnection(connStr))
                 {
-                    comm.Parameters.AddWithValue("@postTitle", title);
-                    comm.Parameters.AddWithValue("@subCategoryID", 1);
-                    comm.Parameters.AddWithValue("@inner", inner);
-                    comm.Parameters.AddWithValue("@userID", userID);
-                    comm.Parameters.AddWithValue("@createDate", DateTime.Now);
-
-                    try
+                    using (SqlCommand comm = new SqlCommand(dbCommand, conn))
                     {
-                        conn.Open();
-                        comm.ExecuteNonQuery();
+                        comm.Parameters.AddWithValue("@postTitle", title);
+                        comm.Parameters.AddWithValue("@subCategoryID", 1);
+                        comm.Parameters.AddWithValue("@inner", inner);
+                        comm.Parameters.AddWithValue("@userID", userID);
+                        comm.Parameters.AddWithValue("@createDate", DateTime.Now);
 
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.WriteLog(ex);
+                        try
+                        {
+                            conn.Open();
+                            comm.ExecuteNonQuery();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.WriteLog(ex);
+                        }
                     }
                 }
             }
         }
-    
 
     }
-}
