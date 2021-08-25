@@ -14,27 +14,32 @@ namespace UbayProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string queryString = this.Request.QueryString["ID"];
+            //讀取網址列中的貼文ID
+            string queryString = this.Request.QueryString["postID"];
             var dr = getPostByPostID(queryString);
+            if(dr == null)
+            {
+                Response.Write("<script>alert('該貼文不存在')</script>");
+                Response.Redirect("MainPage.aspx");
+            }
             this.lblTitle.Text = dr["postTitle"].ToString();
-            this.lblInner.Text = dr["comment"].ToString();
+            this.lblInner.Text = dr["postText"].ToString();
         }
         public DataRow getPostByPostID(string queryString)
         {
             string connStr = 資料庫相關.取得連線字串();
             string dbCommand =
-                $@"select PostTable.postID
-                        ,PostTable.postTitle
-                        ,PostTable.countOfLikes
-                        ,PostTable.countOfUnlikes
-                        ,PostTable.countOfViewers
-                        ,PostTable.createDate
-                        ,PostTable.subCategoryID
-                        ,PostTable.userID
-                        ,CommentTable.comment
-                        from PostTable
-                        join CommentTable on CommentTable.postID=PostTable.postID
-                    where PostTable.postID =  @postID
+                $@"SELECT PostTable.postID
+                        ,postTitle
+                        ,countOfLikes
+                        ,countOfUnlikes
+                        ,countOfViewers
+                        ,createDate
+                        ,subCategoryID
+                        ,userID
+                        ,postText
+                        FROM PostTable
+                    WHERE postID =  @postID
                 ";
             List<SqlParameter> list = new List<SqlParameter>();
             list.Add(new SqlParameter("@postID", queryString));

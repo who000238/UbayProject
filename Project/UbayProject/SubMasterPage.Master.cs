@@ -112,7 +112,7 @@ namespace UbayProject
                 Response.Write("<script>alert('貼文新増成功')</script>");
 
             }
-            public static void createPost(string title, string inner, string userID)
+            public static void createPost(string title, string innerText, string userID)
             {
                 string connStr = 資料庫相關.取得連線字串();
                 string dbCommand =
@@ -125,6 +125,7 @@ namespace UbayProject
                         ,userID
                         ,subCategoryID
                         ,createDate
+                        ,postText
                     )    
                     VALUES
                     (
@@ -135,21 +136,9 @@ namespace UbayProject
                         ,@userID
                         ,@subCategoryID
                         ,@createDate
+                        ,@postText
                     )
-                        INSERT INTO CommentTable
-                    (
-		                    [comment]
-                          ,[userID]
-                          ,[postID]
-                          ,[createDate]
-                    )
-                     VALUES   
-                    ( 
-                            @inner
-                            ,@userID
-                            ,'1'
-                            ,@createDate
-                    ) ";
+                  ";
 
 
 
@@ -161,7 +150,7 @@ namespace UbayProject
                     {
                         comm.Parameters.AddWithValue("@postTitle", title);
                         comm.Parameters.AddWithValue("@subCategoryID", 1);
-                        comm.Parameters.AddWithValue("@inner", inner);
+                        comm.Parameters.AddWithValue("@postText", innerText);
                         comm.Parameters.AddWithValue("@userID", userID);
                         comm.Parameters.AddWithValue("@createDate", DateTime.Now);
 
