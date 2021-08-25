@@ -39,7 +39,8 @@ namespace UbayProject
             string dbCommand =
                 $@" SELECT 
                         [postTitle],
-                        [createDate]
+                        [createDate],
+                        [postID]
                     FROM [PostTable]
                     WHERE [subCategoryID] = @subCategoryID
                 ";
