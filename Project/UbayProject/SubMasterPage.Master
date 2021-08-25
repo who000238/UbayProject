@@ -33,6 +33,13 @@
             bottom: 10px;
             right: 20px;
         }
+        /*input[id*=postSubmit]{
+             position: absolute;
+            width: 60px;
+            height: 35px;
+            bottom: 10px;
+            right: 20px;
+        }*/
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -81,12 +88,13 @@
         </div>
         <div class="row postArea" id="postArea" runat="server">
             <div class="col-12">
-                <input type="text" class="form-control" name="postTitle" id="postTitle" placeholder="輸入標題" />
+                <asp:TextBox runat="server" ID="postTitle" TextMode="SingleLine" CssClass="form-control" placeholder="輸入標題"></asp:TextBox>
+
             </div>
             <div>
-                <textarea name="postInner" id="postInner" placeholder="輸入內文"></textarea>
+                <asp:TextBox runat="server" ID="postInner" TextMode="MultiLine" Rows="3" CssClass="form-control" placeholder="輸入內文"></asp:TextBox>
             </div>
-            <button class="btn btn-outline-primary" id="postSubmit">送出</button>
+            <asp:Button runat="server" ID="postSubmit" CssClass="btn btn-outline-primary" Text="送出" OnClick="postSubmit_Click" />
         </div>
     </form>
 </body>

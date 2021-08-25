@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserModel.cs" />
     <Compile Include="使用者相關功能.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
