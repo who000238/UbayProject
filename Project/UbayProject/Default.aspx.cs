@@ -30,6 +30,7 @@ namespace UbayProject
                     link.Text = mainCategoryID;
                     link.NavigateUrl = $"SubPage/{mainCategoryID.ToString()}.aspx";
                 }
+                
             }
 
 

@@ -38,14 +38,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-2">
-               <ul>
-                   <li><%--<asp:Label ID="Label1" runat="server" ></asp:Label>--%>
-
-                   </li>
-                   <li>B版</li>
-                   <li>C版</li>
-               </ul>
+            <div id="divLink" class="col-2">
             </div>
             <div class="col-8">
                <p style="font-size:30px ; text-align:center" >主頁面</p>
