@@ -34,7 +34,7 @@ namespace UbayProject
             //sessionID 權限檢查，失敗重新導回登入，登入逾時?
 
             //輸入檢查
-            if (this.txtUserName.Text == string.Empty )
+            if (this.txtUserName.Text == string.Empty)
             {
                 //必填，空則警告
             }
@@ -49,4 +49,5 @@ namespace UbayProject
         }
 
     }
+
 }

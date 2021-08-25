@@ -35,17 +35,42 @@ namespace UbayProject
                 var query =
                     (from mainCategoryID in context.MainCategoryTables
                      select mainCategoryID.mainCategoryName);
-                foreach (var mainCategoryID in query)
+                foreach (var mainName in query)
                 {
                     HyperLink link = new HyperLink();
                     this.BoardLink.Controls.Add(link);
-                    link.Text = mainCategoryID + "</br>";
-                    link.NavigateUrl = $"SubPage/{mainCategoryID.ToString()}.aspx";
+                    link.Text = mainName + "</br>";
+                    link.NavigateUrl = $"SubPage/{mainName.ToString()}.aspx";
+                }
+
+                var query2 =
+                    (from mainCategoryID in context.MainCategoryTables
+                     select mainCategoryID.mainCategoryID);
+
+                var query3 =
+                  (from main in context.MainCategoryTables
+                   join sub in context.SubCategoryTables
+                   on main.mainCategoryID
+                   equals sub.mainCategoryID into sc
+                   select main.mainCategoryID
+                   );
+
+                var query4 =
+                    (from main in context.MainCategoryTables
+                     join sub in context.SubCategoryTables
+                     on main.mainCategoryID
+                     equals sub.mainCategoryID
+                     select sub.subCategoryName);
+
+
+                foreach (var subName in query4)
+                {
+                    HyperLink link = new HyperLink();
+                    this.ContentPlaceHolder1.Controls.Add(link);
+                    link.Text = subName + "</br>";
+                    link.NavigateUrl = $"SubPage/{subName.ToString()}.aspx";
                 }
             }
-
-        }
-
 
             //using (ContextModel context = new ContextModel())
             //{
@@ -61,36 +86,37 @@ namespace UbayProject
             //        link.NavigateUrl = $"SubPage/{subCategoryID.ToString()}.aspx";
             //    }
             //}
-
-        protected void linkLogout_Click(object sender, EventArgs e)
-        {
-            使用者相關功能.登出();
-            Response.Redirect("/MainPage.aspx");
         }
-
-        protected void postSubmit_Click(object sender, EventArgs e)
-        {
-            string txtTitle = this.postTitle.Text;
-            string txtInner = this.postInner.Text;
-
-            if(string.IsNullOrWhiteSpace(txtTitle)||
-                string.IsNullOrWhiteSpace(txtInner))
+            protected void linkLogout_Click(object sender, EventArgs e)
             {
-                Response.Write("<script>alert('標題和內文不得為空')</script>");
-                return;
+                使用者相關功能.登出();
+                Response.Redirect("/MainPage.aspx");
             }
-            UserModel currentUser = 使用者相關功能.取得目前登入者的資訊();
-            string userID = currentUser.userID;
 
-            createPost(txtTitle, txtInner, userID);
-            Response.Write("<script>alert('貼文新増成功')</script>");
 
-        }
-        public static void createPost(string title,string inner, string userID)
-        {
-            string connStr = 資料庫相關.取得連線字串();
-            string dbCommand =
-                $@" INSERT INTO PostTable
+            protected void postSubmit_Click(object sender, EventArgs e)
+            {
+                string txtTitle = this.postTitle.Text;
+                string txtInner = this.postInner.Text;
+
+                if (string.IsNullOrWhiteSpace(txtTitle) ||
+                    string.IsNullOrWhiteSpace(txtInner))
+                {
+                    Response.Write("<script>alert('標題和內文不得為空')</script>");
+                    return;
+                }
+                UserModel currentUser = 使用者相關功能.取得目前登入者的資訊();
+                string userID = currentUser.userID;
+
+                createPost(txtTitle, txtInner, userID);
+                Response.Write("<script>alert('貼文新増成功')</script>");
+
+            }
+            public static void createPost(string title, string inner, string userID)
+            {
+                string connStr = 資料庫相關.取得連線字串();
+                string dbCommand =
+                    $@" INSERT INTO PostTable
                     (
                          postTitle
                         ,countOfLikes
@@ -128,30 +154,30 @@ namespace UbayProject
 
 
 
-            // connect db & execute
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                using (SqlCommand comm = new SqlCommand(dbCommand, conn))
+                // connect db & execute
+                using (SqlConnection conn = new SqlConnection(connStr))
                 {
-                    comm.Parameters.AddWithValue("@postTitle", title);
-                    comm.Parameters.AddWithValue("@subCategoryID", 1);
-                    comm.Parameters.AddWithValue("@inner", inner);
-                    comm.Parameters.AddWithValue("@userID", userID);
-                    comm.Parameters.AddWithValue("@createDate", DateTime.Now);
-
-                    try
+                    using (SqlCommand comm = new SqlCommand(dbCommand, conn))
                     {
-                        conn.Open();
-                        comm.ExecuteNonQuery();
+                        comm.Parameters.AddWithValue("@postTitle", title);
+                        comm.Parameters.AddWithValue("@subCategoryID", 1);
+                        comm.Parameters.AddWithValue("@inner", inner);
+                        comm.Parameters.AddWithValue("@userID", userID);
+                        comm.Parameters.AddWithValue("@createDate", DateTime.Now);
 
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.WriteLog(ex);
+                        try
+                        {
+                            conn.Open();
+                            comm.ExecuteNonQuery();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.WriteLog(ex);
+                        }
                     }
                 }
             }
         }
-    
+
     }
-}
