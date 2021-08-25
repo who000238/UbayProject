@@ -198,7 +198,7 @@
                                 <td>性別</td>
                                 <td ><asp:Label ID="lblUserSex" runat="server" Text="Label"></asp:Label></td>
                                 <td>
-                                    <asp:Button class="btn btn-outline-light" ID="btnUpdateUserSex" runat="server" Text="設定性別" OnClick="btnUpdateUserIntro_Click" />
+                                    <asp:Button class="btn btn-outline-light" ID="btnUpdateUserSex" runat="server" Text="設定性別" OnClick="btnUpdateUserSex_Click" />
                                 </td>
 
                             </tr>
@@ -206,7 +206,7 @@
                                 <td>生日</td>
                                 <td><asp:Label ID="lblUserBirthday" runat="server" Text="Label"></asp:Label></td>
                                 <td>
-                                    <asp:Button class="btn btn-outline-light" ID="btnUpdateUserBirthday" runat="server" Text="設定生日" OnClick="btnUpdateUserIntro_Click" />
+                                    <asp:Button class="btn btn-outline-light" ID="btnUpdateUserBirthday" runat="server" Text="設定生日" OnClick="btnUpdateUserBirthday_Click" />
                                 </td>
                             </tr>
                             <tr id="trUserIntro">
