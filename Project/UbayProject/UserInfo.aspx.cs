@@ -12,7 +12,7 @@ namespace UbayProject
         protected void Page_Load(object sender, EventArgs e)
         {
             //預設登入(測試用)
-            this.Session["UserLoginInfo"] = "4B50687F-45B3-4B24-B830-14CCFB4F0126";
+            //this.Session["UserLoginInfo"] = "4B50687F-45B3-4B24-B830-14CCFB4F0126";
             
             //判斷是否使用者登入了(沒有、一般、限制、管理員)
             //seesion null check，同時沒登入就關閉修改按鈕
@@ -90,30 +90,47 @@ namespace UbayProject
         protected void btnUpdateUserName_Click(object sender, EventArgs e)
         {
             //再重新確認登入狀況一次
-
             //重新導向修改頁面，並只修改UserName
-            this.Response.Redirect("/UpdateUserInfo.aspx");
+            string queryString = this.Request.QueryString["userID"];
+            this.Response.Redirect($"/UpdateUserInfo.aspx?userID={queryString}&mode=UpdateUserName");
         }
 
         protected void btnUpdateUserIntro_Click(object sender, EventArgs e)
         {
             //再重新確認登入狀況一次
             //重新導向修改頁面，並只修改UserIntro
-            this.Response.Redirect("/UpdateUserInfo.aspx");
-
+            string queryString = this.Request.QueryString["userID"];
+            this.Response.Redirect($"/UpdateUserInfo.aspx?userID={queryString}&mode=UpdateUserIntro");
         }
 
         protected void btnUpdateUserPhoto_Click(object sender, EventArgs e)
         {
             //再重新確認登入狀況一次
             //重新導向修改頁面，並只修改UserPhoto
-            this.Response.Redirect("/UpdateUserInfo.aspx");
+            string queryString = this.Request.QueryString["userID"];
+            this.Response.Redirect($"/UpdateUserInfo.aspx?userID={queryString}&mode=UpdateUserPhoto");
+        }
+        protected void btnUpdateUserSex_Click(object sender, EventArgs e)
+        {
+            //再重新確認登入狀況一次
+            //重新導向修改頁面，並只修改UserPhoto
+            string queryString = this.Request.QueryString["userID"];
+            this.Response.Redirect($"/UpdateUserInfo.aspx?userID={queryString}&mode=UpdateUserSex");
 
         }
 
+        protected void btnUpdateUserBirthday_Click(object sender, EventArgs e)
+        {
+            //再重新確認登入狀況一次
+            //重新導向修改頁面，並只修改UserPhoto
+            string queryString = this.Request.QueryString["userID"];
+            this.Response.Redirect($"/UpdateUserInfo.aspx?userID={queryString}&mode=UpdateUserBirthday");
+        }
         protected void btnDeleteUser_Click(object sender, EventArgs e)
         {
+            //確認使用者權限等級
             //刪除此使用者
         }
+
     }
 }
