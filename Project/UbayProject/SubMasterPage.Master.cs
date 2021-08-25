@@ -87,8 +87,6 @@ namespace UbayProject
             //    }
             //}
 
-        }
-
         protected void linkLogout_Click(object sender, EventArgs e)
         {
             使用者相關功能.登出();
