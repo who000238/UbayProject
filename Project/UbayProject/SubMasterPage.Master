@@ -13,18 +13,21 @@
         div {
             border: 1px solid #000000;
         }
-         #postInner{
-            width:100%;
+
+        #postInner {
+            width: 100%;
             height: 100%;
         }
-        .postArea{
+
+        .postArea {
             position: fixed;
-            bottom:0px;
-            width:100%;
+            bottom: 0px;
+            width: 100%;
             height: 20%;
         }
-        #postSubmit{
-            position:absolute;
+
+        #postSubmit {
+            position: absolute;
             width: 60px;
             height: 35px;
             bottom: 10px;
@@ -58,20 +61,15 @@
                 <div class="col-2"></div>
             </div>
             <div class="row">
-                <div class="col-2">
-                    <ul>
-                        <li><a href="TempAPage.aspx">A版</a></li>
-                        <li><a href="TempBPage.aspx">B版</a></li>
-                        <li>C版</li>
-                    </ul>
+                <div class="col-2" id="BoardLink" runat="server">
                 </div>
                 <div class="col-8">
+                    <div>
                         <div>
-                            <div>
-                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                                </asp:ContentPlaceHolder>
-                            </div>
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
                         </div>
+                    </div>
                 </div>
                 <div class="col-2">
                     <p>PHOTO/AD</p>
@@ -81,15 +79,15 @@
                 <p>這邊放使用者控制項</p>
             </div>
         </div>
-         <div class="row postArea">
-        <div class="col-12">
-            <input type="text" class="form-control" name="postTitle" id="postTitle" placeholder="輸入標題"/>
+        <div class="row postArea" id="postArea" runat="server">
+            <div class="col-12">
+                <input type="text" class="form-control" name="postTitle" id="postTitle" placeholder="輸入標題" />
+            </div>
+            <div>
+                <textarea name="postInner" id="postInner" placeholder="輸入內文"></textarea>
+            </div>
+            <button class="btn btn-outline-primary" id="postSubmit">送出</button>
         </div>
-        <div>
-            <textarea name="postInner" id="postInner" placeholder="輸入內文"></textarea>
-        </div>
-        <button class="btn btn-outline-primary" id="postSubmit">送出</button>
-    </div>
     </form>
 </body>
 </html>
