@@ -35,17 +35,42 @@ namespace UbayProject
                 var query =
                     (from mainCategoryID in context.MainCategoryTables
                      select mainCategoryID.mainCategoryName);
-                foreach (var mainCategoryID in query)
+                foreach (var mainName in query)
                 {
                     HyperLink link = new HyperLink();
                     this.BoardLink.Controls.Add(link);
-                    link.Text = mainCategoryID + "</br>";
-                    link.NavigateUrl = $"SubPage/{mainCategoryID.ToString()}.aspx";
+                    link.Text = mainName + "</br>";
+                    link.NavigateUrl = $"SubPage/{mainName.ToString()}.aspx";
                 }
+
+                var query2 =
+                    (from mainCategoryID in context.MainCategoryTables
+                     select mainCategoryID.mainCategoryID);
+
+                var query3 =
+                  (from main in context.MainCategoryTables
+                   join sub in context.SubCategoryTables
+                   on main.mainCategoryID
+                   equals sub.mainCategoryID into sc
+                   select main.mainCategoryID
+                   );
+
+                var query4 =
+                    (from main in context.MainCategoryTables
+                     join sub in context.SubCategoryTables
+                     on main.mainCategoryID
+                     equals sub.mainCategoryID
+                     select sub.subCategoryName) ;
+               
+                
+                    foreach (var subName in query4)
+                    {
+                        HyperLink link = new HyperLink();
+                        this.ContentPlaceHolder1.Controls.Add(link);
+                        link.Text = subName + "</br>";
+                        link.NavigateUrl = $"SubPage/{subName.ToString()}.aspx";
+                    }
             }
-
-        }
-
 
             //using (ContextModel context = new ContextModel())
             //{
@@ -61,6 +86,7 @@ namespace UbayProject
             //        link.NavigateUrl = $"SubPage/{subCategoryID.ToString()}.aspx";
             //    }
             //}
+
         }
 
         protected void linkLogout_Click(object sender, EventArgs e)
@@ -68,6 +94,7 @@ namespace UbayProject
             使用者相關功能.登出();
             Response.Redirect("/MainPage.aspx");
         }
+
 
         protected void postSubmit_Click(object sender, EventArgs e)
         {
@@ -154,5 +181,6 @@ namespace UbayProject
             }
         }
     
+
     }
 }
