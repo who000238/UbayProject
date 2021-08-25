@@ -61,7 +61,6 @@ namespace UbayProject
             //        link.NavigateUrl = $"SubPage/{subCategoryID.ToString()}.aspx";
             //    }
             //}
-        }
 
         protected void linkLogout_Click(object sender, EventArgs e)
         {
