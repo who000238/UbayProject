@@ -42,7 +42,43 @@ namespace UbayProject
                     link.Text = mainCategoryID + "</br>";
                     link.NavigateUrl = $"SubPage/{mainCategoryID.ToString()}.aspx";
                 }
+
+                var query2 =
+                   (from main in context.MainCategoryTables
+                    join sub in context.SubCategoryTables
+                    on main.mainCategoryID
+                    equals sub.mainCategoryID into sc
+                    select new
+                    {
+                        Key = main.mainCategoryID,
+                        subCategory = sc
+                    }
+                    );
+
+                foreach (var subName in query2)
+                {
+                    HyperLink link2 = new HyperLink();
+                    this.ContentPlaceHolder1.Controls.Add(link2);
+                    link2.Text = subName.Key + "</br>";
+                    link2.NavigateUrl = $"SubPage/{subName.Key.ToString()}.aspx";
+                }
             }
+
+
+            //using (ContextModel context = new ContextModel())
+            //{
+            //    var query =
+            //        (from subCategoryID in context.SubCategoryTables
+            //         select subCategoryID.subCategoryName);
+
+            //    foreach (var subCategoryID in query)
+            //    {
+            //        HyperLink link = new HyperLink();
+            //        this.ContentPlaceHolder1.Controls.Add(link);
+            //        link.Text = subCategoryID + "</br>";
+            //        link.NavigateUrl = $"SubPage/{subCategoryID.ToString()}.aspx";
+            //    }
+            //}
         }
 
         protected void linkLogout_Click(object sender, EventArgs e)
@@ -51,6 +87,6 @@ namespace UbayProject
             Response.Redirect("/MainPage.aspx");
         }
 
-  
+
     }
 }
