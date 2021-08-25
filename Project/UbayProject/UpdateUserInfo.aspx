@@ -28,6 +28,7 @@
             text-align: center;
             color: snow;
             background-color: #212529;
+            transform: perspective(250px) rotateX(-10deg);
             box-shadow: 0px 5px 5px rgba(0,0,0,0.8);
             box-shadow: 3px 5px 5px rgba(0,0,0,0.8);
             box-shadow: -3px 5px 5px rgba(0,0,0,0.8);
@@ -149,25 +150,24 @@
                             <tr id="trUserBirthday">
                                 <td>生日</td>
                                 <td>
-                                    <asp:TextBox ID="txtUserBirthday" runat="server"></asp:TextBox></td>
+                                    <asp:TextBox ID="txtUserBirthday" runat="server" TextMode="Date"></asp:TextBox></td>
                             </tr>
                             <tr id="trUserIntro">
                                 <td>自我介紹</td>
                                 <td>
-                                    <asp:TextBox ID="txtUserIntro" runat="server" MaxLength="4000" TextMode="MultiLine" style="width:80%"></asp:TextBox>
+                                    <asp:TextBox ID="txtUserIntro" runat="server" MaxLength="4000" TextMode="MultiLine" style="width:80%" Rows="10"></asp:TextBox>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            
             <div class="row justify-content-md-center" >
                 <div class="col-4 col-md-4 col-sm-6" style="text-align:center"" >
-                    <asp:Button ID="btnSubmit" runat="server" Text="送出"  />
+                    <asp:Button class="btn btn-outline-dark" ID="btnSubmit" runat="server" Text="送出" OnClick="btnSubmit_Click"  />
                 </div>
                 <div class="col-4 col-md-4 col-sm-6" style="text-align:center" >
-                    <asp:Button ID="Button1" runat="server" Text="取消" />
+                    <asp:Button class="btn btn-outline-dark" ID="btnCancel" runat="server" Text="取消" OnClick="btnCancel_Click" />
                 </div>
             </div>
         </div>
@@ -182,6 +182,7 @@
             }
             );
             //記得限制圖片大小
+
         })
     </script>
 </body>

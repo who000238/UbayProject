@@ -172,7 +172,7 @@
         <div class="container" id="divUserInfo">
             <div class="row">
                 <div class="col-12 col-md-12 col-sm-12 ">
-                    <h1 id="title">USERINFO</h1>
+                    <h1 id="title">USERINFO<asp:Button ID="btnDeleteUser" runat="server" Text="刪除此使用者" OnClick="btnDeleteUser_Click" Visible="False" /></h1>
                 </div>
             </div>
             <div class="row justify-content-md-center">
