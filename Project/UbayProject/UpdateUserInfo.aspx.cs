@@ -48,6 +48,5 @@ namespace UbayProject
             //回到自己的UserInfo頁面
         }
 
-        }
     }
 }
