@@ -106,8 +106,9 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="Login.aspx" />
     <Content Include="MainPage.aspx" />
-    <Content Include="SubPage\TempAPage.aspx" />
-    <Content Include="SubPage\TempBPage.aspx" />
+    <Content Include="SubPage\Game.aspx" />
+    <Content Include="SubPage\Gossiping.aspx" />
+    <Content Include="SubPage\Sports.aspx" />
     <Content Include="UpdateUserInfo.aspx" />
     <Content Include="UserInfo.aspx" />
     <Content Include="Web.config" />
@@ -159,19 +160,26 @@
     <Compile Include="SubMasterPage.Master.designer.cs">
       <DependentUpon>SubMasterPage.Master</DependentUpon>
     </Compile>
-    <Compile Include="SubPage\TempAPage.aspx.cs">
-      <DependentUpon>TempAPage.aspx</DependentUpon>
+    <Compile Include="SubPage\Game.aspx.cs">
+      <DependentUpon>Game.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SubPage\TempAPage.aspx.designer.cs">
-      <DependentUpon>TempAPage.aspx</DependentUpon>
+    <Compile Include="SubPage\Game.aspx.designer.cs">
+      <DependentUpon>Game.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SubPage\TempBPage.aspx.cs">
-      <DependentUpon>TempBPage.aspx</DependentUpon>
+    <Compile Include="SubPage\Gossiping.aspx.cs">
+      <DependentUpon>Gossiping.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SubPage\TempBPage.aspx.designer.cs">
-      <DependentUpon>TempBPage.aspx</DependentUpon>
+    <Compile Include="SubPage\Gossiping.aspx.designer.cs">
+      <DependentUpon>Gossiping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubPage\Sports.aspx.cs">
+      <DependentUpon>Sports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubPage\Sports.aspx.designer.cs">
+      <DependentUpon>Sports.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpdateUserInfo.aspx.cs">
       <DependentUpon>UpdateUserInfo.aspx</DependentUpon>
