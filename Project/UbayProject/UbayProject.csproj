@@ -266,7 +266,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UbayProject.ORM\UbayProject.ORM.csproj">
-      <Project>{c037fd6c-6f22-4ad1-abe7-948313f558b1}</Project>
+      <Project>{18AC7311-0A01-4125-AFBF-724841A999F2}</Project>
       <Name>UbayProject.ORM</Name>
     </ProjectReference>
     <ProjectReference Include="..\登入功能的類別庫\帳號相關功能的類別庫.csproj">

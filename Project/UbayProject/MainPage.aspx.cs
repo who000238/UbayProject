@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using UbayProject.ORM.DBModels;
+using UbayProject.ORM;
 using 登入功能的類別庫;
 
 namespace UbayProject

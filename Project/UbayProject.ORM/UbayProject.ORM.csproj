@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C037FD6C-6F22-4AD1-ABE7-948313F558B1}</ProjectGuid>
+    <ProjectGuid>{18AC7311-0A01-4125-AFBF-724841A999F2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UbayProject.ORM</RootNamespace>
@@ -51,13 +51,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="DBModels\CommentTable.cs" />
-    <Compile Include="DBModels\MainCategoryTable.cs" />
-    <Compile Include="DBModels\ContextModel.cs" />
-    <Compile Include="DBModels\PostTable.cs" />
-    <Compile Include="DBModels\SubCategoryTable.cs" />
-    <Compile Include="DBModels\UserTable.cs" />
+    <Compile Include="CommentTable.cs" />
+    <Compile Include="ContextModel.cs" />
+    <Compile Include="MainCategoryTable.cs" />
+    <Compile Include="PostTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubCategoryTable.cs" />
+    <Compile Include="sysdiagram.cs" />
+    <Compile Include="UserTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

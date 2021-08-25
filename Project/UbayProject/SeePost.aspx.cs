@@ -6,7 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using 登入功能的類別庫;
 using 處理資料庫相關的類別庫;
+
 
 namespace UbayProject
 {
@@ -17,13 +19,16 @@ namespace UbayProject
             //讀取網址列中的貼文ID
             string queryString = this.Request.QueryString["postID"];
             var dr = getPostByPostID(queryString);
-            if(dr == null)
+            if (dr == null)
             {
                 Response.Write("<script>alert('該貼文不存在')</script>");
                 Response.Redirect("MainPage.aspx");
             }
             this.lblTitle.Text = dr["postTitle"].ToString();
             this.lblInner.Text = dr["postText"].ToString();
+            int postID = Convert.ToInt32(this.Request.QueryString["postID"]);
+            var Comment = getComment(postID);
+            this.lblComment.Text = Comment["comment"].ToString();
         }
         public DataRow getPostByPostID(string queryString)
         {
@@ -43,6 +48,80 @@ namespace UbayProject
                 ";
             List<SqlParameter> list = new List<SqlParameter>();
             list.Add(new SqlParameter("@postID", queryString));
+            try
+            {
+                return 資料庫相關.查詢單筆資料(connStr, dbCommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }
+
+
+        protected void commentSubmit_Click(object sender, EventArgs e)
+        {
+            string txtComment = this.comment.Text;
+            int postID = Convert.ToInt32(this.Request.QueryString["postID"]);
+            UserModel currentUser = 使用者相關功能.取得目前登入者的資訊();
+            string userID = currentUser.userID;
+            addComment(txtComment, userID, postID);
+        }
+
+        public static bool addComment(string txtComment, string userID, int postID)
+        {
+            string connStr = 資料庫相關.取得連線字串();
+            string dbCommand =
+                $@"  INSERT INTO CommentTable
+                (
+                          postID
+                          ,comment
+                          ,userID
+                          ,createDate
+                )
+                          VALUES 
+                (
+                              @postID
+                              ,@comment
+                              ,@userID
+                              ,@createDate
+                )
+                ";
+
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@postID", postID));
+            list.Add(new SqlParameter("@comment", txtComment));
+            list.Add(new SqlParameter("@userID", userID));
+            list.Add(new SqlParameter("@createDate", DateTime.Now));
+            try
+            {
+                int effectRows = 資料庫相關.ModifyData(connStr, dbCommand, list);
+
+                if (effectRows == 1)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return false;
+            }
+        }
+        public static DataRow getComment(int postID)
+        {
+            string connStr = 資料庫相關.取得連線字串();
+            string dbCommand =
+              $@" SELECT 
+                      comment,
+                      userID,
+                      createDate
+                    FROM CommentTable
+                    WHERE postID = @postID 
+                ";
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@postID", postID));
             try
             {
                 return 資料庫相關.查詢單筆資料(connStr, dbCommand, list);

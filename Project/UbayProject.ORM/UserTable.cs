@@ -1,4 +1,4 @@
-namespace UbayProject.ORM.DBModels
+namespace UbayProject.ORM
 {
     using System;
     using System.Collections.Generic;
@@ -37,7 +37,7 @@ namespace UbayProject.ORM.DBModels
         [Column(TypeName = "date")]
         public DateTime? birthday { get; set; }
 
-        [StringLength(200)]
+        [StringLength(500)]
         public string photoURL { get; set; }
 
         [StringLength(500)]
@@ -47,7 +47,7 @@ namespace UbayProject.ORM.DBModels
         public string favoritePosts { get; set; }
 
         [Required]
-        [StringLength(1)]
+        [StringLength(50)]
         public string blackList { get; set; }
     }
 }
