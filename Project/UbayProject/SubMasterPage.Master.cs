@@ -46,6 +46,23 @@ namespace UbayProject
 
         }
 
+
+            //using (ContextModel context = new ContextModel())
+            //{
+            //    var query =
+            //        (from subCategoryID in context.SubCategoryTables
+            //         select subCategoryID.subCategoryName);
+
+            //    foreach (var subCategoryID in query)
+            //    {
+            //        HyperLink link = new HyperLink();
+            //        this.ContentPlaceHolder1.Controls.Add(link);
+            //        link.Text = subCategoryID + "</br>";
+            //        link.NavigateUrl = $"SubPage/{subCategoryID.ToString()}.aspx";
+            //    }
+            //}
+        }
+
         protected void linkLogout_Click(object sender, EventArgs e)
         {
             使用者相關功能.登出();

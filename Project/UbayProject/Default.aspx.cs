@@ -27,14 +27,10 @@ namespace UbayProject
                 {
                     HyperLink link = new HyperLink();
                     this.BoardLink.Controls.Add(link);
-                    link.Text = mainCategoryID +"</br>";
+                    link.Text = mainCategoryID + "</br>";
                     link.NavigateUrl = $"SubPage/{mainCategoryID.ToString()}.aspx";
                 }
             }
-
-
         }
-
-
     }
 }
