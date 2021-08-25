@@ -26,8 +26,8 @@ namespace UbayProject
                 foreach (var mainCategoryID in query)
                 {
                     HyperLink link = new HyperLink();
-                    Page.Controls.Add(link);
-                    link.Text = mainCategoryID;
+                    this.BoardLink.Controls.Add(link);
+                    link.Text = mainCategoryID +"</br>";
                     link.NavigateUrl = $"SubPage/{mainCategoryID.ToString()}.aspx";
                 }
                 

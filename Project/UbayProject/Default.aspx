@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="row">
-            <div id="divLink" class="col-2">
+            <div class="col-2" id="BoardLink" runat="server">
             </div>
             <div class="col-8">
                <p style="font-size:30px ; text-align:center" >主頁面</p>
