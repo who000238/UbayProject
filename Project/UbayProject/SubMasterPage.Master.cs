@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -44,21 +45,37 @@ namespace UbayProject
                     link.NavigateUrl = $"SubPage/{item.mainCategoryName}.aspx?mainCategoryID={item.mainCategoryID}";
                 }
 
-               //產生子版連結
+                //產生子版連結
                 var query2 =
                       (from item in context.SubCategoryTables
                        where item.mainCategoryID == tempCatID
-                       select item.subCategoryName);
+                       select item);
                 foreach (var item in query2)
                 {
                     HyperLink link2 = new HyperLink();
                     this.ContentPlaceHolder1.Controls.Add(link2);
-                    link2.Text = item + "</br>";
-                    link2.NavigateUrl = $"SubPage/{item}.aspx";
+                    link2.Text = item.subCategoryName + "</br>";
+                    link2.NavigateUrl = $"SubPage/{item.subCategoryName}.aspx";
                 }
 
 
             }
+
+            try
+            {
+                int categoryID = tempCatID;
+                var dt = 取得貼文(categoryID);
+                if (dt.Rows.Count > 0)  // check is empty data
+                {
+                    this.GridView1.DataSource = dt;
+                    this.GridView1.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write($"<script>alert('{ex}')</script>");
+            }
+
         }
         protected void linkLogout_Click(object sender, EventArgs e)
         {
@@ -84,12 +101,12 @@ namespace UbayProject
             createPost(txtTitle, txtInner, userID);
             Response.Write("<script>alert('貼文新増成功')</script>");
 
-            }
-            public static void createPost(string title, string innerText, string userID)
-            {
-                string connStr = 資料庫相關.取得連線字串();
-                string dbCommand =
-                    $@" INSERT INTO PostTable
+        }
+        public static void createPost(string title, string innerText, string userID)
+        {
+            string connStr = 資料庫相關.取得連線字串();
+            string dbCommand =
+                $@" INSERT INTO PostTable
                     (
                          postTitle
                         ,countOfLikes
@@ -112,16 +129,16 @@ namespace UbayProject
                         ,@postText
                     )
                   ";
-                // connect db & execute
-                using (SqlConnection conn = new SqlConnection(connStr))
+            // connect db & execute
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                using (SqlCommand comm = new SqlCommand(dbCommand, conn))
                 {
-                    using (SqlCommand comm = new SqlCommand(dbCommand, conn))
-                    {
-                        comm.Parameters.AddWithValue("@postTitle", title);
-                        comm.Parameters.AddWithValue("@subCategoryID", 1);
-                        comm.Parameters.AddWithValue("@postText", innerText);
-                        comm.Parameters.AddWithValue("@userID", userID);
-                        comm.Parameters.AddWithValue("@createDate", DateTime.Now);
+                    comm.Parameters.AddWithValue("@postTitle", title);
+                    comm.Parameters.AddWithValue("@subCategoryID", 1);
+                    comm.Parameters.AddWithValue("@postText", innerText);
+                    comm.Parameters.AddWithValue("@userID", userID);
+                    comm.Parameters.AddWithValue("@createDate", DateTime.Now);
 
                     try
                     {
@@ -135,6 +152,37 @@ namespace UbayProject
                     }
                 }
             }
+        }
+
+        public static DataTable 取得貼文(int categoryID)
+        {
+            string connStr = 資料庫相關.取得連線字串();
+            string dbCommand =
+                $@" SELECT 
+                        [postTitle],
+                        [createDate],
+                        [postID]
+                    FROM [PostTable]
+                    WHERE [subCategoryID] = @subCategoryID
+                ";
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@subCategoryID", categoryID));
+
+            try
+            {
+                return 資料庫相關.查詢資料清單(connStr, dbCommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            var row = e.Row;
+
         }
     }
 

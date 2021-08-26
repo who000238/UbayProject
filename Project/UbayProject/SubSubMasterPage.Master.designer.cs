@@ -11,7 +11,7 @@ namespace UbayProject
 {
 
 
-    public partial class SubPageMasterPage
+    public partial class SubSubMasterPage
     {
 
         /// <summary>
