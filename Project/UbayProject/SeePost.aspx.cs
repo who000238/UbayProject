@@ -30,17 +30,46 @@ namespace UbayProject
             int postID = Convert.ToInt32(this.Request.QueryString["postID"]);
             //var Comment = getComment(postID);
             //this.lblComment.Text = Comment["comment"].ToString();
+            if (this.commentInput.Text == null)
+                this.commentInput.Text = string.Empty;
 
             var Comment = GetCommentByEF(postID);
             foreach (var item in Comment)
             {
-                Label label = new Label();
-                this.commentPostArea.Controls.Add(label);
-                label.Text = $"留言:{item.comment},  使用者ID:{item.userID}, 留言時間:{item.createDate} </br>";
+                var userInfo = getUserNameByUserID(item.userID);
+
+                Label labelUp = new Label();
+                Label labelDown = new Label();
+                this.commentPostArea.Controls.Add(labelUp);
+                this.commentPostArea.Controls.Add(labelDown);
+                labelUp.Text = $"使用者ID:{userInfo.userName}    留言時間:{item.createDate}  </br>";
+                labelDown.Text = $"留言:{item.comment}  </br> ------------------------------------------ </br>";
+
+                //label.Text = $"留言:{item.comment},  使用者ID:{item.userID}, 留言時間:{item.createDate} </br>";
                 //label.Text = item.comment +"&nbsp;" + item.userID + "&nbsp;" + item.createDate + "</br>";
                 //this.lblComment.Text += item.comment + "</br>";
             }
         }
+
+
+        protected void commentSubmit_Click(object sender, EventArgs e)
+        {
+            string txtComment = this.commentInput.Text;
+            int postID = Convert.ToInt32(this.Request.QueryString["postID"]);
+            UserModel currentUser = 使用者相關功能.取得目前登入者的資訊();
+            if (currentUser == null)
+            {
+                Response.Write("<script>alert('尚未登入')</script>");
+                return;
+            }
+            string userID = currentUser.userID;
+            if (!string.IsNullOrWhiteSpace(txtComment))
+                addComment(txtComment, userID, postID);
+            else
+                Response.Write("<script>alert('你還沒寫下你的留言吧?')</script>");
+        }
+
+
         public DataRow getPostByPostID(string queryString)
         {
             string connStr = 資料庫相關.取得連線字串();
@@ -70,23 +99,28 @@ namespace UbayProject
             }
         }
 
-
-        protected void commentSubmit_Click(object sender, EventArgs e)
+        public static UserTable getUserNameByUserID(Guid userID) //EF版本
         {
-            string txtComment = this.comment.Text;
-            int postID = Convert.ToInt32(this.Request.QueryString["postID"]);
-            UserModel currentUser = 使用者相關功能.取得目前登入者的資訊();
-            if(currentUser == null)
+            try
             {
-                Response.Write("<script>alert('尚未登入')</script>");
-                return;
+                using (ContextModel context = new ContextModel())
+                {
+                    var query =
+                        (from item in context.UserTables
+                         where item.userID == userID
+                         select item);
+
+                    var obj = query.FirstOrDefault();
+                    return obj;
+                }
             }
-            string userID = currentUser.userID;
-            if (!string.IsNullOrWhiteSpace(txtComment))
-                addComment(txtComment, userID, postID);
-            else
-                Response.Write("<script>alert('你還沒寫下你的留言吧?')</script>");
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
         }
+
 
         public static bool addComment(string txtComment, string userID, int postID)
         {
@@ -152,6 +186,7 @@ namespace UbayProject
                 return null;
             }
         }
+
         public static List<CommentTable> GetCommentByEF(int postID)
         {
             try

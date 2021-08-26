@@ -108,12 +108,15 @@
     <Content Include="Login.aspx" />
     <Content Include="MainPage.aspx" />
     <Content Include="SeePost.aspx" />
+    <Content Include="SubPage\Baseball.aspx" />
     <Content Include="SubPage\FGO.aspx" />
     <Content Include="SubPage\Game.aspx" />
+    <Content Include="SubPage\GBF.aspx" />
     <Content Include="SubPage\Gossiping.aspx" />
     <Content Include="SubPage\Sports.aspx" />
     <Content Include="TryGridView.aspx" />
     <Content Include="TryMainPage.aspx" />
+    <Content Include="TryReapeater.aspx" />
     <Content Include="UpdateUserInfo.aspx" />
     <Content Include="UserInfo.aspx" />
     <Content Include="Web.config" />
@@ -172,12 +175,26 @@
     <Compile Include="SeePost.aspx.designer.cs">
       <DependentUpon>SeePost.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SubSubMasterPage.Master.cs">
+      <DependentUpon>SubSubMasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubSubMasterPage.Master.designer.cs">
+      <DependentUpon>SubSubMasterPage.Master</DependentUpon>
+    </Compile>
     <Compile Include="SubMasterPage.Master.cs">
       <DependentUpon>SubMasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SubMasterPage.Master.designer.cs">
       <DependentUpon>SubMasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SubPage\Baseball.aspx.cs">
+      <DependentUpon>Baseball.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubPage\Baseball.aspx.designer.cs">
+      <DependentUpon>Baseball.aspx</DependentUpon>
     </Compile>
     <Compile Include="SubPage\FGO.aspx.cs">
       <DependentUpon>FGO.aspx</DependentUpon>
@@ -192,6 +209,13 @@
     </Compile>
     <Compile Include="SubPage\Game.aspx.designer.cs">
       <DependentUpon>Game.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubPage\GBF.aspx.cs">
+      <DependentUpon>GBF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubPage\GBF.aspx.designer.cs">
+      <DependentUpon>GBF.aspx</DependentUpon>
     </Compile>
     <Compile Include="SubPage\Gossiping.aspx.cs">
       <DependentUpon>Gossiping.aspx</DependentUpon>
@@ -220,6 +244,13 @@
     </Compile>
     <Compile Include="TryMainPage.aspx.designer.cs">
       <DependentUpon>TryMainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TryReapeater.aspx.cs">
+      <DependentUpon>TryReapeater.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TryReapeater.aspx.designer.cs">
+      <DependentUpon>TryReapeater.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpdateUserInfo.aspx.cs">
       <DependentUpon>UpdateUserInfo.aspx</DependentUpon>
@@ -261,6 +292,7 @@
     <Content Include="js\bootstrap.min.js.map" />
     <None Include="packages.config" />
     <Content Include="SubMasterPage.Master" />
+    <Content Include="SubSubMasterPage.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

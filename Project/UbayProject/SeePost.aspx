@@ -13,9 +13,14 @@
         div {
             border: 1px solid #000000;
         }
+        .titleArea {
+            position: fixed;
+            background-color:Window;
+            padding-top:-5px;
 
+        }
         .commentArea {
-            position: absolute;
+            position: fixed;
             bottom: 0px;
             width: 100%;
         }
@@ -30,25 +35,30 @@
         #comment{
             width:100%;
         }
+        #commentPostArea{
+            border: dashed red;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12 col-sm-12">
+                <div class="titleArea row">
+                <div class=" col-md-12 col-sm-12">
                     <asp:Label runat="server" ID="lblTitle"></asp:Label>
                 </div>
-                <div class="col-md-10 col-sm-6">
+                <div class=" col-md-10 col-sm-6">
                     <asp:Label runat="server" ID="lblInner"></asp:Label>
                 </div>
-                <div class="col-md-1 col-sm-6">123</div>
-                <div class="col-md-1 col-sm-6">123</div>
+                <div class=" col-md-1 col-sm-6">123</div>
+                <div class=" col-md-1 col-sm-6">123</div>
+                    </div>
                 <div class="col-12" id="commentPostArea" runat="server">
                     <asp:Label runat="server" ID="lblComment"></asp:Label>
                 </div>
                 <div class="row commentArea" id="commentArea" runat="server">
-                        <asp:TextBox runat="server" ID="comment" TextMode="MultiLine" Rows="2" CssClass="form-control" placeholder="回覆..."></asp:TextBox>
+                        <asp:TextBox runat="server" ID="commentInput" TextMode="MultiLine" Rows="2" CssClass="form-control" placeholder="回覆..."></asp:TextBox>
                     <asp:Button runat="server" ID="commentSubmit" CssClass="btn btn-outline-primary" Text="送出回覆" OnClick="commentSubmit_Click" />
                 </div>
             </div>
