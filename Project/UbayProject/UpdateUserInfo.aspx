@@ -11,6 +11,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <style>
+        input,select,textarea {
+            border-radius: 10px;
+        }
         table {
             border-collapse: separate;
             border-radius: 10px;
@@ -124,6 +127,7 @@
                     </div>
                     <div>
                         <asp:TextBox ID="txtImg" runat="server" Text="" placeholder="data:image/......." TextMode="Url"></asp:TextBox>
+                        <asp:Button ID="Button1" runat="server" Text="Button"  UseSubmitBehavior="False" />
                         <button type="button" id="btnViewImg" >預覽圖片</button> 
                     </div>
                 </div>
@@ -178,6 +182,9 @@
     <script>
         $(document).ready(function () {
             $("#btnViewImg").click(function () {
+                if ($"#txtImg".disabled == true) {
+                    $"#btnViewImg".disabled == true;
+                }
                 $("#userImg").attr("src", $("#txtImg").val());
             }
             );
