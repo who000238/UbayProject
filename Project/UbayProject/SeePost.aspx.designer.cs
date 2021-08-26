@@ -11,7 +11,7 @@ namespace UbayProject
 {
 
 
-    public partial class UpdateUserInfo
+    public partial class SeePost
     {
 
         /// <summary>
@@ -24,75 +24,66 @@ namespace UbayProject
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// userImg 控制項。
+        /// lblTitle 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image userImg;
+        protected global::System.Web.UI.WebControls.Label lblTitle;
 
         /// <summary>
-        /// txtImg 控制項。
+        /// lblInner 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtImg;
+        protected global::System.Web.UI.WebControls.Label lblInner;
 
         /// <summary>
-        /// txtUserName 控制項。
+        /// commentPostArea 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserName;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl commentPostArea;
 
         /// <summary>
-        /// ddlUserSex 控制項。
+        /// lblComment 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUserSex;
+        protected global::System.Web.UI.WebControls.Label lblComment;
 
         /// <summary>
-        /// txtUserBirthday 控制項。
+        /// commentArea 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserBirthday;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl commentArea;
 
         /// <summary>
-        /// txtUserIntro 控制項。
+        /// comment 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserIntro;
+        protected global::System.Web.UI.WebControls.TextBox comment;
 
         /// <summary>
-        /// btnSubmit 控制項。
+        /// commentSubmit 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
-
-        /// <summary>
-        /// btnCancel 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.Button commentSubmit;
     }
 }

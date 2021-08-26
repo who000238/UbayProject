@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UbayProject.ORM\UbayProject.ORM.csproj">
-      <Project>{C037FD6C-6F22-4AD1-ABE7-948313F558B1}</Project>
+      <Project>{18AC7311-0A01-4125-AFBF-724841A999F2}</Project>
       <Name>UbayProject.ORM</Name>
     </ProjectReference>
     <ProjectReference Include="..\處理資料庫相關的類別庫\處理資料庫相關的類別庫.csproj">

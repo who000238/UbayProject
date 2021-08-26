@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
-using UbayProject.ORM.DBModels;
+using UbayProject.ORM;
 using 處理資料庫相關的類別庫;
 
 namespace 登入功能的類別庫
@@ -108,7 +106,7 @@ namespace 登入功能的類別庫
             if (string.Compare(userInfo.account, account, true) == 0 &&
                 string.Compare(userInfo.pwd, pwd, false) == 0)
             {
-                HttpContext.Current.Session["UserLoginInfo"] = userInfo.account;
+                HttpContext.Current.Session["UserLoginInfo"] = userInfo.userID;
                 errorMsg = string.Empty;
                 return true;
             }

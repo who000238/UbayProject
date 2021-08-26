@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using UbayProject.ORM.DBModels;
+using UbayProject.ORM;
 using 登入功能的類別庫;
 using 處理資料庫相關的類別庫;
 
@@ -30,7 +27,9 @@ namespace UbayProject
                 //this.postArea.Visible = false;
             }
 
-            
+            string tempQuery = Request.QueryString["mainCategoryID"];
+
+            Response.Write($"<script>alert('{tempQuery}')</script>");
             using (ContextModel context = new ContextModel())
             {
                 var query =
@@ -115,12 +114,12 @@ namespace UbayProject
             createPost(txtTitle, txtInner, userID);
             Response.Write("<script>alert('貼文新増成功')</script>");
 
-        }
-        public static void createPost(string title, string inner, string userID)
-        {
-            string connStr = 資料庫相關.取得連線字串();
-            string dbCommand =
-                $@" INSERT INTO PostTable
+            }
+            public static void createPost(string title, string innerText, string userID)
+            {
+                string connStr = 資料庫相關.取得連線字串();
+                string dbCommand =
+                    $@" INSERT INTO PostTable
                     (
                          postTitle
                         ,countOfLikes
@@ -129,6 +128,7 @@ namespace UbayProject
                         ,userID
                         ,subCategoryID
                         ,createDate
+                        ,postText
                     )    
                     VALUES
                     (
@@ -139,35 +139,19 @@ namespace UbayProject
                         ,@userID
                         ,@subCategoryID
                         ,@createDate
+                        ,@postText
                     )
-                        INSERT INTO CommentTable
-                    (
-		                    [comment]
-                          ,[userID]
-                          ,[postID]
-                          ,[createDate]
-                    )
-                     VALUES   
-                    ( 
-                            @inner
-                            ,@userID
-                            ,'1'
-                            ,@createDate
-                    ) ";
-
-
-
-
-            // connect db & execute
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                using (SqlCommand comm = new SqlCommand(dbCommand, conn))
+                  ";
+                // connect db & execute
+                using (SqlConnection conn = new SqlConnection(connStr))
                 {
-                    comm.Parameters.AddWithValue("@postTitle", title);
-                    comm.Parameters.AddWithValue("@subCategoryID", 1);
-                    comm.Parameters.AddWithValue("@inner", inner);
-                    comm.Parameters.AddWithValue("@userID", userID);
-                    comm.Parameters.AddWithValue("@createDate", DateTime.Now);
+                    using (SqlCommand comm = new SqlCommand(dbCommand, conn))
+                    {
+                        comm.Parameters.AddWithValue("@postTitle", title);
+                        comm.Parameters.AddWithValue("@subCategoryID", 1);
+                        comm.Parameters.AddWithValue("@postText", innerText);
+                        comm.Parameters.AddWithValue("@userID", userID);
+                        comm.Parameters.AddWithValue("@createDate", DateTime.Now);
 
                     try
                     {

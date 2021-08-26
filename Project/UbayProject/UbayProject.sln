@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UbayProject", "UbayProject.csproj", "{E735BFE6-675D-40E6-A84C-139B55C0C2FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UbayProject.ORM", "..\UbayProject.ORM\UbayProject.ORM.csproj", "{C037FD6C-6F22-4AD1-ABE7-948313F558B1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "帳號相關功能的類別庫", "..\登入功能的類別庫\帳號相關功能的類別庫.csproj", "{79718B10-DCC2-45F9-8488-5AA7B22042A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "處理貼文及留言的類別庫", "..\處理貼文及留言的類別庫\處理貼文及留言的類別庫.csproj", "{263EB4CD-55E3-4FAB-BC33-2710193F6F6F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "處理資料庫相關的類別庫", "..\處理資料庫相關的類別庫\處理資料庫相關的類別庫.csproj", "{6B60CBC7-6F7A-4823-8595-7CB0D06E55A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UbayProject.ORM", "..\UbayProject.ORM\UbayProject.ORM.csproj", "{18AC7311-0A01-4125-AFBF-724841A999F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{E735BFE6-675D-40E6-A84C-139B55C0C2FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E735BFE6-675D-40E6-A84C-139B55C0C2FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E735BFE6-675D-40E6-A84C-139B55C0C2FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C037FD6C-6F22-4AD1-ABE7-948313F558B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C037FD6C-6F22-4AD1-ABE7-948313F558B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C037FD6C-6F22-4AD1-ABE7-948313F558B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C037FD6C-6F22-4AD1-ABE7-948313F558B1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{79718B10-DCC2-45F9-8488-5AA7B22042A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{79718B10-DCC2-45F9-8488-5AA7B22042A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79718B10-DCC2-45F9-8488-5AA7B22042A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{6B60CBC7-6F7A-4823-8595-7CB0D06E55A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B60CBC7-6F7A-4823-8595-7CB0D06E55A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B60CBC7-6F7A-4823-8595-7CB0D06E55A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18AC7311-0A01-4125-AFBF-724841A999F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18AC7311-0A01-4125-AFBF-724841A999F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18AC7311-0A01-4125-AFBF-724841A999F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18AC7311-0A01-4125-AFBF-724841A999F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

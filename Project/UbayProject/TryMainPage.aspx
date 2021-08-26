@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MainPage.aspx.cs" Inherits="UbayProject.MainPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TryMainPage.aspx.cs" Inherits="UbayProject.TryMainPage" %>
 
 <!DOCTYPE html>
 

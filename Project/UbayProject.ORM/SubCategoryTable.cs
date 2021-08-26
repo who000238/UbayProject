@@ -1,4 +1,4 @@
-namespace UbayProject.ORM.DBModels
+namespace UbayProject.ORM
 {
     using System;
     using System.Collections.Generic;
@@ -12,16 +12,16 @@ namespace UbayProject.ORM.DBModels
         [Key]
         public int subCategoryID { get; set; }
 
-        public int mainCategoryID { get; set; }
-
         [Required]
         [StringLength(50)]
         public string subCategoryName { get; set; }
 
-        public int? countOfPost { get; set; }
+        public int countOfPosts { get; set; }
 
-        public int? countOfViewers { get; set; }
+        public int countOfViewers { get; set; }
 
-        public DateTime? createDate { get; set; }
+        public DateTime createDate { get; set; }
+
+        public int mainCategoryID { get; set; }
     }
 }

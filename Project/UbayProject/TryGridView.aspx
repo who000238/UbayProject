@@ -13,11 +13,11 @@
             <Columns>
                 <asp:BoundField HeaderText="標題" DataField="postTitle" />
                 <asp:BoundField HeaderText="發文時間" DataField="createDate" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" />
-              <%--  <asp:TemplateField HeaderText="Act">
+                <asp:TemplateField HeaderText="Act">
                     <ItemTemplate>
-                        <a href="TryGridView.aspx?ID=<%# Eval("ID") %>">進入貼文</a>
+                        <a href="SeePost.aspx?postID=<%# Eval("postID") %>"><%# Eval("postTitle") %></a>
                     </ItemTemplate>
-                </asp:TemplateField>--%>
+                </asp:TemplateField>
             </Columns>
 
         </asp:GridView>

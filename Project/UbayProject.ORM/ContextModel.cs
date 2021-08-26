@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 
-namespace UbayProject.ORM.DBModels
+namespace UbayProject.ORM
 {
     public partial class ContextModel : DbContext
     {
         public ContextModel()
-            : base("name=DataContextConnectionString")
+            : base("name=DefaultConnectionString")
         {
         }
 
@@ -16,6 +16,7 @@ namespace UbayProject.ORM.DBModels
         public virtual DbSet<MainCategoryTable> MainCategoryTables { get; set; }
         public virtual DbSet<PostTable> PostTables { get; set; }
         public virtual DbSet<SubCategoryTable> SubCategoryTables { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<UserTable> UserTables { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

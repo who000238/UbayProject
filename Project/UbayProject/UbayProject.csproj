@@ -78,6 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BS5Template.aspx" />
     <Content Include="Complaint.aspx" />
     <Content Include="CreateAccount.aspx" />
     <Content Include="css\bootstrap-grid.css" />
@@ -106,16 +107,25 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="Login.aspx" />
     <Content Include="MainPage.aspx" />
+    <Content Include="SeePost.aspx" />
     <Content Include="SubPage\FGO.aspx" />
     <Content Include="SubPage\Game.aspx" />
     <Content Include="SubPage\Gossiping.aspx" />
     <Content Include="SubPage\Sports.aspx" />
     <Content Include="TryGridView.aspx" />
+    <Content Include="TryMainPage.aspx" />
     <Content Include="UpdateUserInfo.aspx" />
     <Content Include="UserInfo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BS5Template.aspx.cs">
+      <DependentUpon>BS5Template.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BS5Template.aspx.designer.cs">
+      <DependentUpon>BS5Template.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Complaint.aspx.cs">
       <DependentUpon>Complaint.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -155,6 +165,13 @@
       <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeePost.aspx.cs">
+      <DependentUpon>SeePost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeePost.aspx.designer.cs">
+      <DependentUpon>SeePost.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SubMasterPage.Master.cs">
       <DependentUpon>SubMasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -196,6 +213,13 @@
     </Compile>
     <Compile Include="TryGridView.aspx.designer.cs">
       <DependentUpon>TryGridView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TryMainPage.aspx.cs">
+      <DependentUpon>TryMainPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TryMainPage.aspx.designer.cs">
+      <DependentUpon>TryMainPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpdateUserInfo.aspx.cs">
       <DependentUpon>UpdateUserInfo.aspx</DependentUpon>
@@ -250,7 +274,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UbayProject.ORM\UbayProject.ORM.csproj">
-      <Project>{c037fd6c-6f22-4ad1-abe7-948313f558b1}</Project>
+      <Project>{18AC7311-0A01-4125-AFBF-724841A999F2}</Project>
       <Name>UbayProject.ORM</Name>
     </ProjectReference>
     <ProjectReference Include="..\登入功能的類別庫\帳號相關功能的類別庫.csproj">

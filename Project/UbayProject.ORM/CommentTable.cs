@@ -1,4 +1,4 @@
-namespace UbayProject.ORM.DBModels
+namespace UbayProject.ORM
 {
     using System;
     using System.Collections.Generic;
@@ -6,15 +6,19 @@ namespace UbayProject.ORM.DBModels
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("MainCategoryTable")]
-    public partial class MainCategoryTable
+    [Table("CommentTable")]
+    public partial class CommentTable
     {
         [Key]
-        public int mainCategoryID { get; set; }
+        public int commentID { get; set; }
+
+        public int postID { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string mainCategoryName { get; set; }
+        [StringLength(4000)]
+        public string comment { get; set; }
+
+        public Guid userID { get; set; }
 
         public DateTime createDate { get; set; }
     }
