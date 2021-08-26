@@ -68,11 +68,13 @@ namespace UbayProject
                     this.txtImg.Enabled = true;
                     break;
 
-                default://你測QueryString想幹嘛?
+                default:
                     break;
             }
 
             // 取得QueryString並填入使用者原始資訊(注意顯示時要注意輸出檢查)
+
+
             UbayProject.ORM.UserTable loginedUserNow;
             string userIDQueryString = this.Request.QueryString["UserID"];
             using (ORM.ContextModel content = new ORM.ContextModel())
@@ -84,33 +86,64 @@ namespace UbayProject
                 //if temp == null?
                 loginedUserNow = temp;
             }
-            this.txtUserName.Text = loginedUserNow.userName;
-            this.txtUserBirthday.Text= loginedUserNow.birthday?.ToString("yyyy/MM/dd");
-            this.ddlUserSex.SelectedValue = loginedUserNow.sex;
-            this.txtUserIntro.Text = loginedUserNow.intro;
-            this.userImg.ImageUrl = (loginedUserNow.photoURL ==null)
-                                    ? "https://freerangestock.com/thumbnail/35900/red-question-mark.jpg"
-                                    : loginedUserNow.photoURL;
-
+            if (!IsPostBack)
+            {
+                this.txtUserName.Text = loginedUserNow.userName;
+                this.txtUserBirthday.Text = loginedUserNow.birthday?.ToString("yyyy/MM/dd");
+                this.ddlUserSex.SelectedValue = loginedUserNow.sex;
+                this.txtUserIntro.Text = loginedUserNow.intro;
+                this.userImg.ImageUrl = (loginedUserNow.photoURL == null || loginedUserNow.photoURL == string.Empty)
+                                        ? "https://freerangestock.com/thumbnail/35900/red-question-mark.jpg"
+                                        : loginedUserNow.photoURL;
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             //sessionID 權限檢查，失敗重新導回登入，登入逾時?
-
-            //輸入檢查
-            if (this.txtUserName.Text == string.Empty)
+            if (this.Session["UserLoginInfo"] == null)
             {
-                //必填，空則警告
+                Response.Redirect("UserInfo.aspx");
+            }
+            string str = this.txtUserName.Text;
+            string userIDQueryString = this.Request.QueryString["UserID"];
+            using (ORM.ContextModel content = new ORM.ContextModel())
+            {
+                var temp =
+                    (from user in content.UserTables
+                     where user.userID.ToString() == userIDQueryString
+                     select user).FirstOrDefault();
+                string queryStringMode = this.Request.QueryString["mode"];
+                switch (queryStringMode)
+                {
+                    case "UpdateUserName":
+                        temp.userName = this.txtUserName.Text;
+                        break;
+
+                    case "UpdateUserBirthday":
+                        //UPDATE USER BIRTHDAY
+                        temp.birthday = Convert.ToDateTime(this.txtUserBirthday.Text);
+                        break;
+                    case "UpdateUserSex":
+                        temp.sex = this.ddlUserSex.SelectedValue;
+                        break;
+                    //UPDATE USER SEX
+                    case "UpdateUserIntro":
+                        temp.intro = this.txtUserIntro.Text;
+                        break;
+
+                    case "UpdateUserPhoto":
+                        temp.photoURL = this.txtImg.Text;
+                        break;
+
+                    default:
+                        break;
+                }
+                content.SaveChanges();
             }
 
-            //輸入資料做各種ENCODE
+            Response.Redirect("UserInfo.aspx");
 
-            //寫入DB
-
-            //提示完成
-
-            //回到自己的UserInfo頁面
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
