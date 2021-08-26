@@ -24,14 +24,14 @@ namespace UbayProject
             using (ContextModel context = new ContextModel())
             {
                 var query =
-                    (from mainCategoryID in context.MainCategoryTables
-                     select mainCategoryID.mainCategoryName);
-                foreach (var mainCategoryID in query)
+                     (from item in context.MainCategoryTables
+                      select item);
+                foreach (var item in query)
                 {
                     HyperLink link = new HyperLink();
                     this.BoardLink.Controls.Add(link);
-                    link.Text = mainCategoryID + "</br>";
-                    link.NavigateUrl = $"SubPage/{mainCategoryID.ToString()}.aspx";
+                    link.Text = item.mainCategoryName + "</br>";
+                    link.NavigateUrl = $"SubPage/{item.mainCategoryName}.aspx?mainCategoryID={item.mainCategoryID}";
                 }
             }
 
