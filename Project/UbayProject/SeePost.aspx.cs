@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using UbayProject.ORM;
 using 登入功能的類別庫;
 using 處理資料庫相關的類別庫;
 
@@ -27,8 +28,18 @@ namespace UbayProject
             this.lblTitle.Text = dr["postTitle"].ToString();
             this.lblInner.Text = dr["postText"].ToString();
             int postID = Convert.ToInt32(this.Request.QueryString["postID"]);
-            var Comment = getComment(postID);
-            this.lblComment.Text = Comment["comment"].ToString();
+            //var Comment = getComment(postID);
+            //this.lblComment.Text = Comment["comment"].ToString();
+
+            var Comment = GetCommentByEF(postID);
+            foreach (var item in Comment)
+            {
+                Label label = new Label();
+                this.commentPostArea.Controls.Add(label);
+                label.Text = $"留言:{item.comment},  使用者ID:{item.userID}, 留言時間:{item.createDate} </br>";
+                //label.Text = item.comment +"&nbsp;" + item.userID + "&nbsp;" + item.createDate + "</br>";
+                //this.lblComment.Text += item.comment + "</br>";
+            }
         }
         public DataRow getPostByPostID(string queryString)
         {
@@ -65,8 +76,16 @@ namespace UbayProject
             string txtComment = this.comment.Text;
             int postID = Convert.ToInt32(this.Request.QueryString["postID"]);
             UserModel currentUser = 使用者相關功能.取得目前登入者的資訊();
+            if(currentUser == null)
+            {
+                Response.Write("<script>alert('尚未登入')</script>");
+                return;
+            }
             string userID = currentUser.userID;
-            addComment(txtComment, userID, postID);
+            if (!string.IsNullOrWhiteSpace(txtComment))
+                addComment(txtComment, userID, postID);
+            else
+                Response.Write("<script>alert('你還沒寫下你的留言吧?')</script>");
         }
 
         public static bool addComment(string txtComment, string userID, int postID)
@@ -109,6 +128,7 @@ namespace UbayProject
                 return false;
             }
         }
+
         public static DataRow getComment(int postID)
         {
             string connStr = 資料庫相關.取得連線字串();
@@ -125,6 +145,26 @@ namespace UbayProject
             try
             {
                 return 資料庫相關.查詢單筆資料(connStr, dbCommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }
+        public static List<CommentTable> GetCommentByEF(int postID)
+        {
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+                    var query =
+                        (from item in context.CommentTables
+                         where item.postID == postID
+                         select item);
+                    var list = query.ToList();
+                    return list;
+                }
             }
             catch (Exception ex)
             {

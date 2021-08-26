@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-md-1 col-sm-6">123</div>
                 <div class="col-md-1 col-sm-6">123</div>
-                <div class="col-12">
+                <div class="col-12" id="commentPostArea" runat="server">
                     <asp:Label runat="server" ID="lblComment"></asp:Label>
                 </div>
                 <div class="row commentArea" id="commentArea" runat="server">
