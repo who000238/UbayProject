@@ -88,6 +88,10 @@ namespace UbayProject
             //回到自己的UserInfo頁面
         }
 
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("UserInfo.aspx");
+        }
     }
 
 }

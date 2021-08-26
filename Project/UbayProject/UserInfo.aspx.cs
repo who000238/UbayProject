@@ -12,7 +12,6 @@ namespace UbayProject
         protected void Page_Load(object sender, EventArgs e)
         {
             //預設登入(測試用)
-            this.Session["UserLoginInfo"] = "4B50687F-45B3-4B24-B830-14CCFB4F0126";
             //this.Session["UserLoginInfo"] = "4B50687F-45B3-4B24-B830-14CCFB4F0126";
 
             //判斷是否使用者登入了(沒有、一般、限制、管理員)
@@ -54,7 +53,14 @@ namespace UbayProject
                 //if temp == null?
                 loginedUserNow = temp;
             }
-            this.lblUserName.Text = loginedUserNow.userName;
+
+            //取得目前應顯示的使用者資料(QueryString)
+            //var currentUser = UserInfoModel GetUserInfo(string encryptedGUID){}
+
+            //依據選取的使用者顯示UserInfo
+            string userID = this.Request.QueryString["UserID"];
+            //UserInfoModel.Name , ......
+            this.lblUserName.Text = System.Web.Security.AntiXss.AntiXssEncoder.HtmlEncode(loginedUserNow.userName, true);
             this.lblUserSex.Text = loginedUserNow.sex;
             this.lblUserBirthday.Text = loginedUserNow.birthday?.ToString();
             this.lblIntro.Text = System.Web.Security.AntiXss.AntiXssEncoder.HtmlEncode(loginedUserNow.intro, true);
