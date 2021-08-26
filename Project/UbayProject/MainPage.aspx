@@ -58,7 +58,8 @@
         </div>
         <div>
             <p>testArea</p>
-            <a href="TryGridView.aspx">TryGridView.aspx</a>
+            <a href="TryGridView.aspx">TryGridView.aspx</a><br />
+            <a href="TryMainPage.aspx">TryMainPage.aspx</a>
         </div>
     </form>
 </body>

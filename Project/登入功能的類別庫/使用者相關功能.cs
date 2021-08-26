@@ -18,12 +18,12 @@ namespace 登入功能的類別庫
 
         public static UserModel 取得目前登入者的資訊()
         {
-            string account = HttpContext.Current.Session["UserLoginInfo"] as string;
+            string userID = HttpContext.Current.Session["UserLoginInfo"].ToString();
 
-            if (account == null)
+            if (userID == null)
                 return null;
 
-            DataRow dr = 以帳號取得使用者資訊(account);
+            DataRow dr = 以UserID取得使用者資訊(userID);
             if (dr == null)
             {
                 HttpContext.Current.Session["UserLoginInfo"] = null;
@@ -47,7 +47,7 @@ namespace 登入功能的類別庫
             return model;
         }
 
-        public static DataRow 以帳號取得使用者資訊(string account)
+        public static DataRow 以UserID取得使用者資訊(string userID)
         {
             string connectionString = 資料庫相關.取得連線字串();
             string dbCommandString =
@@ -65,12 +65,12 @@ namespace 登入功能的類別庫
                         ,[favoritePosts]
                         ,[blackList]
                     FROM UserTable
-                    WHERE [Account] = @account
+                    WHERE [userID] = @userID
                 ";
 
 
             List<SqlParameter> list = new List<SqlParameter>();
-            list.Add(new SqlParameter("@account", account));
+            list.Add(new SqlParameter("@userID", userID));
 
             try
             {

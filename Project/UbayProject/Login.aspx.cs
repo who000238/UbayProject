@@ -14,7 +14,8 @@ namespace UbayProject
         {
             //檢查是否有登入狀態
             //檢查是否有登入狀態
-            if (this.Session["UserLoginInfo"] != null)
+            //if (this.Session["UserLoginInfo"] != null)
+            if(HttpContext.Current.Session["UserLoginInfo"] != null)
             {
                 Response.Redirect("MainPage.aspx");
             }
