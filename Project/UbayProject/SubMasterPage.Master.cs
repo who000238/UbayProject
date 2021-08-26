@@ -27,6 +27,9 @@ namespace UbayProject
                 //this.postArea.Visible = false;
             }
 
+            string tempQuery = Request.QueryString["mainCategoryID"];
+
+            Response.Write($"<script>alert('{tempQuery}')</script>");
             using (ContextModel context = new ContextModel())
             {
                 var query =

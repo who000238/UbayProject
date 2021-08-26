@@ -113,6 +113,7 @@
     <Content Include="SubPage\Gossiping.aspx" />
     <Content Include="SubPage\Sports.aspx" />
     <Content Include="TryGridView.aspx" />
+    <Content Include="TryMainPage.aspx" />
     <Content Include="UpdateUserInfo.aspx" />
     <Content Include="UserInfo.aspx" />
     <Content Include="Web.config" />
@@ -212,6 +213,13 @@
     </Compile>
     <Compile Include="TryGridView.aspx.designer.cs">
       <DependentUpon>TryGridView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TryMainPage.aspx.cs">
+      <DependentUpon>TryMainPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TryMainPage.aspx.designer.cs">
+      <DependentUpon>TryMainPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpdateUserInfo.aspx.cs">
       <DependentUpon>UpdateUserInfo.aspx</DependentUpon>
