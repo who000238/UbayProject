@@ -12,11 +12,12 @@ namespace UbayProject
         protected void Page_Load(object sender, EventArgs e)
         {
             //預設登入(測試用)
+            this.Session["UserLoginInfo"] = "4B50687F-45B3-4B24-B830-14CCFB4F0126";
             //this.Session["UserLoginInfo"] = "4B50687F-45B3-4B24-B830-14CCFB4F0126";
-            
+
             //判斷是否使用者登入了(沒有、一般、限制、管理員)
             //seesion null check，同時沒登入就關閉修改按鈕
-            if (this.Session["userID"] == null)
+            if (this.Session["UserLoginInfo"] == null)
             {
                 this.btnUpdateUserBirthday.Visible = false;
                 this.btnUpdateUserIntro.Visible = false;
@@ -24,29 +25,42 @@ namespace UbayProject
                 this.btnUpdateUserPhoto.Visible = false;
                 this.btnUpdateUserSex.Visible = false;
             }
-
-            //取得目前應顯示的使用者資料(QueryString)
-            //var currentUser = UserInfoModel GetUserInfo(string encryptedGUID){}
-
-
+            //取得使用者
+            UbayProject.ORM.UserTable loginedUserNow;
+            string userIDQueryString = this.Request.QueryString["UserID"];
             if (this.Request.QueryString["UserID"] == null)
             {
-                //如果有登入 顯示自己的UserInfo(從sessionID找?)
-                //如果沒登入也沒QueryString，禁止訪問回傳狀態403    
+                //沒登入又沒QueryString 禁止進入
+                if (this.Session["UserLoginInfo"] == null)
+                {
+                    //禁止訪問 回傳403
+                    Response.StatusCode = 403;
+                    Response.End();
+                }
+                //有登入沒QueryString querysting = session
+                else
+                {
+                    string str = this.Session["UserLoginInfo"].ToString();
+
+                    Response.Redirect($"/UserInfo.aspx?userid={str}");
+                }
             }
-            else 
+            using (ORM.ContextModel content = new ORM.ContextModel())
             {
-                //依據選取的使用者顯示UserInfo
-                string userID =  this.Request.QueryString["UserID"];
-                //UserInfoModel.Name , ......
-                this.lblUserName.Text = "";
-                this.lblUserSex.Text = "";
-                this.lblUserBirthday.Text = "";
-                this.lblIntro.Text = "";
+                var temp =
+                    (from user in content.UserTables
+                     where user.userID.ToString() == userIDQueryString
+                     select user).FirstOrDefault();
+                //if temp == null?
+                loginedUserNow = temp;
             }
+            this.lblUserName.Text = loginedUserNow.userName;
+            this.lblUserSex.Text = loginedUserNow.sex;
+            this.lblUserBirthday.Text = loginedUserNow.birthday?.ToString();
+            this.lblIntro.Text = System.Web.Security.AntiXss.AntiXssEncoder.HtmlEncode(loginedUserNow.intro, true);
 
             //取得目前登入使用者ID(by SessionID cookie?)，如果跟QuereyString一樣，且不等於null時允許編輯 
-            if (this.Session["userid"]?.ToString() == this.Request.QueryString["UserID"] && (this.Session["userid"]?.ToString() != null)) 
+            if (this.Session["UserLoginInfo"]?.ToString() == this.Request.QueryString["UserID"] && (this.Session["userid"]?.ToString() != null))
             {
                 this.btnUpdateUserBirthday.Visible = true;
                 this.btnUpdateUserIntro.Visible = true;
