@@ -53,7 +53,10 @@
                     <asp:Label runat="server" ID="lblInner"></asp:Label>
                 </div>
                 <div class=" col-md-1 col-sm-6">123</div>
-                <div class=" col-md-1 col-sm-6">123</div>
+                <div class=" col-md-1 col-sm-6">
+                    貼文瀏覽人數:
+                    <asp:Label runat="server" ID="lblViewer"></asp:Label>
+                </div>
                     </div>
                 <div class="col-12" id="commentPostArea" runat="server">
                     <asp:Label runat="server" ID="lblComment"></asp:Label>
