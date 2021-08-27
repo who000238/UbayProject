@@ -154,24 +154,32 @@ namespace 登入功能的類別庫
             string dbCommand =
                 $@" INSERT INTO [dbo].[UserTable]
                     (
-                        [userID]
-                        ,[account]
-                        ,[pwd]
-                        ,[userName]
-                        ,[Email]
-                        ,[blackList]
-                        ,[CreateDate]
-                        ,[userLevel]
+	                   [userID]
+                      ,[userName]
+                      ,[account]
+                      ,[pwd]
+                      ,[createDate]
+                      ,[userLevel]
+                      ,[sex]
+                      ,[email]
+                      ,[birthday]
+                      ,[photoURL]
+                      ,[intro]
+                      ,[blackList]
                     )
                     VALUES
                     (
                         NEWID()
+                        ,@userName
                         ,@account
                         ,@pwd
-                        ,@userName
-                        ,@userEmail
-                        ,'1'
                         ,@createDate
+                        ,'1'
+                        ,'1'
+                        ,@userEmail
+                        ,'2000-1-1'
+                        ,'https://cdn4.iconfinder.com/data/icons/people-97/100/Male_Business_Formal-256.png'
+                        ,'Hello'
                         ,'1'
                     ) ";
 

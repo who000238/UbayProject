@@ -59,8 +59,8 @@ namespace UbayProject
 
             //確認所有欄位送出後，跳轉至使用者資訊頁面引導填入完整使用者訊息
             使用者相關功能.申請帳號(inp_Account, inp_PWD, inp_email, inp_userName);
-            Response.Write($"<script>alert('申請帳號成功、按下確認前往論壇')</script>");
-            Response.Redirect("UserInfo.aspx");
+            //Response.Write($"<script>alert('申請帳號成功、按下確認前往論壇')</script>");
+            Response.Redirect("MainPage.aspx");
 
         }
 

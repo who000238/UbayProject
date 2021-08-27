@@ -17,7 +17,6 @@
             position: fixed;
             background-color:Window;
             padding-top:-5px;
-
         }
         .commentArea {
             position: fixed;
