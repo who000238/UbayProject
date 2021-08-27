@@ -19,13 +19,13 @@ namespace UbayProject
             {
                 this.linkLogout.Visible = true;
                 this.a_Login.Visible = false;
-                //this.postArea.Visible = true;
+                this.postArea.Visible = true;
             }
             else
             {
                 this.linkLogout.Visible = false;
                 this.a_Login.Visible = true;
-                //this.postArea.Visible = false;
+                this.postArea.Visible = false;
             }
 
             //取得mainCategoryID並轉成INT
@@ -36,16 +36,6 @@ namespace UbayProject
             int tempCatID2 = Convert.ToInt32(tempQuery2);
             using (ContextModel context = new ContextModel())
             {
-                var query =
-                      (from item in context.MainCategoryTables
-                       select item);
-                foreach (var item in query)
-                {
-                    HyperLink link = new HyperLink();
-                    //this.BoardLink.Controls.Add(link);
-                    link.Text = item.mainCategoryName + "</br>";
-                    link.NavigateUrl = $"SubPage/{item.mainCategoryName}.aspx?mainCategoryID={item.mainCategoryID}";
-                }
                 //產生子版連結
                 var query2 =
                       (from item in context.SubCategoryTables
@@ -58,20 +48,6 @@ namespace UbayProject
                     link.Text = item.subCategoryName + "</br>";
                     link.NavigateUrl = $"SubPage/{item.subCategoryName}.aspx?mainCategoryID={item.mainCategoryID}&&subCategoryID={item.subCategoryID}";
                 }
-
-                //產生文章連結
-                //var query3 =
-                //      (from item in context.PostTables
-                //       where item.subCategoryID == tempCatID2
-                //       select item);
-                //foreach (var item in query3)
-                //{
-                //    HyperLink link2 = new HyperLink();
-                //    this.ContentPlaceHolder1.Controls.Add(link2);
-                //    link2.Text = item.postTitle + "</br>";
-                //    link2.NavigateUrl = $"SubPage/{item.postTitle}.aspx";
-                //}
-
             }
 
             try
@@ -98,6 +74,8 @@ namespace UbayProject
         {
             string txtTitle = this.postTitle.Text;
             string txtInner = this.postInner.Text;
+            string tempQuery2 = Request.QueryString["subCategoryID"];
+            int tempCatID2 = Convert.ToInt32(tempQuery2);
 
             if (string.IsNullOrWhiteSpace(txtTitle) ||
                 string.IsNullOrWhiteSpace(txtInner))
@@ -108,11 +86,11 @@ namespace UbayProject
             UserModel currentUser = 使用者相關功能.取得目前登入者的資訊();
             string userID = currentUser.userID;
 
-            createPost(txtTitle, txtInner, userID);
+            createPost(txtTitle, txtInner, userID, tempCatID2);
             Response.Write("<script>alert('貼文新増成功')</script>");
 
         }
-        public static void createPost(string title, string innerText, string userID)
+        public static void createPost(string title, string innerText, string userID,int subCategoryID)
         {
             string connStr = 資料庫相關.取得連線字串();
             string dbCommand =
@@ -145,7 +123,7 @@ namespace UbayProject
                 using (SqlCommand comm = new SqlCommand(dbCommand, conn))
                 {
                     comm.Parameters.AddWithValue("@postTitle", title);
-                    comm.Parameters.AddWithValue("@subCategoryID", 1);
+                    comm.Parameters.AddWithValue("@subCategoryID", subCategoryID);
                     comm.Parameters.AddWithValue("@postText", innerText);
                     comm.Parameters.AddWithValue("@userID", userID);
                     comm.Parameters.AddWithValue("@createDate", DateTime.Now);

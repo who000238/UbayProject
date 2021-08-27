@@ -15,7 +15,7 @@
         }
         .titleArea {
             position: fixed;
-            background-color:Window;
+           /* background-color:Window;*/
             padding-top:-5px;
 
         }
@@ -36,6 +36,8 @@
             width:100%;
         }
         #commentPostArea{
+           position: fixed;
+           padding-top:80px;
             border: dashed red;
         }
     </style>
