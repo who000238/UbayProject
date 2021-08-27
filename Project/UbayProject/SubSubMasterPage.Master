@@ -76,11 +76,9 @@
                              <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDataBound="GridView1_RowDataBound" CellPadding="4" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField HeaderText="標題" DataField="postTitle" />
-                <asp:BoundField HeaderText="發文時間" DataField="createDate" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" />
                 <asp:TemplateField HeaderText="超連結標題">
                     <ItemTemplate>
-                        <a href="SeePost.aspx?postID=<%# Eval("postID") %>"><%# Eval("postTitle") %></a>
+                        <a href="/SeePost.aspx?postID=<%# Eval("postID") %>"><%# Eval("postTitle") %></a>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="發文者">
@@ -88,6 +86,8 @@
                         <a href="UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
                     </ItemTemplate>
                 </asp:TemplateField>
+                
+                <asp:BoundField HeaderText="發文時間" DataField="createDate" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" />
             </Columns>
 
             <EditRowStyle BackColor="#2461BF" />

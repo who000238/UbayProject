@@ -17,6 +17,22 @@ namespace UbayProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //檢查登入
+            if (this.Session["UserLoginInfo"] != null)
+            {
+                //this.linkLogout.Visible = true;
+                //this.a_Login.Visible = false;
+                //this.postArea.Visible = true;
+                this.commentArea.Visible = true;
+            }
+            else
+            {
+                this.commentArea.Visible = false;
+                //this.linkLogout.Visible = false;
+                //this.a_Login.Visible = true;
+                //this.postArea.Visible = false;
+            }
+
             //讀取網址列中的貼文ID
             string queryString = this.Request.QueryString["postID"];
             var dr = getPostByPostID(queryString);
