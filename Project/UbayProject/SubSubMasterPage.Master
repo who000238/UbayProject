@@ -69,6 +69,7 @@
             </div>
             <div class="row">
                 <div class="col-2" id="BoardLink" runat="server">
+                    
                 </div>
                 <div class="col-8">
                     <div>
@@ -83,7 +84,7 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="發文者">
                     <ItemTemplate>
-                        <a href="UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
+                        <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
                     </ItemTemplate>
                 </asp:TemplateField>
                 
