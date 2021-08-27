@@ -12,7 +12,7 @@ namespace UbayProject
         protected void Page_Load(object sender, EventArgs e)
         {
             //預設登入(測試用)
-            //this.Session["UserLoginInfo"] = "4B50687F-45B3-4B24-B830-14CCFB4F0126";
+            this.Session["UserLoginInfo"] = "4B50687F-45B3-4B24-B830-14CCFB4F0126";
 
             //判斷是否使用者登入了
             //seesion null check，同時沒登入就關閉修改按鈕
@@ -61,13 +61,16 @@ namespace UbayProject
             string userID = this.Request.QueryString["UserID"];
             //UserInfoModel.Name , ......
             this.lblUserName.Text = System.Web.Security.AntiXss.AntiXssEncoder.HtmlEncode(loginedUserNow.userName, true);
-            this.lblUserSex.Text = loginedUserNow.sex;
+            this.lblUserSex.Text = (loginedUserNow.sex == "無")
+                                         ?("不公開")
+                                         :loginedUserNow.sex;
             this.lblUserBirthday.Text = loginedUserNow.birthday?.ToString("yyyy/MM/dd");
-            this.lblIntro.Text = System.Web.Security.AntiXss.AntiXssEncoder.HtmlEncode(loginedUserNow.intro, true);
+            //this.txtUserIntro.Text = System.Web.Security.AntiXss.AntiXssEncoder.HtmlEncode(loginedUserNow.intro, true);
+            this.txtUserIntro.Text = loginedUserNow.intro;
 
             //顯示URL
             //無法正常顯示該怎麼判定?
-            this.userImg.ImageUrl = (loginedUserNow.photoURL == null)
+            this.userImg.ImageUrl = (loginedUserNow.photoURL == null || loginedUserNow.photoURL == string.Empty)
                                         ? "https://freerangestock.com/thumbnail/35900/red-question-mark.jpg"
                                         : loginedUserNow.photoURL;
             this.userImg.Width = 225;
@@ -138,7 +141,7 @@ namespace UbayProject
             //再重新確認登入狀況一次
             if (this.Session["UserLoginInfo"]?.ToString() == this.Request.QueryString["UserID"] && (this.Session["UserLoginInfo"] != null))
             {
-                //重新導向修改頁面，並只修改UserPhoto
+                //重新導向修改頁面，並只修改UserSex
                 string queryString = this.Request.QueryString["userID"];
                 this.Response.Redirect($"/UpdateUserInfo.aspx?userID={queryString}&mode=UpdateUserSex");
             }
@@ -154,7 +157,7 @@ namespace UbayProject
             //再重新確認登入狀況一次
             if (this.Session["UserLoginInfo"]?.ToString() == this.Request.QueryString["UserID"] && (this.Session["UserLoginInfo"] != null))
             {
-                //重新導向修改頁面，並只修改UserPhoto
+                //重新導向修改頁面，並只修改生日
                 string queryString = this.Request.QueryString["userID"];
                 this.Response.Redirect($"/UpdateUserInfo.aspx?userID={queryString}&mode=UpdateUserBirthday");
             }
