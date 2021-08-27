@@ -183,6 +183,13 @@
     <Compile Include="SubPage\FGO.aspx.designer.cs">
       <DependentUpon>FGO.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SubPage\GBF.aspx.cs">
+      <DependentUpon>GBF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubPage\GBF.aspx.designer.cs">
+      <DependentUpon>GBF.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SubPage\YGO.aspx.cs">
       <DependentUpon>YGO.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -217,13 +224,6 @@
     </Compile>
     <Compile Include="SubPage\Game.aspx.designer.cs">
       <DependentUpon>Game.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SubPage\GBF.aspx.cs">
-      <DependentUpon>GBF.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SubPage\GBF.aspx.designer.cs">
-      <DependentUpon>GBF.aspx</DependentUpon>
     </Compile>
     <Compile Include="SubPage\Gossiping.aspx.cs">
       <DependentUpon>Gossiping.aspx</DependentUpon>

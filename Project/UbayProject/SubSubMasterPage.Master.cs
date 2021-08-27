@@ -36,16 +36,16 @@ namespace UbayProject
             int tempCatID2 = Convert.ToInt32(tempQuery2);
             using (ContextModel context = new ContextModel())
             {
-                var query =
-                      (from item in context.MainCategoryTables
-                       select item);
-                foreach (var item in query)
-                {
-                    HyperLink link = new HyperLink();
-                    //this.BoardLink.Controls.Add(link);
-                    link.Text = item.mainCategoryName + "</br>";
-                    link.NavigateUrl = $"SubPage/{item.mainCategoryName}.aspx?mainCategoryID={item.mainCategoryID}";
-                }
+                //var query =
+                //      (from item in context.MainCategoryTables
+                //       select item);
+                //foreach (var item in query)
+                //{
+                //    HyperLink link = new HyperLink();
+                //    //this.BoardLink.Controls.Add(link);
+                //    link.Text = item.mainCategoryName + "</br>";
+                //    link.NavigateUrl = $"SubPage/{item.mainCategoryName}.aspx?mainCategoryID={item.mainCategoryID}";
+                //}
                 //產生子版連結
                 var query2 =
                       (from item in context.SubCategoryTables
