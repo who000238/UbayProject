@@ -127,7 +127,6 @@
                     </div>
                     <div>
                         <asp:TextBox ID="txtImg" runat="server" Text="" placeholder="data:image/......." TextMode="Url"></asp:TextBox>
-                        <asp:Button ID="Button1" runat="server" Text="Button"  UseSubmitBehavior="False" />
                         <button type="button" id="btnViewImg" >預覽圖片</button> 
                     </div>
                 </div>
@@ -168,7 +167,7 @@
             
             <div class="row justify-content-md-center" >
                 <div class="col-4 col-md-4 col-sm-6" style="text-align:center"" >
-                    <asp:Button ID="btnSubmit" runat="server" Text="送出"  />
+                    <asp:Button ID="btnSubmit" runat="server" Text="送出" OnClick="btnSubmit_Click"  />
                 </div>
                 <div class="col-4 col-md-4 col-sm-6" style="text-align:center" >
                     <asp:Button ID="btnCancel" runat="server" Text="取消" OnClick="btnCancel_Click" />
@@ -182,13 +181,10 @@
     <script>
         $(document).ready(function () {
             $("#btnViewImg").click(function () {
-                if ($"#txtImg".disabled == true) {
-                    $"#btnViewImg".disabled == true;
-                }
                 $("#userImg").attr("src", $("#txtImg").val());
             }
             );
-            //記得限制圖片大小
+
         })
     </script>
 </body>
