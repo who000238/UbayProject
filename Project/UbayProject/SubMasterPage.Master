@@ -79,7 +79,7 @@
                                         <asp:BoundField HeaderText="發文時間" DataField="createDate" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" />
                                         <asp:TemplateField HeaderText="Act">
                                             <ItemTemplate>
-                                                <a href="SeePost.aspx?postID=<%# Eval("postID") %>"><%# Eval("postTitle") %></a>
+                                                <a href="/SeePost.aspx?postID=<%# Eval("postID") %>"><%# Eval("postTitle") %></a>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>

@@ -40,6 +40,7 @@ namespace UbayProject
         protected void btnCancle_Click(object sender, EventArgs e)
         {
             //按下取消回到主選單頁面
+            Response.Write($"<script>alert('success')</script>");
             Response.Redirect("MainPage.aspx");
         }
     }

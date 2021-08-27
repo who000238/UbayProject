@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-8">
-                    <asp:TextBox ID="SearchBar" class="form-control" runat="server" placeholder="搜尋"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="SearchBar" class="form-control"  placeholder="搜尋"></asp:TextBox>
                 </div>
                 <div class="col-2"></div>
             </div>
