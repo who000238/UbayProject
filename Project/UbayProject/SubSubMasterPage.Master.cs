@@ -31,10 +31,9 @@ namespace UbayProject
             //取得mainCategoryID並轉成INT
             string tempQuery = Request.QueryString["mainCategoryID"];
             int tempCatID = Convert.ToInt32(tempQuery);
-            Response.Write($"<script>alert({tempCatID})</script>");
+            //取得subCategoryID並轉成INT
             string tempQuery2 = Request.QueryString["subCategoryID"];
             int tempCatID2 = Convert.ToInt32(tempQuery2);
-            Response.Write($"<script>alert({tempCatID2})</script>");
             using (ContextModel context = new ContextModel())
             {
                 var query =
@@ -56,34 +55,31 @@ namespace UbayProject
                 {
                     HyperLink link = new HyperLink();
                     this.BoardLink.Controls.Add(link);
-                    link.Text = item.subCategoryName +"</br>";
+                    link.Text = item.subCategoryName + "</br>";
                     link.NavigateUrl = $"SubPage/{item.subCategoryName}.aspx?mainCategoryID={item.mainCategoryID}&&subCategoryID={item.subCategoryID}";
                 }
 
                 //產生文章連結
-                var query3 =
-                      (from item in context.PostTables
-                       where item.subCategoryID == tempCatID2
-                       select item);
-                foreach (var item in query3)
-                {
-                    HyperLink link2 = new HyperLink();
-                    this.ContentPlaceHolder1.Controls.Add(link2);
-                    link2.Text = item.postTitle + "</br>";
-                    link2.NavigateUrl = $"SubPage/{item.postTitle}.aspx";
-                }
+                //var query3 =
+                //      (from item in context.PostTables
+                //       where item.subCategoryID == tempCatID2
+                //       select item);
+                //foreach (var item in query3)
+                //{
+                //    HyperLink link2 = new HyperLink();
+                //    this.ContentPlaceHolder1.Controls.Add(link2);
+                //    link2.Text = item.postTitle + "</br>";
+                //    link2.NavigateUrl = $"SubPage/{item.postTitle}.aspx";
+                //}
 
             }
 
             try
             {
-                int categoryID = tempCatID;
-                var dt = 取得貼文(categoryID);
-                if (dt.Rows.Count > 0)  // check is empty data
-                {
-                    this.GridView1.DataSource = dt;
-                    this.GridView1.DataBind();
-                }
+                int subCategoryID = tempCatID2;
+                var obj = 取得貼文及UserNameEF版(subCategoryID);
+                this.GridView1.DataSource = obj;
+                this.GridView1.DataBind();
             }
             catch (Exception ex)
             {
@@ -168,19 +164,94 @@ namespace UbayProject
             }
         }
 
-        public static DataTable 取得貼文(int categoryID)
+        public static UserTable getUserNameByUserID(Guid userID) //EF版本
+        {
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+                    var query =
+                        (from item in context.UserTables
+                         where item.userID == userID
+                         select item);
+
+                    var obj = query.FirstOrDefault();
+                    return obj;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        } // 好像不需要這個功能
+        public static Object 取得貼文及UserNameEF版(int subCategoryID)
+        {
+            try
+            {
+                using (ContextModel context = new ContextModel())  // 用串聯的方式查詢postTable的同時也去把user
+                {
+                    var query =
+                        //(from item in context.PostTables
+                        // where item.subCategoryID == subCategoryID
+                        // select item);
+                        (from item in context.PostTables
+                         join UserInfo in context.UserTables
+                             on item.userID equals UserInfo.userID
+                             where item.subCategoryID == subCategoryID
+                         select new
+                         {
+                             UserInfo.userID,
+                             UserInfo.userName,
+                             UserInfo.account,
+                             UserInfo.pwd,
+                             UserInfo.createDate,
+                             UserInfo.userLevel,
+                             UserInfo.sex,
+                             UserInfo.email,
+                             UserInfo.birthday,
+                             UserInfo.photoURL,
+                             UserInfo.intro,
+                             UserInfo.favoritePosts,
+                             UserInfo.blackList,
+                             item.postTitle,
+                             item.postID,
+                             item.countOfLikes,
+                             item.countOfUnlikes,
+                             item.countOfViewers,
+                             item.subCategoryID,
+                             item.postText
+                         });
+                    var obj = query.ToList();
+                    return obj;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }
+
+        public static DataTable 取得貼文(int subCategoryID)
         {
             string connStr = 資料庫相關.取得連線字串();
             string dbCommand =
                 $@" SELECT 
-                        [postTitle],
-                        [createDate],
                         [postID]
+                        ,[postTitle]
+                        ,[countOfLikes]
+                        ,[countOfUnlikes]
+                        ,[countOfViewers]
+                        ,[userID]
+                        ,[subCategoryID]
+                        ,[createDate]
+                        ,[postText]
                     FROM [PostTable]
                     WHERE [subCategoryID] = @subCategoryID
                 ";
             List<SqlParameter> list = new List<SqlParameter>();
-            list.Add(new SqlParameter("@subCategoryID", categoryID));
+            list.Add(new SqlParameter("@subCategoryID", subCategoryID));
 
             try
             {
@@ -192,13 +263,20 @@ namespace UbayProject
                 return null;
             }
         }
-
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             var row = e.Row;
 
-        }
+            //var data = e.Row.DataItem as PostTable;
+            //Guid uid = data.userID;
 
+
+            //var userInfo = getUserNameByUserID(uid);
+
+
+            //var lblUserName = row.FindControl("ltlUserName") as Label;
+            //lblUserName.Text = userInfo.account;
+        }
 
     }
 

@@ -176,6 +176,13 @@
     <Compile Include="SeePost.aspx.designer.cs">
       <DependentUpon>SeePost.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SubPage\FGO.aspx.cs">
+      <DependentUpon>FGO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubPage\FGO.aspx.designer.cs">
+      <DependentUpon>FGO.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SubPage\YGO.aspx.cs">
       <DependentUpon>YGO.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -203,13 +210,6 @@
     </Compile>
     <Compile Include="SubPage\Baseball.aspx.designer.cs">
       <DependentUpon>Baseball.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SubPage\FGO.aspx.cs">
-      <DependentUpon>FGO.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SubPage\FGO.aspx.designer.cs">
-      <DependentUpon>FGO.aspx</DependentUpon>
     </Compile>
     <Compile Include="SubPage\Game.aspx.cs">
       <DependentUpon>Game.aspx</DependentUpon>

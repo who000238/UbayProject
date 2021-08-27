@@ -31,7 +31,6 @@ namespace UbayProject
             //取得mainCategoryID並轉成INT
             string tempQuery = Request.QueryString["mainCategoryID"];
             int tempCatID = Convert.ToInt32(tempQuery);
-            Response.Write($"<script>alert({tempCatID})</script>");
             using (ContextModel context = new ContextModel())
             {
                 //產生母版連結
@@ -62,20 +61,7 @@ namespace UbayProject
 
             }
 
-            try
-            {
-                int categoryID = tempCatID;
-                var dt = 取得貼文(categoryID);
-                if (dt.Rows.Count > 0)  // check is empty data
-                {
-                    this.GridView1.DataSource = dt;
-                    this.GridView1.DataBind();
-                }
-            }
-            catch (Exception ex)
-            {
-                Response.Write($"<script>alert('{ex}')</script>");
-            }
+           
 
         }
         protected void linkLogout_Click(object sender, EventArgs e)
@@ -85,24 +71,24 @@ namespace UbayProject
         }
 
 
-        protected void postSubmit_Click(object sender, EventArgs e)
-        {
-            string txtTitle = this.postTitle.Text;
-            string txtInner = this.postInner.Text;
+        //protected void postSubmit_Click(object sender, EventArgs e)
+        //{
+        //    string txtTitle = this.postTitle.Text;
+        //    string txtInner = this.postInner.Text;
 
-            if (string.IsNullOrWhiteSpace(txtTitle) ||
-                string.IsNullOrWhiteSpace(txtInner))
-            {
-                Response.Write("<script>alert('標題和內文不得為空')</script>");
-                return;
-            }
-            UserModel currentUser = 使用者相關功能.取得目前登入者的資訊();
-            string userID = currentUser.userID;
+        //    if (string.IsNullOrWhiteSpace(txtTitle) ||
+        //        string.IsNullOrWhiteSpace(txtInner))
+        //    {
+        //        Response.Write("<script>alert('標題和內文不得為空')</script>");
+        //        return;
+        //    }
+        //    UserModel currentUser = 使用者相關功能.取得目前登入者的資訊();
+        //    string userID = currentUser.userID;
 
-            createPost(txtTitle, txtInner, userID);
-            Response.Write("<script>alert('貼文新増成功')</script>");
+        //    createPost(txtTitle, txtInner, userID);
+        //    Response.Write("<script>alert('貼文新増成功')</script>");
 
-        }
+        //}
         public static void createPost(string title, string innerText, string userID)
         {
             string connStr = 資料庫相關.取得連線字串();
@@ -180,11 +166,6 @@ namespace UbayProject
             }
         }
 
-        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            var row = e.Row;
-
-        }
     }
 
 }
