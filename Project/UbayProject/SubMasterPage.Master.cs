@@ -31,6 +31,7 @@ namespace UbayProject
             //取得mainCategoryID並轉成INT
             string tempQuery = Request.QueryString["mainCategoryID"];
             int tempCatID = Convert.ToInt32(tempQuery);
+            Response.Write($"<script>alert({tempCatID})</script>");
             using (ContextModel context = new ContextModel())
             {
                 //產生母版連結
@@ -55,7 +56,7 @@ namespace UbayProject
                     HyperLink link2 = new HyperLink();
                     this.ContentPlaceHolder1.Controls.Add(link2);
                     link2.Text = item.subCategoryName + "</br>";
-                    link2.NavigateUrl = $"SubPage/{item.subCategoryName}.aspx";
+                    link2.NavigateUrl = $"SubPage/{item.subCategoryName}.aspx?mainCategoryID={item.mainCategoryID}&&subCategoryID={item.subCategoryID}";
                 }
 
 

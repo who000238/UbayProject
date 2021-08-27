@@ -114,6 +114,7 @@
     <Content Include="SubPage\GBF.aspx" />
     <Content Include="SubPage\Gossiping.aspx" />
     <Content Include="SubPage\Sports.aspx" />
+    <Content Include="SubPage\YGO.aspx" />
     <Content Include="TryGridView.aspx" />
     <Content Include="TryMainPage.aspx" />
     <Content Include="TryReapeater.aspx" />
@@ -174,6 +175,13 @@
     </Compile>
     <Compile Include="SeePost.aspx.designer.cs">
       <DependentUpon>SeePost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubPage\YGO.aspx.cs">
+      <DependentUpon>YGO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubPage\YGO.aspx.designer.cs">
+      <DependentUpon>YGO.aspx</DependentUpon>
     </Compile>
     <Compile Include="SubSubMasterPage.Master.cs">
       <DependentUpon>SubSubMasterPage.Master</DependentUpon>
