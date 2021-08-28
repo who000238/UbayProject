@@ -172,16 +172,17 @@
         <div class="container" id="divUserInfo">
             <div class="row">
                 <div class="col-12 col-md-12 col-sm-12 ">
-                    <h1 id="title">USERINFO</h1>
+                    <h1 id="title">
+                        <asp:ImageButton ID="ibtnToMain" runat="server" ImageUrl="http://clipart-library.com/images/rijKrLB8T.png" Height="60" ImageAlign="Left" OnClick="ibtnToMain_Click" ToolTip="回到首頁" />USERINFO</h1>
                 </div>
             </div>
             <div class="row justify-content-md-center">
                 <div class="col-12 col-md-4 col-sm-12 align-self-start " id="divImg">
                     <div>
-                        <asp:Image ID="userImg" runat="server" ImageUrl="https://freerangestock.com/thumbnail/35900/red-question-mark.jpg" />
+                        <asp:Image ID="userImg" runat="server" ImageUrl="https://freerangestock.com/thumbnail/35900/red-question-mark.jpg" Width="225" AlternateText="使用者頭像" />
                     </div>
                     <div>
-                        <asp:Button class="btn btn-outline-light" ID="btnUpdateUserPhoto" runat="server" Text="修改頭像" OnClick="btnUpdateUserPhoto_Click" />
+                        <asp:Button class="btn btn-outline-light" ID="btnUpdateUserPhoto" runat="server" Text="修改頭像" OnClick="btnUpdateUserPhoto_Click" Enabled="True" Visible="False" />
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-sm-12">
@@ -191,14 +192,14 @@
                                 <td class="col-md-2">暱稱</td>
                                 <td><asp:Label ID="lblUserName" runat="server" Text="Label"></asp:Label></td>
                                 <td class="col-md-2">
-                                    <asp:Button class="btn btn-outline-light" ID="btnUpdateUserName" runat="server" Text="修改暱稱" OnClick="btnUpdateUserName_Click" />
+                                    <asp:Button class="btn btn-outline-light" ID="btnUpdateUserName" runat="server" Text="修改暱稱" OnClick="btnUpdateUserName_Click" Enabled="True" Visible="False" />
                                 </td>
                             </tr>
                             <tr id="trUserSex">
                                 <td>性別</td>
                                 <td ><asp:Label ID="lblUserSex" runat="server" Text="Label"></asp:Label></td>
                                 <td>
-                                    <asp:Button class="btn btn-outline-light" ID="btnUpdateUserSex" runat="server" Text="設定性別" OnClick="btnUpdateUserSex_Click" />
+                                    <asp:Button class="btn btn-outline-light" ID="btnUpdateUserSex" runat="server" Text="設定性別" OnClick="btnUpdateUserSex_Click" Enabled="True" Visible="False" />
                                 </td>
 
                             </tr>
@@ -206,7 +207,7 @@
                                 <td>生日</td>
                                 <td><asp:Label ID="lblUserBirthday" runat="server" Text="Label"></asp:Label></td>
                                 <td>
-                                    <asp:Button class="btn btn-outline-light" ID="btnUpdateUserBirthday" runat="server" Text="設定生日" OnClick="btnUpdateUserBirthday_Click" />
+                                    <asp:Button class="btn btn-outline-light" ID="btnUpdateUserBirthday" runat="server" Text="設定生日" OnClick="btnUpdateUserBirthday_Click" Enabled="True" Visible="False" />
                                 </td>
                             </tr>
                             <tr id="trUserIntro">
@@ -214,7 +215,7 @@
                                 <td>
                                     <asp:TextBox ID="txtUserIntro" runat="server"  style="width:80%" Text="null" ReadOnly="True" TextMode="MultiLine" MaxLength="4000" BackColor="#212529" ForeColor="White" Rows="5"></asp:TextBox></td>
                                 <td>
-                                    <asp:Button class="btn btn-outline-light" ID="btnUpdateUserIntro" runat="server" Text="修改自介" OnClick="btnUpdateUserIntro_Click" UseSubmitBehavior="True" />
+                                    <asp:Button class="btn btn-outline-light" ID="btnUpdateUserIntro" runat="server" Text="修改自介" OnClick="btnUpdateUserIntro_Click" UseSubmitBehavior="True" Enabled="True" Visible="False" />
                                 </td>
                             </tr>
                         </tbody>
