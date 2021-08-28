@@ -53,6 +53,7 @@ namespace UbayProject
             //取得目前應顯示的使用者資料(QueryString)，依據選取的使用者顯示UserInfo
             UbayProject.ORM.UserTable queriedUserNow;
             string userIDQueryString = this.Request.QueryString["UserID"];
+
             using (ORM.ContextModel content = new ORM.ContextModel())
             {
                 var temp =
@@ -62,8 +63,7 @@ namespace UbayProject
                 //if temp == null? 沒找到使用者，提示無相關資料
                 queriedUserNow = temp;
             }
-            if (!IsPostBack)
-            {
+
             this.lblUserName.Text = queriedUserNow.userName;
             this.lblBlackList.Text = queriedUserNow.blackList;
             this.lblUserSex.Text = (queriedUserNow.sex == "無")
@@ -79,7 +79,7 @@ namespace UbayProject
                                         : queriedUserNow.photoURL;
             //怎麼做輸出檢查?
 
-            }
+
             //取得目前登入使用者ID(by SessionID cookie)，如果跟QuereyString一樣，且不等於null時開啟編輯按鈕 
             if (this.Session["UserLoginInfo"]?.ToString() == this.Request.QueryString["UserID"] && (this.Session["UserLoginInfo"] != null))
             {
@@ -227,6 +227,7 @@ namespace UbayProject
         protected void btnBlackList_Click(object sender, EventArgs e)
         {
             string userIDQueryString = this.Request.QueryString["UserID"];
+            
             using (ORM.ContextModel content = new ORM.ContextModel())
             {
                 var temp =
@@ -241,8 +242,7 @@ namespace UbayProject
                                : "Y";                                                                    
                 content.SaveChanges();
             }
-            Response.Write($"<script>alert('修改黑名單狀態成功')</script>");
-
+            this.Response.Redirect($"UserInfo.aspx?userid={userIDQueryString}");
             
         }
     }
