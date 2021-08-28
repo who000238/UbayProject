@@ -20,32 +20,27 @@ namespace UbayProject
             //檢查登入
             if (this.Session["UserLoginInfo"] != null)
             {
-                //this.linkLogout.Visible = true;
-                //this.a_Login.Visible = false;
-                //this.postArea.Visible = true;
                 this.commentArea.Visible = true;
             }
             else
             {
                 this.commentArea.Visible = false;
-                //this.linkLogout.Visible = false;
-                //this.a_Login.Visible = true;
-                //this.postArea.Visible = false;
             }
 
             //讀取網址列中的貼文ID
-            string queryString = this.Request.QueryString["postID"];
+             string queryString = this.Request.QueryString["postID"];
             var dr = getPostByPostID(queryString);
             if (dr == null)
             {
                 Response.Write("<script>alert('該貼文不存在')</script>");
                 Response.Redirect("MainPage.aspx");
             }
+             int tempcountOfViewers = Convert.ToInt32(dr["countOfViewers"]);
+            this.lblViewer.Text = (tempcountOfViewers+1).ToString();
             this.lblTitle.Text = dr["postTitle"].ToString();
             this.lblInner.Text = dr["postText"].ToString();
             int postID = Convert.ToInt32(this.Request.QueryString["postID"]);
-            //var Comment = getComment(postID);
-            //this.lblComment.Text = Comment["comment"].ToString();
+       
             if (this.commentInput.Text == null)
                 this.commentInput.Text = string.Empty;
 
@@ -60,14 +55,12 @@ namespace UbayProject
                 this.commentPostArea.Controls.Add(labelDown);
                 labelUp.Text = $"使用者ID:{userInfo.userName}    留言時間:{item.createDate}  </br>";
                 labelDown.Text = $"留言:{item.comment}  </br> ------------------------------------------ </br>";
-
-                //label.Text = $"留言:{item.comment},  使用者ID:{item.userID}, 留言時間:{item.createDate} </br>";
-                //label.Text = item.comment +"&nbsp;" + item.userID + "&nbsp;" + item.createDate + "</br>";
-                //this.lblComment.Text += item.comment + "</br>";
+                
             }
+            UpdateViewers(postID, tempcountOfViewers);
         }
 
-
+        
         protected void commentSubmit_Click(object sender, EventArgs e)
         {
             string txtComment = this.commentInput.Text;
@@ -221,6 +214,42 @@ namespace UbayProject
             {
                 Logger.WriteLog(ex);
                 return null;
+            }
+        }
+        /// <summary>
+        /// 在page_unload的時候把VIewer+1
+        /// </summary>
+        /// <param name="postID"></param>
+        /// <param name="tempcountOfViewers"></param>
+        /// <returns></returns>
+        public static bool UpdateViewers(int postID,int tempcountOfViewers)
+        {
+            string connStr = 資料庫相關.取得連線字串();
+            string dbCommand =
+                $@"
+                     UPDATE PostTable
+                    SET
+                               countOfViewers           =   @countOfViewers 
+                    WHERE
+                        postID = @postID
+                     ";
+            List<SqlParameter> paramList = new List<SqlParameter>();
+            paramList.Add(new SqlParameter("@countOfViewers", tempcountOfViewers +1));
+            paramList.Add(new SqlParameter("@postID", postID));
+
+            try
+            {
+                int effectRows = 資料庫相關.ModifyData(connStr, dbCommand, paramList);
+
+                if (effectRows == 1)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return false;
             }
         }
     }

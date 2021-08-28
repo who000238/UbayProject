@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows;
 
 namespace UbayProject
 {
@@ -17,6 +18,16 @@ namespace UbayProject
                 Response.StatusCode = 403;
                 Response.End();
             }
+
+
+            //檢查QuerryString長度，有不合長度限制的QuerryString就回傳403
+            if (this.Request.QueryString.Get("UserID")?.Length != 36 && (this.Request.QueryString.Get("mode")?.Length< 19) )
+            {
+                //禁止訪問 回傳403
+                Response.StatusCode = 403;
+                Response.End();
+            }
+
             // 檢查權限，登入的使用者與修改使用者不同顯示403
             if (this.Session["UserLoginInfo"].ToString() != this.Request.QueryString["UserID"])
             {
@@ -71,7 +82,6 @@ namespace UbayProject
                 default:
                     break;
             }
-
             // 取得QueryString並填入使用者原始資訊(注意顯示時要注意輸出檢查)
 
 

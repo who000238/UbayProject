@@ -15,7 +15,7 @@ namespace UbayProject
             //檢查是否有登入狀態
             //檢查是否有登入狀態
             //if (this.Session["UserLoginInfo"] != null)
-            if(HttpContext.Current.Session["UserLoginInfo"] != null)
+            if (HttpContext.Current.Session["UserLoginInfo"] != null)
             {
                 Response.Redirect("MainPage.aspx");
             }
@@ -29,7 +29,7 @@ namespace UbayProject
             string inp_acc = this.txtAccount.Text;
             string inp_pwd = this.txtPassowrd.Text;
             string msg;
-            if (!使用者相關功能.嘗試登入(inp_acc,inp_pwd,out msg))
+            if (!使用者相關功能.嘗試登入(inp_acc, inp_pwd, out msg))
             {
                 Response.Write($"<script>alert('{msg}')</script>");
                 return;

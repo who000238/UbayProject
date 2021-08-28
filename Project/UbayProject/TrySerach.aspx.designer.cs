@@ -11,7 +11,7 @@ namespace UbayProject
 {
 
 
-    public partial class UserInfo
+    public partial class TySerach
     {
 
         /// <summary>
@@ -24,102 +24,66 @@ namespace UbayProject
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// ibtnToMain 控制項。
+        /// txtASP_input 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ibtnToMain;
+        protected global::System.Web.UI.WebControls.TextBox txtASP_input;
 
         /// <summary>
-        /// userImg 控制項。
+        /// btnASP 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image userImg;
+        protected global::System.Web.UI.WebControls.Button btnASP;
 
         /// <summary>
-        /// btnUpdateUserPhoto 控制項。
+        /// txtHTML_input 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateUserPhoto;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtHTML_input;
 
         /// <summary>
-        /// lblUserName 控制項。
+        /// btnHTML 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserName;
+        protected global::System.Web.UI.HtmlControls.HtmlInputSubmit btnHTML;
 
         /// <summary>
-        /// btnUpdateUserName 控制項。
+        /// GridView1 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateUserName;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
 
         /// <summary>
-        /// lblUserSex 控制項。
+        /// GridView2 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserSex;
+        protected global::System.Web.UI.WebControls.GridView GridView2;
 
         /// <summary>
-        /// btnUpdateUserSex 控制項。
+        /// lbl 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateUserSex;
-
-        /// <summary>
-        /// lblUserBirthday 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserBirthday;
-
-        /// <summary>
-        /// btnUpdateUserBirthday 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateUserBirthday;
-
-        /// <summary>
-        /// txtUserIntro 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserIntro;
-
-        /// <summary>
-        /// btnUpdateUserIntro 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateUserIntro;
+        protected global::System.Web.UI.WebControls.Label lbl;
     }
 }

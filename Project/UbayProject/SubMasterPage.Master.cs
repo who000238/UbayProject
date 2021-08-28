@@ -25,7 +25,7 @@ namespace UbayProject
             {
                 this.linkLogout.Visible = false;
                 this.a_Login.Visible = true;
-                //this.postArea.Visible = false;
+                //this.postArea.Visible = false;ㄏ
             }
 
             //取得mainCategoryID並轉成INT

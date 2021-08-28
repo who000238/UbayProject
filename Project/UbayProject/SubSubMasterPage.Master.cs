@@ -39,7 +39,7 @@ namespace UbayProject
                 //產生子版連結
                 var query2 =
                       (from item in context.SubCategoryTables
-                       where item.mainCategoryID == tempCatID
+                       where item.mainCategoryID == tempCatID2
                        select item);
                 foreach (var item in query2)
                 {
@@ -183,7 +183,6 @@ namespace UbayProject
                              UserInfo.userName,
                              UserInfo.account,
                              UserInfo.pwd,
-                             UserInfo.createDate,
                              UserInfo.userLevel,
                              UserInfo.sex,
                              UserInfo.email,
@@ -192,6 +191,7 @@ namespace UbayProject
                              UserInfo.intro,
                              UserInfo.favoritePosts,
                              UserInfo.blackList,
+                             item.createDate,
                              item.postTitle,
                              item.postID,
                              item.countOfLikes,

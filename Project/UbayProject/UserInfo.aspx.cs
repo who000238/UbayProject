@@ -12,7 +12,7 @@ namespace UbayProject
         protected void Page_Load(object sender, EventArgs e)
         {
             //預設登入(測試用)
-            //this.Session["UserLoginInfo"] = "4B50687F-45B3-4B24-B830-14CCFB4F0126";
+            this.Session["UserLoginInfo"] = "4B50687F-45B3-4B24-B830-14CCFB4F0126";
 
             //判斷是否使用者登入了
             //seesion null check，同時沒登入就關閉修改按鈕
@@ -24,9 +24,6 @@ namespace UbayProject
                 this.btnUpdateUserPhoto.Visible = false;
                 this.btnUpdateUserSex.Visible = false;
             }
-            //取得使用者
-            UbayProject.ORM.UserTable loginedUserNow;
-            string userIDQueryString = this.Request.QueryString["UserID"];
             if (this.Request.QueryString["UserID"] == null)
             {
                 //沒登入又沒QueryString 禁止進入
@@ -44,20 +41,29 @@ namespace UbayProject
                     Response.Redirect($"/UserInfo.aspx?userid={str}");
                 }
             }
+
+            //檢查QuerryString長度，有不合長度的QuerryString就回傳403
+            if (this.Request.QueryString.Get("UserID")?.Length != 36 )
+            {
+                //禁止訪問 回傳403
+                Response.StatusCode = 403;
+                Response.End();
+            }
+
+            //取得使用者
+            UbayProject.ORM.UserTable loginedUserNow;
+            string userIDQueryString = this.Request.QueryString["UserID"];
             using (ORM.ContextModel content = new ORM.ContextModel())
             {
                 var temp =
                     (from user in content.UserTables
                      where user.userID.ToString() == userIDQueryString
                      select user).FirstOrDefault();
-                //if temp == null?
+                //if temp == null? 沒找到使用者，提示無相關資料
                 loginedUserNow = temp;
             }
 
-            //取得目前應顯示的使用者資料(QueryString)
-            //var currentUser = UserInfoModel GetUserInfo(string encryptedGUID){}
-
-            //依據選取的使用者顯示UserInfo
+            //取得目前應顯示的使用者資料(QueryString)，依據選取的使用者顯示UserInfo
             string userID = this.Request.QueryString["UserID"];
             //UserInfoModel.Name , ......
             this.lblUserName.Text = System.Web.Security.AntiXss.AntiXssEncoder.HtmlEncode(loginedUserNow.userName, true);
@@ -73,11 +79,10 @@ namespace UbayProject
             this.userImg.ImageUrl = (loginedUserNow.photoURL == null || loginedUserNow.photoURL == string.Empty)
                                         ? "https://freerangestock.com/thumbnail/35900/red-question-mark.jpg"
                                         : loginedUserNow.photoURL;
-            this.userImg.Width = 225;
             //怎麼做輸出檢查?
 
 
-            //取得目前登入使用者ID(by SessionID cookie?)，如果跟QuereyString一樣，且不等於null時允許編輯 
+            //取得目前登入使用者ID(by SessionID cookie?)，如果跟QuereyString一樣，且不等於null時開啟編輯按鈕 
             if (this.Session["UserLoginInfo"]?.ToString() == this.Request.QueryString["UserID"] && (this.Session["UserLoginInfo"] != null))
             {
                 this.btnUpdateUserBirthday.Visible = true;
@@ -173,5 +178,9 @@ namespace UbayProject
             //刪除此使用者
         }
 
+        protected void ibtnToMain_Click(object sender, ImageClickEventArgs e)
+        {
+            this.Response.Redirect("MainPage.aspx");
+        }
     }
 }
