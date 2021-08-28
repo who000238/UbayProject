@@ -55,6 +55,7 @@
       <HintPath>packages\Microsoft.VisualStudio.LiveShare.1.1.57\lib\net461\Microsoft.VisualStudio.LiveShare.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,6 +121,7 @@
     <Content Include="TryGridView.aspx" />
     <Content Include="TryMainPage.aspx" />
     <Content Include="TryReapeater.aspx" />
+    <Content Include="TrySerach.aspx" />
     <Content Include="UpdateUserInfo.aspx" />
     <Content Include="UserInfo.aspx" />
     <Content Include="Web.config" />
@@ -268,6 +270,13 @@
     </Compile>
     <Compile Include="TryReapeater.aspx.designer.cs">
       <DependentUpon>TryReapeater.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TrySerach.aspx.cs">
+      <DependentUpon>TrySerach.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TrySerach.aspx.designer.cs">
+      <DependentUpon>TrySerach.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpdateUserInfo.aspx.cs">
       <DependentUpon>UpdateUserInfo.aspx</DependentUpon>
