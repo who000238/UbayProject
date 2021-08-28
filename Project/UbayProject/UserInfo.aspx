@@ -173,7 +173,10 @@
             <div class="row">
                 <div class="col-12 col-md-12 col-sm-12 ">
                     <h1 id="title">
-                        <asp:ImageButton ID="ibtnToMain" runat="server" ImageUrl="http://clipart-library.com/images/rijKrLB8T.png" Height="60" ImageAlign="Left" OnClick="ibtnToMain_Click" ToolTip="回到首頁" />USERINFO</h1>
+                        <asp:ImageButton ID="ibtnToMain" runat="server" ImageUrl="http://clipart-library.com/images/rijKrLB8T.png" Height="60" ImageAlign="Left" OnClick="ibtnToMain_Click" ToolTip="回到首頁" />
+                        USERINFO
+                        <asp:Button ID="btnDeleteUser" runat="server" Text="DeleteUser" Onclick="btnDeleteUser_Click" Visible="False" OnClientClick="return confirm('Are you sure?');" />
+                    </h1>
                 </div>
             </div>
             <div class="row justify-content-md-center">
@@ -190,14 +193,22 @@
                         <tbody>
                             <tr id="trUserName">
                                 <td class="col-md-2">暱稱</td>
-                                <td><asp:Label ID="lblUserName" runat="server" Text="Label"></asp:Label></td>
+                                <td><asp:Label ID="lblUserName" runat="server" Text="查無使用者"></asp:Label></td>
                                 <td class="col-md-2">
                                     <asp:Button class="btn btn-outline-light" ID="btnUpdateUserName" runat="server" Text="修改暱稱" OnClick="btnUpdateUserName_Click" Enabled="True" Visible="False" />
                                 </td>
                             </tr>
+                            <tr id="trBlackList" runat="server">
+                                <td class="col-md-2">黑名單內</td>
+                                <td><asp:Label ID="lblBlackList" runat="server" Text="查無使用者"></asp:Label></td>
+                                <td class="col-md-2">
+                                    <asp:Button class="btn btn-outline-light" ID="btnBlackList" runat="server" Text="修改黑名單" OnClick="btnBlackList_Click" Enabled="True" Visible="False" />
+                                </td>
+                            </tr>
+
                             <tr id="trUserSex">
                                 <td>性別</td>
-                                <td ><asp:Label ID="lblUserSex" runat="server" Text="Label"></asp:Label></td>
+                                <td ><asp:Label ID="lblUserSex" runat="server" Text="查無使用者"></asp:Label></td>
                                 <td>
                                     <asp:Button class="btn btn-outline-light" ID="btnUpdateUserSex" runat="server" Text="設定性別" OnClick="btnUpdateUserSex_Click" Enabled="True" Visible="False" />
                                 </td>
@@ -205,7 +216,7 @@
                             </tr>
                             <tr id="trUserBirthday">
                                 <td>生日</td>
-                                <td><asp:Label ID="lblUserBirthday" runat="server" Text="Label"></asp:Label></td>
+                                <td><asp:Label ID="lblUserBirthday" runat="server" Text="查無使用者"></asp:Label></td>
                                 <td>
                                     <asp:Button class="btn btn-outline-light" ID="btnUpdateUserBirthday" runat="server" Text="設定生日" OnClick="btnUpdateUserBirthday_Click" Enabled="True" Visible="False" />
                                 </td>
@@ -213,7 +224,7 @@
                             <tr id="trUserIntro">
                                 <td>自我介紹</td>
                                 <td>
-                                    <asp:TextBox ID="txtUserIntro" runat="server"  style="width:80%" Text="null" ReadOnly="True" TextMode="MultiLine" MaxLength="4000" BackColor="#212529" ForeColor="White" Rows="5"></asp:TextBox></td>
+                                    <asp:TextBox ID="txtUserIntro" runat="server"  style="width:80%" Text="查無使用者" ReadOnly="True" TextMode="MultiLine" MaxLength="4000" BackColor="#212529" ForeColor="White" Rows="5"></asp:TextBox></td>
                                 <td>
                                     <asp:Button class="btn btn-outline-light" ID="btnUpdateUserIntro" runat="server" Text="修改自介" OnClick="btnUpdateUserIntro_Click" UseSubmitBehavior="True" Enabled="True" Visible="False" />
                                 </td>
