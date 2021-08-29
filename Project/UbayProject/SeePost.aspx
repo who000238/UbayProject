@@ -22,8 +22,14 @@
 
         .commentArea {
             position: fixed;
-            bottom: 0px;
+            bottom: -100px;
             width: 100%;
+            transition:100ms;
+        }
+        
+        #commentArea:hover{
+            bottom: 0px;
+            transition:100ms;
         }
 
         #commentSubmit {
@@ -76,7 +82,7 @@
                     <asp:Label runat="server" ID="lblComment"></asp:Label>
                 </div>
                 <div class="row commentArea" id="commentArea" runat="server">
-                    <asp:TextBox runat="server" ID="commentInput" TextMode="MultiLine" Rows="4" CssClass="form-control" placeholder="回覆..."></asp:TextBox>
+                    <asp:TextBox runat="server" ID="commentInput" TextMode="MultiLine" Rows="5" CssClass="form-control" placeholder="回覆..."></asp:TextBox>
                     <asp:Button runat="server" ID="commentSubmit" CssClass="btn btn-outline-primary" Text="送出回覆" OnClick="commentSubmit_Click" />
                     <asp:Button runat="server" ID="BtnLike" CssClass="btn btn-outline-primary" Text="LIKE" OnClick="Button1_Click" />
                 </div>

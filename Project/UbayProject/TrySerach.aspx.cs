@@ -40,8 +40,8 @@ namespace UbayProject
                 this.GridView2.DataSource = obj;
                 this.GridView2.DataBind();
             }
-            var dt = 搜尋貼文Row(txtASP_input);
-            this.lbl.Text = dt["postTitle"] as string;
+            //var dt = 搜尋貼文Row(txtASP_input);
+            //this.lbl.Text = dt["postTitle"] as string;
             //var dt = 搜尋貼文(txtASP_input);
             //if (dt != null)
             //{
