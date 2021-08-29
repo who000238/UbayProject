@@ -40,8 +40,8 @@ namespace UbayProject
                 this.GridView2.DataSource = obj;
                 this.GridView2.DataBind();
             }
-            var dt = 搜尋貼文Row(txtASP_input);
-            this.lbl.Text = dt["postTitle"] as string;
+            //var dt = 搜尋貼文Row(txtASP_input);
+            //this.lbl.Text = dt["postTitle"] as string;
             //var dt = 搜尋貼文(txtASP_input);
             //if (dt != null)
             //{
@@ -109,6 +109,7 @@ namespace UbayProject
                 $@"SELECT * FROM PostTable 
                     JOIN UserTable ON PostTable.userID = UserTable.userID
                     WHERE postTitle Like '%{Input_txt}%' ";
+
             List<SqlParameter> list = new List<SqlParameter>();
             list.Add(new SqlParameter("@Input_txt", Input_txt));
             try
@@ -121,24 +122,24 @@ namespace UbayProject
                 return null;
             }
         }
-       
-        public static DataRow 搜尋貼文Row(string Input_txt)
-        {
-            string connStr = 資料庫相關.取得連線字串();
-            string dbCommand =
-                $@"SELECT * FROM PostTable WHERE postTitle Like '%{Input_txt}%' ";
-            List<SqlParameter> list = new List<SqlParameter>();
-            list.Add(new SqlParameter("@Input_txt", Input_txt));
-            try
-            {
-                return 資料庫相關.查詢單筆資料(connStr, dbCommand, list);
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLog(ex);
-                return null;
-            }
-        }  //測試版本 隨後可刪除
+
+        //public static DataRow 搜尋貼文Row(string Input_txt)
+        //{
+        //    string connStr = 資料庫相關.取得連線字串();
+        //    string dbCommand =
+        //        $@"SELECT * FROM PostTable WHERE postTitle Like '%{Input_txt}%' ";
+        //    List<SqlParameter> list = new List<SqlParameter>();
+        //    list.Add(new SqlParameter("@Input_txt", Input_txt));
+        //    try
+        //    {
+        //        return 資料庫相關.查詢單筆資料(connStr, dbCommand, list);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return null;
+        //    }
+        //}  //測試版本 隨後可刪除
 
         public static DataTable 取得熱門貼文()
         {

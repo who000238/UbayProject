@@ -26,7 +26,6 @@ namespace 處理資料庫相關的類別庫
 
             System.IO.File.AppendAllText("D:\\Logs\\Log.log", ex.ToString());
 
-            throw ex;
         }
     }
 }
