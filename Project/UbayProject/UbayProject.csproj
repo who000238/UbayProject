@@ -100,8 +100,9 @@
     <Content Include="css\bootstrap.rtl.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Images\YGO.jpg" />
-    <Content Include="Images\FGO.jpg" />
+    <Content Include="Pics\GBF.jpg" />
+    <Content Include="Pics\YGO.jpg" />
+    <Content Include="Pics\FGO.jpg" />
     <Content Include="js\bootstrap.bundle.js" />
     <Content Include="js\bootstrap.bundle.min.js" />
     <Content Include="js\bootstrap.esm.js" />

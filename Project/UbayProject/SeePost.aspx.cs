@@ -58,6 +58,21 @@ namespace UbayProject
                 
             }
             UpdateViewers(postID, tempcountOfViewers);
+
+            //按讚功能
+            string tempQuery = Request.QueryString["postID"];
+            int tempPostID = Convert.ToInt32(tempQuery);
+            using (ContextModel context = new ContextModel())
+            {
+                var query =
+                      (from item in context.PostTables
+                       where item.postID == tempPostID
+                       select item);
+                foreach (var item in query)
+                {
+                    this.Label1.Text = item.countOfLikes.ToString();
+                }
+            }
         }
 
         
@@ -250,6 +265,25 @@ namespace UbayProject
             {
                 Logger.WriteLog(ex);
                 return false;
+            }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            string tempQuery = Request.QueryString["postID"];
+            int tempPostID = Convert.ToInt32(tempQuery);
+            using (ContextModel context = new ContextModel())
+            {
+                var query =
+                      (from item in context.PostTables
+                       where item.postID == tempPostID
+                       select item);
+                foreach (var item in query)
+                {
+                    item.countOfLikes += 1;
+                }
+
+                context.SaveChanges();
             }
         }
     }
