@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UpdateUserInfo.aspx.cs" Inherits="UbayProject.UpdateUserInfo"  %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UpdateUserInfo.aspx.cs" Inherits="UbayProject.UpdateUserInfo" %>
 
 <!DOCTYPE html>
 
