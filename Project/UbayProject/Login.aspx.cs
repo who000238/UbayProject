@@ -34,6 +34,7 @@ namespace UbayProject
                 Response.Write($"<script>alert('{msg}')</script>");
                 return;
             }
+
             Response.Redirect("MainPage.aspx");
         }
 

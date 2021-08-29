@@ -100,7 +100,9 @@
     <Content Include="css\bootstrap.rtl.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Images\FGO.jpg" />
+    <Content Include="Pics\GBF.jpg" />
+    <Content Include="Pics\YGO.jpg" />
+    <Content Include="Pics\FGO.jpg" />
     <Content Include="js\bootstrap.bundle.js" />
     <Content Include="js\bootstrap.bundle.min.js" />
     <Content Include="js\bootstrap.esm.js" />
@@ -118,10 +120,10 @@
     <Content Include="SubPage\Politics.aspx" />
     <Content Include="SubPage\Sports.aspx" />
     <Content Include="SubPage\YGO.aspx" />
-    <Content Include="TryGridView.aspx" />
-    <Content Include="TryMainPage.aspx" />
+    <Content Include="TryFIleFolder\TryGridView.aspx" />
+    <Content Include="TryFIleFolder\TryMainPage.aspx" />
+    <Content Include="TryFIleFolder\TrySerach.aspx" />
     <Content Include="TryReapeater.aspx" />
-    <Content Include="TrySerach.aspx" />
     <Content Include="UpdateUserInfo.aspx" />
     <Content Include="UserInfo.aspx" />
     <Content Include="Web.config" />
@@ -250,19 +252,26 @@
     <Compile Include="SubPage\Sports.aspx.designer.cs">
       <DependentUpon>Sports.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TryGridView.aspx.cs">
+    <Compile Include="TryFIleFolder\TryGridView.aspx.cs">
       <DependentUpon>TryGridView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TryGridView.aspx.designer.cs">
+    <Compile Include="TryFIleFolder\TryGridView.aspx.designer.cs">
       <DependentUpon>TryGridView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TryMainPage.aspx.cs">
+    <Compile Include="TryFIleFolder\TryMainPage.aspx.cs">
       <DependentUpon>TryMainPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TryMainPage.aspx.designer.cs">
+    <Compile Include="TryFIleFolder\TryMainPage.aspx.designer.cs">
       <DependentUpon>TryMainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TryFIleFolder\TrySerach.aspx.cs">
+      <DependentUpon>TrySerach.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TryFIleFolder\TrySerach.aspx.designer.cs">
+      <DependentUpon>TrySerach.aspx</DependentUpon>
     </Compile>
     <Compile Include="TryReapeater.aspx.cs">
       <DependentUpon>TryReapeater.aspx</DependentUpon>
@@ -270,13 +279,6 @@
     </Compile>
     <Compile Include="TryReapeater.aspx.designer.cs">
       <DependentUpon>TryReapeater.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TrySerach.aspx.cs">
-      <DependentUpon>TrySerach.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TrySerach.aspx.designer.cs">
-      <DependentUpon>TrySerach.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpdateUserInfo.aspx.cs">
       <DependentUpon>UpdateUserInfo.aspx</DependentUpon>

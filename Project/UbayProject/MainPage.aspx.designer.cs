@@ -42,6 +42,15 @@ namespace UbayProject
         protected global::System.Web.UI.WebControls.LinkButton linkLogout;
 
         /// <summary>
+        /// UserInfoLink 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor UserInfoLink;
+
+        /// <summary>
         /// SearchBar 控制項。
         /// </summary>
         /// <remarks>
@@ -51,6 +60,15 @@ namespace UbayProject
         protected global::System.Web.UI.WebControls.TextBox SearchBar;
 
         /// <summary>
+        /// btnSearch 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch;
+
+        /// <summary>
         /// BoardLink 控制項。
         /// </summary>
         /// <remarks>
@@ -58,5 +76,32 @@ namespace UbayProject
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl BoardLink;
+
+        /// <summary>
+        /// HotPost 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HotPost;
+
+        /// <summary>
+        /// GridView1 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
+
+        /// <summary>
+        /// GridView2 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView2;
     }
 }

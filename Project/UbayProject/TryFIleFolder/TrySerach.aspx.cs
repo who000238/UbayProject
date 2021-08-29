@@ -33,28 +33,28 @@ namespace UbayProject
         {
             string txtASP_input = this.txtASP_input.Text;
             string txtHTML_input = this.txtHTML_input.Value;
-            //var obj = 搜尋貼文EF(txtASP_input);
-            //if (obj != null)
-            //{
-            //    this.GridView1.Visible = false;
-            //    this.GridView2.DataSource = obj;
-            //    this.GridView2.DataBind();
-            //}
-            //var dt = 搜尋貼文Row(txtASP_input);
-            //this.lbl.Text = dt["postTitle"] as string;
-            var dt = 搜尋貼文(txtASP_input);
-            if (dt != null)
+            var obj = 搜尋貼文EF(txtASP_input);
+            if (obj != null)
             {
                 this.GridView1.Visible = false;
-                this.GridView2.DataSource = dt;
+                this.GridView2.DataSource = obj;
                 this.GridView2.DataBind();
             }
-            else
-            {
-                Response.Write("<script>alert('查無貼文')</script>");
-            }
+            //var dt = 搜尋貼文Row(txtASP_input);
+            //this.lbl.Text = dt["postTitle"] as string;
+            //var dt = 搜尋貼文(txtASP_input);
+            //if (dt != null)
+            //{
+            //    this.GridView1.Visible = false;
+            //    this.GridView2.DataSource = dt;
+            //    this.GridView2.DataBind();
+            //}
+            //else
+            //{
+            //    Response.Write("<script>alert('查無貼文')</script>");
+            //}
         }
-        //測試失敗
+        //測試失敗 0828 04:55 測試成功 
         public static Object 搜尋貼文EF(string Input_txt) //與subsubmaster 取得貼文及UserNameEF版相同
         {
             try
@@ -65,7 +65,8 @@ namespace UbayProject
                         (from item in context.PostTables
                          join UserInfo in context.UserTables
                           on item.userID equals UserInfo.userID
-                         where SqlMethods.Like(item.postTitle, $"%{Input_txt}%")
+                         //where SqlMethods.Like(item.postTitle, $"%{Input_txt}%")
+                         where item.postTitle.Contains(Input_txt)
                          select new
                          {
                              UserInfo.userID,
@@ -108,6 +109,7 @@ namespace UbayProject
                 $@"SELECT * FROM PostTable 
                     JOIN UserTable ON PostTable.userID = UserTable.userID
                     WHERE postTitle Like '%{Input_txt}%' ";
+
             List<SqlParameter> list = new List<SqlParameter>();
             list.Add(new SqlParameter("@Input_txt", Input_txt));
             try
@@ -120,24 +122,24 @@ namespace UbayProject
                 return null;
             }
         }
-       
-        public static DataRow 搜尋貼文Row(string Input_txt)
-        {
-            string connStr = 資料庫相關.取得連線字串();
-            string dbCommand =
-                $@"SELECT * FROM PostTable WHERE postTitle Like '%{Input_txt}%' ";
-            List<SqlParameter> list = new List<SqlParameter>();
-            list.Add(new SqlParameter("@Input_txt", Input_txt));
-            try
-            {
-                return 資料庫相關.查詢單筆資料(connStr, dbCommand, list);
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLog(ex);
-                return null;
-            }
-        }  //測試版本 隨後可刪除
+
+        //public static DataRow 搜尋貼文Row(string Input_txt)
+        //{
+        //    string connStr = 資料庫相關.取得連線字串();
+        //    string dbCommand =
+        //        $@"SELECT * FROM PostTable WHERE postTitle Like '%{Input_txt}%' ";
+        //    List<SqlParameter> list = new List<SqlParameter>();
+        //    list.Add(new SqlParameter("@Input_txt", Input_txt));
+        //    try
+        //    {
+        //        return 資料庫相關.查詢單筆資料(connStr, dbCommand, list);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return null;
+        //    }
+        //}  //測試版本 隨後可刪除
 
         public static DataTable 取得熱門貼文()
         {
