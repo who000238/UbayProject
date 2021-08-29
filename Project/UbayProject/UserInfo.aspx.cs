@@ -11,11 +11,8 @@ namespace UbayProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //預設登入(測試用)
-            //this.Session["UserLoginInfo"] = "4B50687F-45B3-4B24-B830-14CCFB4F0126";
-
             //判斷是否使用者登入了
-            //seesion null check，同時沒登入就關閉修改按鈕
+            //seesion null check，同時沒登入就隱藏修改按鈕
             if (this.Session["UserLoginInfo"] == null)
             {
                 this.btnUpdateUserBirthday.Visible = false;
@@ -43,7 +40,7 @@ namespace UbayProject
             }
 
             //檢查QuerryString長度，有不合長度的QuerryString就回傳403
-            if (this.Request.QueryString.Get("UserID")?.Length != 36 )
+            if (this.Request.QueryString.Get("UserID")?.Length != 36)
             {
                 //禁止訪問 回傳403
                 Response.StatusCode = 403;
@@ -53,35 +50,36 @@ namespace UbayProject
             //取得目前應顯示的使用者資料(QueryString)，依據選取的使用者顯示UserInfo
             UbayProject.ORM.UserTable queriedUserNow;
             string userIDQueryString = this.Request.QueryString["UserID"];
-
             using (ORM.ContextModel content = new ORM.ContextModel())
             {
                 var temp =
                     (from user in content.UserTables
                      where user.userID.ToString() == userIDQueryString
                      select user).FirstOrDefault();
-                //if temp == null? 沒找到使用者，提示無相關資料
                 queriedUserNow = temp;
             }
+            //if temp == null? 沒找到使用者，顯示預設"查無此人"
+            if (queriedUserNow != null)
+            {
+                this.lblUserName.Text = queriedUserNow.userName;
+                this.lblBlackList.Text = queriedUserNow.blackList;
+                this.lblUserSex.Text = (queriedUserNow.sex == "無")
+                                             ? ("不公開")
+                                             : queriedUserNow.sex;
+                this.lblUserBirthday.Text = queriedUserNow.birthday?.ToString("yyyy/MM/dd");
+                this.txtUserIntro.Text = queriedUserNow.intro;
 
-            this.lblUserName.Text = queriedUserNow.userName;
-            this.lblBlackList.Text = queriedUserNow.blackList;
-            this.lblUserSex.Text = (queriedUserNow.sex == "無")
-                                         ?("不公開")
-                                         :queriedUserNow.sex;
-            this.lblUserBirthday.Text = queriedUserNow.birthday?.ToString("yyyy/MM/dd");
-            this.txtUserIntro.Text = queriedUserNow.intro;
-
-            //顯示URL
-            //無法正常顯示該怎麼判定?
-            this.userImg.ImageUrl = (queriedUserNow.photoURL == null || queriedUserNow.photoURL == string.Empty)
-                                        ? "https://freerangestock.com/thumbnail/35900/red-question-mark.jpg"
-                                        : queriedUserNow.photoURL;
-            //怎麼做輸出檢查?
+                //顯示URL
+                //無法正常顯示該怎麼判定?
+                this.userImg.ImageUrl = (queriedUserNow.photoURL == null || queriedUserNow.photoURL == string.Empty)
+                                            ? "https://freerangestock.com/thumbnail/35900/red-question-mark.jpg"
+                                            : queriedUserNow.photoURL;
+                //怎麼做輸出檢查?
+            }
 
 
-            //取得目前登入使用者ID(by SessionID cookie)，如果跟QuereyString一樣，且不等於null時開啟編輯按鈕 
-            if (this.Session["UserLoginInfo"]?.ToString() == this.Request.QueryString["UserID"] && (this.Session["UserLoginInfo"] != null))
+            //取得目前登入使用者ID(by SessionID cookie)，如果跟QuereyString一樣，開啟編輯按鈕 
+            if (this.Session["UserLoginInfo"]?.ToString() == this.Request.QueryString["UserID"])
             {
                 this.btnUpdateUserBirthday.Visible = true;
                 this.btnUpdateUserIntro.Visible = true;
@@ -90,10 +88,10 @@ namespace UbayProject
                 this.btnUpdateUserSex.Visible = true;
             }
 
-            //如果UserLevel == 0，且不是自己的帳號顯示刪除按鈕
+            //檢查目前登入者資料，如果UserLevel == 0，且不是自己的帳號，且對方權限不是管理者顯示刪除按鈕、黑名單欄位
 
             UbayProject.ORM.UserTable loginedUserNow;
-            string logineduserID = this.Session["UserLoginInfo"].ToString();
+            string logineduserID = this.Session["UserLoginInfo"]?.ToString();
             using (ORM.ContextModel content = new ORM.ContextModel())
             {
                 var temp =
@@ -103,16 +101,22 @@ namespace UbayProject
                 //if temp == null? 沒找到使用者，提示無相關資料
                 loginedUserNow = temp;
             }
-            if (loginedUserNow.userLevel == 0)
+            if (loginedUserNow != null && queriedUserNow!= null)
             {
-                if (queriedUserNow.userID.ToString() != logineduserID && queriedUserNow.userLevel != 0)
+                if (loginedUserNow.userLevel == 0)
                 {
-                    this.btnBlackList.Visible = true;
+                    this.trBlackList.Visible = true;
+                    if (queriedUserNow.userID.ToString() != logineduserID && queriedUserNow.userLevel != 0)
+                    {
+                        this.btnBlackList.Visible = true;
+                        this.btnDeleteUser.Visible = true;
+                    }
                 }
-                this.trBlackList.Visible = true;
-            }
-            else {
-                this.trBlackList.Visible = false;
+                else
+                {
+                    this.trBlackList.Visible = false;
+                }
+
             }
 
         }
@@ -213,9 +217,7 @@ namespace UbayProject
                 content.SaveChanges();
             }
 
-            // 顯示成功
-            Response.Write($"<script>alert('success')</script>");
-            Response.Redirect("MainPage.aspx");
+            this.Response.Redirect($"UserInfo.aspx?userid={userIDQueryString}");
 
         }
 
@@ -227,7 +229,7 @@ namespace UbayProject
         protected void btnBlackList_Click(object sender, EventArgs e)
         {
             string userIDQueryString = this.Request.QueryString["UserID"];
-            
+
             using (ORM.ContextModel content = new ORM.ContextModel())
             {
                 var temp =
@@ -239,11 +241,11 @@ namespace UbayProject
                 //修改黑名單值
                 temp.blackList = (temp.blackList.ToString() == "Y")
                                ? "N"
-                               : "Y";                                                                    
+                               : "Y";
                 content.SaveChanges();
             }
             this.Response.Redirect($"UserInfo.aspx?userid={userIDQueryString}");
-            
+
         }
     }
 }
