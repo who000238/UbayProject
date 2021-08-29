@@ -15,8 +15,7 @@ namespace UbayProject
             //檢查登入
             if (this.Session["UserLoginInfo"] == null)
             {
-                Response.StatusCode = 403;
-                Response.End();
+                Response.Redirect("Login.aspx");
             }
 
 
@@ -158,6 +157,12 @@ namespace UbayProject
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("UserInfo.aspx");
+        }
+
+        protected void ibtnToMain_Click(object sender, ImageClickEventArgs e)
+        {
+            string temp = this.Request.QueryString["userid"];
+            this.Response.Redirect($"UserInfo.aspx?userid={temp}");
         }
     }
 

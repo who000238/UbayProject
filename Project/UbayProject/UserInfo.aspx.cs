@@ -23,12 +23,10 @@ namespace UbayProject
             }
             if (this.Request.QueryString["UserID"] == null)
             {
-                //沒登入又沒QueryString 禁止進入
+                //沒登入又沒QueryString 要求登入
                 if (this.Session["UserLoginInfo"] == null)
                 {
-                    //禁止訪問 回傳403
-                    Response.StatusCode = 403;
-                    Response.End();
+                    this.Response.Redirect("Login.aspx");
                 }
                 //有登入沒QueryString querysting = session
                 else
