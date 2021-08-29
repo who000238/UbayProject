@@ -15,11 +15,14 @@ namespace UbayProject
             {
                 this.linkLogout.Visible = true;
                 this.a_Login.Visible = false;
+                this.UserInfoLink.Visible = true;
             }
             else
             {
                 this.linkLogout.Visible = false;
                 this.a_Login.Visible = true;
+                this.UserInfoLink.Visible = false;
+
             }
             using (ContextModel context = new ContextModel())
             {

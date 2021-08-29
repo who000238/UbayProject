@@ -33,28 +33,28 @@ namespace UbayProject
         {
             string txtASP_input = this.txtASP_input.Text;
             string txtHTML_input = this.txtHTML_input.Value;
-            //var obj = 搜尋貼文EF(txtASP_input);
-            //if (obj != null)
-            //{
-            //    this.GridView1.Visible = false;
-            //    this.GridView2.DataSource = obj;
-            //    this.GridView2.DataBind();
-            //}
-            //var dt = 搜尋貼文Row(txtASP_input);
-            //this.lbl.Text = dt["postTitle"] as string;
-            var dt = 搜尋貼文(txtASP_input);
-            if (dt != null)
+            var obj = 搜尋貼文EF(txtASP_input);
+            if (obj != null)
             {
                 this.GridView1.Visible = false;
-                this.GridView2.DataSource = dt;
+                this.GridView2.DataSource = obj;
                 this.GridView2.DataBind();
             }
-            else
-            {
-                Response.Write("<script>alert('查無貼文')</script>");
-            }
+            var dt = 搜尋貼文Row(txtASP_input);
+            this.lbl.Text = dt["postTitle"] as string;
+            //var dt = 搜尋貼文(txtASP_input);
+            //if (dt != null)
+            //{
+            //    this.GridView1.Visible = false;
+            //    this.GridView2.DataSource = dt;
+            //    this.GridView2.DataBind();
+            //}
+            //else
+            //{
+            //    Response.Write("<script>alert('查無貼文')</script>");
+            //}
         }
-        //測試失敗
+        //測試失敗 0828 04:55 測試成功 
         public static Object 搜尋貼文EF(string Input_txt) //與subsubmaster 取得貼文及UserNameEF版相同
         {
             try
@@ -65,7 +65,8 @@ namespace UbayProject
                         (from item in context.PostTables
                          join UserInfo in context.UserTables
                           on item.userID equals UserInfo.userID
-                         where SqlMethods.Like(item.postTitle, $"%{Input_txt}%")
+                         //where SqlMethods.Like(item.postTitle, $"%{Input_txt}%")
+                         where item.postTitle.Contains(Input_txt)
                          select new
                          {
                              UserInfo.userID,

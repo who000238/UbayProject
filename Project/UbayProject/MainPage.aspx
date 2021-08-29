@@ -28,7 +28,7 @@
                 <div class="col-2">
                     <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>
                     <asp:LinkButton ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>
-                    <a href="UserInfo.aspx">使用者資訊</a>
+                    <a href="UserInfo.aspx" runat="server" id="UserInfoLink">使用者資訊</a>
                 </div>
             </div>
             <div class="row">
@@ -48,18 +48,6 @@
                     <p>PHOTO/AD</p>
                 </div>
             </div>
-            <div>
-                <div>
-                    <label for="nickname" class="form-label" title="熱門文章" data-bs-toggle="tooltip" data-bs-placement="top">
-                        熱門文章
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div>
-            <p>testArea</p>
-            <a href="TryGridView.aspx">TryGridView.aspx</a><br />
-            <a href="TryMainPage.aspx">TryMainPage.aspx</a>
         </div>
     </form>
 </body>
