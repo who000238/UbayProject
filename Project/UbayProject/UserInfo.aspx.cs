@@ -91,7 +91,7 @@ namespace UbayProject
             //檢查目前登入者資料，如果UserLevel == 0，且不是自己的帳號，且對方權限不是管理者顯示刪除按鈕、黑名單欄位
 
             UbayProject.ORM.UserTable loginedUserNow;
-            string logineduserID = this.Session["UserLoginInfo"].ToString();
+            string logineduserID = this.Session["UserLoginInfo"]?.ToString();
             using (ORM.ContextModel content = new ORM.ContextModel())
             {
                 var temp =
@@ -101,7 +101,7 @@ namespace UbayProject
                 //if temp == null? 沒找到使用者，提示無相關資料
                 loginedUserNow = temp;
             }
-            if (queriedUserNow != null)
+            if (loginedUserNow != null)
             {
                 if (loginedUserNow.userLevel == 0)
                 {
