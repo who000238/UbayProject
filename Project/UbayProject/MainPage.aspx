@@ -33,16 +33,51 @@
             </div>
             <div class="row">
                 <div class="col-2"></div>
-                <div class="col-8">
+                <div class="col-6">
                     <asp:TextBox runat="server" ID="SearchBar" class="form-control"  placeholder="搜尋"></asp:TextBox>
+                </div>
+                <div class="col-2">
+                     <asp:Button ID="btnSearch" runat="server" Text="搜尋" OnClick="btnSearch_Click"/>
+
                 </div>
                 <div class="col-2"></div>
             </div>
             <div class="row">
                 <div class="col-2" id="BoardLink" runat="server">
                 </div>
-                <div class="col-8">
-                    <p style="font-size: 30px; text-align: center">主頁面</p>
+                <div class="col-8" runat="server" id="HotPost">
+                     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:TemplateField HeaderText="超連結標題">
+                        <ItemTemplate>
+                            <a href="/SeePost.aspx?postID=<%# Eval("postID") %>"><%# Eval("postTitle") %></a>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="發文者">
+                        <ItemTemplate>
+                            <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField HeaderText="瀏覽人次" DataField="countOfViewers" />
+                    <asp:BoundField HeaderText="發文時間" DataField="createDate" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" />
+                </Columns>
+            </asp:GridView>
+            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:TemplateField HeaderText="超連結標題">
+                        <ItemTemplate>
+                            <a href="/SeePost.aspx?postID=<%# Eval("postID") %>"><%# Eval("postTitle") %></a>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="發文者">
+                        <ItemTemplate>
+                            <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField HeaderText="瀏覽人次" DataField="countOfViewers" />
+                    <asp:BoundField HeaderText="發文時間" DataField="createDate" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" />
+                </Columns>
+            </asp:GridView>
                 </div>
                 <div class="col-2">
                     <p>PHOTO/AD</p>
