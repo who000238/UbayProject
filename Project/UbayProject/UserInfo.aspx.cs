@@ -101,7 +101,7 @@ namespace UbayProject
                 //if temp == null? 沒找到使用者，提示無相關資料
                 loginedUserNow = temp;
             }
-            if (loginedUserNow != null)
+            if (loginedUserNow != null && queriedUserNow!= null)
             {
                 if (loginedUserNow.userLevel == 0)
                 {
