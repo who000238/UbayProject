@@ -23,7 +23,6 @@ namespace UbayProject
             //檢查QuerryString長度，有不合長度限制的QuerryString就回傳403
             if (this.Request.QueryString.Get("UserID")?.Length != 36 && (this.Request.QueryString.Get("mode")?.Length< 19) )
             {
-                //禁止訪問 回傳403
                 Response.StatusCode = 403;
                 Response.End();
             }
@@ -35,7 +34,7 @@ namespace UbayProject
                 Response.End();
             }
 
-            //依QuerryString 調整textbox 是否可編輯
+            //依QuerryString mode 調整textbox 是否可編輯
             string queryStringMode = this.Request.QueryString["mode"];
             switch (queryStringMode)
             {

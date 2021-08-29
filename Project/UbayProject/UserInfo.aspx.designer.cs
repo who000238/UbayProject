@@ -33,6 +33,15 @@ namespace UbayProject
         protected global::System.Web.UI.WebControls.ImageButton ibtnToMain;
 
         /// <summary>
+        /// btnDeleteUser 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDeleteUser;
+
+        /// <summary>
         /// userImg 控制項。
         /// </summary>
         /// <remarks>
@@ -67,6 +76,33 @@ namespace UbayProject
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpdateUserName;
+
+        /// <summary>
+        /// trBlackList 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow trBlackList;
+
+        /// <summary>
+        /// lblBlackList 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBlackList;
+
+        /// <summary>
+        /// btnBlackList 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBlackList;
 
         /// <summary>
         /// lblUserSex 控制項。

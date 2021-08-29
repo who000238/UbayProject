@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/bootstrap.css" />
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
+    
     <style>
         #divTitle {
             text-align: center;
@@ -33,7 +34,7 @@
             Password : 
             <asp:TextBox runat="server" ID="txtPassowrd" TextMode="Password"></asp:TextBox>
             <br />
-            <asp:Button ID="btnLogin" runat="server" Text="登入" class="btn btn-dark" OnClick="btnLogin_Click" />
+            <asp:Button ID="btnLogin" runat="server" Text="登入" class="btn btn-dark" OnClick="btnLogin_Click"/>
             &nbsp;&nbsp;
             <asp:Button ID="btnCancle" runat="server" Text="取消" class="btn btn-dark" OnClick="btnCancle_Click" />
             <br />
