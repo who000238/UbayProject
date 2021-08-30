@@ -15,9 +15,16 @@
         }
 
         .titleArea {
-            position: fixed;
+            position: relative;
             /* background-color:Window;*/
             padding-top: -5px;
+            border:double blue
+        }
+
+        #commentPostArea {
+            position: relative;
+            padding-bottom:120px;
+            border: dashed red;
         }
 
         .commentArea {
@@ -47,16 +54,14 @@
             bottom: 50px;
             right: 20px;
         }
-
-        #comment {
+         .normal{
+             word-break: break-all;
+         }
+/*        #comment {
             width: 100%;
         }
-
-        #commentPostArea {
-            position: fixed;
-            padding-top: 80px;
-            border: dashed red;
-        }
+*/
+        
     </style>
 </head>
 <body>
@@ -67,24 +72,24 @@
                     <div class=" col-md-12 col-sm-12"  runat="server">
                         <asp:Label runat="server" ID="lblTitle"></asp:Label>
                     </div>
-                    <div class=" col-md-10 col-sm-6"  runat="server">
+                    <div class=" col-md-8 col-sm-6"  runat="server">
                         <asp:Label runat="server" ID="lblInner"></asp:Label>
                     </div>
-                    <div class=" col-md-1 col-sm-6" runat="server">
+                    <div class=" col-md-2 col-sm-6" runat="server">
                         LIKE數:<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
                     </div>
-                    <div class=" col-md-1 col-sm-6"  runat="server">
+                    <div class=" col-md-2 col-sm-6"  runat="server">
                         貼文瀏覽人數:
                     <asp:Label runat="server" ID="lblViewer"></asp:Label>
                     </div>
                 </div>
-                <div class="col-12" id="commentPostArea" runat="server">
+                <div class="col-12 normal" id="commentPostArea" runat="server">
                     <asp:Label runat="server" ID="lblComment"></asp:Label>
                 </div>
                 <div class="row commentArea" id="commentArea" runat="server">
                     <asp:TextBox runat="server" ID="commentInput" TextMode="MultiLine" Rows="5" CssClass="form-control" placeholder="回覆..."></asp:TextBox>
                     <asp:Button runat="server" ID="commentSubmit" CssClass="btn btn-outline-primary" Text="送出回覆" OnClick="commentSubmit_Click" />
-                    <asp:Button runat="server" ID="BtnLike" CssClass="btn btn-outline-primary" Text="LIKE" OnClick="Button1_Click" />
+                    <asp:Button runat="server" ID="BtnLike" CssClass="btn btn-outline-primary" Text="LIKE" OnClick="BtnLike_Click"/>
                 </div>
             </div>
         </div>

@@ -28,18 +28,20 @@ namespace UbayProject
             }
 
             //讀取網址列中的貼文ID
-             string queryString = this.Request.QueryString["postID"];
-            var dr = getPostByPostID(queryString);
+             string postQueryString = this.Request.QueryString["postID"];
+            var dr = getPostByPostID(postQueryString);
+            string userID = dr["userID"].ToString();
+            var postUserInfo = getUserNameByUserID(Guid.Parse(userID));
             if (dr == null)
             {
-                Response.Write("<script>alert('該貼文不存在')</script>");
+                Response.Write("<script>alert('該貼文不存在')</script>"); // 這邊會無法顯示 會直接跳頁
                 Response.Redirect("MainPage.aspx");
             }
              int tempcountOfViewers = Convert.ToInt32(dr["countOfViewers"]);
-            this.lblViewer.Text = (tempcountOfViewers+1).ToString();
-            this.lblTitle.Text = dr["postTitle"].ToString();
+            this.lblViewer.Text = (tempcountOfViewers+1).ToString() + "人";
+            this.lblTitle.Text = dr["postTitle"].ToString()+"</br>" +$"發文者:{postUserInfo.userName}       發文時間:{dr["createDate"]}";
             this.lblInner.Text = dr["postText"].ToString();
-            int postID = Convert.ToInt32(this.Request.QueryString["postID"]);
+            int postID = Convert.ToInt32(postQueryString);
        
             if (this.commentInput.Text == null)
                 this.commentInput.Text = string.Empty;
@@ -47,26 +49,24 @@ namespace UbayProject
             var Comment = GetCommentByEF(postID);
             foreach (var item in Comment)
             {
-                var userInfo = getUserNameByUserID(item.userID);
+                var commentUserInfo = getUserNameByUserID(item.userID);
 
                 Label labelUp = new Label();
                 Label labelDown = new Label();
                 this.commentPostArea.Controls.Add(labelUp);
                 this.commentPostArea.Controls.Add(labelDown);
-                labelUp.Text = $"使用者ID:{userInfo.userName}    留言時間:{item.createDate}  </br>";
+                labelUp.Text = $"使用者ID:{commentUserInfo.userName}    留言時間:{item.createDate}  </br>";
                 labelDown.Text = $"留言:{item.comment}  </br> ------------------------------------------ </br>";
                 
             }
             UpdateViewers(postID, tempcountOfViewers);
 
             //按讚功能
-            string tempQuery = Request.QueryString["postID"];
-            int tempPostID = Convert.ToInt32(tempQuery);
             using (ContextModel context = new ContextModel())
             {
                 var query =
                       (from item in context.PostTables
-                       where item.postID == tempPostID
+                       where item.postID == postID
                        select item);
                 foreach (var item in query)
                 {
@@ -87,8 +87,11 @@ namespace UbayProject
                 return;
             }
             string userID = currentUser.userID;
-            if (!string.IsNullOrWhiteSpace(txtComment))
+            if (!string.IsNullOrWhiteSpace(txtComment)) 
+            {
                 addComment(txtComment, userID, postID);
+                this.commentInput.Text = "";
+            }
             else
                 Response.Write("<script>alert('你還沒寫下你的留言吧?')</script>");
         }
@@ -268,7 +271,7 @@ namespace UbayProject
             }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void BtnLike_Click(object sender, EventArgs e)
         {
             string tempQuery = Request.QueryString["postID"];
             int tempPostID = Convert.ToInt32(tempQuery);
