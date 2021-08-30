@@ -25,7 +25,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-2">
-                    <img src="Images/logo.jpeg" id="logoPhoto" />
+                    <img src="Pics/logo.jpeg" id="logoPhoto" />
                 </div>
                 <div class="col-8">
                     <p>PHOTO/AD</p>

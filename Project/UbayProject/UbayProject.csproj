@@ -102,6 +102,7 @@
     <Content Include="Global.asax" />
     <Content Include="Pics\BackArrow.png" />
     <Content Include="Pics\GBF.jpg" />
+    <Content Include="Pics\logo.jpeg" />
     <Content Include="Pics\YGO.jpg" />
     <Content Include="Pics\FGO.jpg" />
     <Content Include="js\bootstrap.bundle.js" />
