@@ -114,8 +114,8 @@ namespace UbayProject
                 {
 
                     //提示你已被封鎖
-
-                    this.Response.Redirect("MainPage.aspx");
+                    Response.Write("<script type='text/javascript'> alert('帳號已被封鎖，如有疑義請至網站申訴');location.href = 'MainPage.aspx';</script>");
+                    //this.Response.Redirect("MainPage.aspx");
                 }
                 if (loginedUserNow.userLevel == 0)
                 {
@@ -263,6 +263,11 @@ namespace UbayProject
             }
             this.Response.Redirect($"UserInfo.aspx?userid={userIDQueryString}");
 
+        }
+
+        protected void btnToMain_Click(object sender, EventArgs e)
+        {
+            this.Response.Redirect("MainPage.aspx");
         }
     }
 }
