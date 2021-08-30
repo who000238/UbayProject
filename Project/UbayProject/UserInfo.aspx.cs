@@ -28,6 +28,7 @@ namespace UbayProject
                 {
                     this.Response.Redirect("Login.aspx");
                 }
+
                 //有登入沒QueryString querysting = session
                 else
                 {
@@ -59,6 +60,10 @@ namespace UbayProject
             //if temp == null? 沒找到使用者，顯示預設"查無此人"
             if (queriedUserNow != null)
             {
+                if (queriedUserNow.blackList == "Y")
+                {
+                    this.lblNameAlert.Text += "(封鎖中)";
+                }
                 this.lblUserName.Text = queriedUserNow.userName;
                 this.lblBlackList.Text = queriedUserNow.blackList;
                 this.lblUserSex.Text = (queriedUserNow.sex == "無")
@@ -98,6 +103,14 @@ namespace UbayProject
                      select user).FirstOrDefault();
                 //if temp == null? 沒找到使用者，提示無相關資料
                 loginedUserNow = temp;
+            }
+                //登入者為黑名單使用者提示已被封鎖，並禁止查看自己/其他使用者資料
+            if (loginedUserNow.blackList == "Y")
+            {
+                
+                //提示已被封鎖
+
+                this.Response.Redirect("MainPage.aspx");
             }
             if (loginedUserNow != null && queriedUserNow!= null)
             {
@@ -237,9 +250,9 @@ namespace UbayProject
                 //if temp == null? 沒找到使用者，提示無相關資料
 
                 //修改黑名單值
-                temp.blackList = (temp.blackList.ToString() == "Y")
-                               ? "N"
-                               : "Y";
+                temp.blackList = (temp.blackList.ToString() == "N")
+                               ? "Y"
+                               : "N";
                 content.SaveChanges();
             }
             this.Response.Redirect($"UserInfo.aspx?userid={userIDQueryString}");

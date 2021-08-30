@@ -190,10 +190,12 @@
                     <table class="table table-dark table-hover" id="tableUserInfo">
                         <tbody>
                             <tr id="trUserName">
-                                <td class="col-md-2">暱稱</td>
+                                <td class="col-md-2">暱稱
+                                </td>
                                 <td>
                                     <asp:Label ID="lblUserName" runat="server" Text="查無使用者"></asp:Label></td>
                                 <td class="col-md-2">
+                                    <asp:Label ID="lblNameAlert" runat="server" Text=""></asp:Label>
                                     <asp:Button class="btn btn-outline-light" ID="btnUpdateUserName" runat="server" Text="修改暱稱" OnClick="btnUpdateUserName_Click" Enabled="True" Visible="False" />
                                 </td>
                             </tr>
