@@ -40,6 +40,10 @@
             bottom: 10px;
             right: 20px;
         }*/
+        #logoPhoto {
+            width: 100px;
+            height: 100px;
+        }
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -49,7 +53,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-2">
-                    <p>LOGO</p>
+                    <img src="Images/logo.jpeg" id="logoPhoto" />
                 </div>
                 <div class="col-8">
                     <p>PHOTO/AD</p>
@@ -73,9 +77,8 @@
                 <div class="col-8">
                     <div>
                         <div>
-                           
+
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                                
                             </asp:ContentPlaceHolder>
                         </div>
                     </div>
@@ -88,7 +91,7 @@
                 <p>這邊放使用者控制項</p>
             </div>
         </div>
-       <%-- <div class="row postArea" id="postArea" runat="server">
+        <%-- <div class="row postArea" id="postArea" runat="server">
             <div class="col-12">
                 <asp:TextBox runat="server" ID="postTitle" TextMode="SingleLine" CssClass="form-control" placeholder="輸入標題"></asp:TextBox>
 
