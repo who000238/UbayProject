@@ -119,7 +119,7 @@ namespace UbayProject
                 }
                 if (loginedUserNow.userLevel == 0)
                 {
-                    this.trBlackList.Visible = true;
+                    this.trA.Visible = true;
                     if (queriedUserNow.userID.ToString() != logineduserID && queriedUserNow.userLevel != 0)
                     {
                         this.btnBlackList.Visible = true;
@@ -128,7 +128,7 @@ namespace UbayProject
                 }
                 else
                 {
-                    this.trBlackList.Visible = false;
+                    this.trA.Visible = false;
                 }
             }
             //沒找到QuerryString的使用者()或Session使用者

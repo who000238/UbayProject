@@ -113,7 +113,10 @@ namespace UbayProject
             {
                 Response.Redirect("UserInfo.aspx");
             }
-            
+            if (this.Request.QueryString == null)
+            {
+                Response.Redirect("UserInfo.aspx");
+            }
             //表單內容檢查(輸入是否有效)
 
             string str = this.txtUserName.Text;
