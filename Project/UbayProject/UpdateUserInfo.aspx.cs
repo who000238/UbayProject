@@ -177,6 +177,12 @@ namespace UbayProject
             string temp = this.Request.QueryString["userid"];
             this.Response.Redirect($"UserInfo.aspx?userid={temp}");
         }
+
+        protected void btnToMain_Click(object sender, EventArgs e)
+        {
+            string temp = this.Request.QueryString["userid"];
+            this.Response.Redirect($"UserInfo.aspx?userid={temp}");
+        }
     }
 
 }
