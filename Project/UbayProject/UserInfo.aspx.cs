@@ -21,6 +21,7 @@ namespace UbayProject
                 this.btnUpdateUserPhoto.Visible = false;
                 this.btnUpdateUserSex.Visible = false;
             }
+            //QuerryString null check
             if (this.Request.QueryString["UserID"] == null)
             {
                 //沒登入又沒QueryString 要求登入
@@ -37,16 +38,15 @@ namespace UbayProject
                     Response.Redirect($"/UserInfo.aspx?userid={str}");
                 }
             }
-
             //檢查QuerryString長度，有不合長度的QuerryString就回傳403
-            if (this.Request.QueryString.Get("UserID")?.Length != 36)
+            if (this.Request.QueryString.Get("UserID")?.Length != 36 )
             {
                 //禁止訪問 回傳403
                 Response.StatusCode = 403;
                 Response.End();
             }
 
-            //取得目前應顯示的使用者資料(QueryString)，依據選取的使用者顯示UserInfo
+            //取得目前應顯示的使用者資料(QueryString)的使用者
             UbayProject.ORM.UserTable queriedUserNow;
             string userIDQueryString = this.Request.QueryString["UserID"];
             using (ORM.ContextModel content = new ORM.ContextModel())
@@ -57,28 +57,32 @@ namespace UbayProject
                      select user).FirstOrDefault();
                 queriedUserNow = temp;
             }
-            //if temp == null? 沒找到使用者，顯示預設"查無此人"
+            //有找到QuerrySting使用者
             if (queriedUserNow != null)
             {
+                //他人檢視在黑名單的使用者時會看到提示 "(封鎖中)"
                 if (queriedUserNow.blackList == "Y")
                 {
                     this.lblNameAlert.Text += "(封鎖中)";
                 }
-                this.lblUserName.Text = queriedUserNow.userName;
+                //依據選取的使用者顯示UserInfo
+                this.lblUserName.Text = HttpUtility.HtmlEncode(queriedUserNow.userName);
                 this.lblBlackList.Text = queriedUserNow.blackList;
                 this.lblUserSex.Text = (queriedUserNow.sex == "無")
                                              ? ("不公開")
                                              : queriedUserNow.sex;
-                this.lblUserBirthday.Text = queriedUserNow.birthday?.ToString("yyyy/MM/dd");
+                this.lblUserBirthday.Text = (queriedUserNow.birthday != null)
+                                             ? queriedUserNow.birthday?.ToString("yyyy/MM/dd")
+                                             : ("不公開");
                 this.txtUserIntro.Text = queriedUserNow.intro;
 
                 //顯示URL
-                //無法正常顯示該怎麼判定?
                 this.userImg.ImageUrl = (queriedUserNow.photoURL == null || queriedUserNow.photoURL == string.Empty)
-                                            ? "https://freerangestock.com/thumbnail/35900/red-question-mark.jpg"
-                                            : queriedUserNow.photoURL;
-                //怎麼做輸出檢查?
+                                             ? "https://freerangestock.com/thumbnail/35900/red-question-mark.jpg"
+                                             : queriedUserNow.photoURL;
             }
+            //沒找到QuerrySting使用者
+            //else { }
 
 
             //取得目前登入使用者ID(by SessionID cookie)，如果跟QuereyString一樣，開啟編輯按鈕 
@@ -92,7 +96,6 @@ namespace UbayProject
             }
 
             //檢查目前登入者資料，如果UserLevel == 0，且不是自己的帳號，且對方權限不是管理者顯示刪除按鈕、黑名單欄位
-
             UbayProject.ORM.UserTable loginedUserNow;
             string logineduserID = this.Session["UserLoginInfo"]?.ToString();
             using (ORM.ContextModel content = new ORM.ContextModel())
@@ -101,19 +104,19 @@ namespace UbayProject
                     (from user in content.UserTables
                      where user.userID.ToString() == logineduserID
                      select user).FirstOrDefault();
-                //if temp == null? 沒找到使用者，提示無相關資料
                 loginedUserNow = temp;
             }
+            //有找到QuerryString的使用者，且有找到Seesion的使用者
+            if (loginedUserNow != null && queriedUserNow != null)
+            {
                 //登入者為黑名單使用者提示已被封鎖，並禁止查看自己/其他使用者資料
-            if (loginedUserNow.blackList == "Y")
-            {
-                
-                //提示已被封鎖
+                if (loginedUserNow.blackList == "Y")
+                {
 
-                this.Response.Redirect("MainPage.aspx");
-            }
-            if (loginedUserNow != null && queriedUserNow!= null)
-            {
+                    //提示你已被封鎖
+
+                    this.Response.Redirect("MainPage.aspx");
+                }
                 if (loginedUserNow.userLevel == 0)
                 {
                     this.trBlackList.Visible = true;
@@ -127,9 +130,12 @@ namespace UbayProject
                 {
                     this.trBlackList.Visible = false;
                 }
+            }
+            //沒找到QuerryString的使用者()或Session使用者
+            else
+            {
 
             }
-
         }
 
         protected void btnUpdateUserName_Click(object sender, EventArgs e)

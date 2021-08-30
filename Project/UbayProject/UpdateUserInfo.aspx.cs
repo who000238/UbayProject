@@ -113,6 +113,9 @@ namespace UbayProject
             {
                 Response.Redirect("UserInfo.aspx");
             }
+            
+            //表單內容檢查(輸入是否有效)
+
             string str = this.txtUserName.Text;
             string userIDQueryString = this.Request.QueryString["UserID"];
             using (ORM.ContextModel content = new ORM.ContextModel())
@@ -125,12 +128,22 @@ namespace UbayProject
                 switch (queryStringMode)
                 {
                     case "UpdateUserName":
-                        temp.userName = this.txtUserName.Text;
+                        if (this.txtUserName.Text != string.Empty)
+                        {
+                            temp.userName = this.txtUserName.Text;
+                        }
                         break;
 
                     case "UpdateUserBirthday":
                         //UPDATE USER BIRTHDAY
-                        temp.birthday = Convert.ToDateTime(this.txtUserBirthday.Text);
+                        if (this.txtUserBirthday.Text != string.Empty)
+                        {
+                            temp.birthday = Convert.ToDateTime(this.txtUserBirthday.Text);
+                        }
+                        else 
+                        {
+                            temp.birthday = null;
+                        }
                         break;
                     case "UpdateUserSex":
                         temp.sex = this.ddlUserSex.SelectedValue;
