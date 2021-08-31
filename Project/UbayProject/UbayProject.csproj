@@ -131,6 +131,7 @@
     <Content Include="SubPage\YGO.aspx" />
     <Content Include="TryFIleFolder\TryGridView.aspx" />
     <Content Include="TryFIleFolder\TryMainPage.aspx" />
+    <Content Include="TryFIleFolder\TryRepeater.aspx" />
     <Content Include="TryFIleFolder\TrySeePostWithASHX.aspx" />
     <Content Include="TryFIleFolder\TrySerach.aspx" />
     <Content Include="TryReapeater.aspx" />
@@ -290,6 +291,13 @@
     </Compile>
     <Compile Include="TryFIleFolder\TryMainPage.aspx.designer.cs">
       <DependentUpon>TryMainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TryFIleFolder\TryRepeater.aspx.cs">
+      <DependentUpon>TryRepeater.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TryFIleFolder\TryRepeater.aspx.designer.cs">
+      <DependentUpon>TryRepeater.aspx</DependentUpon>
     </Compile>
     <Compile Include="TryFIleFolder\TrySeePostWithASHX.aspx.cs">
       <DependentUpon>TrySeePostWithASHX.aspx</DependentUpon>
