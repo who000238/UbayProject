@@ -137,6 +137,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AJAXSeePost.ashx.cs">
+      <DependentUpon>AJAXSeePost.ashx</DependentUpon>
+    </Compile>
     <Compile Include="BS5Template.aspx.cs">
       <DependentUpon>BS5Template.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -337,6 +340,7 @@
     <Content Include="js\bootstrap.esm.min.js.map" />
     <Content Include="js\bootstrap.js.map" />
     <Content Include="js\bootstrap.min.js.map" />
+    <Content Include="AJAXSeePost.ashx" />
     <None Include="packages.config" />
     <Content Include="SubMasterPage.Master" />
     <Content Include="SubSubMasterPage.Master" />
