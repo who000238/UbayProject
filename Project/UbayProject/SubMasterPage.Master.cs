@@ -56,7 +56,7 @@ namespace UbayProject
                     this.ContentPlaceHolder1.Controls.Add(link2);
                     link2.ImageUrl = $"Pics/{item.subCategoryName}.jpg";
                     link2.Text = item.subCategoryName + "</br>";
-                    link2.NavigateUrl = $"SubPage/{item.subCategoryName}.aspx?mainCategoryID={item.mainCategoryID}&&subCategoryID={item.subCategoryID}";
+                    link2.NavigateUrl = $"/SubPage/{item.subCategoryName}.aspx?mainCategoryID={item.mainCategoryID}&subCategoryID={item.subCategoryID}";
                 }
 
             }
