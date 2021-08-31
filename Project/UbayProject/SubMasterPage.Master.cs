@@ -154,7 +154,6 @@ namespace UbayProject
                 ";
             List<SqlParameter> list = new List<SqlParameter>();
             list.Add(new SqlParameter("@subCategoryID", categoryID));
-
             try
             {
                 return 資料庫相關.查詢資料清單(connStr, dbCommand, list);
@@ -165,7 +164,45 @@ namespace UbayProject
                 return null;
             }
         }
-       
+        private int GetCurrentPage()
+        {
+            string pageText = Request.QueryString["Page"];
+
+            if (string.IsNullOrWhiteSpace(pageText))
+            {
+                return 1;
+            }
+            int intPage;
+            if (!int.TryParse(pageText,out intPage))
+            {
+                return 1;
+            }
+
+            if(intPage <= 0)
+            {
+                return 1;
+            }
+
+            return intPage;
+        }
+
+        private DataTable GetPagedDataTable(DataTable dt)
+        {
+            DataTable dtPaged = (dt.Rows.Count==0)?dt.Clone() :
+            dt.Copy();
+
+            foreach(DataRow dr in dt.Rows)
+            {
+                var drNew = dtPaged.NewRow();
+                foreach (DataColumn dc in dt.Columns)
+                {
+                    drNew[dc.ColumnName] = dr[dc];
+                }
+
+                dtPaged.Rows.Add(drNew);
+            }
+            return dtPaged;
+        }
     }
 
 }
