@@ -30,18 +30,18 @@ namespace UbayProject.TryFIleFolder
             {
                 List<CommentTable> commentsSource = GetCommentByEF(Convert.ToInt32(postID));
 
-                //List<CommentTable> NewestPostList = commentsSource.Select(obj => new CommentTable()
-                //{
-                //    commentID = obj.commentID,
-                //    postID = obj.postID,
-                //    comment = obj.comment,
-                //    userID = obj.userID,
-                //    createDate = obj.createDate
-                //}).ToList();
+                List<CommentTable> NewestPostList = commentsSource.Select(obj => new CommentTable()
+                {
+                    commentID = obj.commentID,
+                    postID = obj.postID,
+                    comment = obj.comment,
+                    userID = obj.userID,
+                    createDate = obj.createDate
+                }).ToList();
 
                 Object NewestPostList2 = GetCommentAndUserName(postID);
-            
-                string jsonText = Newtonsoft.Json.JsonConvert.SerializeObject(NewestPostList2);
+
+                string jsonText = Newtonsoft.Json.JsonConvert.SerializeObject(NewestPostList);
                 context.Response.ContentType = "application/json";
                 context.Response.Write(jsonText);
             }

@@ -126,7 +126,7 @@
 
                 $.ajax({
 
-                    url: "http://localhost:54101/AJAXSeePost.ashx?actionName=reLoad",
+                    url: "http://localhost:54101/AJAXSeePost.ashx?actionName=Load",
                     type: "POST",
                     data: {
                         "postID": postID
@@ -142,7 +142,7 @@
             });
             var postID = $("#hfpostID").val();
             $.ajax({
-                url: "http://localhost:54101/AJAXSeePost.ashx?actionName=reLoad",
+                url: "http://localhost:54101/AJAXSeePost.ashx?actionName=Load",
                 type: "GET",
                 data: {
                     "postID": postID

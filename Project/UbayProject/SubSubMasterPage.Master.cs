@@ -28,31 +28,33 @@ namespace UbayProject
                 this.postArea.Visible = false;
             }
 
-            //取得mainCategoryID並轉成INT
-            string tempQuery = Request.QueryString["mainCategoryID"];
-            int tempCatID = Convert.ToInt32(tempQuery);
+            ////取得maincategoryid並轉成int
+            //string tempquery = request.querystring["maincategoryid"];
+            //int tempcatid = convert.toint32(tempquery);
             //取得subCategoryID並轉成INT
-            string tempQuery2 = Request.QueryString["subCategoryID"];
+            string tempQuery2 = Request.QueryString["mainCategoryID"];
             int tempCatID2 = Convert.ToInt32(tempQuery2);
             using (ContextModel context = new ContextModel())
             {
                 //產生子版連結
-                var query2 =
+                var query =
                       (from item in context.SubCategoryTables
                        where item.mainCategoryID == tempCatID2
                        select item);
-                foreach (var item in query2)
+                foreach (var item in query)
                 {
                     HyperLink link = new HyperLink();
                     this.BoardLink.Controls.Add(link);
                     link.Text = item.subCategoryName + "</br>";
-                    link.NavigateUrl = $"/SubPage/{item.subCategoryName}.aspx?mainCategoryID={item.mainCategoryID}&&subCategoryID={item.subCategoryID}";
+                    link.NavigateUrl = $"/SubPage/{item.subCategoryName}.aspx?mainCategoryID={item.mainCategoryID}&subCategoryID={item.subCategoryID}";
                 }
             }
 
             try
             {
-                int subCategoryID = tempCatID2;
+                string tempQuery3 = Request.QueryString["subCategoryID"];
+
+                int subCategoryID = Convert.ToInt32(tempQuery3);
                 var obj = 取得貼文及UserNameEF版(subCategoryID);
                 this.GridView1.DataSource = obj;
                 this.GridView1.DataBind();
@@ -179,6 +181,7 @@ namespace UbayProject
                          join UserInfo in context.UserTables
                              on item.userID equals UserInfo.userID
                              where item.subCategoryID == subCategoryID
+                             orderby item.createDate descending
                          select new
                          {
                              UserInfo.userID,
