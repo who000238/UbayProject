@@ -122,7 +122,7 @@ namespace UbayProject
                 {
 
                     //提示你已被封鎖
-                    Response.Write("<script type='text/javascript'> alert('帳號已被封鎖，如有疑義請至網站申訴');location.href = 'MainPage.aspx';</script>");
+                    Response.Write("<script type='text/javascript'> alert('您的帳號已被封鎖，如有疑義請至網站申訴');location.href = 'MainPage.aspx';</script>");
                     //this.Response.Redirect("MainPage.aspx");
                 }
                 if (loginedUserNow.userLevel == 0)
