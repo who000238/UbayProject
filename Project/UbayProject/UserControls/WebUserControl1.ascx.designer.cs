@@ -7,11 +7,11 @@
 // </自動產生的>
 //------------------------------------------------------------------------------
 
-namespace UbayProject.SubPage
+namespace UbayProject.UserControls
 {
 
 
-    public partial class GBF
+    public partial class WebUserControl1
     {
     }
 }

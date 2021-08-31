@@ -10,22 +10,43 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <style>
-        div {
-            /* border: 1px solid #000000;*/
+        #div1 {
+            height: 180px;
         }
 
-        #logoPhoto {
-            width: 100px;
-            height: 100px;
+        #div2 {
+            background-color: orange
         }
+
+        #div3 {
+            height: 550px;
+            /* margin-top: 10px;
+            background: -webkit-linear-gradient(yellow,red);
+            background: -o-linear-gradient(yellow,red);
+            background: -moz-linear-gradient(yellow,red);
+            background: linear-gradient(yellow,red);*/
+        }
+
+        body {
+            background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        #Logo {
+            width: 200px;
+            height: 200px
+        }
+
+
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="container">
-            <div class="row">
+
+            <div id="div1" class="row">
                 <div class="col-2">
-                    <img src="Pics/logo.jpeg" id="logoPhoto" />
+                    <img src="Pics/messageImage_1630311093428-removebg-preview.png" id="Logo" />
                 </div>
                 <div class="col-8">
                     <p>PHOTO/AD</p>
@@ -36,8 +57,10 @@
                     <a href="UserInfo.aspx" runat="server" id="UserInfoLink">使用者資訊</a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-2"></div>
+           
+            <div class="row" id="div2">
+                <div class="col-2">
+                </div>
                 <div class="col-6">
                     <asp:TextBox runat="server" ID="SearchBar" class="form-control" placeholder="搜尋"></asp:TextBox>
                 </div>
@@ -47,7 +70,7 @@
                 </div>
                 <div class="col-2"></div>
             </div>
-            <div class="row">
+            <div class="row" id="div3">
                 <div class="col-2" id="BoardLink" runat="server">
                 </div>
                 <div class="col-8" runat="server" id="HotPost">

@@ -23,11 +23,13 @@
             border: double blue
         }
 
-        #commentPostArea {
+       /* #commentPostArea {
             position: relative;
             padding-bottom: 120px;
-            border: dashed red;
-        }
+            border: dashed yellow;
+        }*/
+
+        
 
         .commentArea {
             border: dashed green;
@@ -61,6 +63,7 @@
         .normal {
             word-break: break-all;
         }
+
         /*        #comment {
             width: 100%;
         }
@@ -88,7 +91,6 @@
                     </div>
                 </div>
                 <div class="col-12 normal" id="commentPostArea" runat="server">
-                    <asp:Label runat="server" ID="lblComment"></asp:Label>
                 </div>
                 <div class="row commentArea" id="commentArea" runat="server">
                     <asp:TextBox runat="server" ID="commentInput" TextMode="MultiLine" Rows="5" CssClass="form-control" placeholder="回覆..."></asp:TextBox>
@@ -97,6 +99,11 @@
                 </div>
             </div>
         </div>
+        <table>
+            <tr>
+                <td style="width:20%"></td>
+            </tr>
+        </table>
     </form>
    
     <script>
@@ -129,15 +136,15 @@
                     "postID": postID
                 },
                 success: function (result) {
-                    var table = '<table border="1" class="table-primary">';
+                    var table = '<table border="1" class="table-primary" id="commentPostTable">';
                     table += '<tr><th>留言者</th><th>留言內容</th><th>留言時間</th></tr>';
                     for (var i = 0; i < result.length; i++) {
                         var obj = result[i];
                         var htmlText =
                             `<tr>
-                                    <td>${obj.userName}</td>
-                                    <td>${obj.comment}</td>
-                                    <td>${obj.createDate}</td>
+                                    <td  style="width:20%">${obj.userName}</td>
+                                    <td  style="width:60%">${obj.comment}</td>
+                                    <td  style="width:20%">${obj.createDate}</td>
         
                                 </tr>`;
                         table += htmlText;

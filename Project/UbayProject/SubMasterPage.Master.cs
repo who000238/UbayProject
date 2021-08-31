@@ -59,7 +59,6 @@ namespace UbayProject
                     link2.NavigateUrl = $"SubPage/{item.subCategoryName}.aspx?mainCategoryID={item.mainCategoryID}&&subCategoryID={item.subCategoryID}";
                 }
 
-
             }
 
            
@@ -166,7 +165,7 @@ namespace UbayProject
                 return null;
             }
         }
-
+       
     }
 
 }

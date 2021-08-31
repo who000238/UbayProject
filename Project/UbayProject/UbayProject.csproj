@@ -108,7 +108,8 @@
     <Content Include="js\WebForm1.js" />
     <Content Include="Pics\BackArrow.png" />
     <Content Include="Pics\GBF.jpg" />
-    <Content Include="Pics\logo.jpeg" />
+    <Content Include="Pics\messageImage_1630311093428-removebg-preview.png" />
+    <Content Include="Pics\p_new0288_m_new02883.svg" />
     <Content Include="Pics\YGO.jpg" />
     <Content Include="Pics\FGO.jpg" />
     <Content Include="js\bootstrap.bundle.js" />
@@ -130,14 +131,19 @@
     <Content Include="SubPage\YGO.aspx" />
     <Content Include="TryFIleFolder\TryGridView.aspx" />
     <Content Include="TryFIleFolder\TryMainPage.aspx" />
+    <Content Include="TryFIleFolder\TryRepeater.aspx" />
     <Content Include="TryFIleFolder\TrySeePostWithASHX.aspx" />
     <Content Include="TryFIleFolder\TrySerach.aspx" />
     <Content Include="TryReapeater.aspx" />
     <Content Include="UpdateUserInfo.aspx" />
+    <Content Include="UserControls\WebUserControl1.ascx" />
     <Content Include="UserInfo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AJAXSeePost.ashx.cs">
+      <DependentUpon>AJAXSeePost.ashx</DependentUpon>
+    </Compile>
     <Compile Include="BS5Template.aspx.cs">
       <DependentUpon>BS5Template.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -286,6 +292,13 @@
     <Compile Include="TryFIleFolder\TryMainPage.aspx.designer.cs">
       <DependentUpon>TryMainPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TryFIleFolder\TryRepeater.aspx.cs">
+      <DependentUpon>TryRepeater.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TryFIleFolder\TryRepeater.aspx.designer.cs">
+      <DependentUpon>TryRepeater.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TryFIleFolder\TrySeePostWithASHX.aspx.cs">
       <DependentUpon>TrySeePostWithASHX.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -313,6 +326,13 @@
     </Compile>
     <Compile Include="UpdateUserInfo.aspx.designer.cs">
       <DependentUpon>UpdateUserInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\WebUserControl1.ascx.cs">
+      <DependentUpon>WebUserControl1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\WebUserControl1.ascx.designer.cs">
+      <DependentUpon>WebUserControl1.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserInfo.aspx.cs">
       <DependentUpon>UserInfo.aspx</DependentUpon>
@@ -345,6 +365,7 @@
     <Content Include="js\bootstrap.esm.min.js.map" />
     <Content Include="js\bootstrap.js.map" />
     <Content Include="js\bootstrap.min.js.map" />
+    <Content Include="AJAXSeePost.ashx" />
     <None Include="packages.config" />
     <Content Include="SubMasterPage.Master" />
     <Content Include="SubSubMasterPage.Master" />

@@ -29,6 +29,7 @@ namespace UbayProject
 
             //讀取網址列中的貼文ID
              string postQueryString = this.Request.QueryString["postID"];
+            this.hfpostID.Value = postQueryString;
             var dr = getPostByPostID(postQueryString);                                           //取得貼文內容
             string userID = dr["userID"].ToString();                                                        //取得發貼文者ID
             var postUserInfo = getUserNameByUserID(Guid.Parse(userID));                 //已發貼文者ID去UserTable取得發文者的使用者暱稱
@@ -46,23 +47,24 @@ namespace UbayProject
             if (this.commentInput.Text == null)
                 this.commentInput.Text = string.Empty;
 
-            var Comment = GetCommentByEF(postID); 
+            //var Comment = GetCommentByEF(postID); 
 
-            foreach (var item in Comment)
-            {
-                var commentUserInfo = getUserNameByUserID(item.userID);
+            //foreach (var item in Comment)
+            //{
+            //    var commentUserInfo = getUserNameByUserID(item.userID);
 
-                Label labelUp = new Label();
-                Label labelDown = new Label();
-                this.commentPostArea.Controls.Add(labelUp);
-                this.commentPostArea.Controls.Add(labelDown);
-                labelUp.Text = $"使用者ID:{commentUserInfo.userName}    留言時間:{item.createDate}  </br>";
-                labelDown.Text = $"留言:{item.comment}  </br> ------------------------------------------ </br>";
+            //    Label labelUp = new Label();
+            //    Label labelDown = new Label();
+            //    this.commentPostArea.Controls.Add(labelUp);
+            //    this.commentPostArea.Controls.Add(labelDown);
+            //    labelUp.Text = $"使用者ID:{commentUserInfo.userName}    留言時間:{item.createDate}  </br>";
+            //    labelDown.Text = $"留言:{item.comment}  </br> ------------------------------------------ </br>";
                 
-            }
+            //}
             UpdateViewers(postID, tempcountOfViewers);
             //按讚功能
             this.Label1.Text = dr["countOfLikes"].ToString();
+            this.Label2.Text = dr["countOfUnlikes"].ToString();
             //using (ContextModel context = new ContextModel())
             //{
             //    var query =
@@ -285,6 +287,24 @@ namespace UbayProject
                 foreach (var item in query)
                 {
                     item.countOfLikes += 1;
+                }
+
+                context.SaveChanges();
+            }
+        }
+        protected void BtnDislike_Click(object sender, EventArgs e)
+        {
+            string tempQuery = Request.QueryString["postID"];
+            int tempPostID = Convert.ToInt32(tempQuery);
+            using (ContextModel context = new ContextModel())
+            {
+                var query =
+                      (from item in context.PostTables
+                       where item.postID == tempPostID
+                       select item);
+                foreach (var item in query)
+                {
+                    item.countOfUnlikes += 1;
                 }
 
                 context.SaveChanges();

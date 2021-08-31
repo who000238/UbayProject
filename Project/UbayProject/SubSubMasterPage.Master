@@ -40,9 +40,32 @@
             bottom: 10px;
             right: 20px;
         }*/
-        #logoPhoto {
-            width: 100px;
-            height: 100px;
+
+          #div1 {
+            height: 180px;
+        }
+
+        #div2 {
+            background-color: orange
+        }
+
+        #div3 {
+            height: 550px;
+            margin-top: 10px;
+            background: -webkit-linear-gradient(yellow,red);
+            background: -o-linear-gradient(yellow,red);
+            background: -moz-linear-gradient(yellow,red);
+            background: linear-gradient(yellow,red);
+        }
+
+        body {
+            background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        #Logo {
+            width: 200px;
+            height: 200px
         }
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -51,39 +74,42 @@
 <body>
     <form id="form1" runat="server">
         <div class="container">
-            <div class="row">
+            <div class="row" id="div1">
                 <div class="col-2">
-                    <img src="/Pics/logo.jpeg" id="logoPhoto" />
-
+                    <img src="/Pics/messageImage_1630311093428-removebg-preview.png" id="Logo" />
                 </div>
                 <div class="col-8">
                     <p>PHOTO/AD</p>
                 </div>
-                <div class="col-2">
+                <div class="col-2" >
                     <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>
                     <asp:LinkButton ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>
                     <a href="/UserInfo.aspx">使用者資訊</a>
                 </div>
             </div>
-            <div class="row">
+             <div>
+                 <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+                  </asp:ContentPlaceHolder>
+            </div>
+            <div class="row" id="div2">
                 <div class="col-2"></div>
                 <div class="col-8">
                     <asp:TextBox ID="SearchBar" class="form-control" runat="server" placeholder="搜尋"></asp:TextBox>
                 </div>
                 <div class="col-2"></div>
             </div>
-            <div class="row">
+            <div class="row" id ="div3">
                 <div class="col-2" id="BoardLink" runat="server">
                 </div>
                 <div class="col-8">
                     <div>
                         <div>
-                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDataBound="GridView1_RowDataBound" CellPadding="4" ForeColor="#333333" GridLines="None">
-                                <AlternatingRowStyle BackColor="White" />
+                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowDataBound="GridView1_RowDataBound" CellPadding="2" ForeColor="Black" GridLines="None" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px">
+                                <AlternatingRowStyle BackColor="PaleGoldenrod" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="超連結標題">
                                         <ItemTemplate>
-                                            <a href="/SeePost.aspx?postID=<%# Eval("postID") %>"><%# Eval("postTitle") %></a>
+                                            <a href="/SeePost.aspx?postID=<%# Eval("postID") %>&actionName=reLoad"><%# Eval("postTitle") %></a>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="發文者">
@@ -93,23 +119,16 @@
                                     </asp:TemplateField>
 
                                     <asp:BoundField HeaderText="發文時間" DataField="createDate" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" />
-                                      <asp:TemplateField HeaderText="測試欄位"> 
-                                        <ItemTemplate>
-                                            <a href="/TryFIleFolder/TrySeePostWithASHX.aspx?postID=<%# Eval("postID") %>&actionName=reLoad"><%# Eval("postTitle") %></a>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
                                 </Columns>
 
-                                <EditRowStyle BackColor="#2461BF" />
-                                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                                <RowStyle BackColor="#EFF3FB" />
-                                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                                <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                                <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                                <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                                <FooterStyle BackColor="Tan" />
+                                <HeaderStyle BackColor="Tan" Font-Bold="True" />
+                                <PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" HorizontalAlign="Center" />
+                                <SelectedRowStyle BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
+                                <SortedAscendingCellStyle BackColor="#FAFAE7" />
+                                <SortedAscendingHeaderStyle BackColor="#DAC09E" />
+                                <SortedDescendingCellStyle BackColor="#E1DB9C" />
+                                <SortedDescendingHeaderStyle BackColor="#C2A47B" />
 
                             </asp:GridView>
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

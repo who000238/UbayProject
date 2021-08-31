@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="_x37_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 128 88" style="enable-background:new 0 0 128 88;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#EAE6FF;}
+	.st1{fill:#F7CAAD;}
+	.st2{fill:#BADAFF;}
+	.st3{fill:#FCF7FF;}
+	.st4{fill:#9DCFFF;}
+</style>
+<g>
+	<rect class="st0" width="128" height="88"/>
+	<g>
+		<g>
+			<rect x="14.271" y="23.725" class="st1" width="3.46" height="44"/>
+		</g>
+		<g>
+			<rect x="46.27" class="st2" width="3.461" height="23.725"/>
+		</g>
+		<g>
+			<polygon class="st3" points="14.27,0 14.27,23.725 0,15.098 0,0 			"/>
+			<polygon class="st4" points="32,0 32,15.098 17.729,23.725 17.729,0 			"/>
+		</g>
+		<g>
+			<polygon class="st3" points="46.271,67.725 32,59.098 32,15.098 46.271,23.725 			"/>
+			<polygon class="st4" points="49.73,67.725 64,59.098 64,15.098 49.73,23.725 			"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<rect x="46.27" y="67.725" class="st2" width="3.461" height="20.275"/>
+		</g>
+		<g>
+			<polygon class="st3" points="14.27,67.725 14.27,88 0,88 0,59.098 			"/>
+			<polygon class="st4" points="32,59.098 32,88 17.729,88 17.729,67.725 			"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<rect x="78.27" y="23.725" class="st1" width="3.459" height="44"/>
+		</g>
+		<g>
+			<rect x="110.271" class="st2" width="3.459" height="23.725"/>
+		</g>
+		<g>
+			<polygon class="st3" points="78.271,0 78.271,23.725 64.001,15.098 64.001,0 			"/>
+			<polygon class="st4" points="96,0 96,15.098 81.73,23.725 81.73,0 			"/>
+		</g>
+		<g>
+			<polygon class="st3" points="110.27,67.725 96,59.098 96,15.098 110.27,23.725 			"/>
+			<polygon class="st4" points="113.73,67.725 128,59.098 128,15.098 113.73,23.725 			"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<rect x="110.271" y="67.725" class="st2" width="3.459" height="20.275"/>
+		</g>
+		<g>
+			<polygon class="st3" points="78.271,67.725 78.271,88 64.001,88 64.001,59.098 			"/>
+			<polygon class="st4" points="96,59.098 96,88 81.73,88 81.73,67.725 			"/>
+		</g>
+	</g>
+</g>
+</svg>
