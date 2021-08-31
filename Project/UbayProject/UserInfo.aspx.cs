@@ -139,10 +139,10 @@ namespace UbayProject
                     this.trA.Visible = false;
                 }
             }
-            //沒找到QuerryString的使用者()或Session使用者
+            //沒找到QuerryString的使用者()或沒找到Session使用者
             else
             {
-                this.Response.Redirect("MainPage.aspx");
+                Response.Write("<script type='text/javascript'> alert('請先登入');location.href = 'MainPage.aspx';</script>");
             }
         }
 
