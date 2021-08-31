@@ -94,7 +94,7 @@ namespace UbayProject
                 //if temp == null?
                 loginedUserNow = temp;
             }
-            if (!IsPostBack)
+            if (!IsPostBack && loginedUserNow!=null)
             {
                 this.txtUserName.Text = loginedUserNow.userName;
                 this.txtUserBirthday.Text = loginedUserNow.birthday?.ToString("yyyy/MM/dd");
@@ -113,7 +113,10 @@ namespace UbayProject
             {
                 Response.Redirect("UserInfo.aspx");
             }
-            
+            if (this.Request.QueryString == null)
+            {
+                Response.Redirect("UserInfo.aspx");
+            }
             //表單內容檢查(輸入是否有效)
 
             string str = this.txtUserName.Text;

@@ -111,6 +111,21 @@
                     bottom: 20px;
                     transition: 500ms;
                 }
+            #trA {
+                padding: 10px;
+                position: relative;
+                right: 0px;
+                bottom: 0px;
+                transition: 500ms;
+            }
+
+                #trA:hover {
+                    padding: 10px;
+                    position: relative;
+                    right: 20px;
+                    bottom: 20px;
+                    transition: 500ms;
+                }
 
             #trUserSex {
                 padding: 10px;
@@ -199,7 +214,7 @@
                                     <asp:Button class="btn btn-outline-light" ID="btnUpdateUserName" runat="server" Text="修改暱稱" OnClick="btnUpdateUserName_Click" Enabled="True" Visible="False" />
                                 </td>
                             </tr>
-                            <tr id="trBlackList" runat="server">
+                            <tr id="trA" runat="server">
                                 <td class="col-md-2">黑名單內</td>
                                 <td>
                                     <asp:Label ID="lblBlackList" runat="server" Text="查無使用者"></asp:Label></td>
@@ -238,8 +253,7 @@
                 </div>
             </div>
         </div>
-
-
     </form>
+
 </body>
 </html>
