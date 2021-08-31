@@ -111,6 +111,21 @@
                     bottom: 20px;
                     transition: 500ms;
                 }
+            #trA {
+                padding: 10px;
+                position: relative;
+                right: 0px;
+                bottom: 0px;
+                transition: 500ms;
+            }
+
+                #trA:hover {
+                    padding: 10px;
+                    position: relative;
+                    right: 20px;
+                    bottom: 20px;
+                    transition: 500ms;
+                }
 
             #trUserSex {
                 padding: 10px;
@@ -171,7 +186,7 @@
             <div class="row">
                 <div class="col-12 col-md-12 col-sm-12 ">
                     <h1 id="title">
-                        <asp:ImageButton ID="ibtnToMain" runat="server" ImageUrl="http://clipart-library.com/images/rijKrLB8T.png" Height="60" ImageAlign="Left" OnClick="ibtnToMain_Click" ToolTip="回到首頁" />
+                        <asp:ImageButton ID="ibtnToMain" runat="server" ImageUrl="/Pics/BackArrow.png" Height="45px" ImageAlign="Left" OnClick="ibtnToMain_Click" ToolTip="回到首頁" />
                         USERINFO
                         <asp:Button ID="btnDeleteUser" runat="server" Text="DeleteUser" OnClick="btnDeleteUser_Click" Visible="False" OnClientClick="return confirm('確定刪除使用者?');" />
                     </h1>
@@ -190,14 +205,16 @@
                     <table class="table table-dark table-hover" id="tableUserInfo">
                         <tbody>
                             <tr id="trUserName">
-                                <td class="col-md-2">暱稱</td>
+                                <td class="col-md-2">暱稱
+                                </td>
                                 <td>
                                     <asp:Label ID="lblUserName" runat="server" Text="查無使用者"></asp:Label></td>
                                 <td class="col-md-2">
+                                    <asp:Label ID="lblNameAlert" runat="server" Text=""></asp:Label>
                                     <asp:Button class="btn btn-outline-light" ID="btnUpdateUserName" runat="server" Text="修改暱稱" OnClick="btnUpdateUserName_Click" Enabled="True" Visible="False" />
                                 </td>
                             </tr>
-                            <tr id="trBlackList" runat="server">
+                            <tr id="trA" runat="server">
                                 <td class="col-md-2">黑名單內</td>
                                 <td>
                                     <asp:Label ID="lblBlackList" runat="server" Text="查無使用者"></asp:Label></td>
@@ -236,8 +253,7 @@
                 </div>
             </div>
         </div>
-
-
     </form>
+
 </body>
 </html>

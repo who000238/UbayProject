@@ -54,6 +54,9 @@
     <Reference Include="Microsoft.VisualStudio.LiveShare, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.VisualStudio.LiveShare.1.1.57\lib\net461\Microsoft.VisualStudio.LiveShare.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.DynamicData" />
@@ -99,7 +102,11 @@
     <Content Include="css\bootstrap.rtl.css" />
     <Content Include="css\bootstrap.rtl.min.css" />
     <Content Include="Default.aspx" />
+    <Content Include="ForgetPassword.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="js\jquery-3.6.0.min.js" />
+    <Content Include="js\WebForm1.js" />
+    <Content Include="Pics\BackArrow.png" />
     <Content Include="Pics\GBF.jpg" />
     <Content Include="Pics\messageImage_1630311093428-removebg-preview.png" />
     <Content Include="Pics\p_new0288_m_new02883.svg" />
@@ -122,15 +129,19 @@
     <Content Include="SubPage\Politics.aspx" />
     <Content Include="SubPage\Sports.aspx" />
     <Content Include="SubPage\YGO.aspx" />
-    <Content Include="TryGridView.aspx" />
-    <Content Include="TryMainPage.aspx" />
+    <Content Include="TryFIleFolder\TryGridView.aspx" />
+    <Content Include="TryFIleFolder\TryMainPage.aspx" />
+    <Content Include="TryFIleFolder\TrySeePostWithASHX.aspx" />
+    <Content Include="TryFIleFolder\TrySerach.aspx" />
     <Content Include="TryReapeater.aspx" />
-    <Content Include="TrySerach.aspx" />
     <Content Include="UpdateUserInfo.aspx" />
     <Content Include="UserInfo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AJAXSeePost.ashx.cs">
+      <DependentUpon>AJAXSeePost.ashx</DependentUpon>
+    </Compile>
     <Compile Include="BS5Template.aspx.cs">
       <DependentUpon>BS5Template.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -159,6 +170,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ForgetPassword.aspx.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgetPassword.aspx.designer.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -176,6 +194,7 @@
     <Compile Include="MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeePost.aspx.cs">
       <DependentUpon>SeePost.aspx</DependentUpon>
@@ -254,19 +273,36 @@
     <Compile Include="SubPage\Sports.aspx.designer.cs">
       <DependentUpon>Sports.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TryGridView.aspx.cs">
+    <Compile Include="TryFIleFolder\TryASHX.ashx.cs">
+      <DependentUpon>TryASHX.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="TryFIleFolder\TryGridView.aspx.cs">
       <DependentUpon>TryGridView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TryGridView.aspx.designer.cs">
+    <Compile Include="TryFIleFolder\TryGridView.aspx.designer.cs">
       <DependentUpon>TryGridView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TryMainPage.aspx.cs">
+    <Compile Include="TryFIleFolder\TryMainPage.aspx.cs">
       <DependentUpon>TryMainPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TryMainPage.aspx.designer.cs">
+    <Compile Include="TryFIleFolder\TryMainPage.aspx.designer.cs">
       <DependentUpon>TryMainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TryFIleFolder\TrySeePostWithASHX.aspx.cs">
+      <DependentUpon>TrySeePostWithASHX.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TryFIleFolder\TrySeePostWithASHX.aspx.designer.cs">
+      <DependentUpon>TrySeePostWithASHX.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TryFIleFolder\TrySerach.aspx.cs">
+      <DependentUpon>TrySerach.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TryFIleFolder\TrySerach.aspx.designer.cs">
+      <DependentUpon>TrySerach.aspx</DependentUpon>
     </Compile>
     <Compile Include="TryReapeater.aspx.cs">
       <DependentUpon>TryReapeater.aspx</DependentUpon>
@@ -274,13 +310,6 @@
     </Compile>
     <Compile Include="TryReapeater.aspx.designer.cs">
       <DependentUpon>TryReapeater.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TrySerach.aspx.cs">
-      <DependentUpon>TrySerach.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TrySerach.aspx.designer.cs">
-      <DependentUpon>TrySerach.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpdateUserInfo.aspx.cs">
       <DependentUpon>UpdateUserInfo.aspx</DependentUpon>
@@ -320,9 +349,11 @@
     <Content Include="js\bootstrap.esm.min.js.map" />
     <Content Include="js\bootstrap.js.map" />
     <Content Include="js\bootstrap.min.js.map" />
+    <Content Include="AJAXSeePost.ashx" />
     <None Include="packages.config" />
     <Content Include="SubMasterPage.Master" />
     <Content Include="SubSubMasterPage.Master" />
+    <Content Include="TryFIleFolder\TryASHX.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -332,7 +363,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UbayProject.ORM\UbayProject.ORM.csproj">

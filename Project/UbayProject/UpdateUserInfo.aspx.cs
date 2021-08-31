@@ -15,8 +15,7 @@ namespace UbayProject
             //檢查登入
             if (this.Session["UserLoginInfo"] == null)
             {
-                Response.StatusCode = 403;
-                Response.End();
+                Response.Redirect("Login.aspx");
             }
 
 
@@ -95,7 +94,7 @@ namespace UbayProject
                 //if temp == null?
                 loginedUserNow = temp;
             }
-            if (!IsPostBack)
+            if (!IsPostBack && loginedUserNow!=null)
             {
                 this.txtUserName.Text = loginedUserNow.userName;
                 this.txtUserBirthday.Text = loginedUserNow.birthday?.ToString("yyyy/MM/dd");
@@ -114,6 +113,12 @@ namespace UbayProject
             {
                 Response.Redirect("UserInfo.aspx");
             }
+            if (this.Request.QueryString == null)
+            {
+                Response.Redirect("UserInfo.aspx");
+            }
+            //表單內容檢查(輸入是否有效)
+
             string str = this.txtUserName.Text;
             string userIDQueryString = this.Request.QueryString["UserID"];
             using (ORM.ContextModel content = new ORM.ContextModel())
@@ -126,12 +131,22 @@ namespace UbayProject
                 switch (queryStringMode)
                 {
                     case "UpdateUserName":
-                        temp.userName = this.txtUserName.Text;
+                        if (this.txtUserName.Text != string.Empty)
+                        {
+                            temp.userName = this.txtUserName.Text;
+                        }
                         break;
 
                     case "UpdateUserBirthday":
                         //UPDATE USER BIRTHDAY
-                        temp.birthday = Convert.ToDateTime(this.txtUserBirthday.Text);
+                        if (this.txtUserBirthday.Text != string.Empty)
+                        {
+                            temp.birthday = Convert.ToDateTime(this.txtUserBirthday.Text);
+                        }
+                        else 
+                        {
+                            temp.birthday = null;
+                        }
                         break;
                     case "UpdateUserSex":
                         temp.sex = this.ddlUserSex.SelectedValue;
@@ -158,6 +173,18 @@ namespace UbayProject
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("UserInfo.aspx");
+        }
+
+        protected void ibtnToMain_Click(object sender, ImageClickEventArgs e)
+        {
+            string temp = this.Request.QueryString["userid"];
+            this.Response.Redirect($"UserInfo.aspx?userid={temp}");
+        }
+
+        protected void btnToMain_Click(object sender, EventArgs e)
+        {
+            string temp = this.Request.QueryString["userid"];
+            this.Response.Redirect($"UserInfo.aspx?userid={temp}");
         }
     }
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SeePost.aspx.cs" Inherits="UbayProject.SeePost" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TrySeePostWithASHX.aspx.cs" Inherits="UbayProject.TryFIleFolder.TrySeePostWithASHX" %>
 
 <!DOCTYPE html>
 
@@ -13,7 +13,7 @@
      
     <style>
         div {
-              border: 1px solid #000000;
+            /*  border: 1px solid #000000;*/
         }
 
         .titleArea {
@@ -23,27 +23,27 @@
             border: double blue
         }
 
-        #commentPostArea {
+       /* #commentPostArea {
             position: relative;
             padding-bottom: 120px;
             border: dashed yellow;
-        }
+        }*/
 
         
 
         .commentArea {
             border: dashed green;
             position: fixed;
-            bottom: -100px;
+            /*bottom: -100px;*/
             width: 100%;
             transition: 100ms;
         }
-
+/*
         #commentArea:hover {
             bottom: 0px;
             transition: 100ms;
         }
-
+*/
         #commentSubmit {
             position: absolute;
             width: 120px;
@@ -54,15 +54,7 @@
 
         #BtnLike {
             position: absolute;
-            width: 60px;
-            height: 35px;
-            bottom: 50px;
-            right: 80px;
-        }
-
-        #BtnDisLike {
-            position: absolute;
-            width: 60px;
+            width: 120px;
             height: 35px;
             bottom: 50px;
             right: 20px;
@@ -122,7 +114,7 @@
 
                 $.ajax({
 
-                    url: "http://localhost:54101/AJAXSeePost.ashx?actionName=reLoad",
+                    url: "http://localhost:54101/TryFIleFolder/TryASHX.ashx?actionName=GetNewPost",
                     type: "POST",
                     data: {
                         "postID": postID
@@ -138,7 +130,7 @@
             });
             var postID = $("#hfpostID").val();
             $.ajax({
-                url: "http://localhost:54101/AJAXSeePost.ashx?actionName=reLoad",
+                url: "http://localhost:54101/TryFIleFolder/TryASHX.ashx?actionName=reLoad",
                 type: "GET",
                 data: {
                     "postID": postID
@@ -163,6 +155,5 @@
             });
         });
     </script>
- 
 </body>
 </html>
