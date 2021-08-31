@@ -135,6 +135,7 @@
     <Content Include="TryFIleFolder\TrySerach.aspx" />
     <Content Include="TryReapeater.aspx" />
     <Content Include="UpdateUserInfo.aspx" />
+    <Content Include="UserControls\WebUserControl1.ascx" />
     <Content Include="UserInfo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -317,6 +318,13 @@
     </Compile>
     <Compile Include="UpdateUserInfo.aspx.designer.cs">
       <DependentUpon>UpdateUserInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\WebUserControl1.ascx.cs">
+      <DependentUpon>WebUserControl1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\WebUserControl1.ascx.designer.cs">
+      <DependentUpon>WebUserControl1.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserInfo.aspx.cs">
       <DependentUpon>UserInfo.aspx</DependentUpon>
