@@ -40,6 +40,35 @@
             bottom: 10px;
             right: 20px;
         }*/
+
+        #div1 {
+            height: 180px;
+        }
+
+        #div2 {
+            background-color: orange
+        }
+
+        #div3 {
+            height: 550px;
+            margin-top: 10px;
+            background: -webkit-linear-gradient(yellow,red);
+            background: -o-linear-gradient(yellow,red);
+            background: -moz-linear-gradient(yellow,red);
+            background: linear-gradient(yellow,red);
+        }
+
+        body {
+            background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        #Logo {
+            width: 200px;
+            height: 200px
+        }
+
+   
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -47,9 +76,9 @@
 <body>
     <form id="form1" runat="server">
         <div class="container">
-            <div class="row">
+            <div class="row" id="div1">
                 <div class="col-2">
-                    <p>LOGO</p>
+                    <img src="/Pics/messageImage_1630311093428-removebg-preview.png" id="Logo" />
                 </div>
                 <div class="col-8">
                     <p>PHOTO/AD</p>
@@ -60,7 +89,11 @@
                     <a href="/UserInfo.aspx">使用者資訊</a>
                 </div>
             </div>
-            <div class="row">
+            <div>
+                 <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+                  </asp:ContentPlaceHolder>
+            </div>
+            <div class="row" id="div2">
                 <div class="col-2"></div>
                 <div class="col-8">
                     <asp:TextBox ID="SearchBar" class="form-control" runat="server" placeholder="搜尋"></asp:TextBox>
@@ -70,12 +103,10 @@
             <div class="row">
                 <div class="col-2" id="BoardLink" runat="server">
                 </div>
-                <div class="col-8">
+                <div class="col-8" id="div3">
                     <div>
                         <div>
-                           
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                                
                             </asp:ContentPlaceHolder>
                         </div>
                     </div>
@@ -88,7 +119,7 @@
                 <p>這邊放使用者控制項</p>
             </div>
         </div>
-       <%-- <div class="row postArea" id="postArea" runat="server">
+        <%-- <div class="row postArea" id="postArea" runat="server">
             <div class="col-12">
                 <asp:TextBox runat="server" ID="postTitle" TextMode="SingleLine" CssClass="form-control" placeholder="輸入標題"></asp:TextBox>
 

@@ -101,6 +101,8 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Pics\GBF.jpg" />
+    <Content Include="Pics\messageImage_1630311093428-removebg-preview.png" />
+    <Content Include="Pics\p_new0288_m_new02883.svg" />
     <Content Include="Pics\YGO.jpg" />
     <Content Include="Pics\FGO.jpg" />
     <Content Include="js\bootstrap.bundle.js" />

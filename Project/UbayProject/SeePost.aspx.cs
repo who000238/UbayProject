@@ -73,6 +73,18 @@ namespace UbayProject
                     this.Label1.Text = item.countOfLikes.ToString();
                 }
             }
+
+            using (ContextModel context = new ContextModel())
+            {
+                var query =
+                      (from item in context.PostTables
+                       where item.postID == tempPostID
+                       select item);
+                foreach (var item in query)
+                {
+                    this.Label2.Text = item.countOfUnlikes.ToString();
+                }
+            }
         }
 
         
@@ -281,6 +293,25 @@ namespace UbayProject
                 foreach (var item in query)
                 {
                     item.countOfLikes += 1;
+                }
+
+                context.SaveChanges();
+            }
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            string tempQuery = Request.QueryString["postID"];
+            int tempPostID = Convert.ToInt32(tempQuery);
+            using (ContextModel context = new ContextModel())
+            {
+                var query =
+                      (from item in context.PostTables
+                       where item.postID == tempPostID
+                       select item);
+                foreach (var item in query)
+                {
+                    item.countOfUnlikes += 1;
                 }
 
                 context.SaveChanges();
