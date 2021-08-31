@@ -61,10 +61,6 @@ namespace UbayProject
             if (queriedUserNow != null)
             {
                 //他人檢視在黑名單的使用者時會看到提示 "(封鎖中)"
-                if (queriedUserNow.blackList == "Y")
-                {
-                    this.lblNameAlert.Text += "(封鎖中)";
-                }
                 //依據選取的使用者顯示UserInfo
                 this.lblUserName.Text = HttpUtility.HtmlEncode(queriedUserNow.userName);
                 this.lblBlackList.Text = queriedUserNow.blackList;
@@ -74,12 +70,24 @@ namespace UbayProject
                 this.lblUserBirthday.Text = (queriedUserNow.birthday != null)
                                              ? queriedUserNow.birthday?.ToString("yyyy/MM/dd")
                                              : ("不公開");
-                this.txtUserIntro.Text = queriedUserNow.intro;
-
+                if (queriedUserNow.blackList == "Y")
+                {
+                    this.lblNameAlert.Text += "(封鎖中)";
+                    this.txtUserIntro.Text = "(該使用者目前封鎖中)";
+                }
+                else
+                {
+                    this.txtUserIntro.Text = queriedUserNow.intro;
+                }
                 //顯示URL
-                this.userImg.ImageUrl = (queriedUserNow.photoURL == null || queriedUserNow.photoURL == string.Empty)
-                                             ? "https://freerangestock.com/thumbnail/35900/red-question-mark.jpg"
-                                             : queriedUserNow.photoURL;
+                string[] imagendnames = { ".jpg" ,".png",".jpeg"};
+                if (queriedUserNow.photoURL != null && queriedUserNow.photoURL != string.Empty && imagendnames.Any(x => queriedUserNow.photoURL.EndsWith(x) ))
+                {
+                    this.userImg.ImageUrl =queriedUserNow.photoURL;
+                }
+                else
+                {
+                    this.userImg.ImageUrl = "https://icons.veryicon.com/png/o/education-technology/alibaba-cloud-iot-business-department/image-load-failed.png";                }
             }
             //沒找到QuerrySting使用者
             //else { }
@@ -134,7 +142,7 @@ namespace UbayProject
             //沒找到QuerryString的使用者()或Session使用者
             else
             {
-
+                this.Response.Redirect("Main.aspx");
             }
         }
 

@@ -94,7 +94,7 @@ namespace UbayProject
                 //if temp == null?
                 loginedUserNow = temp;
             }
-            if (!IsPostBack)
+            if (!IsPostBack && loginedUserNow!=null)
             {
                 this.txtUserName.Text = loginedUserNow.userName;
                 this.txtUserBirthday.Text = loginedUserNow.birthday?.ToString("yyyy/MM/dd");
