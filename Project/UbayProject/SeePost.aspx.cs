@@ -64,6 +64,7 @@ namespace UbayProject
             UpdateViewers(postID, tempcountOfViewers);
             //按讚功能
             this.Label1.Text = dr["countOfLikes"].ToString();
+            this.Label2.Text = dr["countOfUnlikes"].ToString();
             //using (ContextModel context = new ContextModel())
             //{
             //    var query =
@@ -291,8 +292,7 @@ namespace UbayProject
                 context.SaveChanges();
             }
         }
-
-        protected void Button2_Click(object sender, EventArgs e)
+        protected void BtnDislike_Click(object sender, EventArgs e)
         {
             string tempQuery = Request.QueryString["postID"];
             int tempPostID = Convert.ToInt32(tempQuery);

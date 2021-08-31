@@ -93,7 +93,8 @@
                         <asp:Label runat="server" ID="lblInner"></asp:Label>
                     </div>
                     <div class=" col-md-2 col-sm-6" runat="server">
-                        LIKE數:<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                        讚數:<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                        噓數:<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
                     </div>
                     <div class=" col-md-2 col-sm-6" runat="server">
                         貼文瀏覽人數:
@@ -105,7 +106,8 @@
                 <div class="row commentArea" id="commentArea" runat="server">
                     <asp:TextBox runat="server" ID="commentInput" TextMode="MultiLine" Rows="5" CssClass="form-control" placeholder="回覆..."></asp:TextBox>
                     <asp:Button runat="server" ID="commentSubmit" CssClass="btn btn-outline-primary" Text="送出回覆" OnClick="commentSubmit_Click" />
-                    <asp:Button runat="server" ID="BtnLike" CssClass="btn btn-outline-primary" Text="LIKE" OnClick="BtnLike_Click" />
+                    <asp:Button runat="server" ID="BtnLike" CssClass="btn btn-outline-primary" Text="讚" OnClick="BtnLike_Click" />
+                    <asp:Button ID="BtnDisLike" runat="server"  CssClass="btn btn-outline-primary" Text="噓" OnClick="BtnDislike_Click" />
                 </div>
             </div>
         </div>
