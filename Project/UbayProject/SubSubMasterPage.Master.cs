@@ -87,6 +87,8 @@ namespace UbayProject
             string userID = currentUser.userID;
 
             createPost(txtTitle, txtInner, userID, tempCatID2);
+            this.postTitle.Text= string.Empty;
+            this.postInner.Text = string.Empty;
             Response.Write("<script>alert('貼文新増成功')</script>");
 
         }

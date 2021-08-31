@@ -93,6 +93,11 @@
                                     </asp:TemplateField>
 
                                     <asp:BoundField HeaderText="發文時間" DataField="createDate" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" />
+                                      <asp:TemplateField HeaderText="測試欄位"> 
+                                        <ItemTemplate>
+                                            <a href="/TryFIleFolder/TrySeePostWithASHX.aspx?postID=<%# Eval("postID") %>&actionName=reLoad"><%# Eval("postTitle") %></a>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                 </Columns>
 
                                 <EditRowStyle BackColor="#2461BF" />

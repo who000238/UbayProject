@@ -10,10 +10,9 @@ using UbayProject.ORM;
 using 登入功能的類別庫;
 using 處理資料庫相關的類別庫;
 
-
-namespace UbayProject
+namespace UbayProject.TryFIleFolder
 {
-    public partial class SeePost : System.Web.UI.Page
+    public partial class TrySeePostWithASHX : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,9 +25,10 @@ namespace UbayProject
             {
                 this.commentArea.Visible = false;
             }
-
+            
             //讀取網址列中的貼文ID
-             string postQueryString = this.Request.QueryString["postID"];
+            string postQueryString = this.Request.QueryString["postID"];
+            this.hfpostID.Value = postQueryString;
             var dr = getPostByPostID(postQueryString);                                           //取得貼文內容
             string userID = dr["userID"].ToString();                                                        //取得發貼文者ID
             var postUserInfo = getUserNameByUserID(Guid.Parse(userID));                 //已發貼文者ID去UserTable取得發文者的使用者暱稱
@@ -37,29 +37,29 @@ namespace UbayProject
                 Response.Write("<script>alert('該貼文不存在')</script>"); // 這邊會無法顯示 會直接跳頁
                 Response.Redirect("MainPage.aspx");
             }
-             int tempcountOfViewers = Convert.ToInt32(dr["countOfViewers"]);
-            this.lblViewer.Text = (tempcountOfViewers+1).ToString() + "人";
-            this.lblTitle.Text = dr["postTitle"].ToString()+"</br>" +$"發文者:{postUserInfo.userName}       發文時間:{dr["createDate"]}";
+            int tempcountOfViewers = Convert.ToInt32(dr["countOfViewers"]);
+            this.lblViewer.Text = (tempcountOfViewers + 1).ToString() + "人";
+            this.lblTitle.Text = dr["postTitle"].ToString() + "</br>" + $"發文者:{postUserInfo.userName}       發文時間:{dr["createDate"]}";
             this.lblInner.Text = dr["postText"].ToString();
             int postID = Convert.ToInt32(postQueryString);
-       
+
             if (this.commentInput.Text == null)
                 this.commentInput.Text = string.Empty;
 
-            var Comment = GetCommentByEF(postID); 
+            //var Comment = GetCommentByEF(postID);
 
-            foreach (var item in Comment)
-            {
-                var commentUserInfo = getUserNameByUserID(item.userID);
+            //foreach (var item in Comment)
+            //{
+            //    var commentUserInfo = getUserNameByUserID(item.userID);
 
-                Label labelUp = new Label();
-                Label labelDown = new Label();
-                this.commentPostArea.Controls.Add(labelUp);
-                this.commentPostArea.Controls.Add(labelDown);
-                labelUp.Text = $"使用者ID:{commentUserInfo.userName}    留言時間:{item.createDate}  </br>";
-                labelDown.Text = $"留言:{item.comment}  </br> ------------------------------------------ </br>";
-                
-            }
+            //    Label labelUp = new Label();
+            //    Label labelDown = new Label();
+            //    this.commentPostArea.Controls.Add(labelUp);
+            //    this.commentPostArea.Controls.Add(labelDown);
+            //    labelUp.Text = $"使用者ID:{commentUserInfo.userName}    留言時間:{item.createDate}  </br>";
+            //    labelDown.Text = $"留言:{item.comment}  </br> ------------------------------------------ </br>";
+
+            //}
             UpdateViewers(postID, tempcountOfViewers);
             //按讚功能
             this.Label1.Text = dr["countOfLikes"].ToString();
@@ -76,7 +76,7 @@ namespace UbayProject
             //}
         }
 
-        
+
         protected void commentSubmit_Click(object sender, EventArgs e)
         {
             string txtComment = this.commentInput.Text;
@@ -88,7 +88,7 @@ namespace UbayProject
                 return;
             }
             string userID = currentUser.userID;
-            if (!string.IsNullOrWhiteSpace(txtComment)) 
+            if (!string.IsNullOrWhiteSpace(txtComment))
             {
                 addComment(txtComment, userID, postID);
                 this.commentInput.Text = "";
@@ -241,7 +241,7 @@ namespace UbayProject
         /// <param name="postID"></param>
         /// <param name="tempcountOfViewers"></param>
         /// <returns></returns>
-        public static bool UpdateViewers(int postID,int tempcountOfViewers)
+        public static bool UpdateViewers(int postID, int tempcountOfViewers)
         {
             string connStr = 資料庫相關.取得連線字串();
             string dbCommand =
@@ -253,7 +253,7 @@ namespace UbayProject
                         postID = @postID
                      ";
             List<SqlParameter> paramList = new List<SqlParameter>();
-            paramList.Add(new SqlParameter("@countOfViewers", tempcountOfViewers +1));
+            paramList.Add(new SqlParameter("@countOfViewers", tempcountOfViewers + 1));
             paramList.Add(new SqlParameter("@postID", postID));
 
             try

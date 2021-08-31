@@ -88,7 +88,6 @@
                 </div>
             </div>
             <div style="text-align: center">
-                <p>這邊放使用者控制項</p>
             </div>
         </div>
         <%-- <div class="row postArea" id="postArea" runat="server">
