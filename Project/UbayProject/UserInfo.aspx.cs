@@ -142,7 +142,7 @@ namespace UbayProject
             //沒找到QuerryString的使用者()或Session使用者
             else
             {
-                this.Response.Redirect("Main.aspx");
+                this.Response.Redirect("MainPage.aspx");
             }
         }
 
