@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using System.Net.Mail;
 
 namespace UbayProject
 {
@@ -57,7 +58,61 @@ namespace UbayProject
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             //回到首頁
-            this.Response.Redirect("Main.aspx");
+            this.Response.Redirect("MainPage.aspx");
+        }
+        protected void sendMail(string receiveEmailAddress, string emailHtmlContent, string title)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+                //前面是發信email後面是顯示的名稱
+                mail.From = new MailAddress("ubayproject2021@gmail.com", title);
+
+                //收信者email
+                mail.To.Add(receiveEmailAddress);
+
+                //設定優先權
+                mail.Priority = MailPriority.Normal;
+
+                //標題
+                mail.Subject = "AutoEmail";
+
+                //內容
+                mail.Body = emailHtmlContent;
+
+                //內容使用html
+                mail.IsBodyHtml = true;
+
+                //設定gmail的smtp (這是google的)
+                SmtpClient MySmtp = new SmtpClient("smtp.gmail.com", 587);
+
+                //您在gmail的帳號密碼
+                MySmtp.Credentials = new System.Net.NetworkCredential("ubayproject2021", "73057305");
+
+                //開啟ssl
+                MySmtp.EnableSsl = true;
+
+                //發送郵件
+                MySmtp.Send(mail);
+
+                //放掉宣告出來的MySmtp
+                MySmtp = null;
+
+                //放掉宣告出來的mail
+                mail.Dispose();
+
+                //提示成功
+                Response.Write("<script type='text/javascript'> alert('已寄出');location.href = 'MainPage.aspx';</script>");
+
+
+            }
+            catch (Exception ex)
+            {
+                // 寫進LOG
+
+                Response.Write("<script type='text/javascript'> alert('寄出失敗');location.href = 'MainPage.aspx';</script>");
+
+            }
         }
     }
 }

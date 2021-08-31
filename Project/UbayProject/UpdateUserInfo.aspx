@@ -11,6 +11,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <style>
+        body {
+            background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+            background-size: cover;
+        }        
         input,select,textarea {
             border-radius: 10px;
         }
