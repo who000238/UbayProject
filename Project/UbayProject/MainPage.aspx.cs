@@ -45,7 +45,7 @@ namespace UbayProject
             //取得熱門貼文
             try
             {
-                var dt = 取得熱門貼文();
+                var dt = GetHotPost();
                 this.GridView1.DataSource = dt;
                 this.GridView1.DataBind();
             }
@@ -94,7 +94,6 @@ namespace UbayProject
                         (from item in context.PostTables
                          join UserInfo in context.UserTables
                           on item.userID equals UserInfo.userID
-                         //where SqlMethods.Like(item.postTitle, $"%{Input_txt}%")
                          where item.postTitle.Contains(Input_txt)
                          select new
                          {
@@ -131,27 +130,27 @@ namespace UbayProject
             }
         }
 
-        public static DataTable 搜尋貼文(string Input_txt)
-        {
-            string connStr = 資料庫相關.取得連線字串();
-            string dbCommand =
-                $@"SELECT * FROM PostTable 
-                    JOIN UserTable ON PostTable.userID = UserTable.userID
-                    WHERE postTitle Like '%{Input_txt}%' ";
-            List<SqlParameter> list = new List<SqlParameter>();
-            list.Add(new SqlParameter("@Input_txt", Input_txt));
-            try
-            {
-                return 資料庫相關.查詢資料清單(connStr, dbCommand, list);
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLog(ex);
-                return null;
-            }
-        }
+        //public static DataTable 搜尋貼文(string Input_txt) //待刪
+        //{
+        //    string connStr = 資料庫相關.取得連線字串();
+        //    string dbCommand =
+        //        $@"SELECT * FROM PostTable 
+        //            JOIN UserTable ON PostTable.userID = UserTable.userID
+        //            WHERE postTitle Like '%{Input_txt}%' ";
+        //    List<SqlParameter> list = new List<SqlParameter>();
+        //    list.Add(new SqlParameter("@Input_txt", Input_txt));
+        //    try
+        //    {
+        //        return 資料庫相關.查詢資料清單(connStr, dbCommand, list);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return null;
+        //    }
+        //}
 
-        public static DataTable 取得熱門貼文()
+        public static DataTable GetHotPost()
         {
             string connStr = 資料庫相關.取得連線字串();
             string dbCommand =

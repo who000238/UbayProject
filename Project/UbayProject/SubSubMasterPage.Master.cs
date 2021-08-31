@@ -89,8 +89,8 @@ namespace UbayProject
             createPost(txtTitle, txtInner, userID, tempCatID2);
             this.postTitle.Text= string.Empty;
             this.postInner.Text = string.Empty;
-            Response.Write("<script>alert('貼文新増成功')</script>");
-
+            //Response.Write("<script>alert('貼文新増成功')</script>");
+            Response.Write("<script>document.location=document.location</script>");
         }
         public static void createPost(string title, string innerText, string userID,int subCategoryID)
         {

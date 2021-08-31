@@ -81,7 +81,9 @@
 <body>
     <form id="form1" runat="server">
         <div class="container-fluid" runat="server">
+
             <input type="hidden" id="hfpostID" runat="server" />
+
             <div class="row" runat="server">
                 <div class="titleArea row" runat="server">
                     <div class=" col-md-12 col-sm-12" runat="server">
