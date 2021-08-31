@@ -179,6 +179,7 @@ namespace UbayProject
                          join UserInfo in context.UserTables
                              on item.userID equals UserInfo.userID
                              where item.subCategoryID == subCategoryID
+                             orderby item.createDate descending
                          select new
                          {
                              UserInfo.userID,
