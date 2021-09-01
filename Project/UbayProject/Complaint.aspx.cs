@@ -38,10 +38,33 @@ namespace UbayProject
                      select user).FirstOrDefault();
                 loginedUserNow = temp;
             }
+            
             //產生寄信內容String
-            string emailContent = "你的密碼是";
+            string emailContent = 
+                    $@"申訴使用者訊息:
+                       申訴標題:{this.txtContent.Text}
+                       申訴內容:{this.txtTitle.Text}";
+
+            
+            //找出所有使用者中管理員權限為0的使用者(管理員)
+            List<string> ltAdminEmailAddress = new List<string>();
+            using (ORM.ContextModel content = new ORM.ContextModel())
+            {
+                var temp =
+                    (from user in content.UserTables
+                     where user.userLevel == 0
+                     select user);
+                
+                foreach(var user in temp)
+                {
+                    ltAdminEmailAddress.Add(user.email);
+                }
+            }
             //寄出
-            sendMail(loginedUserNow.email,emailContent,"留言板重設密碼");
+            foreach (string email in ltAdminEmailAddress)
+            {
+                sendMail(email,emailContent,$"論壇使用者{loginedUserNow.userID}申訴");
+            }
 
         }
 

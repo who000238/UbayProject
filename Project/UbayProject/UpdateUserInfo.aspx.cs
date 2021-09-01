@@ -159,7 +159,6 @@ namespace UbayProject
                     case "UpdateUserPhoto":
                         temp.photoURL = this.txtImg.Text;
                         break;
-
                     default:
                         break;
                 }
