@@ -27,10 +27,6 @@ namespace UbayProject
                 this.a_Login.Visible = true;
                 this.postArea.Visible = false;
             }
-
-            ////取得maincategoryid並轉成int
-            //string tempquery = request.querystring["maincategoryid"];
-            //int tempcatid = convert.toint32(tempquery);
             //取得subCategoryID並轉成INT
             string tempQuery2 = Request.QueryString["mainCategoryID"];
             int tempCatID2 = Convert.ToInt32(tempQuery2);

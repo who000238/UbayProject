@@ -23,14 +23,26 @@ namespace UbayProject
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             //確認有登入的使用者
-
+            if (this.Session["UserLoginInfo"] == null)
+            {
+                Response.Write("<script type='text/javascript'> alert('請先登入');location.href = 'MainPage.aspx';</script>");
+            }
             //取得目前登入使用者資料
-
+            UbayProject.ORM.UserTable loginedUserNow;
+            string logineduserID = this.Session["UserLoginInfo"]?.ToString();
+            using (ORM.ContextModel content = new ORM.ContextModel())
+            {
+                var temp =
+                    (from user in content.UserTables
+                     where user.userID.ToString() == logineduserID
+                     select user).FirstOrDefault();
+                loginedUserNow = temp;
+            }
             //產生寄信內容String
-
+            string emailContent = "你的密碼是";
             //寄出
+            sendMail(loginedUserNow.email,emailContent,"留言板重設密碼");
 
-            //提示成功並轉至首頁
         }
 
         protected void btnClear_Click(object sender, EventArgs e)
@@ -41,13 +53,13 @@ namespace UbayProject
         }
 
 
-        protected void sendMail(string receiveEmailAddress,string emailHtmlContent) 
+        protected void sendMail(string receiveEmailAddress,string emailHtmlContent,string title) 
         {
             try
             {
                 MailMessage mail = new MailMessage();
                 //前面是發信email後面是顯示的名稱
-                mail.From = new MailAddress("ubayproject2021@gmail.com", "test from c#");
+                mail.From = new MailAddress("ubayproject2021@gmail.com", title);
 
                 //收信者email
                 mail.To.Add(receiveEmailAddress);
@@ -83,12 +95,16 @@ namespace UbayProject
                 mail.Dispose();
 
                 //提示成功
+                Response.Write("<script type='text/javascript'> alert('已寄出');location.href = 'MainPage.aspx';</script>");
 
 
             }
             catch (Exception ex)
             {
                 // 寫進LOG
+
+                Response.Write("<script type='text/javascript'> alert('寄出失敗');location.href = 'MainPage.aspx';</script>");
+
             }
         }
     }

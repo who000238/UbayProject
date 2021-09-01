@@ -36,7 +36,7 @@
                     申訴標題:
                 <asp:TextBox ID="txtTitle" runat="server"></asp:TextBox><br />
                     申訴內文:
-                <asp:TextBox ID="txtContent" runat="server" TextMode="MultiLine" MaxLength="500" OnTextChanged="txtContent_TextChanged"></asp:TextBox></br>
+                <asp:TextBox ID="txtContent" runat="server" TextMode="MultiLine" MaxLength="500" ></asp:TextBox> <br />
                 <asp:Button ID="Button1" runat="server" Text="送出" class="btn btn-dark" OnClick="btnSubmit_Click" />
                     &nbsp;&nbsp;
                 <asp:Button ID="Button2" runat="server" Text="清除" class="btn btn-dark" OnClick="btnClear_Click" />

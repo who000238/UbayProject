@@ -52,11 +52,11 @@ namespace UbayProject
                        select item);
                 foreach (var item in query2)
                 {
-                    HyperLink link2 = new HyperLink();
-                    this.ContentPlaceHolder1.Controls.Add(link2);
-                    link2.ImageUrl = $"Pics/{item.subCategoryName}.jpg";
-                    link2.Text = item.subCategoryName + "</br>";
-                    link2.NavigateUrl = $"/SubPage/{item.subCategoryName}.aspx?mainCategoryID={item.mainCategoryID}&subCategoryID={item.subCategoryID}";
+                    HyperLink link = new HyperLink();
+                    this.ContentPlaceHolder1.Controls.Add(link);
+                    link.ImageUrl = $"Pics/{item.subCategoryName}.jpg";
+                    link.Text = item.subCategoryName + "</br>";
+                    link.NavigateUrl = $"/SubPage/{item.subCategoryName}.aspx?mainCategoryID={item.mainCategoryID}&subCategoryID={item.subCategoryID}";
                 }
 
             }
