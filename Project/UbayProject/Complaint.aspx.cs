@@ -41,9 +41,9 @@ namespace UbayProject
             
             //產生寄信內容String
             string emailContent = 
-                    $@"申訴使用者訊息:
-                       申訴標題:{this.txtContent.Text}
-                       申訴內容:{this.txtTitle.Text}";
+                    $@"<h1>申訴使用者訊息:<h1><br/>
+                       <p>申訴標題:{this.txtContent.Text}<p><br/>
+                       <p>申訴內容:{this.txtTitle.Text}<p>";
 
             
             //找出所有使用者中管理員權限為0的使用者(管理員)
