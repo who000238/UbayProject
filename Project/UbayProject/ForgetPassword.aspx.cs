@@ -23,17 +23,22 @@ namespace UbayProject
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             //輸入檢查
-            
+            if (this.txtAccount.Text == null || this.txtMail.Text == null)
+            {
+                Response.Write("<script type='text/javascript'> alert('輸入不正確，將轉至首頁');location.href = 'MainPage.aspx';</script>");
+            }
+
+
             //查詢輸入帳號、信箱是否同時屬於同一個使用者
             string inputAccount = this.txtAccount.Text;
             string inputEmail = this.txtMail.Text;
             bool isUserExist = false;
-            string newPassword;
+            string newPassword = "";
             using (ORM.ContextModel content = new ORM.ContextModel())
             {
                 var temp =
                     (from user in content.UserTables
-                     where user.userID.ToString() == inputAccount
+                     where user.account.ToString() == inputAccount
                      select user).FirstOrDefault();
 
                 if ( temp != null &&  temp.email == inputEmail)
@@ -54,7 +59,7 @@ namespace UbayProject
             if (isUserExist)
             {
                 //產生Email信件內容
-                string emailContent = "你的密碼是:";
+                string emailContent = $"你的密碼是:{newPassword}";
                 //寄出信
                 sendMail(inputEmail,emailContent, "忘記密碼");
             }
