@@ -7,8 +7,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UbayProject.ORM;
-using 登入功能的類別庫;
-using 處理資料庫相關的類別庫;
+using AccountSource;
+using DBSource;
 
 
 namespace UbayProject
@@ -83,7 +83,7 @@ namespace UbayProject
         {
             string txtComment = this.commentInput.Text;
             int postID = Convert.ToInt32(this.Request.QueryString["postID"]);
-            UserModel currentUser = 使用者相關功能.取得目前登入者的資訊();
+            UserModel currentUser = UserInfoHelper.GetCurrentUser();
             if (currentUser == null)
             {
                 Response.Write("<script>alert('尚未登入')</script>");
@@ -102,7 +102,7 @@ namespace UbayProject
 
         public DataRow getPostByPostID(string queryString)
         {
-            string connStr = 資料庫相關.取得連線字串();
+            string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@"SELECT PostTable.postID
                         ,postTitle
@@ -120,7 +120,7 @@ namespace UbayProject
             list.Add(new SqlParameter("@postID", queryString));
             try
             {
-                return 資料庫相關.查詢單筆資料(connStr, dbCommand, list);
+                return DBHelper.ReadDataRow(connStr, dbCommand, list);
             }
             catch (Exception ex)
             {
@@ -154,7 +154,7 @@ namespace UbayProject
 
         public static bool addComment(string txtComment, string userID, int postID)
         {
-            string connStr = 資料庫相關.取得連線字串();
+            string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@"  INSERT INTO CommentTable
                 (
@@ -179,7 +179,7 @@ namespace UbayProject
             list.Add(new SqlParameter("@createDate", DateTime.Now));
             try
             {
-                int effectRows = 資料庫相關.ModifyData(connStr, dbCommand, list);
+                int effectRows = DBHelper.ModifyData(connStr, dbCommand, list);
 
                 if (effectRows == 1)
                     return true;
@@ -195,7 +195,7 @@ namespace UbayProject
 
         public static DataRow getComment(int postID)
         {
-            string connStr = 資料庫相關.取得連線字串();
+            string connStr = DBHelper.GetConnectionString();
             string dbCommand =
               $@" SELECT 
                       comment,
@@ -208,7 +208,7 @@ namespace UbayProject
             list.Add(new SqlParameter("@postID", postID));
             try
             {
-                return 資料庫相關.查詢單筆資料(connStr, dbCommand, list);
+                return DBHelper.ReadDataRow(connStr, dbCommand, list);
             }
             catch (Exception ex)
             {
@@ -245,7 +245,7 @@ namespace UbayProject
         /// <returns></returns>
         public static bool UpdateViewers(int postID,int tempcountOfViewers)
         {
-            string connStr = 資料庫相關.取得連線字串();
+            string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@"
                      UPDATE PostTable
@@ -260,7 +260,7 @@ namespace UbayProject
 
             try
             {
-                int effectRows = 資料庫相關.ModifyData(connStr, dbCommand, paramList);
+                int effectRows = DBHelper.ModifyData(connStr, dbCommand, paramList);
 
                 if (effectRows == 1)
                     return true;

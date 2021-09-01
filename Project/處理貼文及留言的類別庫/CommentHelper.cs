@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace 處理貼文及留言的類別庫
+namespace PostAndCommentSource
 {
-    public class 貼文
+    class CommentHelper
     {
-        public static void 發佈貼文()
+        public static void 發佈留言()
         {
 
         }

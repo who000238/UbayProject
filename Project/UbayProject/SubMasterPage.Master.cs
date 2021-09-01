@@ -5,8 +5,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web.UI.WebControls;
 using UbayProject.ORM;
-using 登入功能的類別庫;
-using 處理資料庫相關的類別庫;
+using AccountSource;
+using DBSource;
 
 namespace UbayProject
 {
@@ -66,7 +66,7 @@ namespace UbayProject
         }
         protected void linkLogout_Click(object sender, EventArgs e)
         {
-            使用者相關功能.登出();
+            UserInfoHelper.Logout();
             Response.Redirect("/MainPage.aspx");
         }
 
@@ -91,7 +91,7 @@ namespace UbayProject
         //}
         public static void createPost(string title, string innerText, string userID)
         {
-            string connStr = 資料庫相關.取得連線字串();
+            string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@" INSERT INTO PostTable
                     (

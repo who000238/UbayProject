@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using 登入功能的類別庫;
-using 處理資料庫相關的類別庫;
+using AccountSource;
+using DBSource;
 
 namespace UbayProject
 {
@@ -50,7 +50,7 @@ namespace UbayProject
                 return;
             }
             //比較帳號有沒有重複，若有則告知使用者
-            var tempAccount = 使用者相關功能.查詢帳號是否重複(inp_Account);
+            var tempAccount = UserInfoHelper.checkAccountExist(inp_Account);
             if (tempAccount)
             {
                 Response.Write($"<script>alert('此帳號重複、請重新輸入')</script>");
@@ -58,7 +58,7 @@ namespace UbayProject
             }
 
             //確認所有欄位送出後，跳轉至使用者資訊頁面引導填入完整使用者訊息
-            使用者相關功能.申請帳號(inp_Account, inp_PWD, inp_email, inp_userName);
+            UserInfoHelper.createAccount(inp_Account, inp_PWD, inp_email, inp_userName);
             //Response.Write($"<script>alert('申請帳號成功、按下確認前往論壇')</script>");
             Response.Redirect("MainPage.aspx");
 

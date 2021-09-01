@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using 登入功能的類別庫;
+using AccountSource;
 
 namespace UbayProject
 {
@@ -29,7 +29,7 @@ namespace UbayProject
             string inp_acc = this.txtAccount.Text;
             string inp_pwd = this.txtPassowrd.Text;
             string msg;
-            if (!使用者相關功能.嘗試登入(inp_acc, inp_pwd, out msg))
+            if (!UserInfoHelper.TryLogin(inp_acc, inp_pwd, out msg))
             {
                 Response.Write($"<script>alert('{msg}')</script>");
                 return;

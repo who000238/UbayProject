@@ -5,25 +5,28 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using UbayProject.ORM;
-using 處理資料庫相關的類別庫;
+using DBSource;
 
-namespace 登入功能的類別庫
+namespace AccountSource
 {
-    public class 使用者相關功能
+    public class UserInfoHelper
     {
-        public static void 檢查目前是否已登入()
+        public static bool IsLogined()
         {
-
+            if (HttpContext.Current.Session["UserLoginInfo"] == null)
+                return false;
+            else
+                return true;
         }
 
-        public static UserModel 取得目前登入者的資訊()
+        public static UserModel GetCurrentUser()
         {
             string userID = HttpContext.Current.Session["UserLoginInfo"].ToString();
 
             if (userID == null)
                 return null;
 
-            DataRow dr = 以UserID取得使用者資訊(userID);
+            DataRow dr = getUserInfoByUserID(userID);
             if (dr == null)
             {
                 HttpContext.Current.Session["UserLoginInfo"] = null;
@@ -47,9 +50,9 @@ namespace 登入功能的類別庫
             return model;
         }
 
-        public static DataRow 以UserID取得使用者資訊(string userID)
+        public static DataRow getUserInfoByUserID(string userID)
         {
-            string connectionString = 資料庫相關.取得連線字串();
+            string connectionString = DBHelper.GetConnectionString();
             string dbCommandString =
                 @" SELECT 
                         [userID]
@@ -74,7 +77,7 @@ namespace 登入功能的類別庫
 
             try
             {
-                return 資料庫相關.查詢單筆資料(connectionString, dbCommandString, list);
+                return DBHelper.ReadDataRow(connectionString, dbCommandString, list);
             }
             catch (Exception ex)
             {
@@ -84,7 +87,7 @@ namespace 登入功能的類別庫
         }
 
 
-        public static bool 嘗試登入(string account, string pwd, out string errorMsg)
+        public static bool TryLogin(string account, string pwd, out string errorMsg)
         {
             //check empty
             if (string.IsNullOrWhiteSpace(account) || string.IsNullOrWhiteSpace(pwd))
@@ -118,7 +121,7 @@ namespace 登入功能的類別庫
             }
         }
 
-        public static void 登出()
+        public static void Logout()
         {
             HttpContext.Current.Session["UserLoginInfo"] = null;
         }
@@ -148,9 +151,9 @@ namespace 登入功能的類別庫
 
         public static void 修改使用者資料() { }
 
-        public static void 申請帳號(string account, string pwd, string email, string userName)
+        public static void createAccount(string account, string pwd, string email, string userName)
         {
-            string connStr = 資料庫相關.取得連線字串();
+            string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@" INSERT INTO [dbo].[UserTable]
                     (
@@ -193,7 +196,7 @@ namespace 登入功能的類別庫
             paramList.Add(new SqlParameter("@createDate", DateTime.Now));
             try
             {
-                int effectRows = 資料庫相關.ModifyData(connStr, dbCommand, paramList);
+                int effectRows = DBHelper.ModifyData(connStr, dbCommand, paramList);
             }
             catch (Exception ex)
             {
@@ -201,9 +204,9 @@ namespace 登入功能的類別庫
             }
         }
 
-        public static bool 查詢帳號是否重複(string account)
+        public static bool checkAccountExist(string account)
         {
-            string connStr = 資料庫相關.取得連線字串();
+            string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@" SELECT *FROM [UBayProject].[dbo].[UserTable]
                         
@@ -215,7 +218,7 @@ namespace 登入功能的類別庫
 
             try
             {
-                if (資料庫相關.查詢單筆資料(connStr, dbCommand, list) != null)
+                if (DBHelper.ReadDataRow(connStr, dbCommand, list) != null)
                     return true;
                 else
                     return false;

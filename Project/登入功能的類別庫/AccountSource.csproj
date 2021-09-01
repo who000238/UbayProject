@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UserModel.cs" />
-    <Compile Include="使用者相關功能.cs" />
+    <Compile Include="UserInfoHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,9 +61,9 @@
       <Project>{18AC7311-0A01-4125-AFBF-724841A999F2}</Project>
       <Name>UbayProject.ORM</Name>
     </ProjectReference>
-    <ProjectReference Include="..\處理資料庫相關的類別庫\處理資料庫相關的類別庫.csproj">
+    <ProjectReference Include="..\處理資料庫相關的類別庫\DBSource.csproj">
       <Project>{6B60CBC7-6F7A-4823-8595-7CB0D06E55A1}</Project>
-      <Name>處理資料庫相關的類別庫</Name>
+      <Name>DBSource</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

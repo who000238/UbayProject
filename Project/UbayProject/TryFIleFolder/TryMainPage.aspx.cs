@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UbayProject.ORM;
-using 登入功能的類別庫;
+using AccountSource;
 
 namespace UbayProject
 {
@@ -46,7 +46,7 @@ namespace UbayProject
 
         protected void linkLogout_Click(object sender, EventArgs e)
         {
-            使用者相關功能.登出();
+            UserInfoHelper.Logout();
             Response.Redirect("MainPage.aspx");
         }
     }

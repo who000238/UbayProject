@@ -41,9 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="留言.cs" />
-    <Compile Include="貼文.cs" />
+    <Compile Include="CommentHelper.cs" />
+    <Compile Include="PostHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\處理資料庫相關的類別庫\DBSource.csproj">
+      <Project>{6B60CBC7-6F7A-4823-8595-7CB0D06E55A1}</Project>
+      <Name>DBSource</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

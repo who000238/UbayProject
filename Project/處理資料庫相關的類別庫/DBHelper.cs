@@ -7,32 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace 處理資料庫相關的類別庫
+namespace DBSource
 {
-    public class 資料庫相關
+    public class DBHelper
     {
-        public static string 取得連線字串()
+        public static string GetConnectionString()
         {
             string val = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             return val;
         }
 
-        public static void 增加一筆資料()
-        {
+        //public static void 增加一筆資料()
+        //{
 
-        }
+        //}
 
-        public static void 刪除一筆資料()
-        {
+        //public static void 刪除一筆資料()
+        //{
 
-        }
+        //}
        
-        public static void 修改一筆資料()
-        {
+        //public static void 修改一筆資料()
+        //{
 
-        }
+        //}
 
-        public static DataRow 查詢單筆資料(string connStr, string dbCommand, List<SqlParameter> list)
+        public static DataRow ReadDataRow(string connStr, string dbCommand, List<SqlParameter> list)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
@@ -54,7 +54,7 @@ namespace 處理資料庫相關的類別庫
             }
         }
 
-        public static DataTable 查詢資料清單(string connStr, string dbCommand, List<SqlParameter> list)
+        public static DataTable ReadDataTable(string connStr, string dbCommand, List<SqlParameter> list)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
@@ -89,11 +89,7 @@ namespace 處理資料庫相關的類別庫
             }
         }
 
-        public static bool ReadDataRow(string connStr, string dbCommand, List<SqlParameter> list)
-        {
-            throw new NotImplementedException();
-        }
-
+       
 
 
        

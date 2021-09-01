@@ -5,8 +5,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web.UI.WebControls;
 using UbayProject.ORM;
-using 登入功能的類別庫;
-using 處理資料庫相關的類別庫;
+using AccountSource;
+using DBSource;
+using PostAndCommentSource;
 
 namespace UbayProject
 {
@@ -51,7 +52,7 @@ namespace UbayProject
                 string tempQuery3 = Request.QueryString["subCategoryID"];
 
                 int subCategoryID = Convert.ToInt32(tempQuery3);
-                var obj = 取得貼文及UserNameEF版(subCategoryID);
+                var obj = getPostAndUserName(subCategoryID);
                 this.GridView1.DataSource = obj;
                 this.GridView1.DataBind();
             }
@@ -63,7 +64,7 @@ namespace UbayProject
         }
         protected void linkLogout_Click(object sender, EventArgs e)
         {
-            使用者相關功能.登出();
+            UserInfoHelper.Logout();
             Response.Redirect("/MainPage.aspx");
         }
 
@@ -81,66 +82,66 @@ namespace UbayProject
                 Response.Write("<script>alert('標題和內文不得為空')</script>");
                 return;
             }
-            UserModel currentUser = 使用者相關功能.取得目前登入者的資訊();
+            UserModel currentUser = UserInfoHelper.GetCurrentUser();
             string userID = currentUser.userID;
 
-            createPost(txtTitle, txtInner, userID, tempCatID2);
-            this.postTitle.Text= string.Empty;
+            PostHelper.createPost(txtTitle, txtInner, userID, tempCatID2);
+            this.postTitle.Text = string.Empty;
             this.postInner.Text = string.Empty;
             //Response.Write("<script>alert('貼文新増成功')</script>");
             Response.Write("<script>document.location=document.location</script>");
         }
-        public static void createPost(string title, string innerText, string userID,int subCategoryID)
-        {
-            string connStr = 資料庫相關.取得連線字串();
-            string dbCommand =
-                $@" INSERT INTO PostTable
-                    (
-                         postTitle
-                        ,countOfLikes
-                        ,countOfUnlikes
-                        ,countOfViewers
-                        ,userID
-                        ,subCategoryID
-                        ,createDate
-                        ,postText
-                    )    
-                    VALUES
-                    (
-                        @postTitle
-                        ,'0'
-                        ,'0'
-                        ,'0'
-                        ,@userID
-                        ,@subCategoryID
-                        ,@createDate
-                        ,@postText
-                    )
-                  ";
-            // connect db & execute
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                using (SqlCommand comm = new SqlCommand(dbCommand, conn))
-                {
-                    comm.Parameters.AddWithValue("@postTitle", title);
-                    comm.Parameters.AddWithValue("@subCategoryID", subCategoryID);
-                    comm.Parameters.AddWithValue("@postText", innerText);
-                    comm.Parameters.AddWithValue("@userID", userID);
-                    comm.Parameters.AddWithValue("@createDate", DateTime.Now);
+        //public static void createPost(string title, string innerText, string userID,int subCategoryID) //待刪
+        //{
+        //    string connStr = DBHelper.GetConnectionString();
+        //    string dbCommand =
+        //        $@" INSERT INTO PostTable
+        //            (
+        //                 postTitle
+        //                ,countOfLikes
+        //                ,countOfUnlikes
+        //                ,countOfViewers
+        //                ,userID
+        //                ,subCategoryID
+        //                ,createDate
+        //                ,postText
+        //            )    
+        //            VALUES
+        //            (
+        //                @postTitle
+        //                ,'0'
+        //                ,'0'
+        //                ,'0'
+        //                ,@userID
+        //                ,@subCategoryID
+        //                ,@createDate
+        //                ,@postText
+        //            )
+        //          ";
+        //    // connect db & execute
+        //    using (SqlConnection conn = new SqlConnection(connStr))
+        //    {
+        //        using (SqlCommand comm = new SqlCommand(dbCommand, conn))
+        //        {
+        //            comm.Parameters.AddWithValue("@postTitle", title);
+        //            comm.Parameters.AddWithValue("@subCategoryID", subCategoryID);
+        //            comm.Parameters.AddWithValue("@postText", innerText);
+        //            comm.Parameters.AddWithValue("@userID", userID);
+        //            comm.Parameters.AddWithValue("@createDate", DateTime.Now);
 
-                    try
-                    {
-                        conn.Open();
-                        comm.ExecuteNonQuery();
+        //            try
+        //            {
+        //                conn.Open();
+        //                comm.ExecuteNonQuery();
 
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.WriteLog(ex);
-                    }
-                }
-            }
-        }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Logger.WriteLog(ex);
+        //            }
+        //        }
+        //    }
+        //}
 
         public static UserTable getUserNameByUserID(Guid userID) //EF版本
         {
@@ -163,7 +164,7 @@ namespace UbayProject
                 return null;
             }
         } // 好像不需要這個功能
-        public static Object 取得貼文及UserNameEF版(int subCategoryID)
+        public static Object getPostAndUserName(int subCategoryID)
         {
             try
             {
@@ -176,8 +177,8 @@ namespace UbayProject
                         (from item in context.PostTables
                          join UserInfo in context.UserTables
                              on item.userID equals UserInfo.userID
-                             where item.subCategoryID == subCategoryID
-                             orderby item.createDate descending
+                         where item.subCategoryID == subCategoryID
+                         orderby item.createDate descending
                          select new
                          {
                              UserInfo.userID,
@@ -212,36 +213,36 @@ namespace UbayProject
             }
         }
 
-        public static DataTable 取得貼文(int subCategoryID)
-        {
-            string connStr = 資料庫相關.取得連線字串();
-            string dbCommand =
-                $@" SELECT 
-                        [postID]
-                        ,[postTitle]
-                        ,[countOfLikes]
-                        ,[countOfUnlikes]
-                        ,[countOfViewers]
-                        ,[userID]
-                        ,[subCategoryID]
-                        ,[createDate]
-                        ,[postText]
-                    FROM [PostTable]
-                    WHERE [subCategoryID] = @subCategoryID
-                ";
-            List<SqlParameter> list = new List<SqlParameter>();
-            list.Add(new SqlParameter("@subCategoryID", subCategoryID));
+        //public static DataTable getPost(int subCategoryID) //這個貌似也可以刪除
+        //{
+        //    string connStr = DBHelper.GetConnectionString();
+        //    string dbCommand =
+        //        $@" SELECT 
+        //                [postID]
+        //                ,[postTitle]
+        //                ,[countOfLikes]
+        //                ,[countOfUnlikes]
+        //                ,[countOfViewers]
+        //                ,[userID]
+        //                ,[subCategoryID]
+        //                ,[createDate]
+        //                ,[postText]
+        //            FROM [PostTable]
+        //            WHERE [subCategoryID] = @subCategoryID
+        //        ";
+        //    List<SqlParameter> list = new List<SqlParameter>();
+        //    list.Add(new SqlParameter("@subCategoryID", subCategoryID));
 
-            try
-            {
-                return 資料庫相關.查詢資料清單(connStr, dbCommand, list);
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLog(ex);
-                return null;
-            }
-        }
+        //    try
+        //    {
+        //        return DBHelper.ReadDataTable(connStr, dbCommand, list);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return null;
+        //    }
+        ////}
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             var row = e.Row;

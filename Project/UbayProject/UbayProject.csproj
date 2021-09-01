@@ -385,17 +385,17 @@
       <Project>{18AC7311-0A01-4125-AFBF-724841A999F2}</Project>
       <Name>UbayProject.ORM</Name>
     </ProjectReference>
-    <ProjectReference Include="..\登入功能的類別庫\帳號相關功能的類別庫.csproj">
+    <ProjectReference Include="..\登入功能的類別庫\AccountSource.csproj">
       <Project>{79718b10-dcc2-45f9-8488-5aa7b22042a9}</Project>
-      <Name>帳號相關功能的類別庫</Name>
+      <Name>AccountSource</Name>
     </ProjectReference>
-    <ProjectReference Include="..\處理貼文及留言的類別庫\處理貼文及留言的類別庫.csproj">
+    <ProjectReference Include="..\處理貼文及留言的類別庫\PostAndCommentSource.csproj">
       <Project>{263eb4cd-55e3-4fab-bc33-2710193f6f6f}</Project>
-      <Name>處理貼文及留言的類別庫</Name>
+      <Name>PostAndCommentSource</Name>
     </ProjectReference>
-    <ProjectReference Include="..\處理資料庫相關的類別庫\處理資料庫相關的類別庫.csproj">
+    <ProjectReference Include="..\處理資料庫相關的類別庫\DBSource.csproj">
       <Project>{6b60cbc7-6f7a-4823-8595-7cb0d06e55a1}</Project>
-      <Name>處理資料庫相關的類別庫</Name>
+      <Name>DBSource</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

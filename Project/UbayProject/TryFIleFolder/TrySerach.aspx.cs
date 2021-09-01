@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UbayProject.ORM;
-using 處理資料庫相關的類別庫;
+using DBSource;
 
 namespace UbayProject
 {
@@ -104,7 +104,7 @@ namespace UbayProject
 
         public static DataTable 搜尋貼文(string Input_txt)
         {
-            string connStr = 資料庫相關.取得連線字串();
+            string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@"SELECT * FROM PostTable 
                     JOIN UserTable ON PostTable.userID = UserTable.userID
@@ -114,7 +114,7 @@ namespace UbayProject
             list.Add(new SqlParameter("@Input_txt", Input_txt));
             try
             {
-                return 資料庫相關.查詢資料清單(connStr, dbCommand, list);
+                return DBHelper.ReadDataTable(connStr, dbCommand, list);
             }
             catch (Exception ex)
             {
@@ -143,7 +143,7 @@ namespace UbayProject
 
         public static DataTable 取得熱門貼文()
         {
-            string connStr = 資料庫相關.取得連線字串();
+            string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@" 
                 SELECT TOP (5) [postID]
@@ -164,7 +164,7 @@ namespace UbayProject
 
             try
             {
-                return 資料庫相關.查詢資料清單(connStr, dbCommand, list);
+                return DBHelper.ReadDataTable(connStr, dbCommand, list);
             }
             catch (Exception ex)
             {

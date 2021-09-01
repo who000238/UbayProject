@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UbayProject.ORM;
-using 處理資料庫相關的類別庫;
+using DBSource;
 
 namespace UbayProject
 {
@@ -100,7 +100,7 @@ namespace UbayProject
 
         public static DataTable 取得貼文(int subCategoryID)
         {
-            string connStr = 資料庫相關.取得連線字串();
+            string connStr = DBHelper.GetConnectionString();
             string dbCommand =
                 $@" SELECT 
                         [postID]
@@ -120,7 +120,7 @@ namespace UbayProject
 
             try
             {
-                return 資料庫相關.查詢資料清單(connStr, dbCommand, list);
+                return DBHelper.ReadDataTable(connStr, dbCommand, list);
             }
             catch (Exception ex)
             {
