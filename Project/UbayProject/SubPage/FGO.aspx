@@ -11,7 +11,6 @@
                     <li class="breadcrumb-item"><a href="/MainPage.aspx">主頁</a></li>
                     <li class="breadcrumb-item"><a href="/SubPage/GAME.aspx?mainCategoryID=1">Game</a></li>
                     <li class="breadcrumb-item active" aria-current="page">FGO</li>
-                    
                 </ol>
             </nav>
 </asp:Content>

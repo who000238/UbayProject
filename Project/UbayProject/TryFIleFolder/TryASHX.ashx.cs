@@ -5,6 +5,7 @@ using System.Web;
 using UbayProject.Models;
 using UbayProject.ORM;
 using DBSource;
+using PostAndCommentSource;
 
 namespace UbayProject.TryFIleFolder
 {
@@ -26,7 +27,7 @@ namespace UbayProject.TryFIleFolder
                 context.Response.End();
             }
 
-            if (actionName == "reLoad")
+            if (actionName == "Load")
             {
                 List<CommentTable> commentsSource = GetCommentByEF(Convert.ToInt32(postID));
 
@@ -37,6 +38,8 @@ namespace UbayProject.TryFIleFolder
                     comment = obj.comment,
                     userID = obj.userID,
                     createDate = obj.createDate
+                    //createDate = DateTime.TryParseExact(obj.createDate, "yyyy-MM-dd HH:mm:ss")
+
                 }).ToList();
 
                 Object NewestPostList2 = GetCommentAndUserName(postID);

@@ -4,12 +4,11 @@ using System.Linq;
 using System.Web;
 using UbayProject.ORM;
 using DBSource;
+using PostAndCommentSource;
 
 namespace UbayProject
 {
-    /// <summary>
-    /// AJAXSeePost 的摘要描述
-    /// </summary>
+    /// <summary>承接SeePost頁面有使用者回覆新的留言時即時顯示該使用者的留言</summary>
     public class AJAXSeePost : IHttpHandler
     {
 
@@ -28,8 +27,7 @@ namespace UbayProject
 
             if (actionName == "Load")
             {
-                //List<CommentTable> commentsSource = GetCommentByEF(intPostID); // 貌似可刪
-                Object commentList = GetCommentAndUserName(intPostID);
+                Object commentList = CommentHelper.GetCommentAndUserName(intPostID);
                 string jsonText = Newtonsoft.Json.JsonConvert.SerializeObject(commentList);
                 context.Response.ContentType = "application/json";
                 context.Response.Write(jsonText);
@@ -50,68 +48,68 @@ namespace UbayProject
                 return false;
             }
         }
-        public static List<CommentTable> GetCommentByEF(int postID)
-        {
-            try
-            {
-                using (ContextModel context = new ContextModel())
-                {
-                    var query =
-                        (from item in context.CommentTables
-                         where item.postID == postID
-                         select item);
-                    var list = query.ToList();
-                    return list;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLog(ex);
-                return null;
-            }
-        }
-        public static Object GetCommentAndUserName(int postID)
-        {
-            try
-            {
-                using (ContextModel context1 = new ContextModel())
-                {
-                    //var query =
-                    //    (from item in context1.CommentTables
-                    //     join UserInfo in context1.UserTables
-                    //      on item.userID equals UserInfo.userID
-                    //     select new
-                    //     {
-                    //         item.commentID,
-                    //         item.postID,
-                    //         item.comment,
-                    //         item.userID,
-                    //         item.createDate,
-                    //         UserInfo.userName,
-                    //     }).ToList();
+        //public static List<CommentTable> GetCommentByEF(int postID)
+        //{
+        //    try
+        //    {
+        //        using (ContextModel context = new ContextModel())
+        //        {
+        //            var query =
+        //                (from item in context.CommentTables
+        //                 where item.postID == postID
+        //                 select item);
+        //            var list = query.ToList();
+        //            return list;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return null;
+        //    }
+        //}
+        //public static Object GetCommentAndUserName(int postID)
+        //{
+        //    try
+        //    {
+        //        using (ContextModel context1 = new ContextModel())
+        //        {
+        //            //var query =
+        //            //    (from item in context1.CommentTables
+        //            //     join UserInfo in context1.UserTables
+        //            //      on item.userID equals UserInfo.userID
+        //            //     select new
+        //            //     {
+        //            //         item.commentID,
+        //            //         item.postID,
+        //            //         item.comment,
+        //            //         item.userID,
+        //            //         item.createDate,
+        //            //         UserInfo.userName,
+        //            //     }).ToList();
 
-                    var query =
-                        (from item in context1.CommentTables
-                         join UserInfo in context1.UserTables
-                          on item.userID equals UserInfo.userID
-                         where item.postID == postID
-                         select new
-                         {
-                             item.commentID,
-                             item.postID,
-                             item.comment,
-                             item.userID,
-                             item.createDate,
-                             UserInfo.userName,
-                         }).ToList();
-                    return query;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLog(ex);
-                return null;
-            }
-        }
+        //            var query =
+        //                (from item in context1.CommentTables
+        //                 join UserInfo in context1.UserTables
+        //                  on item.userID equals UserInfo.userID
+        //                 where item.postID == postID
+        //                 select new
+        //                 {
+        //                     item.commentID,
+        //                     item.postID,
+        //                     item.comment,
+        //                     item.userID,
+        //                     item.createDate,
+        //                     UserInfo.userName,
+        //                 }).ToList();
+        //            return query;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return null;
+        //    }
+        //}
     }
 }

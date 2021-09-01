@@ -75,6 +75,8 @@ namespace UbayProject
             if (string.IsNullOrWhiteSpace(txtSearch_input) == true)
             {
                 Response.Write("<script>alert('搜尋字串不得留空或者輸入空格、請檢查後重新輸入')</script>");
+                Response.Write("<script>document.location=document.location</script>");
+
             }
             var obj = PostHelper.searchPost(txtSearch_input);
             if (obj != null)

@@ -104,7 +104,7 @@ namespace PostAndCommentSource
         /// <summary>搜尋貼文(標題)</summary>
         /// <param name="Input_txt"></param>
         /// <returns></returns>
-        public static Object searchPost(string Input_txt) //與subsubmaster 取得貼文及UserNameEF版相同
+        public static Object searchPost(string Input_txt) 
         {
             try
             {
@@ -149,6 +149,53 @@ namespace PostAndCommentSource
                 return null;
             }
         }
+        public static Object searchPost(string Input_txt,int subCategoryID)
+        {
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+                    var query =
+                        (from item in context.PostTables
+                         join UserInfo in context.UserTables
+                          on item.userID equals UserInfo.userID
+                         where item.postTitle.Contains(Input_txt)
+                         where item.subCategoryID == subCategoryID
+                         select new
+                         {
+                             UserInfo.userID,
+                             UserInfo.userName,
+                             UserInfo.account,
+                             UserInfo.pwd,
+                             UserInfo.userLevel,
+                             UserInfo.sex,
+                             UserInfo.email,
+                             UserInfo.birthday,
+                             UserInfo.photoURL,
+                             UserInfo.intro,
+                             UserInfo.favoritePosts,
+                             UserInfo.blackList,
+                             item.createDate,
+                             item.postTitle,
+                             item.postID,
+                             item.countOfLikes,
+                             item.countOfUnlikes,
+                             item.countOfViewers,
+                             item.subCategoryID,
+                             item.postText
+                         });
+
+                    var obj = query.ToList();
+                    return obj;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }
+
         /// <summary>取得貼文及發文者的使用者姓名</summary>
         /// <param name="subCategoryID"></param>
         /// <returns></returns>

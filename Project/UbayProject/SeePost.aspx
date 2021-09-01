@@ -31,7 +31,7 @@
 
         
 
-        .commentArea {
+        #commentArea {
             border: dashed green;
             position: fixed;
             bottom: -100px;

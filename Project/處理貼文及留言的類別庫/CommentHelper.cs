@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UbayProject.ORM;
 
 namespace PostAndCommentSource
 {
@@ -90,6 +91,40 @@ namespace PostAndCommentSource
             {
                 Logger.WriteLog(ex);
                 return false;
+            }
+        }
+    
+
+        /// <summary>取得回覆及回覆者的使用者姓名</summary>
+        /// <param name="postID"></param>
+        /// <returns></returns>
+        public static Object GetCommentAndUserName(int postID)
+        {
+            try
+            {
+                using (ContextModel context1 = new ContextModel())
+                {
+                    var query =
+                        (from item in context1.CommentTables
+                         join UserInfo in context1.UserTables
+                          on item.userID equals UserInfo.userID
+                         where item.postID == postID
+                         select new
+                         {
+                             item.commentID,
+                             item.postID,
+                             item.comment,
+                             item.userID,
+                             item.createDate,
+                             UserInfo.userName,
+                         }).ToList();
+                    return query;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
             }
         }
     }

@@ -19,12 +19,18 @@
             height: 100%;
         }
 
-        .postArea {
+        #postArea {
             position: fixed;
-            bottom: 0px;
+            bottom: -110px;
             width: 100%;
             height: 20%;
+            transition: 100ms;
         }
+
+            #postArea:hover {
+                bottom: 0px;
+                transition: 100ms;
+            }
 
         #postSubmit {
             position: absolute;
@@ -41,7 +47,7 @@
             right: 20px;
         }*/
 
-          #div1 {
+        #div1 {
             height: 180px;
         }
 
@@ -81,31 +87,30 @@
                 <div class="col-8">
                     <p>PHOTO/AD</p>
                 </div>
-                <div class="col-2" >
+                <div class="col-2">
                     <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>
                     <asp:LinkButton ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>
                     <a href="/UserInfo.aspx">使用者資訊</a>
                 </div>
             </div>
-             <div>
-                 <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
-                  </asp:ContentPlaceHolder>
-            </div>
-            <div class="row" id="div2">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <asp:TextBox ID="SearchBar" class="form-control" runat="server" placeholder="搜尋"></asp:TextBox>
+            <div class="input-group mb-3">
+                <asp:TextBox runat="server" ID="SearchBar" class="form-control" placeholder="想找甚麼...?"></asp:TextBox>
+                <div class="input-group-append">
+                    <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-secondary" Text="搜尋" OnClick="btnSearch_Click" />
                 </div>
-                <div class="col-2"></div>
             </div>
-            <div class="row" id ="div3">
+            <div>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div class="row" id="div3">
                 <div class="col-2" id="BoardLink" runat="server">
                 </div>
                 <div class="col-8">
                     <div>
                         <div>
-                            <asp:GridView ID="GridView1" AllowPaging="true" runat="server"  AutoGenerateColumns="false" OnRowDataBound="GridView1_RowDataBound" CellPadding="2" ForeColor="Black" GridLines="None" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" OnPageIndexChanging="GridView1_PageIndexChanging">
-                                <PagerSettings mode="Numeric" Position="Bottom" PageButtonCount="10"  />
+                            <asp:GridView ID="GridView1" AllowPaging="true" runat="server" AutoGenerateColumns="false" OnRowDataBound="GridView1_RowDataBound" CellPadding="2" ForeColor="Black" GridLines="None" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" OnPageIndexChanging="GridView1_PageIndexChanging">
+                                <PagerSettings Mode="Numeric" Position="Bottom" PageButtonCount="10" />
                                 <AlternatingRowStyle BackColor="PaleGoldenrod" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="超連結標題">
@@ -131,6 +136,22 @@
                                 <SortedDescendingCellStyle BackColor="#E1DB9C" />
                                 <SortedDescendingHeaderStyle BackColor="#C2A47B" />
 
+                            </asp:GridView>
+                            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False">
+                                <Columns>
+                                    <asp:TemplateField HeaderText="超連結標題">
+                                        <ItemTemplate>
+                                            <a href="/SeePost.aspx?postID=<%# Eval("postID") %>"><%# Eval("postTitle") %></a>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="發文者">
+                                        <ItemTemplate>
+                                            <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField HeaderText="瀏覽人次" DataField="countOfViewers" />
+                                    <asp:BoundField HeaderText="發文時間" DataField="createDate" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" />
+                                </Columns>
                             </asp:GridView>
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                             </asp:ContentPlaceHolder>

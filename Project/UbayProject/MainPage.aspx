@@ -36,8 +36,6 @@
             width: 200px;
             height: 200px
         }
-
-
     </style>
 </head>
 <body>
@@ -57,19 +55,13 @@
                     <a href="UserInfo.aspx" runat="server" id="UserInfoLink">使用者資訊</a>
                 </div>
             </div>
-           
-            <div class="row" id="div2">
-                <div class="col-2">
+            <div class="input-group mb-3">
+                <asp:TextBox runat="server" ID="SearchBar" class="form-control" placeholder="想找甚麼...?"></asp:TextBox>
+                <div class="input-group-append">
+                    <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-secondary" Text="搜尋" OnClick="btnSearch_Click" />
                 </div>
-                <div class="col-6">
-                    <asp:TextBox runat="server" ID="SearchBar" class="form-control" placeholder="搜尋"></asp:TextBox>
-                </div>
-                <div class="col-2">
-                    <asp:Button ID="btnSearch" runat="server" Text="搜尋" OnClick="btnSearch_Click" />
-
-                </div>
-                <div class="col-2"></div>
             </div>
+           
             <div class="row" id="div3">
                 <div class="col-2" id="BoardLink" runat="server">
                 </div>
