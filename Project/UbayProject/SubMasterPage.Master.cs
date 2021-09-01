@@ -141,31 +141,68 @@ namespace UbayProject
             }
         }
 
-        //public static DataTable 取得貼文(int categoryID)
-        //{
-        //    string connStr = 資料庫相關.取得連線字串();
-        //    string dbCommand =
-        //        $@" SELECT 
-        //                [postTitle],
-        //                [createDate],
-        //                [postID]
-        //            FROM [PostTable]
-        //            WHERE [subCategoryID] = @subCategoryID
-        //        ";
-        //    List<SqlParameter> list = new List<SqlParameter>();
-        //    list.Add(new SqlParameter("@subCategoryID", categoryID));
+        public static DataTable 取得貼文(int categoryID)
+        {
+            string connStr = 資料庫相關.取得連線字串();
+            string dbCommand =
+                $@" SELECT 
+                        [postTitle],
+                        [createDate],
+                        [postID]
+                    FROM [PostTable]
+                    WHERE [subCategoryID] = @subCategoryID
+                ";
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@subCategoryID", categoryID));
+            try
+            {
+                return 資料庫相關.查詢資料清單(connStr, dbCommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }
+        private int GetCurrentPage()
+        {
+            string pageText = Request.QueryString["Page"];
 
-        //    try
-        //    {
-        //        return 資料庫相關.查詢資料清單(connStr, dbCommand, list);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Logger.WriteLog(ex);
-        //        return null;
-        //    }
-        //}
-       
+            if (string.IsNullOrWhiteSpace(pageText))
+            {
+                return 1;
+            }
+            int intPage;
+            if (!int.TryParse(pageText,out intPage))
+            {
+                return 1;
+            }
+
+            if(intPage <= 0)
+            {
+                return 1;
+            }
+
+            return intPage;
+        }
+
+        private DataTable GetPagedDataTable(DataTable dt)
+        {
+            DataTable dtPaged = (dt.Rows.Count==0)?dt.Clone() :
+            dt.Copy();
+
+            foreach(DataRow dr in dt.Rows)
+            {
+                var drNew = dtPaged.NewRow();
+                foreach (DataColumn dc in dt.Columns)
+                {
+                    drNew[dc.ColumnName] = dr[dc];
+                }
+
+                dtPaged.Rows.Add(drNew);
+            }
+            return dtPaged;
+        }
     }
 
 }

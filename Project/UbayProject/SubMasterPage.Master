@@ -106,7 +106,8 @@
                 <div class="col-8" id="div3">
                     <div>
                         <div>
-                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            <asp:Literal runat="server" ID="ltPager"></asp:Literal>
+>>                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>
                     </div>

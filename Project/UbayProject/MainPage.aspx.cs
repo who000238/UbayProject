@@ -94,7 +94,7 @@ namespace UbayProject
                         (from item in context.PostTables
                          join UserInfo in context.UserTables
                           on item.userID equals UserInfo.userID
-                         where item.postTitle.Contains(Input_txt)
+                          where item.postTitle.Contains(Input_txt)
                          select new
                          {
                              UserInfo.userID,

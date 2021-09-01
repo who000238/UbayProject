@@ -50,7 +50,6 @@ namespace UbayProject
             try
             {
                 string tempQuery3 = Request.QueryString["subCategoryID"];
-
                 int subCategoryID = Convert.ToInt32(tempQuery3);
                 var obj = getPostAndUserName(subCategoryID);
                 this.GridView1.DataSource = obj;
@@ -258,6 +257,16 @@ namespace UbayProject
             //lblUserName.Text = userInfo.account;
         }
 
+        public void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            string tempQuery3 = Request.QueryString["subCategoryID"];
+            int subCategoryID = Convert.ToInt32(tempQuery3);
+            var obj = 取得貼文及UserNameEF版(subCategoryID);
+            GridView1.PageIndex = e.NewPageIndex;
+            this.GridView1.DataSource = obj;
+            GridView1.DataBind();
+        }
+       
     }
 
 }
