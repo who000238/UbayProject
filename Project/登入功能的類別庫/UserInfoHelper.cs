@@ -11,6 +11,8 @@ namespace AccountSource
 {
     public class UserInfoHelper
     {
+        /// <summary>頁面讀取檢查是否有使用者登入</summary>
+        /// <returns></returns>
         public static bool IsLogined()
         {
             if (HttpContext.Current.Session["UserLoginInfo"] == null)
@@ -18,7 +20,8 @@ namespace AccountSource
             else
                 return true;
         }
-
+        /// <summary>取得目前登入的使用者資訊 </summary>
+        /// <returns></returns>
         public static UserModel GetCurrentUser()
         {
             string userID = HttpContext.Current.Session["UserLoginInfo"].ToString();
@@ -49,7 +52,11 @@ namespace AccountSource
 
             return model;
         }
-
+        /// <summary>
+        /// 取得使用者資訊ByUserID
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public static DataRow getUserInfoByUserID(string userID)
         {
             string connectionString = DBHelper.GetConnectionString();
@@ -86,7 +93,11 @@ namespace AccountSource
             }
         }
 
-
+        /// <summary>登入功能</summary>
+        /// <param name="account"></param>
+        /// <param name="pwd"></param>
+        /// <param name="errorMsg"></param>
+        /// <returns></returns>
         public static bool TryLogin(string account, string pwd, out string errorMsg)
         {
             //check empty
@@ -96,7 +107,7 @@ namespace AccountSource
                 return false;
             }
             //read db and check
-            var userInfo = GetUserInfoByAccount(account);
+            var userInfo = getUserInfoByAccount(account);
 
             //check null
             if (userInfo == null)
@@ -120,13 +131,16 @@ namespace AccountSource
 
             }
         }
-
+        /// <summary>登出
+        /// </summary>
         public static void Logout()
         {
             HttpContext.Current.Session["UserLoginInfo"] = null;
         }
-
-        public static UserTable GetUserInfoByAccount(string account)
+        /// <summary>取得使用者資訊ByAccount</summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        public static UserTable getUserInfoByAccount(string account)
         {
             try
             {
@@ -149,8 +163,11 @@ namespace AccountSource
 
         }
 
-        public static void 修改使用者資料() { }
-
+        /// <summary>申請帳號</summary>
+        /// <param name="account"></param>
+        /// <param name="pwd"></param>
+        /// <param name="email"></param>
+        /// <param name="userName"></param>
         public static void createAccount(string account, string pwd, string email, string userName)
         {
             string connStr = DBHelper.GetConnectionString();
@@ -203,7 +220,9 @@ namespace AccountSource
                 Logger.WriteLog(ex);
             }
         }
-
+        /// <summary>檢查帳號是否重複</summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
         public static bool checkAccountExist(string account)
         {
             string connStr = DBHelper.GetConnectionString();
@@ -227,6 +246,30 @@ namespace AccountSource
             {
                 Logger.WriteLog(ex);
                 return false;
+            }
+        }
+        /// <summary>取得使用者姓名ByUserID</summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
+        public static UserTable getUserNameByUserID(Guid userID) 
+        {
+            try
+            {
+                using (ContextModel context = new ContextModel())
+                {
+                    var query =
+                        (from item in context.UserTables
+                         where item.userID == userID
+                         select item);
+
+                    var obj = query.FirstOrDefault();
+                    return obj;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
             }
         }
     }

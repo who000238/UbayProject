@@ -89,81 +89,81 @@ namespace UbayProject
         //    Response.Write("<script>alert('貼文新増成功')</script>");
 
         //}
-        public static void createPost(string title, string innerText, string userID)
-        {
-            string connStr = DBHelper.GetConnectionString();
-            string dbCommand =
-                $@" INSERT INTO PostTable
-                    (
-                         postTitle
-                        ,countOfLikes
-                        ,countOfUnlikes
-                        ,countOfViewers
-                        ,userID
-                        ,subCategoryID
-                        ,createDate
-                        ,postText
-                    )    
-                    VALUES
-                    (
-                        @postTitle
-                        ,'0'
-                        ,'0'
-                        ,'0'
-                        ,@userID
-                        ,@subCategoryID
-                        ,@createDate
-                        ,@postText
-                    )
-                  ";
-            // connect db & execute
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                using (SqlCommand comm = new SqlCommand(dbCommand, conn))
-                {
-                    comm.Parameters.AddWithValue("@postTitle", title);
-                    comm.Parameters.AddWithValue("@subCategoryID", 1);
-                    comm.Parameters.AddWithValue("@postText", innerText);
-                    comm.Parameters.AddWithValue("@userID", userID);
-                    comm.Parameters.AddWithValue("@createDate", DateTime.Now);
+        //public static void createPost(string title, string innerText, string userID)
+        //{
+        //    string connStr = DBHelper.GetConnectionString();
+        //    string dbCommand =
+        //        $@" INSERT INTO PostTable
+        //            (
+        //                 postTitle
+        //                ,countOfLikes
+        //                ,countOfUnlikes
+        //                ,countOfViewers
+        //                ,userID
+        //                ,subCategoryID
+        //                ,createDate
+        //                ,postText
+        //            )    
+        //            VALUES
+        //            (
+        //                @postTitle
+        //                ,'0'
+        //                ,'0'
+        //                ,'0'
+        //                ,@userID
+        //                ,@subCategoryID
+        //                ,@createDate
+        //                ,@postText
+        //            )
+        //          ";
+        //    // connect db & execute
+        //    using (SqlConnection conn = new SqlConnection(connStr))
+        //    {
+        //        using (SqlCommand comm = new SqlCommand(dbCommand, conn))
+        //        {
+        //            comm.Parameters.AddWithValue("@postTitle", title);
+        //            comm.Parameters.AddWithValue("@subCategoryID", 1);
+        //            comm.Parameters.AddWithValue("@postText", innerText);
+        //            comm.Parameters.AddWithValue("@userID", userID);
+        //            comm.Parameters.AddWithValue("@createDate", DateTime.Now);
 
-                    try
-                    {
-                        conn.Open();
-                        comm.ExecuteNonQuery();
+        //            try
+        //            {
+        //                conn.Open();
+        //                comm.ExecuteNonQuery();
 
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.WriteLog(ex);
-                    }
-                }
-            }
-        }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Logger.WriteLog(ex);
+        //            }
+        //        }
+        //    }
+        //}
 
-        public static DataTable 取得貼文(int categoryID)
-        {
-            string connStr = 資料庫相關.取得連線字串();
-            string dbCommand =
-                $@" SELECT 
-                        [postTitle],
-                        [createDate],
-                        [postID]
-                    FROM [PostTable]
-                    WHERE [subCategoryID] = @subCategoryID
-                ";
-            List<SqlParameter> list = new List<SqlParameter>();
-            list.Add(new SqlParameter("@subCategoryID", categoryID));
-            try
-            {
-                return 資料庫相關.查詢資料清單(connStr, dbCommand, list);
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLog(ex);
-                return null;
-            }
-        }
+        //public static DataTable 取得貼文(int categoryID) //可刪
+        //{
+        //    string connStr = DBHelper.GetConnectionString();
+        //    string dbCommand =
+        //        $@" SELECT 
+        //                [postTitle],
+        //                [createDate],
+        //                [postID]
+        //            FROM [PostTable]
+        //            WHERE [subCategoryID] = @subCategoryID
+        //        ";
+        //    List<SqlParameter> list = new List<SqlParameter>();
+        //    list.Add(new SqlParameter("@subCategoryID", categoryID));
+        //    try
+        //    {
+        //        return DBHelper.ReadDataTable(connStr, dbCommand, list);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return null;
+        //    }
+        //}
         private int GetCurrentPage()
         {
             string pageText = Request.QueryString["Page"];

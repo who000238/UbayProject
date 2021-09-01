@@ -51,7 +51,7 @@ namespace UbayProject
             {
                 string tempQuery3 = Request.QueryString["subCategoryID"];
                 int subCategoryID = Convert.ToInt32(tempQuery3);
-                var obj = getPostAndUserName(subCategoryID);
+                var obj = PostHelper.getPostAndUserName(subCategoryID);
                 this.GridView1.DataSource = obj;
                 this.GridView1.DataBind();
             }
@@ -142,75 +142,72 @@ namespace UbayProject
         //    }
         //}
 
-        public static UserTable getUserNameByUserID(Guid userID) //EF版本
-        {
-            try
-            {
-                using (ContextModel context = new ContextModel())
-                {
-                    var query =
-                        (from item in context.UserTables
-                         where item.userID == userID
-                         select item);
+        //public static UserTable getUserNameByUserID(Guid userID) //EF版本
+        //{
+        //    try
+        //    {
+        //        using (ContextModel context = new ContextModel())
+        //        {
+        //            var query =
+        //                (from item in context.UserTables
+        //                 where item.userID == userID
+        //                 select item);
 
-                    var obj = query.FirstOrDefault();
-                    return obj;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLog(ex);
-                return null;
-            }
-        } // 好像不需要這個功能
-        public static Object getPostAndUserName(int subCategoryID)
-        {
-            try
-            {
-                using (ContextModel context = new ContextModel())  // 用串聯的方式查詢postTable的同時也去把user
-                {
-                    var query =
-                        //(from item in context.PostTables
-                        // where item.subCategoryID == subCategoryID
-                        // select item);
-                        (from item in context.PostTables
-                         join UserInfo in context.UserTables
-                             on item.userID equals UserInfo.userID
-                         where item.subCategoryID == subCategoryID
-                         orderby item.createDate descending
-                         select new
-                         {
-                             UserInfo.userID,
-                             UserInfo.userName,
-                             UserInfo.account,
-                             UserInfo.pwd,
-                             UserInfo.userLevel,
-                             UserInfo.sex,
-                             UserInfo.email,
-                             UserInfo.birthday,
-                             UserInfo.photoURL,
-                             UserInfo.intro,
-                             UserInfo.favoritePosts,
-                             UserInfo.blackList,
-                             item.createDate,
-                             item.postTitle,
-                             item.postID,
-                             item.countOfLikes,
-                             item.countOfUnlikes,
-                             item.countOfViewers,
-                             item.subCategoryID,
-                             item.postText
-                         });
-                    var obj = query.ToList();
-                    return obj;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLog(ex);
-                return null;
-            }
-        }
+        //            var obj = query.FirstOrDefault();
+        //            return obj;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return null;
+        //    }
+        //} // 好像不需要這個功能
+        //public static Object getPostAndUserName(int subCategoryID)
+        //{
+        //    try
+        //    {
+        //        using (ContextModel context = new ContextModel())  // 用串聯的方式查詢postTable的同時也去把user
+        //        {
+        //            var query =
+        //                (from item in context.PostTables
+        //                 join UserInfo in context.UserTables
+        //                     on item.userID equals UserInfo.userID
+        //                 where item.subCategoryID == subCategoryID
+        //                 orderby item.createDate descending
+        //                 select new
+        //                 {
+        //                     UserInfo.userID,
+        //                     UserInfo.userName,
+        //                     UserInfo.account,
+        //                     UserInfo.pwd,
+        //                     UserInfo.userLevel,
+        //                     UserInfo.sex,
+        //                     UserInfo.email,
+        //                     UserInfo.birthday,
+        //                     UserInfo.photoURL,
+        //                     UserInfo.intro,
+        //                     UserInfo.favoritePosts,
+        //                     UserInfo.blackList,
+        //                     item.createDate,
+        //                     item.postTitle,
+        //                     item.postID,
+        //                     item.countOfLikes,
+        //                     item.countOfUnlikes,
+        //                     item.countOfViewers,
+        //                     item.subCategoryID,
+        //                     item.postText
+        //                 });
+        //            var obj = query.ToList();
+        //            return obj;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return null;
+        //    }
+        //}
 
         //public static DataTable getPost(int subCategoryID) //這個貌似也可以刪除
         //{
@@ -261,7 +258,7 @@ namespace UbayProject
         {
             string tempQuery3 = Request.QueryString["subCategoryID"];
             int subCategoryID = Convert.ToInt32(tempQuery3);
-            var obj = 取得貼文及UserNameEF版(subCategoryID);
+            var obj = PostHelper.getPostAndUserName(subCategoryID);
             GridView1.PageIndex = e.NewPageIndex;
             this.GridView1.DataSource = obj;
             GridView1.DataBind();

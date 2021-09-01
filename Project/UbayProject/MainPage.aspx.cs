@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using UbayProject.ORM;
 using AccountSource;
 using DBSource;
+using PostAndCommentSource;
 
 namespace UbayProject
 {
@@ -45,7 +46,7 @@ namespace UbayProject
             //取得熱門貼文
             try
             {
-                var dt = GetHotPost();
+                var dt = PostHelper.GetHotPost();
                 this.GridView1.DataSource = dt;
                 this.GridView1.DataBind();
             }
@@ -75,7 +76,7 @@ namespace UbayProject
             {
                 Response.Write("<script>alert('搜尋字串不得留空或者輸入空格、請檢查後重新輸入')</script>");
             }
-            var obj = 搜尋貼文EF(txtSearch_input);
+            var obj = PostHelper.searchPost(txtSearch_input);
             if (obj != null)
             {
                 this.GridView1.Visible = false;
@@ -83,52 +84,52 @@ namespace UbayProject
                 this.GridView2.DataBind();
             }
         }
+        //待刪除
+        //public static Object searchPost(string Input_txt) //與subsubmaster 取得貼文及UserNameEF版相同
+        //{
+        //    try
+        //    {
+        //        using (ContextModel context = new ContextModel())
+        //        {
+        //            var query =
+        //                (from item in context.PostTables
+        //                 join UserInfo in context.UserTables
+        //                  on item.userID equals UserInfo.userID
+        //                  where item.postTitle.Contains(Input_txt)
+        //                 select new
+        //                 {
+        //                     UserInfo.userID,
+        //                     UserInfo.userName,
+        //                     UserInfo.account,
+        //                     UserInfo.pwd,
+        //                     UserInfo.userLevel,
+        //                     UserInfo.sex,
+        //                     UserInfo.email,
+        //                     UserInfo.birthday,
+        //                     UserInfo.photoURL,
+        //                     UserInfo.intro,
+        //                     UserInfo.favoritePosts,
+        //                     UserInfo.blackList,
+        //                     item.createDate,
+        //                     item.postTitle,
+        //                     item.postID,
+        //                     item.countOfLikes,
+        //                     item.countOfUnlikes,
+        //                     item.countOfViewers,
+        //                     item.subCategoryID,
+        //                     item.postText
+        //                 });
 
-        public static Object 搜尋貼文EF(string Input_txt) //與subsubmaster 取得貼文及UserNameEF版相同
-        {
-            try
-            {
-                using (ContextModel context = new ContextModel())
-                {
-                    var query =
-                        (from item in context.PostTables
-                         join UserInfo in context.UserTables
-                          on item.userID equals UserInfo.userID
-                          where item.postTitle.Contains(Input_txt)
-                         select new
-                         {
-                             UserInfo.userID,
-                             UserInfo.userName,
-                             UserInfo.account,
-                             UserInfo.pwd,
-                             UserInfo.userLevel,
-                             UserInfo.sex,
-                             UserInfo.email,
-                             UserInfo.birthday,
-                             UserInfo.photoURL,
-                             UserInfo.intro,
-                             UserInfo.favoritePosts,
-                             UserInfo.blackList,
-                             item.createDate,
-                             item.postTitle,
-                             item.postID,
-                             item.countOfLikes,
-                             item.countOfUnlikes,
-                             item.countOfViewers,
-                             item.subCategoryID,
-                             item.postText
-                         });
-
-                    var obj = query.ToList();
-                    return obj;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLog(ex);
-                return null;
-            }
-        }
+        //            var obj = query.ToList();
+        //            return obj;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return null;
+        //    }
+        //}
 
         //public static DataTable 搜尋貼文(string Input_txt) //待刪
         //{
@@ -150,37 +151,37 @@ namespace UbayProject
         //    }
         //}
 
-        public static DataTable GetHotPost()
-        {
-            string connStr = DBHelper.GetConnectionString();
-            string dbCommand =
-                $@" 
-                SELECT TOP (5) [postID]
-                      ,[postTitle]
-                      ,[countOfLikes]
-                      ,[countOfUnlikes]
-                      ,[countOfViewers]
-                      ,[PostTable].[userID]
-                      ,[subCategoryID]
-                      ,[PostTable].[createDate]
-                      ,[postText]
-                      ,[userName]
-                  FROM [UBayProject].[dbo].[PostTable]
-                   INNER JOIN UserTable ON PostTable.userID = UserTable.userID
-                  ORDER BY countOfViewers DESC
-                ";
-            List<SqlParameter> list = new List<SqlParameter>();
+        //public static DataTable GetHotPost() //待刪
+        //{
+        //    string connStr = DBHelper.GetConnectionString();
+        //    string dbCommand =
+        //        $@" 
+        //        SELECT TOP (5) [postID]
+        //              ,[postTitle]
+        //              ,[countOfLikes]
+        //              ,[countOfUnlikes]
+        //              ,[countOfViewers]
+        //              ,[PostTable].[userID]
+        //              ,[subCategoryID]
+        //              ,[PostTable].[createDate]
+        //              ,[postText]
+        //              ,[userName]
+        //          FROM [UBayProject].[dbo].[PostTable]
+        //           INNER JOIN UserTable ON PostTable.userID = UserTable.userID
+        //          ORDER BY countOfViewers DESC
+        //        ";
+        //    List<SqlParameter> list = new List<SqlParameter>();
 
-            try
-            {
-                return DBHelper.ReadDataTable(connStr, dbCommand, list);
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLog(ex);
-                return null;
-            }
-        }
+        //    try
+        //    {
+        //        return DBHelper.ReadDataTable(connStr, dbCommand, list);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return null;
+        //    }
+        //}
 
     
     }

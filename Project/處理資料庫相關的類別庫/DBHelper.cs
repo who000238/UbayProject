@@ -11,6 +11,8 @@ namespace DBSource
 {
     public class DBHelper
     {
+        /// <summary>取得連線字串</summary>
+        /// <returns></returns>
         public static string GetConnectionString()
         {
             string val = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
@@ -31,7 +33,11 @@ namespace DBSource
         //{
 
         //}
-
+        /// <summary>讀取單筆資料</summary>
+        /// <param name="connStr"></param>
+        /// <param name="dbCommand"></param>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public static DataRow ReadDataRow(string connStr, string dbCommand, List<SqlParameter> list)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -53,7 +59,11 @@ namespace DBSource
                 }
             }
         }
-
+        /// <summary>讀取資料清單</summary>
+        /// <param name="connStr"></param>
+        /// <param name="dbCommand"></param>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public static DataTable ReadDataTable(string connStr, string dbCommand, List<SqlParameter> list)
         {
             using (SqlConnection conn = new SqlConnection(connStr))

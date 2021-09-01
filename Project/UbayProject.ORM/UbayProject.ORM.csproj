@@ -50,7 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="CommentTable.cs" />
     <Compile Include="ContextModel.cs" />
     <Compile Include="MainCategoryTable.cs" />
