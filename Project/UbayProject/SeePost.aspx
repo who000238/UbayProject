@@ -22,15 +22,11 @@
             padding-top: -5px;
             border: double blue
         }
-
         #commentPostArea {
             position: relative;
             padding-bottom: 120px;
             border: dashed yellow;
         }
-
-        
-
         #commentArea {
             border: dashed green;
             position: fixed;
@@ -38,12 +34,10 @@
             width: 100%;
             transition: 100ms;
         }
-
         #commentArea:hover {
             bottom: 0px;
             transition: 100ms;
         }
-
         #commentSubmit {
             position: absolute;
             width: 120px;
@@ -51,7 +45,6 @@
             bottom: 10px;
             right: 20px;
         }
-
         #BtnLike {
             position: absolute;
             width: 60px;
@@ -59,7 +52,6 @@
             bottom: 50px;
             right: 80px;
         }
-
         #BtnDisLike {
             position: absolute;
             width: 60px;
@@ -67,15 +59,9 @@
             bottom: 50px;
             right: 20px;
         }
-
         .normal {
             word-break: break-all;
         }
-
-        /*        #comment {
-            width: 100%;
-        }
-*/
     </style>
 </head>
 <body>

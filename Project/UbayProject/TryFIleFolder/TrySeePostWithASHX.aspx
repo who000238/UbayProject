@@ -114,7 +114,7 @@
 
                 $.ajax({
 
-                    url: "http://localhost:54101/TryFIleFolder/TryASHX.ashx?actionName=GetNewPost",
+                    url: "http://localhost:54101/TryFIleFolder/TryASHX.ashx?actionName=Load",
                     type: "POST",
                     data: {
                         "postID": postID
@@ -130,7 +130,7 @@
             });
             var postID = $("#hfpostID").val();
             $.ajax({
-                url: "http://localhost:54101/TryFIleFolder/TryASHX.ashx?actionName=reLoad",
+                url: "http://localhost:54101/TryFIleFolder/TryASHX.ashx?actionName=Load",
                 type: "GET",
                 data: {
                     "postID": postID
@@ -138,6 +138,8 @@
                 success: function (result) {
                     var table = '<table border="1" class="table-primary" id="commentPostTable">';
                     table += '<tr><th>留言者</th><th>留言內容</th><th>留言時間</th></tr>';
+                    var div = '<div class="row">';
+                    div += '<div class="col-2>留言者</div><div class="col-8>留言內容</div><div class="col-2>留言時間</div>';
                     for (var i = 0; i < result.length; i++) {
                         var obj = result[i];
                         var htmlText =
@@ -148,9 +150,24 @@
         
                                 </tr>`;
                         table += htmlText;
+                        var htmlText2 =
+                            `<div class="row">
+                                    <div class="col-3">
+                                        <a href="/UserInfo.aspx?userID=${obj.userID}">${obj.userName}</a>
+                                    </div>
+                                    <div class="col-5">
+                                         <span>${obj.comment}</span>
+                                    </div>
+                                    <div class="col-4">
+                                          <span>${obj.createDate}</span>
+                                    </div>
+                            </div>`;
+                        div += htmlText2;
                     }
                     table += "</table>";
-                    $("#commentPostArea").append(table);
+                    div += "</div>";
+                    $("#commentPostArea").append(div
+                    );
                 }
             });
         });

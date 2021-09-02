@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using UbayProject.Models;
 using UbayProject.ORM;
 using DBSource;
-using PostAndCommentSource;
 
 namespace UbayProject.TryFIleFolder
 {
@@ -95,7 +93,7 @@ namespace UbayProject.TryFIleFolder
                              item.comment,
                              item.userID,
                              item.createDate,
-                             UserInfo.userName,
+                             UserInfo.userName
                          }).ToList();
                     return query;
                 }

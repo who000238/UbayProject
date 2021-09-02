@@ -55,6 +55,8 @@ namespace UbayProject
                     HyperLink link = new HyperLink();
                     this.ContentPlaceHolder1.Controls.Add(link);
                     link.ImageUrl = $"Pics/{item.subCategoryName}.jpg";
+                    //link.ImageHeight = 80;                                                                                                                    //調整超連結圖片的大小
+                    //link.ImageWidth = 480;
                     link.Text = item.subCategoryName + "</br>";
                     link.NavigateUrl = $"/SubPage/{item.subCategoryName}.aspx?mainCategoryID={item.mainCategoryID}&subCategoryID={item.subCategoryID}";
                 }

@@ -1,4 +1,5 @@
 ﻿using DBSource;
+using PostAndCommentSource.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -111,12 +112,23 @@ namespace PostAndCommentSource
                          where item.postID == postID
                          select new
                          {
+                             UserInfo.userName,
+                             item.commentID,
+                             item.postID,
+                             item.comment,
+                             item.userID,
+                             item.createDate
+                         }).ToList();
+                    query.Select(item =>
+                         new
+                         {
+                             item.userName,
                              item.commentID,
                              item.postID,
                              item.comment,
                              item.userID,
                              item.createDate,
-                             UserInfo.userName,
+                             CDate = item.createDate.ToString("yyyy-MM-dd HH:mm:ss")
                          }).ToList();
                     return query;
                 }

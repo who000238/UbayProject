@@ -1,4 +1,5 @@
 ﻿using DBSource;
+using PostAndCommentSource.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UbayProject.ORM;
+
 
 namespace PostAndCommentSource
 {
@@ -216,7 +218,6 @@ namespace PostAndCommentSource
                              UserInfo.userID,
                              UserInfo.userName,
                              UserInfo.account,
-                             UserInfo.pwd,
                              UserInfo.userLevel,
                              UserInfo.sex,
                              UserInfo.email,
@@ -244,6 +245,58 @@ namespace PostAndCommentSource
                 return null;
             }
         }
+        //轉型都會失敗
+        //public static PostModel getpostandusername2(int subcategoryid)
+        //{
+        //    try
+        //    {
+        //        using (ContextModel context = new ContextModel())  // 用串聯的方式查詢posttable的同時也去把user
+        //        {
+        //            var query =
+        //                (from item in context.PostTables
+        //                 join userInfo in context.UserTables
+        //                     on item.userID equals userInfo.userID
+        //                 where item.subCategoryID == subcategoryid
+        //                 orderby item.createDate descending
+        //                 select new
+        //                 {
+        //                     userInfo.userName,
+        //                     item.postTitle,
+        //                     item.postID,
+        //                     item.countOfLikes,
+        //                     item.countOfUnlikes,
+        //                     item.countOfViewers,
+        //                     item.userID,
+        //                     item.subCategoryID,
+        //                     item.createDate,
+        //                     item.postText
+        //                 });
+        //            query.Select(item => new
+        //            {
+        //                item.userName,
+        //                item.postTitle,
+        //                item.postID,
+        //                item.countOfLikes,
+        //                item.countOfUnlikes,
+        //                item.countOfViewers,
+        //                item.userID,
+        //                item.subCategoryID,
+        //                item.createDate,
+        //                item.postText
+        //            }).ToList();
+
+        //            return query;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return null;
+        //    }
+        //}
+        /// <summary>取得貼文 </summary>
+        /// <param name="queryString"></param>
+        /// <returns></returns>
         /// <summary>取得貼文 </summary>
         /// <param name="queryString"></param>
         /// <returns></returns>

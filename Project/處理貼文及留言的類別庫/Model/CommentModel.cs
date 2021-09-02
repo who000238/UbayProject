@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace UbayProject.Models
+namespace PostAndCommentSource.Model
 {
     public class CommentModel
     {
@@ -11,7 +12,7 @@ namespace UbayProject.Models
         public int postID { get; set; }
         public string comment { get; set; }
         public Guid userID { get; set; }
-        public DateTime createDate { get; set; }
+        public DateTime createDate { get;  }
         public string userName { get; set; }
 
     }

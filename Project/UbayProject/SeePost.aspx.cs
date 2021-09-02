@@ -47,35 +47,12 @@ namespace UbayProject
             if (this.commentInput.Text == null)
                 this.commentInput.Text = string.Empty;
 
-            //var Comment = GetCommentByEF(postID); 
 
-            //foreach (var item in Comment)
-            //{
-            //    var commentUserInfo = getUserNameByUserID(item.userID);
-
-            //    Label labelUp = new Label();
-            //    Label labelDown = new Label();
-            //    this.commentPostArea.Controls.Add(labelUp);
-            //    this.commentPostArea.Controls.Add(labelDown);
-            //    labelUp.Text = $"使用者ID:{commentUserInfo.userName}    留言時間:{item.createDate}  </br>";
-            //    labelDown.Text = $"留言:{item.comment}  </br> ------------------------------------------ </br>";
-
-            //}
             CommentHelper.UpdateViewers(postID, tempcountOfViewers);
             //按讚功能
             this.Label1.Text = dr["countOfLikes"].ToString();
             this.Label2.Text = dr["countOfUnlikes"].ToString();
-            //using (ContextModel context = new ContextModel())
-            //{
-            //    var query =
-            //          (from item in context.PostTables
-            //           where item.postID == postID
-            //           select item);
-            //    foreach (var item in query)
-            //    {
-            //        this.Label1.Text = item.countOfLikes.ToString();
-            //    }
-            //}
+
         }
 
 
@@ -93,7 +70,7 @@ namespace UbayProject
             if (!string.IsNullOrWhiteSpace(txtComment))
             {
                 CommentHelper.addComment(txtComment, userID, postID);
-                this.commentInput.Text = "";
+                this.commentInput.Text = string.Empty;
             }
             else
                 Response.Write("<script>alert('你還沒寫下你的留言吧?')</script>");
@@ -116,6 +93,8 @@ namespace UbayProject
                 }
 
                 context.SaveChanges();
+                Response.Write("<script>document.location=document.location</script>");
+
             }
         }
         protected void BtnDislike_Click(object sender, EventArgs e)
@@ -134,6 +113,8 @@ namespace UbayProject
                 }
 
                 context.SaveChanges();
+                Response.Write("<script>document.location=document.location</script>");
+
             }
         }
         // 待刪除
