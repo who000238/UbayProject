@@ -13,8 +13,16 @@
         #divTitle {
             text-align: center;
         }
-        #divMain{
-            text-align:right;
+
+        #divMain {
+            text-align: center;
+            align-items: center;
+
+        }
+
+        body {
+            background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+            background-size: cover;
         }
     </style>
 </head>
@@ -22,21 +30,20 @@
     <form id="form1" runat="server">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-12 col-sm-12" id="divTitle">
-                    <p>Create Account Page</p>
+                <div class="col-12 col-md-12 col-sm-12" id="divTitle" style="padding-top: 180px">
+                    <p>Welcome</p>
                 </div>
-            <div class="col-3"></div>
-            <div class="col-4" id="divMain">
-                帳號:<asp:TextBox ID="txtAccount" runat="server"></asp:TextBox><br />
-                密碼:<asp:TextBox ID="txtPWD" TextMode="Password" runat="server"></asp:TextBox><br />
-                確認密碼:<asp:TextBox ID="txtPWDCheck" TextMode="Password" runat="server"></asp:TextBox><br />
-                電子信箱:<asp:TextBox ID="txtMail" TextMode="Email" runat="server"></asp:TextBox><br />
-                使用者名稱:<asp:TextBox ID="txtUserName" runat="server"></asp:TextBox><br />
-                <asp:Button ID="btnSubmit" runat="server" Text="送出" class="btn btn-dark" OnClick="btnSubmit_Click" />
-                &nbsp;&nbsp;
-                <asp:Button ID="btnClear" runat="server" Text="清除" class="btn btn-dark" OnClick="btnClear_Click" />
-            </div>
-            <div class="col-5"></div>
+                <div class="col-4"></div>
+                <div class="col-4" id="divMain">
+                    <asp:TextBox ID="txtAccount" class="form-control" placeholder="帳號" runat="server"></asp:TextBox><br />
+                    <asp:TextBox ID="txtPWD" class="form-control" placeholder="密碼" TextMode="Password" runat="server"></asp:TextBox><br />
+                    <asp:TextBox ID="txtPWDCheck" class="form-control" placeholder="確認密碼" TextMode="Password" runat="server"></asp:TextBox><br />
+                    <asp:TextBox ID="txtMail" class="form-control" placeholder="電子信箱" TextMode="Email" runat="server"></asp:TextBox><br />
+                    <asp:TextBox ID="txtUserName" class="form-control" placeholder="使用者名稱" runat="server"></asp:TextBox><br />
+                    <asp:Button ID="btnSubmit" runat="server" Text="送出" class="btn btn-dark" OnClick="btnSubmit_Click" />
+                    <asp:Button ID="btnClear" runat="server" Text="清除" class="btn btn-dark" OnClick="btnClear_Click" />
+                </div>
+                <div class="col-4"></div>
             </div>
         </div>
     </form>

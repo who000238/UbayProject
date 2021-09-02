@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using UbayProject.ORM;
 using DBSource;
+using PostAndCommentSource.Model;
 
 namespace UbayProject.TryFIleFolder
 {
@@ -40,9 +41,9 @@ namespace UbayProject.TryFIleFolder
 
                 }).ToList();
 
-                Object NewestPostList2 = GetCommentAndUserName(postID);
+                List<CommentModel> NewestPostList2 = GetCommentAndUserName(postID);
 
-                string jsonText = Newtonsoft.Json.JsonConvert.SerializeObject(NewestPostList);
+                string jsonText = Newtonsoft.Json.JsonConvert.SerializeObject(NewestPostList2);
                 context.Response.ContentType = "application/json";
                 context.Response.Write(jsonText);
             }
@@ -76,7 +77,7 @@ namespace UbayProject.TryFIleFolder
                 return null;
             }
         }
-        public static Object GetCommentAndUserName(string postID)
+        public static List<CommentModel> GetCommentAndUserName(string postID)
         {
             try
             {
@@ -94,8 +95,17 @@ namespace UbayProject.TryFIleFolder
                              item.userID,
                              item.createDate,
                              UserInfo.userName
-                         }).ToList();
-                    return query;
+                         });
+                    query.Select(item => new
+                    {
+                        item.commentID,
+                        item.postID,
+                        item.comment,
+                        item.userID,
+                        item.createDate,
+                        item.userName
+                    });
+                    return (List<CommentModel>)query;
                 }
             }
             catch (Exception ex)

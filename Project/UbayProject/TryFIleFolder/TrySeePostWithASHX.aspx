@@ -166,8 +166,7 @@
                     }
                     table += "</table>";
                     div += "</div>";
-                    $("#commentPostArea").append(div
-                    );
+                    $("#commentPostArea").append(div);
                 }
             });
         });

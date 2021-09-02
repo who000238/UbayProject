@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TryReapeater.aspx.cs" Inherits="UbayProject.TryReapeater" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TryRepeater.aspx.cs" Inherits="UbayProject.TryReapeater" %>
 
 <!DOCTYPE html>
 

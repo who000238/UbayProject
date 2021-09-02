@@ -133,7 +133,7 @@
     <Content Include="TryFIleFolder\TryMainPage.aspx" />
     <Content Include="TryFIleFolder\TrySeePostWithASHX.aspx" />
     <Content Include="TryFIleFolder\TrySerach.aspx" />
-    <Content Include="TryReapeater.aspx" />
+    <Content Include="TryRepeater.aspx" />
     <Content Include="TryUcPager.ascx" />
     <Content Include="UpdateUserInfo.aspx" />
     <Content Include="UserInfo.aspx" />
@@ -304,12 +304,12 @@
     <Compile Include="TryFIleFolder\TrySerach.aspx.designer.cs">
       <DependentUpon>TrySerach.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TryReapeater.aspx.cs">
-      <DependentUpon>TryReapeater.aspx</DependentUpon>
+    <Compile Include="TryRepeater.aspx.cs">
+      <DependentUpon>TryRepeater.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TryReapeater.aspx.designer.cs">
-      <DependentUpon>TryReapeater.aspx</DependentUpon>
+    <Compile Include="TryRepeater.aspx.designer.cs">
+      <DependentUpon>TryRepeater.aspx</DependentUpon>
     </Compile>
     <Compile Include="TryUcPager.ascx.cs">
       <DependentUpon>TryUcPager.ascx</DependentUpon>

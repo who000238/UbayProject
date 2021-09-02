@@ -93,12 +93,16 @@
                     <a href="/UserInfo.aspx">使用者資訊</a>
                 </div>
             </div>
+
+
             <div class="input-group mb-3">
                 <asp:TextBox runat="server" ID="SearchBar" class="form-control" placeholder="想找甚麼...?"></asp:TextBox>
                 <div class="input-group-append">
                     <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-secondary" Text="搜尋" OnClick="btnSearch_Click" />
                 </div>
             </div>
+
+
             <div>
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
                 </asp:ContentPlaceHolder>
