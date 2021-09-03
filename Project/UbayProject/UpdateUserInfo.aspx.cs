@@ -118,7 +118,6 @@ namespace UbayProject
                 Response.Redirect("UserInfo.aspx");
             }
             //表單內容檢查(輸入是否有效)
-
             string str = this.txtUserName.Text;
             string userIDQueryString = this.Request.QueryString["UserID"];
             using (ORM.ContextModel content = new ORM.ContextModel())
@@ -134,6 +133,11 @@ namespace UbayProject
                         if (this.txtUserName.Text != string.Empty)
                         {
                             temp.userName = this.txtUserName.Text;
+                        }
+                        else
+                        {
+                            Response.Write("<script type='text/javascript'> alert('匿名不得為空');location.href = 'UserInfo.aspx';</script>");
+
                         }
                         break;
 
@@ -157,7 +161,15 @@ namespace UbayProject
                         break;
 
                     case "UpdateUserPhoto":
-                        temp.photoURL = this.txtImg.Text;
+                        string[] imagendnames = { ".jpg", ".png", ".jpeg" };
+                        if (imagendnames.Any(x => this.txtImg.Text.EndsWith(x)))
+                        {
+                            temp.photoURL = this.txtImg.Text;
+                        }
+                        else 
+                        {
+                            Response.Write("<script type='text/javascript'> alert('連結結尾必須為 .jpg , .png , .jpeg ');location.href = 'UserInfo.aspx';</script>");
+                        }
                         break;
                     default:
                         break;
@@ -165,7 +177,7 @@ namespace UbayProject
                 content.SaveChanges();
             }
 
-            Response.Redirect("UserInfo.aspx");
+            Response.Write("<script type='text/javascript'> alert('修改成功');location.href = 'UserInfo.aspx';</script>");
 
         }
 
