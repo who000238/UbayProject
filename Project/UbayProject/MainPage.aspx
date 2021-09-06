@@ -53,6 +53,7 @@
                     <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>
                     <asp:LinkButton ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>
                     <a href="UserInfo.aspx" runat="server" id="UserInfoLink">使用者資訊</a>
+                    <a href ="Complaint.aspx">申訴</a>
                 </div>
             </div>
             <div class="input-group mb-3">
