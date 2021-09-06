@@ -80,29 +80,36 @@ namespace UbayProject
                 default:
                     break;
             }
+
             // 取得QueryString並填入使用者原始資訊(注意顯示時要注意輸出檢查)
-
-
-            UbayProject.ORM.UserTable loginedUserNow;
-            string userIDQueryString = this.Request.QueryString["UserID"];
-            using (ORM.ContextModel content = new ORM.ContextModel())
+                UbayProject.ORM.UserTable loginedUserNow;
+                string userIDQueryString = this.Request.QueryString["UserID"];
+            try
             {
-                var temp =
-                    (from user in content.UserTables
-                     where user.userID.ToString() == userIDQueryString
-                     select user).FirstOrDefault();
-                //if temp == null?
-                loginedUserNow = temp;
+                using (ORM.ContextModel content = new ORM.ContextModel())
+                {
+                    var temp =
+                        (from user in content.UserTables
+                         where user.userID.ToString() == userIDQueryString
+                         select user).FirstOrDefault();
+                    //if temp == null?
+                    loginedUserNow = temp;
+                }
+                if (!IsPostBack && loginedUserNow != null)
+                {
+                    this.txtUserName.Text = loginedUserNow.userName;
+                    this.txtUserBirthday.Text = loginedUserNow.birthday?.ToString("yyyy/MM/dd");
+                    this.ddlUserSex.SelectedValue = loginedUserNow.sex;
+                    this.txtUserIntro.Text = loginedUserNow.intro;
+                    this.userImg.ImageUrl = (loginedUserNow.photoURL == null || loginedUserNow.photoURL == string.Empty)
+                                            ? "https://freerangestock.com/thumbnail/35900/red-question-mark.jpg"
+                                            : loginedUserNow.photoURL;
+                }
             }
-            if (!IsPostBack && loginedUserNow!=null)
+            catch (Exception ex)
             {
-                this.txtUserName.Text = loginedUserNow.userName;
-                this.txtUserBirthday.Text = loginedUserNow.birthday?.ToString("yyyy/MM/dd");
-                this.ddlUserSex.SelectedValue = loginedUserNow.sex;
-                this.txtUserIntro.Text = loginedUserNow.intro;
-                this.userImg.ImageUrl = (loginedUserNow.photoURL == null || loginedUserNow.photoURL == string.Empty)
-                                        ? "https://freerangestock.com/thumbnail/35900/red-question-mark.jpg"
-                                        : loginedUserNow.photoURL;
+                DBSource.Logger.WriteLog(ex);
+                return;
             }
         }
 
@@ -113,68 +120,76 @@ namespace UbayProject
             {
                 Response.Redirect("UserInfo.aspx");
             }
-            if (this.Request.QueryString == null)
+            if (this.Request.QueryString["UserID"] == null)
             {
                 Response.Redirect("UserInfo.aspx");
             }
             //表單內容檢查(輸入是否有效)
-            string str = this.txtUserName.Text;
-            string userIDQueryString = this.Request.QueryString["UserID"];
-            using (ORM.ContextModel content = new ORM.ContextModel())
+                string str = this.txtUserName.Text;
+                string userIDQueryString = this.Request.QueryString["UserID"];
+            try
             {
-                var temp =
-                    (from user in content.UserTables
-                     where user.userID.ToString() == userIDQueryString
-                     select user).FirstOrDefault();
-                string queryStringMode = this.Request.QueryString["mode"];
-                switch (queryStringMode)
+                using (ORM.ContextModel content = new ORM.ContextModel())
                 {
-                    case "UpdateUserName":
-                        if (this.txtUserName.Text != string.Empty)
-                        {
-                            temp.userName = this.txtUserName.Text;
-                        }
-                        else
-                        {
-                            Response.Write("<script type='text/javascript'> alert('匿名不得為空');location.href = 'UserInfo.aspx';</script>");
+                    var temp =
+                        (from user in content.UserTables
+                         where user.userID.ToString() == userIDQueryString
+                         select user).FirstOrDefault();
+                    string queryStringMode = this.Request.QueryString["mode"];
+                    switch (queryStringMode)
+                    {
+                        case "UpdateUserName":
+                            if (this.txtUserName.Text != string.Empty)
+                            {
+                                temp.userName = this.txtUserName.Text;
+                            }
+                            else
+                            {
+                                Response.Write("<script type='text/javascript'> alert('匿名不得為空');location.href = 'UserInfo.aspx';</script>");
 
-                        }
-                        break;
+                            }
+                            break;
 
-                    case "UpdateUserBirthday":
-                        //UPDATE USER BIRTHDAY
-                        if (this.txtUserBirthday.Text != string.Empty)
-                        {
-                            temp.birthday = Convert.ToDateTime(this.txtUserBirthday.Text);
-                        }
-                        else 
-                        {
-                            temp.birthday = null;
-                        }
-                        break;
-                    case "UpdateUserSex":
-                        temp.sex = this.ddlUserSex.SelectedValue;
-                        break;
-                    //UPDATE USER SEX
-                    case "UpdateUserIntro":
-                        temp.intro = this.txtUserIntro.Text;
-                        break;
+                        case "UpdateUserBirthday":
+                            //UPDATE USER BIRTHDAY
+                            if (this.txtUserBirthday.Text != string.Empty)
+                            {
+                                temp.birthday = Convert.ToDateTime(this.txtUserBirthday.Text);
+                            }
+                            else
+                            {
+                                temp.birthday = null;
+                            }
+                            break;
+                        case "UpdateUserSex":
+                            temp.sex = this.ddlUserSex.SelectedValue;
+                            break;
+                        //UPDATE USER SEX
+                        case "UpdateUserIntro":
+                            temp.intro = this.txtUserIntro.Text;
+                            break;
 
-                    case "UpdateUserPhoto":
-                        string[] imagendnames = { ".jpg", ".png", ".jpeg" };
-                        if (imagendnames.Any(x => this.txtImg.Text.EndsWith(x)))
-                        {
-                            temp.photoURL = this.txtImg.Text;
-                        }
-                        else 
-                        {
-                            Response.Write("<script type='text/javascript'> alert('連結結尾必須為 .jpg , .png , .jpeg ');location.href = 'UserInfo.aspx';</script>");
-                        }
-                        break;
-                    default:
-                        break;
+                        case "UpdateUserPhoto":
+                            string[] imagendnames = { ".jpg", ".png", ".jpeg" };
+                            if (imagendnames.Any(x => this.txtImg.Text.EndsWith(x)))
+                            {
+                                temp.photoURL = this.txtImg.Text;
+                            }
+                            else
+                            {
+                                Response.Write("<script type='text/javascript'> alert('連結結尾必須為 .jpg , .png , .jpeg ');location.href = 'UserInfo.aspx';</script>");
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    content.SaveChanges();
                 }
-                content.SaveChanges();
+            }
+            catch (Exception ex) 
+            {
+                DBSource.Logger.WriteLog(ex);
+                return;
             }
 
             Response.Write("<script type='text/javascript'> alert('修改成功');location.href = 'UserInfo.aspx';</script>");

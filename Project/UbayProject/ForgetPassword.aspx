@@ -14,13 +14,10 @@
             background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
             background-size: cover;
         }        
-        #divTitle {
+        div {
             text-align: center;
         }
 
-        #divMain {
-            text-align: right;
-        }
     </style>
 </head>
 <body>
@@ -28,18 +25,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-12 col-sm-12" id="divTitle">
-                    <p>忘記密碼</p>
+                    <br/>
+                    <h1>忘記密碼</h1>
+                    <br/>
                 </div>
-                <div class="col-3"></div>
-                <div class="col-4" id="divMain">
-                    帳號:<asp:TextBox ID="txtAccount" runat="server" placeholder="請輸入帳號!"></asp:TextBox><br />
-                    電子信箱:<asp:TextBox ID="txtMail" TextMode="Email" runat="server" placeholder="請輸入註冊帳號時的信箱!"></asp:TextBox><br />
-                    </br>
+                <div class="col-12" id="divMain">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    帳號:<asp:TextBox ID="txtAccount" runat="server" placeholder="請輸入帳號!" Width="297px"></asp:TextBox><br /><br />
+                    電子信箱:<asp:TextBox ID="txtMail" TextMode="Email" runat="server" placeholder="請輸入註冊帳號時的信箱!" Width="302px"></asp:TextBox><br />
+                    <br/>
                     <asp:Button ID="btnSubmit" runat="server" Text="送出" OnClick="btnSubmit_Click" class="btn btn-dark"/>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnCancel" runat="server" Text="清除" OnClick="btnCancel_Click" class="btn btn-dark" />
                 </div>
-                <div class="col-5"></div>
+                <div class="col-12"></div>
             </div>
         </div>
     </form>

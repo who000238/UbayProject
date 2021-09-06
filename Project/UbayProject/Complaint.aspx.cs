@@ -30,13 +30,21 @@ namespace UbayProject
             //取得目前登入使用者資料
             UbayProject.ORM.UserTable loginedUserNow;
             string logineduserID = this.Session["UserLoginInfo"]?.ToString();
-            using (ORM.ContextModel content = new ORM.ContextModel())
+            try
             {
-                var temp =
-                    (from user in content.UserTables
-                     where user.userID.ToString() == logineduserID
-                     select user).FirstOrDefault();
-                loginedUserNow = temp;
+                using (ORM.ContextModel content = new ORM.ContextModel())
+                {
+                    var temp =
+                        (from user in content.UserTables
+                         where user.userID.ToString() == logineduserID
+                         select user).FirstOrDefault();
+                    loginedUserNow = temp;
+                }
+            }
+            catch(Exception ex)
+            {
+                DBSource.Logger.WriteLog(ex);
+                return;
             }
             
             //產生寄信內容String

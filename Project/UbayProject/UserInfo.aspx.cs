@@ -48,13 +48,21 @@ namespace UbayProject
             //取得目前應顯示的使用者資料(QueryString)的使用者
             UbayProject.ORM.UserTable queriedUserNow;
             string userIDQueryString = this.Request.QueryString["UserID"];
-            using (ORM.ContextModel content = new ORM.ContextModel())
+            try
             {
-                var temp =
-                    (from user in content.UserTables
-                     where user.userID.ToString() == userIDQueryString
-                     select user).FirstOrDefault();
-                queriedUserNow = temp;
+                using (ORM.ContextModel content = new ORM.ContextModel())
+                {
+                    var temp =
+                        (from user in content.UserTables
+                         where user.userID.ToString() == userIDQueryString
+                         select user).FirstOrDefault();
+                    queriedUserNow = temp;
+                }
+            }
+            catch(Exception ex)
+            {
+                DBSource.Logger.WriteLog(ex);
+                return;
             }
             //有找到QuerrySting使用者顯示資料，否則保持預設值查無此人
             if (queriedUserNow != null)
@@ -101,16 +109,24 @@ namespace UbayProject
                 this.btnUpdateUserSex.Visible = true;
             }
 
-            //檢查目前登入者資料，如果UserLevel == 0，且不是自己的帳號，且對方權限不是管理者顯示刪除按鈕、黑名單欄位
+            //檢查目前登入者資料，如果UserLevel == 0(管理員)，且不是自己的帳號，且對方權限不是管理者顯示刪除按鈕、黑名單欄位
             UbayProject.ORM.UserTable loginedUserNow;
             string logineduserID = this.Session["UserLoginInfo"]?.ToString();
-            using (ORM.ContextModel content = new ORM.ContextModel())
+            try
             {
-                var temp =
-                    (from user in content.UserTables
-                     where user.userID.ToString() == logineduserID
-                     select user).FirstOrDefault();
-                loginedUserNow = temp;
+                using (ORM.ContextModel content = new ORM.ContextModel())
+                {
+                    var temp =
+                        (from user in content.UserTables
+                         where user.userID.ToString() == logineduserID
+                         select user).FirstOrDefault();
+                    loginedUserNow = temp;
+                }
+            }
+            catch(Exception ex)
+            {
+                DBSource.Logger.WriteLog(ex);
+                return;
             }
             //有找到QuerryString的使用者，且有找到Seesion的使用者
             if (loginedUserNow != null && queriedUserNow != null)
@@ -238,13 +254,21 @@ namespace UbayProject
             //確認使用者權限等級(session)(取得登入者資訊>確認Level)
             UbayProject.ORM.UserTable loginedUserNow;
             string logineduserID = this.Session["UserLoginInfo"]?.ToString();
-            using (ORM.ContextModel content = new ORM.ContextModel())
+            try
             {
-                var temp =
-                    (from user in content.UserTables
-                     where user.userID.ToString() == logineduserID
-                     select user).FirstOrDefault();
-                loginedUserNow = temp;
+                using (ORM.ContextModel content = new ORM.ContextModel())
+                {
+                    var temp =
+                        (from user in content.UserTables
+                         where user.userID.ToString() == logineduserID
+                         select user).FirstOrDefault();
+                    loginedUserNow = temp;
+                }
+            }
+            catch(Exception ex)
+            {
+                DBSource.Logger.WriteLog(ex);
+                return;
             }
             if (loginedUserNow.userLevel != 0)
             {
@@ -252,23 +276,31 @@ namespace UbayProject
             }
             //刪除(querystring user)
             string userIDQueryString = this.Request.QueryString["UserID"];
-            using (ORM.ContextModel content = new ORM.ContextModel())
+            try
             {
-                var temp =
-                    (from user in content.UserTables
-                     where user.userID.ToString() == userIDQueryString
-                     select user).FirstOrDefault();
-                //if temp == null? 沒找到使用者，提示無相關資料
-                if (temp!=null)
+                using (ORM.ContextModel content = new ORM.ContextModel())
                 {
-                    content.UserTables.Remove(temp);
-                    content.SaveChanges();
-                    this.Response.Redirect($"UserInfo.aspx?userid={userIDQueryString}");
+                    var temp =
+                        (from user in content.UserTables
+                         where user.userID.ToString() == userIDQueryString
+                         select user).FirstOrDefault();
+                    //if temp == null? 沒找到使用者，提示無相關資料
+                    if (temp != null)
+                    {
+                        content.UserTables.Remove(temp);
+                        content.SaveChanges();
+                        this.Response.Redirect($"UserInfo.aspx?userid={userIDQueryString}");
+                    }
+                    else
+                    {
+                        Response.Write("<script type='text/javascript'> alert('無此使用者');location.href = 'MainPage.aspx';</script>");
+                    }
                 }
-                else
-                {
-                    Response.Write("<script type='text/javascript'> alert('無此使用者');location.href = 'MainPage.aspx';</script>");
-                }
+            }
+            catch(Exception ex)
+            {
+                DBSource.Logger.WriteLog(ex);
+                return;
             }
 
 
@@ -282,25 +314,32 @@ namespace UbayProject
         protected void btnBlackList_Click(object sender, EventArgs e)
         {
             string userIDQueryString = this.Request.QueryString["UserID"];
-
-            using (ORM.ContextModel content = new ORM.ContextModel())
+            try
             {
-                var temp =
-                    (from user in content.UserTables
-                     where user.userID.ToString() == userIDQueryString
-                     select user).FirstOrDefault();
-                if (temp != null)
+                using (ORM.ContextModel content = new ORM.ContextModel())
                 {
-                    //修改黑名單值
-                    temp.blackList = (temp.blackList.ToString() == "N")
-                                   ? "Y"
-                                   : "N";
-                    content.SaveChanges();
+                    var temp =
+                        (from user in content.UserTables
+                         where user.userID.ToString() == userIDQueryString
+                         select user).FirstOrDefault();
+                    if (temp != null)
+                    {
+                        //修改黑名單值
+                        temp.blackList = (temp.blackList.ToString() == "N")
+                                       ? "Y"
+                                       : "N";
+                        content.SaveChanges();
+                    }
+                    else
+                    {
+                        Response.Write("<script type='text/javascript'> alert('無此使用者');location.href = 'MainPage.aspx';</script>");
+                    }
                 }
-                else 
-                {
-                    Response.Write("<script type='text/javascript'> alert('無此使用者');location.href = 'MainPage.aspx';</script>");
-                }
+            }
+            catch(Exception ex)
+            {
+                DBSource.Logger.WriteLog(ex);
+                return;
             }
         }
 
