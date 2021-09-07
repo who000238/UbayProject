@@ -12,7 +12,9 @@
     <style>
         #div1 {
             height: 180px;
+            background-color:rgba(255,255,255,0.5);
         }
+        
 /**/
 div.container2
 {
@@ -64,11 +66,10 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
     transform: translateY(0px);
 }
 /**/
-        #div2 {
-            background-color: orange;
-        }
+        
         #div3 {
             height: 550px;
+            background-color:rgba(255,255,255,0.5);
             /* margin-top: 10px;
             background: -webkit-linear-gradient(yellow,red);
             background: -o-linear-gradient(yellow,red);
@@ -85,15 +86,16 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
             width: 200px;
             height: 200px
         }
+       
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="container">
-            <img src="Pics/messageImage_1630311093428-removebg-preview.png" id="Logo" />
+           <%-- <img src="Pics/messageImage_1630311093428-removebg-preview.png" id="Logo" />--%>
             <div id="div1" class="row container2 topBotomBordersOut">
                 <div class="col-2">
-                    <%--<img src="Pics/messageImage_1630311093428-removebg-preview.png" id="Logo" />--%>
+                    <img src="Pics/messageImage_1630311093428-removebg-preview.png" id="Logo" />
                 </div>
                 <%--  --%>
                 <nav class="navbar navbar-expand-lg navbar-light">
@@ -105,7 +107,7 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
                 <div class="col-8">
                     <p>PHOTO/AD</p>
                 </div>
-                <div class="col-2 collapse navbar-collapse " id="navbarNavDropdown">
+                <div class="col-2 collapse navbar-collapse justify-content-end" id="navbarNavDropdown"  >
                     <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>
                     <asp:LinkButton ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>
                     <a href="UserInfo.aspx" runat="server" id="UserInfoLink">使用者資訊</a>
