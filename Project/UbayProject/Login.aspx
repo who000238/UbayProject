@@ -60,7 +60,8 @@
                 &nbsp;&nbsp;
             <asp:Button ID="btnCancle" runat="server" Text="取消" class="btn btn-dark" OnClick="btnCancle_Click" />
                 <br />
-                <a href="CreateAccount.aspx" style="text-align: right">沒有帳號嗎?點擊申請!</a>
+                <a href="CreateAccount.aspx" style="text-align: right">沒有帳號嗎?點擊申請!</a><br/>
+                <a href="ForgetPassword.aspx">忘記密碼</a>
             </div>
             <div class="col-4"></div>
         </div>

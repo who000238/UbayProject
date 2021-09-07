@@ -18,9 +18,7 @@
             text-align: center;
         }
 
-        #divMain {
-            text-align: center;
-        }
+
         .auto-style1 {
             flex: 0 0 auto;
             width: 100%;
@@ -32,15 +30,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-12 col-sm-12" id="divTitle">
-                    <p>申訴頁面</p>
+                    <br/>
+                    <h1>申訴頁面</h1>
+                    <br/>
                 </div>
-                <div class="col-3"></div>
                 <div class="auto-style1" id="divMain">
 
                     申訴標題:
-                <asp:TextBox ID="txtTitle" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="txtTitle" runat="server" Width="488px"></asp:TextBox><br /><br/>
                     申訴內文:
-                <asp:TextBox ID="txtContent" runat="server" TextMode="MultiLine" MaxLength="500" ></asp:TextBox> <br />
+                <asp:TextBox ID="txtContent" runat="server" TextMode="MultiLine" MaxLength="500" Width="487px"></asp:TextBox> <br />
                 <asp:Button ID="Button1" runat="server" Text="送出" class="btn btn-dark" OnClick="btnSubmit_Click" />
                     &nbsp;&nbsp;
                 <asp:Button ID="Button2" runat="server" Text="清除" class="btn btn-dark" OnClick="btnClear_Click" />
@@ -48,22 +47,6 @@
                 <div class="col-5"></div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </form>
 </body>
 </html>

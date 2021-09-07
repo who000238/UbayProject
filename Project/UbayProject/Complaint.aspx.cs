@@ -30,18 +30,27 @@ namespace UbayProject
             //取得目前登入使用者資料
             UbayProject.ORM.UserTable loginedUserNow;
             string logineduserID = this.Session["UserLoginInfo"]?.ToString();
-            using (ORM.ContextModel content = new ORM.ContextModel())
+            try
             {
-                var temp =
-                    (from user in content.UserTables
-                     where user.userID.ToString() == logineduserID
-                     select user).FirstOrDefault();
-                loginedUserNow = temp;
+                using (ORM.ContextModel content = new ORM.ContextModel())
+                {
+                    var temp =
+                        (from user in content.UserTables
+                         where user.userID.ToString() == logineduserID
+                         select user).FirstOrDefault();
+                    loginedUserNow = temp;
+                }
+            }
+            catch(Exception ex)
+            {
+                DBSource.Logger.WriteLog(ex);
+                return;
             }
             
             //產生寄信內容String
             string emailContent = 
-                    $@"<h1>申訴使用者訊息:<h1><br/>
+                    $@"
+                       <h1>申訴使用者訊息:<h1><br/>
                        <p>申訴標題:{this.txtContent.Text}<p><br/>
                        <p>申訴內容:{this.txtTitle.Text}<p>";
 
@@ -125,7 +134,7 @@ namespace UbayProject
             catch (Exception ex)
             {
                 // 寫進LOG
-
+                DBSource.Logger.WriteLog(ex);
                 Response.Write("<script type='text/javascript'> alert('寄出失敗');location.href = 'MainPage.aspx';</script>");
 
             }

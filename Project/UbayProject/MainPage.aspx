@@ -105,18 +105,11 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
                 <div class="col-8">
                     <p>PHOTO/AD</p>
                 </div>
-                <div class="col-2 collapse navbar-collapse container2" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                         <a class="nav-link active" aria-current="page" href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>
-                        </li>
-                        <li class="nav-item">
-                         <asp:LinkButton class="nav-link active" aria-current="page" ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="UserInfo.aspx" runat="server" id="UserInfoLink">UserInfo</a>
-                        </li>
-                    </ul>
+                <div class="col-2">
+                    <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>
+                    <asp:LinkButton ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>
+                    <a href="UserInfo.aspx" runat="server" id="UserInfoLink">使用者資訊</a>
+                    <a href ="Complaint.aspx">申訴</a>
                 </div>
                 </nav>
                 <%--  --%>

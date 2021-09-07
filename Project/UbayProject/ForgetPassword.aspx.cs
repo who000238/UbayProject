@@ -44,7 +44,7 @@ namespace UbayProject
                 if ( temp != null &&  temp.email == inputEmail)
                 {
                     //將使用者密碼改為隨機8位的密碼
-                    newPassword = Membership.GeneratePassword(8, 3);
+                    newPassword = Membership.GeneratePassword(8, 0);
                     temp.pwd = newPassword;
                     isUserExist = true;
                     content.SaveChanges();
@@ -119,7 +119,7 @@ namespace UbayProject
             catch (Exception ex)
             {
                 // 寫進LOG
-
+                DBSource.Logger.WriteLog(ex);
                 Response.Write("<script type='text/javascript'> alert('寄出失敗');location.href = 'MainPage.aspx';</script>");
 
             }
