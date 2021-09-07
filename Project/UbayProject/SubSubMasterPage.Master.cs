@@ -21,7 +21,12 @@ namespace UbayProject
             {
                 this.linkLogout.Visible = true;
                 this.a_Login.Visible = false;
-                this.postArea.Visible = true;
+                //檢查黑名單
+                UserModel currentUser = UserInfoHelper.GetCurrentUser();
+                if (currentUser.blackList == "Y")
+                    this.postArea.Visible = false;
+                else
+                    this.postArea.Visible = true;
             }
             else
             {
@@ -29,12 +34,7 @@ namespace UbayProject
                 this.a_Login.Visible = true;
                 this.postArea.Visible = false;
             }
-            //檢查黑名單
-            UserModel currentUser = UserInfoHelper.GetCurrentUser();
-            if (currentUser.blackList == "Y")
-                this.postArea.Visible = false;
-            else
-                this.postArea.Visible = true;
+           
             //取得subCategoryID並轉成INT
             string tempQuery2 = Request.QueryString["mainCategoryID"];
             int tempCatID2 = Convert.ToInt32(tempQuery2);

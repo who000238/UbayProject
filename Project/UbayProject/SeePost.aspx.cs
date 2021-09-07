@@ -22,18 +22,18 @@ namespace UbayProject
             //檢查登入
             if (this.Session["UserLoginInfo"] != null)
             {
-                this.commentArea.Visible = true;
+                //檢查黑名單
+                UserModel currentUser = UserInfoHelper.GetCurrentUser();
+                if (currentUser.blackList == "Y")
+                    this.commentArea.Visible = false;
+                else
+                    this.commentArea.Visible = true;
             }
             else
             {
                 this.commentArea.Visible = false;
             }
-            //檢查黑名單
-            UserModel currentUser = UserInfoHelper.GetCurrentUser();
-            if (currentUser.blackList == "Y")
-                this.commentArea.Visible = false;
-            else
-                this.commentArea.Visible = true;
+          
             //讀取網址列中的貼文ID
             string postQueryString = this.Request.QueryString["postID"];
             this.hfpostID.Value = postQueryString;

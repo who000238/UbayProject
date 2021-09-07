@@ -106,7 +106,7 @@ namespace PostAndCommentSource
         /// <summary>搜尋貼文(標題)</summary>
         /// <param name="Input_txt"></param>
         /// <returns></returns>
-        public static Object searchPost(string Input_txt) 
+        public static List<PostModel> searchPost(string Input_txt)
         {
             try
             {
@@ -117,31 +117,21 @@ namespace PostAndCommentSource
                          join UserInfo in context.UserTables
                           on item.userID equals UserInfo.userID
                          where item.postTitle.Contains(Input_txt)
-                         select new
+                         select new PostModel()
                          {
-                             UserInfo.userID,
-                             UserInfo.userName,
-                             UserInfo.account,
-                             UserInfo.pwd,
-                             UserInfo.userLevel,
-                             UserInfo.sex,
-                             UserInfo.email,
-                             UserInfo.birthday,
-                             UserInfo.photoURL,
-                             UserInfo.intro,
-                             UserInfo.favoritePosts,
-                             UserInfo.blackList,
-                             item.createDate,
-                             item.postTitle,
-                             item.postID,
-                             item.countOfLikes,
-                             item.countOfUnlikes,
-                             item.countOfViewers,
-                             item.subCategoryID,
-                             item.postText
-                         });
+                             userID = UserInfo.userID,
+                             userName = UserInfo.userName,
+                             createDate = item.createDate,
+                             postTitle = item.postTitle,
+                             postID = item.postID,
+                             countOfLikes = item.countOfLikes,
+                             countOfUnlikes = item.countOfUnlikes,
+                             countOfViewers = item.countOfViewers,
+                             subCategoryID = item.subCategoryID,
+                             postText = item.postText
+                         }).ToList();
 
-                    var obj = query.ToList();
+                    var obj = query;
                     return obj;
                 }
             }
@@ -151,7 +141,7 @@ namespace PostAndCommentSource
                 return null;
             }
         }
-        public static Object searchPost(string Input_txt,int subCategoryID)
+        public static List<PostModel> searchPost(string Input_txt, int subCategoryID)
         {
             try
             {
@@ -163,31 +153,21 @@ namespace PostAndCommentSource
                           on item.userID equals UserInfo.userID
                          where item.postTitle.Contains(Input_txt)
                          where item.subCategoryID == subCategoryID
-                         select new
+                         select new PostModel()
                          {
-                             UserInfo.userID,
-                             UserInfo.userName,
-                             UserInfo.account,
-                             UserInfo.pwd,
-                             UserInfo.userLevel,
-                             UserInfo.sex,
-                             UserInfo.email,
-                             UserInfo.birthday,
-                             UserInfo.photoURL,
-                             UserInfo.intro,
-                             UserInfo.favoritePosts,
-                             UserInfo.blackList,
-                             item.createDate,
-                             item.postTitle,
-                             item.postID,
-                             item.countOfLikes,
-                             item.countOfUnlikes,
-                             item.countOfViewers,
-                             item.subCategoryID,
-                             item.postText
-                         });
+                             userID = UserInfo.userID,
+                             userName = UserInfo.userName,
+                             createDate = item.createDate,
+                             postTitle = item.postTitle,
+                             postID = item.postID,
+                             countOfLikes = item.countOfLikes,
+                             countOfUnlikes = item.countOfUnlikes,
+                             countOfViewers = item.countOfViewers,
+                             subCategoryID = item.subCategoryID,
+                             postText = item.postText
+                         }).ToList();
 
-                    var obj = query.ToList();
+                    var obj = query;
                     return obj;
                 }
             }
@@ -201,7 +181,7 @@ namespace PostAndCommentSource
         /// <summary>取得貼文及發文者的使用者姓名</summary>
         /// <param name="subCategoryID"></param>
         /// <returns></returns>
-        public static Object getPostAndUserName(int subCategoryID)
+        public static List<PostModel> getPostAndUserName(int subCategoryID)
         {
             try
             {
@@ -213,30 +193,20 @@ namespace PostAndCommentSource
                              on item.userID equals UserInfo.userID
                          where item.subCategoryID == subCategoryID
                          orderby item.createDate descending
-                         select new
+                         select new PostModel()
                          {
-                             UserInfo.userID,
-                             UserInfo.userName,
-                             UserInfo.account,
-                             UserInfo.userLevel,
-                             UserInfo.sex,
-                             UserInfo.email,
-                             UserInfo.birthday,
-                             UserInfo.photoURL,
-                             UserInfo.intro,
-                             UserInfo.favoritePosts,
-                             UserInfo.blackList,
-                             item.createDate,
-                             item.postTitle,
-                             item.postID,
-                             item.countOfLikes,
-                             item.countOfUnlikes,
-                             item.countOfViewers,
-                             item.subCategoryID,
-                             item.postText
-                         });
-                    var obj = query.ToList();
-                    return obj;
+                             userID = UserInfo.userID,
+                             userName = UserInfo.userName,
+                             createDate = item.createDate,
+                             postTitle = item.postTitle,
+                             postID = item.postID,
+                             countOfLikes = item.countOfLikes,
+                             countOfUnlikes = item.countOfUnlikes,
+                             countOfViewers = item.countOfViewers,
+                             subCategoryID = item.subCategoryID,
+                             postText = item.postText
+                         }).ToList();
+                    return query;
                 }
             }
             catch (Exception ex)
