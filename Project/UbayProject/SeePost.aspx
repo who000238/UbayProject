@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>貼文</title>
     <link rel="stylesheet" href="css/bootstrap.css" />
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -139,9 +139,11 @@
                         var obj = result[i];
                         var htmlText =
                             `<tr>
-                                    <td  style="width:20%">${obj.userName}</td>
+                                    <td  style="width:20%">
+                                        <a href="/UserInfo.aspx?userID=${obj.userID}">${obj.userName}</a>
+                                    </td>
                                     <td  style="width:60%">${obj.comment}</td>
-                                    <td  style="width:20%">${obj.createDate}</td>
+                                    <td  style="width:20%">${obj.CreateDateText}</td>
         
                                 </tr>`;
                         table += htmlText;

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>MainPage</title>
+    <title></title>
     <link rel="stylesheet" href="css/bootstrap.css" />
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -33,30 +33,15 @@
             bottom: 10px;
             right: 20px;
         }
-        /*input[id*=postSubmit]{
-             position: absolute;
-            width: 60px;
-            height: 35px;
-            bottom: 10px;
-            right: 20px;
-        }*/
 
         #div1 {
             height: 180px;
         }
 
         #div2 {
-            background-color: orange
+            /*background-color: orange*/
         }
 
-        #div3 {
-            /*height: 550px;
-            margin-top: 10px;*/
-       /*     background: -webkit-linear-gradient(yellow,red);
-            background: -o-linear-gradient(yellow,red);
-            background: -moz-linear-gradient(yellow,red);
-            background: linear-gradient(yellow,red);*/
-        }
 
         body {
             background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;

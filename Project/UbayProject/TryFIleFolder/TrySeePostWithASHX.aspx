@@ -6,11 +6,11 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="/js/bootstrap.js"></script>
     <script src="/js/jquery-3.6.0.min.js"></script>
-     
+
     <style>
         div {
             /*  border: 1px solid #000000;*/
@@ -23,13 +23,13 @@
             border: double blue
         }
 
-       /* #commentPostArea {
+        /* #commentPostArea {
             position: relative;
             padding-bottom: 120px;
             border: dashed yellow;
         }*/
 
-        
+
 
         .commentArea {
             border: dashed green;
@@ -38,7 +38,7 @@
             width: 100%;
             transition: 100ms;
         }
-/*
+        /*
         #commentArea:hover {
             bottom: 0px;
             transition: 100ms;
@@ -90,7 +90,7 @@
                     <asp:Label runat="server" ID="lblViewer"></asp:Label>
                     </div>
                 </div>
-                <div class="col-12 normal" id="commentPostArea" runat="server">
+                <div id="commentPostArea" runat="server" class="row normal">
                 </div>
                 <div class="row commentArea" id="commentArea" runat="server">
                     <asp:TextBox runat="server" ID="commentInput" TextMode="MultiLine" Rows="5" CssClass="form-control" placeholder="回覆..."></asp:TextBox>
@@ -101,11 +101,11 @@
         </div>
         <table>
             <tr>
-                <td style="width:20%"></td>
+                <td style="width: 20%"></td>
             </tr>
         </table>
     </form>
-   
+
     <script>
         $(function () {
 
@@ -139,14 +139,14 @@
                     var table = '<table border="1" class="table-primary" id="commentPostTable">';
                     table += '<tr><th>留言者</th><th>留言內容</th><th>留言時間</th></tr>';
                     var div = '<div class="row">';
-                    div += '<div class="col-2>留言者</div><div class="col-8>留言內容</div><div class="col-2>留言時間</div>';
+                    div += '<div class="col-2">留言者</div><div class="col-8">留言內容</div><div class="col-2">留言時間</div></div>';
                     for (var i = 0; i < result.length; i++) {
                         var obj = result[i];
                         var htmlText =
                             `<tr>
                                     <td  style="width:20%">${obj.userName}</td>
                                     <td  style="width:60%">${obj.comment}</td>
-                                    <td  style="width:20%">${obj.createDate}</td>
+                                    <td  style="width:20%">${obj.CreateDateText}</td>
         
                                 </tr>`;
                         table += htmlText;
@@ -159,17 +159,24 @@
                                          <span>${obj.comment}</span>
                                     </div>
                                     <div class="col-4">
-                                          <span>${obj.createDate}</span>
+                                          <span>${obj.CreateDateText}</span>
                                     </div>
                             </div>`;
                         div += htmlText2;
                     }
                     table += "</table>";
-                    div += "</div>";
                     $("#commentPostArea").append(div);
                 }
             });
         });
     </script>
+    <div  class="container-fluid" >
+        <div class="row">
+            <div class="col-2">留言者</div>
+            <div class="col-8">留言內容</div>
+            <div class="col-2">留言時間</div>
+        </div>
+    </div>
+
 </body>
 </html>

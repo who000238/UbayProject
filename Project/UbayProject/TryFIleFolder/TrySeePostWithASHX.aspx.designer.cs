@@ -69,7 +69,7 @@ namespace UbayProject.TryFIleFolder
         protected global::System.Web.UI.WebControls.Label lblViewer;
 
         /// <summary>
-        /// commentPostArea 控制項。
+        /// commentPostArea  控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
