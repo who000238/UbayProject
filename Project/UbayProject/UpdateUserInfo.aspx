@@ -189,7 +189,14 @@
     <script>
         $(document).ready(function () {
             $("#btnViewImg").click(function () {
+                if ($("#txtImg").val().endsWith('png') ||
+                    $("#txtImg").val().endsWith('jpg') ||
+                    $("#txtImg").val().endsWith('jpeg')) {
                 $("#userImg").attr("src", $("#txtImg").val());
+                }
+                else {
+                    alert("請輸入.png, .jpg 或是.jpeg的連結!")
+                }
             }
             );
 
