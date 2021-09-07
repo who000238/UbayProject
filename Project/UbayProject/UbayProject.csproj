@@ -136,6 +136,7 @@
     <Content Include="TryRepeater.aspx" />
     <Content Include="TryUcPager.ascx" />
     <Content Include="UpdateUserInfo.aspx" />
+    <Content Include="UserControls\ucPager.ascx" />
     <Content Include="UserInfo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -324,6 +325,13 @@
     </Compile>
     <Compile Include="UpdateUserInfo.aspx.designer.cs">
       <DependentUpon>UpdateUserInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucPager.ascx.cs">
+      <DependentUpon>ucPager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucPager.ascx.designer.cs">
+      <DependentUpon>ucPager.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserInfo.aspx.cs">
       <DependentUpon>UserInfo.aspx</DependentUpon>

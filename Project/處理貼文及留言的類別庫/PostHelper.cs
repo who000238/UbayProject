@@ -72,30 +72,65 @@ namespace PostAndCommentSource
         }
         /// <summary>取得熱門貼文(根據貼文的瀏覽次數)</summary>
         /// <returns></returns>
-        public static DataTable GetHotPost()
-        {
-            string connStr = DBHelper.GetConnectionString();
-            string dbCommand =
-                $@" 
-                SELECT TOP (5) [postID]
-                      ,[postTitle]
-                      ,[countOfLikes]
-                      ,[countOfUnlikes]
-                      ,[countOfViewers]
-                      ,[PostTable].[userID]
-                      ,[subCategoryID]
-                      ,[PostTable].[createDate]
-                      ,[postText]
-                      ,[userName]
-                  FROM [UBayProject].[dbo].[PostTable]
-                   INNER JOIN UserTable ON PostTable.userID = UserTable.userID
-                  ORDER BY countOfViewers DESC
-                ";
-            List<SqlParameter> list = new List<SqlParameter>();
+        //public static DataTable GetHotPost() //待刪
+        //{
+        //    string connStr = DBHelper.GetConnectionString();
+        //    string dbCommand =
+        //        $@" 
+        //        SELECT TOP (15) [postID]
+        //              ,[postTitle]
+        //              ,[countOfLikes]
+        //              ,[countOfUnlikes]
+        //              ,[countOfViewers]
+        //              ,[PostTable].[userID]
+        //              ,[subCategoryID]
+        //              ,[PostTable].[createDate]
+        //              ,[postText]
+        //              ,[userName]
+        //          FROM [UBayProject].[dbo].[PostTable]
+        //           INNER JOIN UserTable ON PostTable.userID = UserTable.userID
+        //          ORDER BY countOfViewers DESC
+        //        ";
+        //    List<SqlParameter> list = new List<SqlParameter>();
 
+        //    try
+        //    {
+        //        return DBHelper.ReadDataTable(connStr, dbCommand, list);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return null;
+        //    }
+        //}
+
+        public static List<PostModel> GetHotPostByEF()
+        {
             try
             {
-                return DBHelper.ReadDataTable(connStr, dbCommand, list);
+                using (ContextModel context = new ContextModel())
+                {
+                    var query =
+                        (from item in context.PostTables
+                         join UserInfo in context.UserTables
+                     on item.userID equals UserInfo.userID
+                         orderby item.countOfViewers descending
+                         select new PostModel()
+                         {
+                             userID = UserInfo.userID,
+                             userName = UserInfo.userName,
+                             createDate = item.createDate,
+                             postTitle = item.postTitle,
+                             postID = item.postID,
+                             countOfLikes = item.countOfLikes,
+                             countOfUnlikes = item.countOfUnlikes,
+                             countOfViewers = item.countOfViewers,
+                             subCategoryID = item.subCategoryID,
+                             postText = item.postText
+                         }).Take(15).ToList();
+
+                    return query;
+                }
             }
             catch (Exception ex)
             {
@@ -103,6 +138,8 @@ namespace PostAndCommentSource
                 return null;
             }
         }
+
+
         /// <summary>搜尋貼文(標題)</summary>
         /// <param name="Input_txt"></param>
         /// <returns></returns>

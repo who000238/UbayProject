@@ -103,11 +103,11 @@ namespace PostAndCommentSource
         {
             try
             {
-                using (ContextModel context1 = new ContextModel())
+                using (ContextModel context = new ContextModel())
                 {
                     var query =
-                        (from item in context1.CommentTables
-                         join UserInfo in context1.UserTables
+                        (from item in context.CommentTables
+                         join UserInfo in context.UserTables
                           on item.userID equals UserInfo.userID
                          where item.postID == postID
                          select new CommentModel()
