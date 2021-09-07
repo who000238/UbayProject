@@ -24,7 +24,7 @@ div.container2
 
 div.container2 a
 {
-    color: #ff0000;
+    color: #000000;
     text-decoration: none;
     font: 20px Raleway;
     margin: 0px 1px;
@@ -105,7 +105,7 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
                 <div class="col-8">
                     <p>PHOTO/AD</p>
                 </div>
-                <div class="col-2">
+                <div class="col-2 collapse navbar-collapse " id="navbarNavDropdown">
                     <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>
                     <asp:LinkButton ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>
                     <a href="UserInfo.aspx" runat="server" id="UserInfoLink">使用者資訊</a>
