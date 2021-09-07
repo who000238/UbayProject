@@ -68,7 +68,7 @@
                 box-shadow: -3px 5px 5px rgba(0,0,0,0.8);
             }
 
-            #divImg {
+/*            #divImg {
                 border-radius: 10px;
                 text-align: center;
                 background-color: #212529;
@@ -77,7 +77,7 @@
                 transition-delay: 0.5s;
                 opacity: 0.3;
                 box-shadow: -15px 5px 5px rgba(0,0,0,0.8);
-            }
+            }*/
 
                 #divImg:hover {
                     text-align: center;
@@ -87,12 +87,12 @@
                     opacity: 1;
                 }
 
-            #tableUserInfo {
+/*            #tableUserInfo {
                 transform: perspective(250px) rotateY(-5deg);
                 transition: 3s;
                 transition-delay: 0.5s;
                 opacity: 0.3;
-            }
+            }*/
 
                 #tableUserInfo:hover {
                     transform: perspective(250px) rotateY(0deg);
@@ -100,13 +100,13 @@
                     opacity: 1;
                 }
 
-            #trUserName {
+/*            #trUserName {
                 padding: 10px;
                 position: relative;
                 right: 0px;
                 bottom: 0px;
                 transition: 500ms;
-            }
+            }*/
 
                 #trUserName:hover {
                     padding: 10px;
@@ -115,13 +115,13 @@
                     bottom: 20px;
                     transition: 500ms;
                 }
-            #trA {
+/*            #trA {
                 padding: 10px;
                 position: relative;
                 right: 0px;
                 bottom: 0px;
                 transition: 500ms;
-            }
+            }*/
 
                 #trA:hover {
                     padding: 10px;
@@ -131,28 +131,29 @@
                     transition: 500ms;
                 }
 
-            #trUserSex {
+/*            #trUserSex {
                 padding: 10px;
                 position: relative;
                 right: 0px;
                 bottom: 0px;
                 transition: 500ms;
-            }
+            }*/
 
                 #trUserSex:hover {
                     padding: 10px;
+                    position: relative;
                     right: 20px;
                     bottom: 20px;
                     transition: 500ms;
                 }
-
+/*
             #trUserBirthday {
                 padding: 10px;
                 position: relative;
                 right: 0px;
                 bottom: 0px;
                 transition: 500ms;
-            }
+            }*/
 
                 #trUserBirthday:hover {
                     padding: 10px;
@@ -162,13 +163,13 @@
                     transition: 500ms;
                 }
 
-            #trUserIntro {
+/*            #trUserIntro {
                 padding: 10px;
                 position: relative;
                 right: 0px;
                 bottom: 0px;
                 transition: 500ms;
-            }
+            }*/
 
                 #trUserIntro:hover {
                     padding: 10px;

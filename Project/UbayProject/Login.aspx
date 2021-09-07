@@ -24,6 +24,23 @@
             text-align: center;
             align-items: center;
         }
+
+        form {
+            transform: translateY(0px);
+            filter: drop-shadow( 1px 2px 4px hsl(0deg 0% 0% / 0.2) );
+        }
+
+        form:focus-within {
+            transform: translateY(-4px);
+            filter: drop-shadow( 2px 4px 16px hsl(0deg 0% 0% / 0.2) );
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            form {
+                transition: filter 300ms, transform 300ms;
+                will-change: transform;
+            }
+        }
     </style>
 </head>
 <body>
@@ -43,7 +60,8 @@
                 &nbsp;&nbsp;
             <asp:Button ID="btnCancle" runat="server" Text="取消" class="btn btn-dark" OnClick="btnCancle_Click" />
                 <br />
-                <a href="CreateAccount.aspx" style="text-align: right">沒有帳號嗎?點擊申請!</a>
+                <a href="CreateAccount.aspx" style="text-align: right">沒有帳號嗎?點擊申請!</a><br/>
+                <a href="ForgetPassword.aspx">忘記密碼</a>
             </div>
             <div class="col-4"></div>
         </div>
