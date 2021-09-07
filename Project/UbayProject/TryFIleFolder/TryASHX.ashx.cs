@@ -41,7 +41,7 @@ namespace UbayProject.TryFIleFolder
 
                 }).ToList();
 
-                List<CommentModel> NewestPostList2 = GetCommentAndUserName(postID);
+                List<CommentModel> NewestPostList2 = GetCommentAndUserName(Convert.ToInt32(postID));
 
                 string jsonText = Newtonsoft.Json.JsonConvert.SerializeObject(NewestPostList2);
                 context.Response.ContentType = "application/json";
@@ -77,7 +77,7 @@ namespace UbayProject.TryFIleFolder
                 return null;
             }
         }
-        public static List<CommentModel> GetCommentAndUserName(string postID)
+        public static List<CommentModel> GetCommentAndUserName(int postID)
         {
             try
             {
@@ -87,25 +87,17 @@ namespace UbayProject.TryFIleFolder
                         (from item in context1.CommentTables
                          join UserInfo in context1.UserTables
                           on item.userID equals UserInfo.userID
-                         select new
+                         where item.postID == postID
+                         select new CommentModel()
                          {
-                             item.commentID,
-                             item.postID,
-                             item.comment,
-                             item.userID,
-                             item.createDate,
-                             UserInfo.userName
-                         });
-                    query.Select(item => new
-                    {
-                        item.commentID,
-                        item.postID,
-                        item.comment,
-                        item.userID,
-                        item.createDate,
-                        item.userName
-                    });
-                    return (List<CommentModel>)query;
+                             commentID = item.commentID,
+                             postID = item.postID,
+                             comment = item.comment,
+                             userID = item.userID,
+                             createDate = item.createDate,
+                             userName = UserInfo.userName
+                         }).ToList();
+                    return query;
                 }
             }
             catch (Exception ex)

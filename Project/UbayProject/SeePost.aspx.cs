@@ -17,6 +17,8 @@ namespace UbayProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+         
+
             //檢查登入
             if (this.Session["UserLoginInfo"] != null)
             {
@@ -26,7 +28,12 @@ namespace UbayProject
             {
                 this.commentArea.Visible = false;
             }
-
+            //檢查黑名單
+            UserModel currentUser = UserInfoHelper.GetCurrentUser();
+            if (currentUser.blackList == "Y")
+                this.commentArea.Visible = false;
+            else
+                this.commentArea.Visible = true;
             //讀取網址列中的貼文ID
             string postQueryString = this.Request.QueryString["postID"];
             this.hfpostID.Value = postQueryString;
@@ -61,19 +68,27 @@ namespace UbayProject
             string txtComment = this.commentInput.Text;
             int postID = Convert.ToInt32(this.Request.QueryString["postID"]);
             UserModel currentUser = UserInfoHelper.GetCurrentUser();
+            string userID = currentUser.userID;
             if (currentUser == null)
             {
                 Response.Write("<script>alert('尚未登入')</script>");
                 return;
             }
-            string userID = currentUser.userID;
-            if (!string.IsNullOrWhiteSpace(txtComment))
+
+            if (txtComment.Length > 4000)
             {
-                CommentHelper.addComment(txtComment, userID, postID);
-                this.commentInput.Text = string.Empty;
+                Response.Write("<script>alert('超過字數上限、請不要一次輸入過多的訊息!!')</script>");
+                return;
             }
-            else
+
+            if (string.IsNullOrWhiteSpace(txtComment))
+            {
                 Response.Write("<script>alert('你還沒寫下你的留言吧?')</script>");
+                return;
+            }
+
+            CommentHelper.addComment(txtComment, userID, postID);
+            this.commentInput.Text = string.Empty;
         }
 
 

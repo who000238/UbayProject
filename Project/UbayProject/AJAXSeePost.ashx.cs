@@ -48,68 +48,6 @@ namespace UbayProject
                 return false;
             }
         }
-        //public static List<CommentTable> GetCommentByEF(int postID)
-        //{
-        //    try
-        //    {
-        //        using (ContextModel context = new ContextModel())
-        //        {
-        //            var query =
-        //                (from item in context.CommentTables
-        //                 where item.postID == postID
-        //                 select item);
-        //            var list = query.ToList();
-        //            return list;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Logger.WriteLog(ex);
-        //        return null;
-        //    }
-        //}
-        //public static Object GetCommentAndUserName(int postID)
-        //{
-        //    try
-        //    {
-        //        using (ContextModel context1 = new ContextModel())
-        //        {
-        //            //var query =
-        //            //    (from item in context1.CommentTables
-        //            //     join UserInfo in context1.UserTables
-        //            //      on item.userID equals UserInfo.userID
-        //            //     select new
-        //            //     {
-        //            //         item.commentID,
-        //            //         item.postID,
-        //            //         item.comment,
-        //            //         item.userID,
-        //            //         item.createDate,
-        //            //         UserInfo.userName,
-        //            //     }).ToList();
-
-        //            var query =
-        //                (from item in context1.CommentTables
-        //                 join UserInfo in context1.UserTables
-        //                  on item.userID equals UserInfo.userID
-        //                 where item.postID == postID
-        //                 select new
-        //                 {
-        //                     item.commentID,
-        //                     item.postID,
-        //                     item.comment,
-        //                     item.userID,
-        //                     item.createDate,
-        //                     UserInfo.userName,
-        //                 }).ToList();
-        //            return query;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Logger.WriteLog(ex);
-        //        return null;
-        //    }
-        //}
+    
     }
 }

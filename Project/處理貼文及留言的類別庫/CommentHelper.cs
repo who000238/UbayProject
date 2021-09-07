@@ -99,7 +99,7 @@ namespace PostAndCommentSource
         /// <summary>取得回覆及回覆者的使用者姓名</summary>
         /// <param name="postID"></param>
         /// <returns></returns>
-        public static Object GetCommentAndUserName(int postID)
+        public static List<CommentModel> GetCommentAndUserName(int postID)
         {
             try
             {
@@ -110,25 +110,14 @@ namespace PostAndCommentSource
                          join UserInfo in context1.UserTables
                           on item.userID equals UserInfo.userID
                          where item.postID == postID
-                         select new
+                         select new CommentModel()
                          {
-                             UserInfo.userName,
-                             item.commentID,
-                             item.postID,
-                             item.comment,
-                             item.userID,
-                             item.createDate
-                         }).ToList();
-                    query.Select(item =>
-                         new
-                         {
-                             item.userName,
-                             item.commentID,
-                             item.postID,
-                             item.comment,
-                             item.userID,
-                             item.createDate,
-                             CDate = item.createDate.ToString("yyyy-MM-dd HH:mm:ss")
+                             commentID = item.commentID,
+                             postID = item.postID,
+                             comment = item.comment,
+                             userID = item.userID,
+                             createDate = item.createDate,
+                             userName = UserInfo.userName,
                          }).ToList();
                     return query;
                 }

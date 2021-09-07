@@ -46,34 +46,10 @@ namespace UbayProject.TryFIleFolder
             if (this.commentInput.Text == null)
                 this.commentInput.Text = string.Empty;
 
-            //var Comment = GetCommentByEF(postID);
-
-            //foreach (var item in Comment)
-            //{
-            //    var commentUserInfo = getUserNameByUserID(item.userID);
-
-            //    Label labelUp = new Label();
-            //    Label labelDown = new Label();
-            //    this.commentPostArea.Controls.Add(labelUp);
-            //    this.commentPostArea.Controls.Add(labelDown);
-            //    labelUp.Text = $"使用者ID:{commentUserInfo.userName}    留言時間:{item.createDate}  </br>";
-            //    labelDown.Text = $"留言:{item.comment}  </br> ------------------------------------------ </br>";
-
-            //}
             UpdateViewers(postID, tempcountOfViewers);
             //按讚功能
             this.Label1.Text = dr["countOfLikes"].ToString();
-            //using (ContextModel context = new ContextModel())
-            //{
-            //    var query =
-            //          (from item in context.PostTables
-            //           where item.postID == postID
-            //           select item);
-            //    foreach (var item in query)
-            //    {
-            //        this.Label1.Text = item.countOfLikes.ToString();
-            //    }
-            //}
+   
         }
 
 

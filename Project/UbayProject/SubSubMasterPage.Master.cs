@@ -15,6 +15,7 @@ namespace UbayProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+        
             //檢查登入
             if (this.Session["UserLoginInfo"] != null)
             {
@@ -28,6 +29,12 @@ namespace UbayProject
                 this.a_Login.Visible = true;
                 this.postArea.Visible = false;
             }
+            //檢查黑名單
+            UserModel currentUser = UserInfoHelper.GetCurrentUser();
+            if (currentUser.blackList == "Y")
+                this.postArea.Visible = false;
+            else
+                this.postArea.Visible = true;
             //取得subCategoryID並轉成INT
             string tempQuery2 = Request.QueryString["mainCategoryID"];
             int tempCatID2 = Convert.ToInt32(tempQuery2);
@@ -74,6 +81,18 @@ namespace UbayProject
             string txtInner = this.postInner.Text;
             string tempQuery2 = Request.QueryString["subCategoryID"];
             int tempCatID2 = Convert.ToInt32(tempQuery2);
+            if (txtTitle.Length > 50)
+            {
+                Response.Write("<script>alert('標題過長')</script>");
+                return;
+
+            }
+            if (txtInner.Length > 4000)
+            {
+                Response.Write("<script>alert('內文過長')</script>");
+                return;
+
+            }
 
             if (string.IsNullOrWhiteSpace(txtTitle) ||
                 string.IsNullOrWhiteSpace(txtInner))
@@ -81,6 +100,8 @@ namespace UbayProject
                 Response.Write("<script>alert('標題和內文不得為空')</script>");
                 return;
             }
+
+
             UserModel currentUser = UserInfoHelper.GetCurrentUser();
             string userID = currentUser.userID;
 
