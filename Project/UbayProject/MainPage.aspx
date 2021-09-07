@@ -13,11 +13,60 @@
         #div1 {
             height: 180px;
         }
+/**/
+div.container2
+{
+    font-family: Raleway;
+    margin: 0 auto;
+	padding: 10px 1em;
+	text-align: center;
+}
 
+div.container2 a
+{
+    color: #ff0000;
+    text-decoration: none;
+    font: 20px Raleway;
+    margin: 0px 1px;
+    padding: 1px 1px;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+}
+ Top and Bottom borders go out 
+div.topBotomBordersOut a:before, div.topBotomBordersOut a:after
+{
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background:#000000;
+    content: "";
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+div.topBotomBordersOut a:before
+{
+    top: 0px;
+    transform: translateY(10px);
+}
+
+div.topBotomBordersOut a:after
+{
+    bottom: 0px;
+    transform: translateY(-10px);
+}
+
+div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
+{
+    opacity: 1;
+    transform: translateY(0px);
+}
+/**/
         #div2 {
-            background-color: orange
+            background-color: orange;
         }
-
         #div3 {
             height: 550px;
             /* margin-top: 10px;
@@ -41,19 +90,36 @@
 <body>
     <form id="form1" runat="server">
         <div class="container">
-
-            <div id="div1" class="row">
+            <img src="Pics/messageImage_1630311093428-removebg-preview.png" id="Logo" />
+            <div id="div1" class="row container2 topBotomBordersOut">
                 <div class="col-2">
-                    <img src="Pics/messageImage_1630311093428-removebg-preview.png" id="Logo" />
+                    <%--<img src="Pics/messageImage_1630311093428-removebg-preview.png" id="Logo" />--%>
                 </div>
+                <%--  --%>
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="col-8">
                     <p>PHOTO/AD</p>
                 </div>
-                <div class="col-2">
-                    <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>
-                    <asp:LinkButton ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>
-                    <a href="UserInfo.aspx" runat="server" id="UserInfoLink">使用者資訊</a>
+                <div class="col-2 collapse navbar-collapse container2" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                         <a class="nav-link active" aria-current="page" href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>
+                        </li>
+                        <li class="nav-item">
+                         <asp:LinkButton class="nav-link active" aria-current="page" ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="UserInfo.aspx" runat="server" id="UserInfoLink">UserInfo</a>
+                        </li>
+                    </ul>
                 </div>
+                </nav>
+                <%--  --%>
             </div>
             <div class="input-group mb-3">
                 <asp:TextBox runat="server" ID="SearchBar" class="form-control" placeholder="想找甚麼...?"></asp:TextBox>
@@ -61,7 +127,7 @@
                     <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-secondary" Text="搜尋" OnClick="btnSearch_Click" />
                 </div>
             </div>
-           
+
             <div class="row" id="div3">
                 <div class="col-2" id="BoardLink" runat="server">
                 </div>
