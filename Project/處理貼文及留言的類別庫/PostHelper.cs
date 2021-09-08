@@ -153,9 +153,12 @@ namespace PostAndCommentSource
                         (from item in context.PostTables
                          join UserInfo in context.UserTables
                           on item.userID equals UserInfo.userID
-                         where item.postTitle.Contains(Input_txt)
+                         join SubInfo in context.SubCategoryTables
+                        on item.subCategoryID equals SubInfo.subCategoryID
+                         where item.postTitle.Contains(Input_txt) || item.postText.Contains(Input_txt)
                          select new PostModel()
                          {
+                             subCategoryName = SubInfo.subCategoryName,
                              userID = UserInfo.userID,
                              userName = UserInfo.userName,
                              createDate = item.createDate,
@@ -188,10 +191,13 @@ namespace PostAndCommentSource
                         (from item in context.PostTables
                          join UserInfo in context.UserTables
                           on item.userID equals UserInfo.userID
-                         where item.postTitle.Contains(Input_txt)
+                         join SubInfo in context.SubCategoryTables
+                         on item.subCategoryID equals SubInfo.subCategoryID
+                         where item.postTitle.Contains(Input_txt) || item.postText.Contains(Input_txt)
                          where item.subCategoryID == subCategoryID
                          select new PostModel()
                          {
+                             subCategoryName= SubInfo.subCategoryName,
                              userID = UserInfo.userID,
                              userName = UserInfo.userName,
                              createDate = item.createDate,

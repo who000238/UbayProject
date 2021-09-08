@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace UbayProject.UserControls
 {
-    public partial class ucPager : System.Web.UI.UserControl
+    public partial class ucPagerForSearch : System.Web.UI.UserControl
     {
         /// <summary> 頁面Url </summary>
         public string Url { get; set; }
@@ -17,16 +17,13 @@ namespace UbayProject.UserControls
         public int PageSize { get; set; }
         /// <summary>目前頁數 </summary>
         public int CurrentPage { get; set; }
-
         public int CurrentMainCategoryID { get; set; }
         public int CurrentSubCategoryID { get; set; }
-        public string CurrentSubCategoryName { get; set; }
-
+        public string txtSearch { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
         private int GetCurrentPage()
         {
             string pageText = Request.QueryString["Page"];
@@ -58,13 +55,13 @@ namespace UbayProject.UserControls
                 totalPage += 1;
             }
 
-            this.aLinkFirst.HRef = $"{this.Url}/{CurrentSubCategoryName}.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page=1";           //設定起點頁、預設永遠都有一頁
-            this.aLinkLast.HRef = $"{this.Url}/{CurrentSubCategoryName}.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page={totalPage}";  //設定終點頁、為總頁數
+            this.aLinkFirst.HRef = $"/{this.Url}?Search={txtSearch}&page=1";           //設定起點頁、預設永遠都有一頁
+            this.aLinkLast.HRef = $"/{this.Url}?Search={txtSearch}&page={totalPage}";  //設定終點頁、為總頁數
 
             //依目前頁數計算
             this.CurrentPage = this.GetCurrentPage();
             this.ltlCurrent.Text = this.CurrentPage.ToString();
-       
+
             //}
             //計算頁數
             int prevM1 = this.CurrentPage - 1;
@@ -73,16 +70,16 @@ namespace UbayProject.UserControls
             int nextP2 = this.CurrentPage + 2;
 
 
-            this.aLink2.HRef = $"{this.Url}/{CurrentSubCategoryName}.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page={prevM1}";
+            this.aLink2.HRef = $"/{this.Url}?Search={txtSearch}&page={prevM1}";
             this.aLink2.InnerText = prevM1.ToString();              //修正頁數文字
-            this.aLink1.HRef = $"{this.Url}/{CurrentSubCategoryName}.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page={prevM2}";
+            this.aLink1.HRef = $"/{this.Url}?Search={txtSearch}&page={prevM2}";
             this.aLink1.InnerText = prevM2.ToString();
 
 
 
-            this.aLink4.HRef = $"{this.Url}/{CurrentSubCategoryName}.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page={nextP1}";
+            this.aLink4.HRef = $"/{this.Url}?Search={txtSearch}&page={nextP1}";
             this.aLink4.InnerText = nextP1.ToString();
-            this.aLink5.HRef = $"{this.Url}/{CurrentSubCategoryName}.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page={nextP2}";
+            this.aLink5.HRef = $"/{this.Url}?Search={txtSearch}&page={nextP2}";
             this.aLink5.InnerText = nextP2.ToString();
 
             //依頁數，決定是否隱藏超連結，並處理提示文字
@@ -96,6 +93,5 @@ namespace UbayProject.UserControls
 
 
         }
-
     }
 }

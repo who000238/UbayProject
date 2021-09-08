@@ -128,7 +128,6 @@ namespace UbayProject
             PostHelper.createPost(txtTitle, txtInner, userID, tempCatID2);
             this.postTitle.Text = string.Empty;
             this.postInner.Text = string.Empty;
-            //Response.Write("<script>alert('貼文新増成功')</script>");
             Response.Write("<script>document.location=document.location</script>");
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -157,17 +156,20 @@ namespace UbayProject
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            //取得使用者搜尋值&QueryString參數
             int subCategoryID = Convert.ToInt32(Request.QueryString["subCategoryID"]);
             string txtSearch_input = this.SearchBar.Text;
             string subCategoryName = GetSubCategoryName(subCategoryID);
             string tempQuery2 = Request.QueryString["mainCategoryID"];
             int tempCatID2 = Convert.ToInt32(tempQuery2);
+            //檢查輸入值
             if (string.IsNullOrWhiteSpace(txtSearch_input) == true)
             {
                 Response.Write("<script>alert('搜尋字串不得留空或者輸入空格、請檢查後重新輸入')</script>");
                 Response.Write("<script>document.location=document.location</script>");
 
             }
+
             var list = PostHelper.searchPost(txtSearch_input, subCategoryID);
             if (list.Count  > 0)
             {

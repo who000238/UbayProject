@@ -76,13 +76,15 @@ namespace UbayProject
                 Response.Write("<script>document.location=document.location</script>");
 
             }
-            var list = PostHelper.searchPost(txtSearch_input);
-            if (list != null)
-            {
-                this.Repeater1.DataSource = list;
-                this.Repeater1.DataBind();
-            }
+            //var list = PostHelper.searchPost(txtSearch_input);
+            //if (list != null)
+            //{
+            //    this.Repeater1.DataSource = list;
+            //    this.Repeater1.DataBind();
+            //}
+            Response.Redirect($"SearchPage.aspx?Search={txtSearch_input}");
         }
-    
+
+
     }
 }

@@ -7,65 +7,83 @@
 // </自動產生的>
 //------------------------------------------------------------------------------
 
-namespace UbayProject
+namespace UbayProject.UserControls
 {
 
 
-    public partial class TryMainPage
+    public partial class ucPagerForSearch
     {
 
         /// <summary>
-        /// form1 控制項。
+        /// aLinkFirst 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLinkFirst;
 
         /// <summary>
-        /// a_Login 控制項。
+        /// aLink1 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor a_Login;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLink1;
 
         /// <summary>
-        /// linkLogout 控制項。
+        /// aLink2 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkLogout;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLink2;
 
         /// <summary>
-        /// SearchBar 控制項。
+        /// ltlCurrent 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchBar;
+        protected global::System.Web.UI.WebControls.Literal ltlCurrent;
 
         /// <summary>
-        /// BoardLink 控制項。
+        /// aLink4 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl BoardLink;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLink4;
 
         /// <summary>
-        /// btnTest 控制項。
+        /// aLink5 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTest;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLink5;
+
+        /// <summary>
+        /// aLinkLast 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aLinkLast;
+
+        /// <summary>
+        /// ltPager 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltPager;
     }
 }

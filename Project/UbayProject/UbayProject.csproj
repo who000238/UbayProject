@@ -129,14 +129,16 @@
     <Content Include="SubPage\Politics.aspx" />
     <Content Include="SubPage\Sports.aspx" />
     <Content Include="SubPage\YGO.aspx" />
+    <Content Include="SearchPage.aspx" />
     <Content Include="TryFIleFolder\TryGridView.aspx" />
     <Content Include="TryFIleFolder\TryMainPage.aspx" />
     <Content Include="TryFIleFolder\TrySeePostWithASHX.aspx" />
     <Content Include="TryFIleFolder\TrySerach.aspx" />
-    <Content Include="TryRepeater.aspx" />
-    <Content Include="TryUcPager.ascx" />
+    <Content Include="TryFIleFolder\TryRepeater.aspx" />
+    <Content Include="TryFIleFolder\TryUcPager.ascx" />
     <Content Include="UpdateUserInfo.aspx" />
     <Content Include="UserControls\ucPager.ascx" />
+    <Content Include="UserControls\ucPagerForSearch.ascx" />
     <Content Include="UserInfo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -274,6 +276,13 @@
     <Compile Include="SubPage\Sports.aspx.designer.cs">
       <DependentUpon>Sports.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SearchPage.aspx.cs">
+      <DependentUpon>SearchPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchPage.aspx.designer.cs">
+      <DependentUpon>SearchPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TryFIleFolder\TryASHX.ashx.cs">
       <DependentUpon>TryASHX.ashx</DependentUpon>
     </Compile>
@@ -305,18 +314,18 @@
     <Compile Include="TryFIleFolder\TrySerach.aspx.designer.cs">
       <DependentUpon>TrySerach.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TryRepeater.aspx.cs">
+    <Compile Include="TryFIleFolder\TryRepeater.aspx.cs">
       <DependentUpon>TryRepeater.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TryRepeater.aspx.designer.cs">
+    <Compile Include="TryFIleFolder\TryRepeater.aspx.designer.cs">
       <DependentUpon>TryRepeater.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TryUcPager.ascx.cs">
+    <Compile Include="TryFIleFolder\TryUcPager.ascx.cs">
       <DependentUpon>TryUcPager.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TryUcPager.ascx.designer.cs">
+    <Compile Include="TryFIleFolder\TryUcPager.ascx.designer.cs">
       <DependentUpon>TryUcPager.ascx</DependentUpon>
     </Compile>
     <Compile Include="UpdateUserInfo.aspx.cs">
@@ -332,6 +341,13 @@
     </Compile>
     <Compile Include="UserControls\ucPager.ascx.designer.cs">
       <DependentUpon>ucPager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucPagerForSearch.ascx.cs">
+      <DependentUpon>ucPagerForSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucPagerForSearch.ascx.designer.cs">
+      <DependentUpon>ucPagerForSearch.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserInfo.aspx.cs">
       <DependentUpon>UserInfo.aspx</DependentUpon>

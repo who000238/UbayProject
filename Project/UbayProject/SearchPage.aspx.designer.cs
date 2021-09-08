@@ -7,11 +7,11 @@
 // </自動產生的>
 //------------------------------------------------------------------------------
 
-namespace UbayProject
+namespace UbayProject.TryFIleFolder
 {
 
 
-    public partial class TryMainPage
+    public partial class SearchPage
     {
 
         /// <summary>
@@ -42,6 +42,15 @@ namespace UbayProject
         protected global::System.Web.UI.WebControls.LinkButton linkLogout;
 
         /// <summary>
+        /// UserInfoLink 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor UserInfoLink;
+
+        /// <summary>
         /// SearchBar 控制項。
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace UbayProject
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox SearchBar;
+
+        /// <summary>
+        /// btnSearch 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch;
 
         /// <summary>
         /// BoardLink 控制項。
@@ -60,12 +78,30 @@ namespace UbayProject
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl BoardLink;
 
         /// <summary>
-        /// btnTest 控制項。
+        /// HotPost 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTest;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl HotPost;
+
+        /// <summary>
+        /// Repeater1 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater Repeater1;
+
+        /// <summary>
+        /// ucPagerForSearch 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::UbayProject.UserControls.ucPagerForSearch ucPagerForSearch;
     }
 }

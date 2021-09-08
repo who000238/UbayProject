@@ -18,6 +18,7 @@ namespace PostAndCommentSource.Model
         public int subCategoryID { get; set; }
         public DateTime createDate { get; set; }
         public string postText { get; set; }
+        public string subCategoryName { get; set; }
 
     }
 }

@@ -57,8 +57,7 @@
             </div>
         </div>
         <div>
-            <p>testArea</p>
-            <a href="TryGridView.aspx">TryGridView.aspx</a>
+            <asp:Button runat="server" ID="btnTest" OnClick="btnTest_Click" />
         </div>
     </form>
 </body>
