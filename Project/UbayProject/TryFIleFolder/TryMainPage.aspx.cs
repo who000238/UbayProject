@@ -49,5 +49,10 @@ namespace UbayProject
             UserInfoHelper.Logout();
             Response.Redirect("MainPage.aspx");
         }
+
+        protected void btnTest_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

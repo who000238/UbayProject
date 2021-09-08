@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TryRepeater.aspx.cs" Inherits="UbayProject.TryReapeater" %>
 
+<%@ Register Src="~/UserControls/ucPager.ascx" TagPrefix="uc1" TagName="ucPager" %>
+
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -98,14 +101,11 @@
                     <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-outline-secondary" Text="搜尋" OnClick="btnSearch_Click" />
                 </div>
             </div>
-          
+
             <div class="row" id="div3">
                 <div class="col-2" id="BoardLink" runat="server">
                 </div>
                 <div class="col-8">
-                    <div>
-                        <div>
-
                             <asp:Repeater ID="Repeater1" runat="server">
                                 <HeaderTemplate>
                                     <div class="row">
@@ -117,22 +117,22 @@
                                 <ItemTemplate>
 
                                     <div class="row">
-                                    <div class="col-3">
-                                        <a href="/SeePost.aspx?postID=<%# Eval("postID") %>&actionName=reLoad"><%# Eval("postTitle") %></a>
+                                        <div class="col-3">
+                                            <a href="/SeePost.aspx?postID=<%# Eval("postID") %>&actionName=reLoad"><%# Eval("postTitle") %></a>
 
-                                    </div>
-                                    <div class="col-5">
-                                        <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
-                                    </div>
-                                    <div class="col-4">
-                                        <td><%# Eval("createDate") %></td>
-                                    </div>
                                         </div>
+                                        <div class="col-5">
+                                            <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
+                                        </div>
+                                        <div class="col-4">
+                                            <td><%# Eval("createDate") %></td>
+                                        </div>
+                                    </div>
                                 </ItemTemplate>
                             </asp:Repeater>
-                           
-                        </div>
-                    </div>
+                            <div style="background-color: aqua">
+                                <uc1:ucPager runat="server" id="ucPager" PageSize="10" Url="/TryRepeater.aspx"/>
+                            </div>
                 </div>
                 <div class="col-2">
                     <p>PHOTO/AD</p>

@@ -72,30 +72,68 @@ namespace PostAndCommentSource
         }
         /// <summary>取得熱門貼文(根據貼文的瀏覽次數)</summary>
         /// <returns></returns>
-        public static DataTable GetHotPost()
-        {
-            string connStr = DBHelper.GetConnectionString();
-            string dbCommand =
-                $@" 
-                SELECT TOP (5) [postID]
-                      ,[postTitle]
-                      ,[countOfLikes]
-                      ,[countOfUnlikes]
-                      ,[countOfViewers]
-                      ,[PostTable].[userID]
-                      ,[subCategoryID]
-                      ,[PostTable].[createDate]
-                      ,[postText]
-                      ,[userName]
-                  FROM [UBayProject].[dbo].[PostTable]
-                   INNER JOIN UserTable ON PostTable.userID = UserTable.userID
-                  ORDER BY countOfViewers DESC
-                ";
-            List<SqlParameter> list = new List<SqlParameter>();
+        //public static DataTable GetHotPost() //待刪
+        //{
+        //    string connStr = DBHelper.GetConnectionString();
+        //    string dbCommand =
+        //        $@" 
+        //        SELECT TOP (15) [postID]
+        //              ,[postTitle]
+        //              ,[countOfLikes]
+        //              ,[countOfUnlikes]
+        //              ,[countOfViewers]
+        //              ,[PostTable].[userID]
+        //              ,[subCategoryID]
+        //              ,[PostTable].[createDate]
+        //              ,[postText]
+        //              ,[userName]
+        //          FROM [UBayProject].[dbo].[PostTable]
+        //           INNER JOIN UserTable ON PostTable.userID = UserTable.userID
+        //          ORDER BY countOfViewers DESC
+        //        ";
+        //    List<SqlParameter> list = new List<SqlParameter>();
 
+        //    try
+        //    {
+        //        return DBHelper.ReadDataTable(connStr, dbCommand, list);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteLog(ex);
+        //        return null;
+        //    }
+        //}
+
+        public static List<PostModel> GetHotPostByEF()
+        {
             try
             {
-                return DBHelper.ReadDataTable(connStr, dbCommand, list);
+                using (ContextModel context = new ContextModel())
+                {
+                    var query =
+                        (from item in context.PostTables
+                         join UserInfo in context.UserTables
+                         on item.userID equals UserInfo.userID
+                         join SubInfo in context.SubCategoryTables
+                          on item.subCategoryID equals SubInfo.subCategoryID
+                         orderby item.countOfViewers descending
+                         select new PostModel()
+                         {
+                             subCategoryName = SubInfo.subCategoryName,
+                             userID = UserInfo.userID,
+                             userName = UserInfo.userName,
+                             createDate = item.createDate,
+                             postTitle = item.postTitle,
+                             postID = item.postID,
+                             countOfLikes = item.countOfLikes,
+                             countOfUnlikes = item.countOfUnlikes,
+                             countOfViewers = item.countOfViewers,
+                             subCategoryID = item.subCategoryID,
+                             postText = item.postText
+                         }).Take(15).ToList();
+
+                    return query;
+                }
             }
             catch (Exception ex)
             {
@@ -103,10 +141,12 @@ namespace PostAndCommentSource
                 return null;
             }
         }
+
+
         /// <summary>搜尋貼文(標題)</summary>
         /// <param name="Input_txt"></param>
         /// <returns></returns>
-        public static Object searchPost(string Input_txt) 
+        public static List<PostModel> searchPost(string Input_txt)
         {
             try
             {
@@ -116,32 +156,25 @@ namespace PostAndCommentSource
                         (from item in context.PostTables
                          join UserInfo in context.UserTables
                           on item.userID equals UserInfo.userID
-                         where item.postTitle.Contains(Input_txt)
-                         select new
+                         join SubInfo in context.SubCategoryTables
+                        on item.subCategoryID equals SubInfo.subCategoryID
+                         where item.postTitle.Contains(Input_txt) || item.postText.Contains(Input_txt)
+                         select new PostModel()
                          {
-                             UserInfo.userID,
-                             UserInfo.userName,
-                             UserInfo.account,
-                             UserInfo.pwd,
-                             UserInfo.userLevel,
-                             UserInfo.sex,
-                             UserInfo.email,
-                             UserInfo.birthday,
-                             UserInfo.photoURL,
-                             UserInfo.intro,
-                             UserInfo.favoritePosts,
-                             UserInfo.blackList,
-                             item.createDate,
-                             item.postTitle,
-                             item.postID,
-                             item.countOfLikes,
-                             item.countOfUnlikes,
-                             item.countOfViewers,
-                             item.subCategoryID,
-                             item.postText
-                         });
+                             subCategoryName = SubInfo.subCategoryName,
+                             userID = UserInfo.userID,
+                             userName = UserInfo.userName,
+                             createDate = item.createDate,
+                             postTitle = item.postTitle,
+                             postID = item.postID,
+                             countOfLikes = item.countOfLikes,
+                             countOfUnlikes = item.countOfUnlikes,
+                             countOfViewers = item.countOfViewers,
+                             subCategoryID = item.subCategoryID,
+                             postText = item.postText
+                         }).ToList();
 
-                    var obj = query.ToList();
+                    var obj = query;
                     return obj;
                 }
             }
@@ -151,7 +184,7 @@ namespace PostAndCommentSource
                 return null;
             }
         }
-        public static Object searchPost(string Input_txt,int subCategoryID)
+        public static List<PostModel> searchPost(string Input_txt, int subCategoryID)
         {
             try
             {
@@ -161,34 +194,26 @@ namespace PostAndCommentSource
                         (from item in context.PostTables
                          join UserInfo in context.UserTables
                           on item.userID equals UserInfo.userID
-                         where item.postTitle.Contains(Input_txt)
+                         join SubInfo in context.SubCategoryTables
+                         on item.subCategoryID equals SubInfo.subCategoryID
+                         where item.postTitle.Contains(Input_txt) || item.postText.Contains(Input_txt)
                          where item.subCategoryID == subCategoryID
-                         select new
+                         select new PostModel()
                          {
-                             UserInfo.userID,
-                             UserInfo.userName,
-                             UserInfo.account,
-                             UserInfo.pwd,
-                             UserInfo.userLevel,
-                             UserInfo.sex,
-                             UserInfo.email,
-                             UserInfo.birthday,
-                             UserInfo.photoURL,
-                             UserInfo.intro,
-                             UserInfo.favoritePosts,
-                             UserInfo.blackList,
-                             item.createDate,
-                             item.postTitle,
-                             item.postID,
-                             item.countOfLikes,
-                             item.countOfUnlikes,
-                             item.countOfViewers,
-                             item.subCategoryID,
-                             item.postText
-                         });
+                             subCategoryName= SubInfo.subCategoryName,
+                             userID = UserInfo.userID,
+                             userName = UserInfo.userName,
+                             createDate = item.createDate,
+                             postTitle = item.postTitle,
+                             postID = item.postID,
+                             countOfLikes = item.countOfLikes,
+                             countOfUnlikes = item.countOfUnlikes,
+                             countOfViewers = item.countOfViewers,
+                             subCategoryID = item.subCategoryID,
+                             postText = item.postText
+                         }).ToList();
 
-                    var obj = query.ToList();
-                    return obj;
+                    return query;
                 }
             }
             catch (Exception ex)
@@ -201,7 +226,7 @@ namespace PostAndCommentSource
         /// <summary>取得貼文及發文者的使用者姓名</summary>
         /// <param name="subCategoryID"></param>
         /// <returns></returns>
-        public static Object getPostAndUserName(int subCategoryID)
+        public static List<PostModel> getPostAndUserName(int subCategoryID)
         {
             try
             {
@@ -211,32 +236,25 @@ namespace PostAndCommentSource
                         (from item in context.PostTables
                          join UserInfo in context.UserTables
                              on item.userID equals UserInfo.userID
+                         join SubInfo in context.SubCategoryTables
+                          on item.subCategoryID equals SubInfo.subCategoryID
                          where item.subCategoryID == subCategoryID
                          orderby item.createDate descending
-                         select new
+                         select new PostModel()
                          {
-                             UserInfo.userID,
-                             UserInfo.userName,
-                             UserInfo.account,
-                             UserInfo.userLevel,
-                             UserInfo.sex,
-                             UserInfo.email,
-                             UserInfo.birthday,
-                             UserInfo.photoURL,
-                             UserInfo.intro,
-                             UserInfo.favoritePosts,
-                             UserInfo.blackList,
-                             item.createDate,
-                             item.postTitle,
-                             item.postID,
-                             item.countOfLikes,
-                             item.countOfUnlikes,
-                             item.countOfViewers,
-                             item.subCategoryID,
-                             item.postText
-                         });
-                    var obj = query.ToList();
-                    return obj;
+                             subCategoryName = SubInfo.subCategoryName,
+                             userID = UserInfo.userID,
+                             userName = UserInfo.userName,
+                             createDate = item.createDate,
+                             postTitle = item.postTitle,
+                             postID = item.postID,
+                             countOfLikes = item.countOfLikes,
+                             countOfUnlikes = item.countOfUnlikes,
+                             countOfViewers = item.countOfViewers,
+                             subCategoryID = item.subCategoryID,
+                             postText = item.postText
+                         }).ToList();
+                    return query;
                 }
             }
             catch (Exception ex)
@@ -245,61 +263,7 @@ namespace PostAndCommentSource
                 return null;
             }
         }
-        //轉型都會失敗
-        //public static PostModel getpostandusername2(int subcategoryid)
-        //{
-        //    try
-        //    {
-        //        using (ContextModel context = new ContextModel())  // 用串聯的方式查詢posttable的同時也去把user
-        //        {
-        //            var query =
-        //                (from item in context.PostTables
-        //                 join userInfo in context.UserTables
-        //                     on item.userID equals userInfo.userID
-        //                 where item.subCategoryID == subcategoryid
-        //                 orderby item.createDate descending
-        //                 select new
-        //                 {
-        //                     userInfo.userName,
-        //                     item.postTitle,
-        //                     item.postID,
-        //                     item.countOfLikes,
-        //                     item.countOfUnlikes,
-        //                     item.countOfViewers,
-        //                     item.userID,
-        //                     item.subCategoryID,
-        //                     item.createDate,
-        //                     item.postText
-        //                 });
-        //            query.Select(item => new
-        //            {
-        //                item.userName,
-        //                item.postTitle,
-        //                item.postID,
-        //                item.countOfLikes,
-        //                item.countOfUnlikes,
-        //                item.countOfViewers,
-        //                item.userID,
-        //                item.subCategoryID,
-        //                item.createDate,
-        //                item.postText
-        //            }).ToList();
-
-        //            return query;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Logger.WriteLog(ex);
-        //        return null;
-        //    }
-        //}
-        /// <summary>取得貼文 </summary>
-        /// <param name="queryString"></param>
-        /// <returns></returns>
-        /// <summary>取得貼文 </summary>
-        /// <param name="queryString"></param>
-        /// <returns></returns>
+       
         public static DataRow getPostByPostID(string postQueryString)
         {
             string connStr = DBHelper.GetConnectionString();

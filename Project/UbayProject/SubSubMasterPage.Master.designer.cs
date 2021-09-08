@@ -87,22 +87,31 @@ namespace UbayProject
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl BoardLink;
 
         /// <summary>
-        /// GridView1 控制項。
+        /// CenterArea 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CenterArea;
 
         /// <summary>
-        /// GridView2 控制項。
+        /// Repeater1 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.Repeater Repeater1;
+
+        /// <summary>
+        /// ucPager 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::UbayProject.UserControls.ucPager ucPager;
 
         /// <summary>
         /// ContentPlaceHolder1 控制項。

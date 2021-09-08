@@ -8,6 +8,7 @@ using UbayProject.ORM;
 using AccountSource;
 using DBSource;
 using PostAndCommentSource;
+using Microsoft.Security.Application;
 
 namespace UbayProject
 {
@@ -46,9 +47,10 @@ namespace UbayProject
             //取得熱門貼文
             try
             {
-                var dt = PostHelper.GetHotPost();
-                this.GridView1.DataSource = dt;
-                this.GridView1.DataBind();
+                var list = PostHelper.GetHotPostByEF();
+               
+                this.Repeater1.DataSource = list;
+                this.Repeater1.DataBind();
             }
             catch (Exception ex)
             {
@@ -67,7 +69,7 @@ namespace UbayProject
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             //取得使用者搜尋值
-            string txtSearch_input = this.SearchBar.Text;
+            string txtSearch_input = Encoder.HtmlEncode(this.SearchBar.Text);
             //檢查輸入值
             if (string.IsNullOrWhiteSpace(txtSearch_input) == true)
             {
@@ -75,14 +77,15 @@ namespace UbayProject
                 Response.Write("<script>document.location=document.location</script>");
 
             }
-            var obj = PostHelper.searchPost(txtSearch_input);
-            if (obj != null)
-            {
-                this.GridView1.Visible = false;
-                this.GridView2.DataSource = obj;
-                this.GridView2.DataBind();
-            }
+            //var list = PostHelper.searchPost(txtSearch_input);
+            //if (list != null)
+            //{
+            //    this.Repeater1.DataSource = list;
+            //    this.Repeater1.DataBind();
+            //}
+            Response.Redirect($"SearchPage.aspx?Search={txtSearch_input}");
         }
-    
+
+
     }
 }

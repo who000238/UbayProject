@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using AccountSource;
 using DBSource;
+using Microsoft.Security.Application;
 
 namespace UbayProject
 {
@@ -26,11 +27,11 @@ namespace UbayProject
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            string inp_Account = this.txtAccount.Text;
-            string inp_PWD = this.txtPWD.Text;
-            string inp_CheckPWD = this.txtPWDCheck.Text;
-            string inp_email = this.txtMail.Text;
-            string inp_userName = this.txtUserName.Text;
+            string inp_Account = Encoder.HtmlEncode(this.txtAccount.Text);
+            string inp_PWD = Encoder.HtmlEncode(this.txtPWD.Text);
+            string inp_CheckPWD = Encoder.HtmlEncode(this.txtPWDCheck.Text);
+            string inp_email = Encoder.HtmlEncode(this.txtMail.Text);
+            string inp_userName = Encoder.HtmlEncode(this.txtUserName.Text);
             //按下按鈕後，讀取所有Input內的值
             //有欄位為空的話 顯示錯誤訊息
 

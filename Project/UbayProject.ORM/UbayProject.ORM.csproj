@@ -56,7 +56,6 @@
     <Compile Include="PostTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubCategoryTable.cs" />
-    <Compile Include="sysdiagram.cs" />
     <Compile Include="UserTable.cs" />
   </ItemGroup>
   <ItemGroup>

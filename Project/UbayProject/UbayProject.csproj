@@ -44,6 +44,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AngleSharp, Version=0.16.0.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>packages\AngleSharp.0.16.0\lib\net472\AngleSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="AngleSharp.Css, Version=0.16.1.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>packages\AngleSharp.Css.0.16.1\lib\net472\AngleSharp.Css.dll</HintPath>
+    </Reference>
+    <Reference Include="AntiXssLibrary, Version=0.1.0.0, Culture=neutral, PublicKeyToken=762a903c6545a986, processorArchitecture=MSIL">
+      <HintPath>packages\AntiXSS.NetStandard.0.1.125\lib\net461\AntiXssLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -51,14 +60,43 @@
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Security.Application.HtmlSanitization, Version=0.1.0.0, Culture=neutral, PublicKeyToken=762a903c6545a986, processorArchitecture=MSIL">
+      <HintPath>packages\AntiXSS.NetStandard.HtmlSanitization.0.1.125\lib\net461\Microsoft.Security.Application.HtmlSanitization.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.LiveShare, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.VisualStudio.LiveShare.1.1.57\lib\net461\Microsoft.VisualStudio.LiveShare.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Configuration.ConfigurationManager.4.7.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.AccessControl.4.7.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Permissions.4.7.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Principal.Windows.4.7.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Text.Encoding.CodePages, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encoding.CodePages.5.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -75,6 +113,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -107,9 +146,15 @@
     <Content Include="js\jquery-3.6.0.min.js" />
     <Content Include="js\WebForm1.js" />
     <Content Include="Pics\BackArrow.png" />
+    <Content Include="Pics\BaseBall.jpg" />
     <Content Include="Pics\GBF.jpg" />
+    <Content Include="Pics\Golf.jpg" />
+    <Content Include="Pics\Life.jpg" />
+    <Content Include="Pics\Man.jpg" />
     <Content Include="Pics\messageImage_1630311093428-removebg-preview.png" />
     <Content Include="Pics\p_new0288_m_new02883.svg" />
+    <Content Include="Pics\Soccer.jpg" />
+    <Content Include="Pics\Women.jpg" />
     <Content Include="Pics\YGO.jpg" />
     <Content Include="Pics\FGO.jpg" />
     <Content Include="js\bootstrap.bundle.js" />
@@ -122,20 +167,28 @@
     <Content Include="MainPage.aspx" />
     <Content Include="SeePost.aspx" />
     <Content Include="SubPage\Baseball.aspx" />
+    <Content Include="SubPage\Golf.aspx" />
+    <Content Include="SubPage\Life.aspx" />
+    <Content Include="SubPage\Man.aspx" />
     <Content Include="SubPage\FGO.aspx" />
     <Content Include="SubPage\Game.aspx" />
     <Content Include="SubPage\GBF.aspx" />
+    <Content Include="SubPage\Soccer.aspx" />
+    <Content Include="SubPage\Women.aspx" />
     <Content Include="SubPage\Gossiping.aspx" />
     <Content Include="SubPage\Politics.aspx" />
     <Content Include="SubPage\Sports.aspx" />
     <Content Include="SubPage\YGO.aspx" />
+    <Content Include="SearchPage.aspx" />
     <Content Include="TryFIleFolder\TryGridView.aspx" />
     <Content Include="TryFIleFolder\TryMainPage.aspx" />
     <Content Include="TryFIleFolder\TrySeePostWithASHX.aspx" />
     <Content Include="TryFIleFolder\TrySerach.aspx" />
-    <Content Include="TryRepeater.aspx" />
-    <Content Include="TryUcPager.ascx" />
+    <Content Include="TryFIleFolder\TryRepeater.aspx" />
+    <Content Include="TryFIleFolder\TryUcPager.ascx" />
     <Content Include="UpdateUserInfo.aspx" />
+    <Content Include="UserControls\ucPager.ascx" />
+    <Content Include="UserControls\ucPagerForSearch.ascx" />
     <Content Include="UserInfo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -210,6 +263,27 @@
     <Compile Include="SubPage\Baseball.aspx.designer.cs">
       <DependentUpon>Baseball.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SubPage\Golf.aspx.cs">
+      <DependentUpon>Golf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubPage\Golf.aspx.designer.cs">
+      <DependentUpon>Golf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubPage\Life.aspx.cs">
+      <DependentUpon>Life.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubPage\Life.aspx.designer.cs">
+      <DependentUpon>Life.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubPage\Man.aspx.cs">
+      <DependentUpon>Man.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubPage\Man.aspx.designer.cs">
+      <DependentUpon>Man.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SubPage\FGO.aspx.cs">
       <DependentUpon>FGO.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -223,6 +297,20 @@
     </Compile>
     <Compile Include="SubPage\GBF.aspx.designer.cs">
       <DependentUpon>GBF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubPage\Soccer.aspx.cs">
+      <DependentUpon>Soccer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubPage\Soccer.aspx.designer.cs">
+      <DependentUpon>Soccer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubPage\Women.aspx.cs">
+      <DependentUpon>Women.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubPage\Women.aspx.designer.cs">
+      <DependentUpon>Women.aspx</DependentUpon>
     </Compile>
     <Compile Include="SubPage\Politics.aspx.cs">
       <DependentUpon>Politics.aspx</DependentUpon>
@@ -273,6 +361,13 @@
     <Compile Include="SubPage\Sports.aspx.designer.cs">
       <DependentUpon>Sports.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SearchPage.aspx.cs">
+      <DependentUpon>SearchPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchPage.aspx.designer.cs">
+      <DependentUpon>SearchPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TryFIleFolder\TryASHX.ashx.cs">
       <DependentUpon>TryASHX.ashx</DependentUpon>
     </Compile>
@@ -304,18 +399,18 @@
     <Compile Include="TryFIleFolder\TrySerach.aspx.designer.cs">
       <DependentUpon>TrySerach.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TryRepeater.aspx.cs">
+    <Compile Include="TryFIleFolder\TryRepeater.aspx.cs">
       <DependentUpon>TryRepeater.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TryRepeater.aspx.designer.cs">
+    <Compile Include="TryFIleFolder\TryRepeater.aspx.designer.cs">
       <DependentUpon>TryRepeater.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TryUcPager.ascx.cs">
+    <Compile Include="TryFIleFolder\TryUcPager.ascx.cs">
       <DependentUpon>TryUcPager.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TryUcPager.ascx.designer.cs">
+    <Compile Include="TryFIleFolder\TryUcPager.ascx.designer.cs">
       <DependentUpon>TryUcPager.ascx</DependentUpon>
     </Compile>
     <Compile Include="UpdateUserInfo.aspx.cs">
@@ -324,6 +419,20 @@
     </Compile>
     <Compile Include="UpdateUserInfo.aspx.designer.cs">
       <DependentUpon>UpdateUserInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucPager.ascx.cs">
+      <DependentUpon>ucPager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucPager.ascx.designer.cs">
+      <DependentUpon>ucPager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucPagerForSearch.ascx.cs">
+      <DependentUpon>ucPagerForSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucPagerForSearch.ascx.designer.cs">
+      <DependentUpon>ucPagerForSearch.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserInfo.aspx.cs">
       <DependentUpon>UserInfo.aspx</DependentUpon>

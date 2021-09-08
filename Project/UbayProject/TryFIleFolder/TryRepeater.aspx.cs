@@ -1,5 +1,6 @@
 ﻿using AccountSource;
 using PostAndCommentSource;
+using PostAndCommentSource.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,14 +29,14 @@ namespace UbayProject
                 this.postArea.Visible = false;
             }
             //取得subCategoryID並轉成INT
-            string tempQuery2 = Request.QueryString["mainCategoryID"];
-            int tempCatID2 = Convert.ToInt32(tempQuery2);
+            string tempMainCategoryIDText = Request.QueryString["mainCategoryID"];
+            int tempMainCategoryID = Convert.ToInt32(tempMainCategoryIDText);
             using (ContextModel context = new ContextModel())
             {
                 //產生子版連結
                 var query =
                       (from item in context.SubCategoryTables
-                       where item.mainCategoryID == tempCatID2
+                       where item.mainCategoryID == tempMainCategoryID
                        select item);
                 foreach (var item in query)
                 {
@@ -48,15 +49,26 @@ namespace UbayProject
 
             try
             {
-                string tempQuery3 = Request.QueryString["subCategoryID"];
-                int subCategoryID = Convert.ToInt32(tempQuery3);
-                var obj = PostHelper.getPostAndUserName(subCategoryID); //取得貼文
-                if(obj != null)
+                string tempSubCategoryIDText = Request.QueryString["subCategoryID"];
+                int tempSubCategoryID = Convert.ToInt32(tempSubCategoryIDText);
+                var list = PostHelper.getPostAndUserName(tempSubCategoryID); //取得貼文
+                if(list != null)
                 {
-                    //var pagedList =
+                    var pagedList = this.GetPagedDataTable(list);
+                    this.Repeater1.DataSource = pagedList;
+                    this.Repeater1.DataBind();
+
+                    this.ucPager.TotalSize = list.Count;
+                    this.ucPager.CurrentMainCategoryID = tempMainCategoryID;
+                    this.ucPager.CurrentSubCategoryID = tempSubCategoryID;
+                    this.ucPager.Bind();
                 }
-                this.Repeater1.DataSource = obj;
-                this.Repeater1.DataBind();
+                else
+                {
+                    this.Repeater1.Visible = false;
+                }
+                //this.Repeater1.DataSource = list;
+                //this.Repeater1.DataBind();
             }
             catch (Exception ex)
             {
@@ -136,54 +148,29 @@ namespace UbayProject
                 //this.GridView2.DataBind();
             }
         }
-        //#region 測試ucPager
-        //private int GetCurrentPage()
-        //{
-        //    string pageText = Request.QueryString["Page"];
 
-        //    if (string.IsNullOrWhiteSpace(pageText))
-        //        return 1;
+        private int GetCurrentPage()
+        {
+            string pageText = Request.QueryString["Page"];
 
-        //    int intPage;
-        //    if (!int.TryParse(pageText, out intPage))
-        //        return 1;
+            if (string.IsNullOrWhiteSpace(pageText))
+                return 1;
 
-        //    if (intPage <= 0)
-        //        return 1;
+            int intPage;
+            if (!int.TryParse(pageText, out intPage))
+                return 1;
 
-        //    return intPage;
-        //}
+            if (intPage <= 0)
+                return 1;
 
-        //private List<Accounting> GetPagedDataTable(List<Accounting> list)
-        //{
-        //    int startIndex = (this.GetCurrentPage() - 1) * 10;
-        //    return list.Skip(startIndex).Take(10).ToList();
-        //}
+            return intPage;
+        }
 
-        //private DataTable GetPagedDataTable(DataTable dt)
-        //{
-        //    int pageSize = this.ucPager2.PageSize;
-        //    DataTable dtPaged = dt.Clone();                     //複製 DataTable dt 的結構給 dtPaged
-        //    int startIndex = (this.GetCurrentPage() - 1) * pageSize;  //設定分頁控制項分別頁面的起點、終點
-        //    int endIndex = (this.GetCurrentPage()) * pageSize;
-        //    if (endIndex > dt.Rows.Count)                       //讓最後一頁的終點可以跟資料筆數相同、否則會有超過資料筆數無法讀取的問題 out of index 的錯誤訊息
-        //        endIndex = dt.Rows.Count;
-        //    for (var i = startIndex; i < endIndex; i++)         // 設定一個for迴圈 起點為第一筆資料 終點為最後一筆資料
-        //    {
-        //        DataRow dr = dt.Rows[i];                        //dt.Row的第i筆資料放到 dr資料列裡面
-        //        var drNew = dtPaged.NewRow();                   //新資料列drNew等同於dtPaged的資料列
-
-        //        foreach (DataColumn dc in dt.Columns)           //
-        //        {
-        //            drNew[dc.ColumnName] = dr[dc];              //
-        //        }
-
-        //        dtPaged.Rows.Add(drNew);                        //
-        //    }
-
-        //    return dtPaged;
-        //}
-        ////#endregion
+        private List<PostModel> GetPagedDataTable(List<PostModel> list)
+        {
+            int startIndex = (this.GetCurrentPage() - 1) * 10;
+            return list.Skip(startIndex).Take(10).ToList();
+        }
     }
 
 }

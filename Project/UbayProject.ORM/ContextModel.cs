@@ -16,7 +16,6 @@ namespace UbayProject.ORM
         public virtual DbSet<MainCategoryTable> MainCategoryTables { get; set; }
         public virtual DbSet<PostTable> PostTables { get; set; }
         public virtual DbSet<SubCategoryTable> SubCategoryTables { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<UserTable> UserTables { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
