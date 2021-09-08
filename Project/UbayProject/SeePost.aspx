@@ -67,7 +67,7 @@
         <div class="container-fluid" runat="server">
             <div style="background-color:aqua" runat="server" id="ManagerArea" visible="false">
                 <asp:Button ID="btnDeletePost" runat="server" Text="刪除貼文"  OnClick="btnDeletePost_Click" />
-                <asp:TextBox ID="InpDeleteCommentID" runat="server" placeholder="輸入要刪除的貼文編號"></asp:TextBox>
+                <asp:TextBox ID="InpDeleteCommentID" runat="server" TextMode="Number"  placeholder="輸入要刪除的貼文編號" Text="0"> </asp:TextBox>
                 <asp:Button ID="btnDeleteComment" runat="server" Text="刪除留言" OnClick="btnDeleteComment_Click" />
                 </div>
             <input type="hidden" id="hfpostID" runat="server" />
