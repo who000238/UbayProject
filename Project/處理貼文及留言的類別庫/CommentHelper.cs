@@ -128,5 +128,36 @@ namespace PostAndCommentSource
                 return null;
             }
         }
+
+        public static string deleteComment(int commentID,out string Msg)
+        {
+            Msg = string.Empty;
+            try
+            {
+                using (ContextModel context = new ContextModel())  
+                {
+                    var query =
+                            (from item in context.CommentTables
+                             where item.commentID == commentID
+                             select item).FirstOrDefault();
+                    if (query != null)
+                    {
+                        context.CommentTables.Remove(query);
+                        context.SaveChanges();
+                        return Msg;
+                    }
+                    else
+                    {
+                         Msg = "查無留言";
+                        return Msg;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return Msg;
+            }
+        }
     }
 }

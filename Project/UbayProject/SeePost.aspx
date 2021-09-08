@@ -65,6 +65,11 @@
 <body>
     <form id="form1" runat="server">
         <div class="container-fluid" runat="server">
+            <div style="background-color:aqua" runat="server" id="ManagerArea" visible="false">
+                <asp:Button ID="btnDeletePost" runat="server" Text="刪除貼文"  OnClick="btnDeletePost_Click" />
+                <asp:TextBox ID="InpDeleteCommentID" runat="server" placeholder="輸入要刪除的貼文編號"></asp:TextBox>
+                <asp:Button ID="btnDeleteComment" runat="server" Text="刪除留言" OnClick="btnDeleteComment_Click" />
+                </div>
             <input type="hidden" id="hfpostID" runat="server" />
             <div class="row" runat="server">
                 <table class="table table-striped table-hover">
@@ -98,8 +103,8 @@
         </div>
         <table>
             <tr>
-                <td style="width: 20%"></td>
-            </tr>
+                <td style="width: 20%" ></td>
+            </tr >
         </table>
     </form>
 
@@ -139,13 +144,14 @@
                         var obj = result[i];
                         var htmlText =
                             `<tr>
-                                    <td  style="width:20%">
+                                    <td  style="width:15%">
                                         <a href="/UserInfo.aspx?userID=${obj.userID}">${obj.userName}</a>
                                     </td>
-                                    <td  style="width:60%">${obj.comment}</td>
-                                    <td  style="width:20%">${obj.CreateDateText}</td>
-        
-                                </tr>`;
+                                    <td  style="width:65%">${obj.comment}</td>
+                                    <td  style="width:15%">${obj.CreateDateText}</td>
+                                    <td  style="width:5%" runat="server" id="commentIDarea"  Visible="false">編號:${obj.commentID}</td>
+
+                            </tr>`;
                         table += htmlText;
                     }
                     table += "</table>";
@@ -155,5 +161,5 @@
         });
     </script>
 
-</body>
+</body >
 </html>

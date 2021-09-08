@@ -26,7 +26,6 @@ namespace UbayProject.TryFIleFolder
                 this.linkLogout.Visible = false;
                 this.a_Login.Visible = true;
                 this.UserInfoLink.Visible = false;
-
             }
 
             string txtSearch = Request.QueryString["Search"];
@@ -70,6 +69,11 @@ namespace UbayProject.TryFIleFolder
                     this.ucPagerForSearch.TotalSize = list.Count;
                     this.ucPagerForSearch.txtSearch = txtSearch;
                     this.ucPagerForSearch.Bind();
+                }
+                else
+                {
+                    Response.Write("<script>alert('查無貼文')</script>");
+                    this.ucPagerForSearch.Visible = false;
                 }
             }
 
