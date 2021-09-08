@@ -146,9 +146,15 @@
     <Content Include="js\jquery-3.6.0.min.js" />
     <Content Include="js\WebForm1.js" />
     <Content Include="Pics\BackArrow.png" />
+    <Content Include="Pics\BaseBall.jpg" />
     <Content Include="Pics\GBF.jpg" />
+    <Content Include="Pics\Golf.jpg" />
+    <Content Include="Pics\Life.jpg" />
+    <Content Include="Pics\Man.jpg" />
     <Content Include="Pics\messageImage_1630311093428-removebg-preview.png" />
     <Content Include="Pics\p_new0288_m_new02883.svg" />
+    <Content Include="Pics\Soccer.jpg" />
+    <Content Include="Pics\Women.jpg" />
     <Content Include="Pics\YGO.jpg" />
     <Content Include="Pics\FGO.jpg" />
     <Content Include="js\bootstrap.bundle.js" />
@@ -161,11 +167,13 @@
     <Content Include="MainPage.aspx" />
     <Content Include="SeePost.aspx" />
     <Content Include="SubPage\Baseball.aspx" />
+    <Content Include="SubPage\Golf.aspx" />
     <Content Include="SubPage\Life.aspx" />
     <Content Include="SubPage\Man.aspx" />
     <Content Include="SubPage\FGO.aspx" />
     <Content Include="SubPage\Game.aspx" />
     <Content Include="SubPage\GBF.aspx" />
+    <Content Include="SubPage\Soccer.aspx" />
     <Content Include="SubPage\Women.aspx" />
     <Content Include="SubPage\Gossiping.aspx" />
     <Content Include="SubPage\Politics.aspx" />
@@ -255,6 +263,13 @@
     <Compile Include="SubPage\Baseball.aspx.designer.cs">
       <DependentUpon>Baseball.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SubPage\Golf.aspx.cs">
+      <DependentUpon>Golf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubPage\Golf.aspx.designer.cs">
+      <DependentUpon>Golf.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SubPage\Life.aspx.cs">
       <DependentUpon>Life.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -282,6 +297,13 @@
     </Compile>
     <Compile Include="SubPage\GBF.aspx.designer.cs">
       <DependentUpon>GBF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubPage\Soccer.aspx.cs">
+      <DependentUpon>Soccer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubPage\Soccer.aspx.designer.cs">
+      <DependentUpon>Soccer.aspx</DependentUpon>
     </Compile>
     <Compile Include="SubPage\Women.aspx.cs">
       <DependentUpon>Women.aspx</DependentUpon>

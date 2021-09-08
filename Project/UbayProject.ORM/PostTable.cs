@@ -9,10 +9,10 @@ namespace UbayProject.ORM
     [Table("PostTable")]
     public partial class PostTable
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int postID { get; set; }
 
-        [Key]
+        [Required]
         [StringLength(50)]
         public string postTitle { get; set; }
 

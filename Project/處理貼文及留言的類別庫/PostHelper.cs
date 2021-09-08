@@ -113,10 +113,13 @@ namespace PostAndCommentSource
                     var query =
                         (from item in context.PostTables
                          join UserInfo in context.UserTables
-                     on item.userID equals UserInfo.userID
+                         on item.userID equals UserInfo.userID
+                         join SubInfo in context.SubCategoryTables
+                          on item.subCategoryID equals SubInfo.subCategoryID
                          orderby item.countOfViewers descending
                          select new PostModel()
                          {
+                             subCategoryName = SubInfo.subCategoryName,
                              userID = UserInfo.userID,
                              userName = UserInfo.userName,
                              createDate = item.createDate,

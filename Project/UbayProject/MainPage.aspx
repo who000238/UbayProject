@@ -127,62 +127,38 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
                 <div class="col-2" id="BoardLink" runat="server">
                 </div>
                 <div class="col-8" runat="server" id="HotPost">
-                <%--    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
-                        <Columns>
-                            <asp:TemplateField HeaderText="超連結標題">
-                                <ItemTemplate>
-                                    <a href="/SeePost.aspx?postID=<%# Eval("postID") %>"><%# Eval("postTitle") %></a>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="發文者">
-                                <ItemTemplate>
-                                    <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField HeaderText="瀏覽人次" DataField="countOfViewers" />
-                            <asp:BoundField HeaderText="發文時間" DataField="createDate" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" />
-                        </Columns>
-                    </asp:GridView>
-                    <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False">
-                        <Columns>
-                            <asp:TemplateField HeaderText="超連結標題">
-                                <ItemTemplate>
-                                    <a href="/SeePost.aspx?postID=<%# Eval("postID") %>"><%# Eval("postTitle") %></a>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="發文者">
-                                <ItemTemplate>
-                                    <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField HeaderText="瀏覽人次" DataField="countOfViewers" />
-                            <asp:BoundField HeaderText="發文時間" DataField="createDate" DataFormatString="{0:yyyy-MM-dd HH:mm:ss}" />
-                        </Columns>
-                    </asp:GridView>--%>
-                                <asp:Repeater ID="Repeater1" runat="server">
-                                <HeaderTemplate>
-                                    <div class="row">
-                                        <div class="col-3">標題</div>
-                                        <div class="col-5">發文者</div>
-                                        <div class="col-4">發佈時間</div>
-                                    </div>
-                                </HeaderTemplate>
-                                <ItemTemplate>
+                 <asp:Repeater ID="Repeater1" runat="server">
+                        <HeaderTemplate>
+                            <div class="row">
+                                <div class="col-2">標題</div>
+                                <div class="col-2">發文者</div>
+                                <div class="col-2">分類名稱</div>
+                                <div class="col-3">內文</div>
+                                <div class="col-3">發佈時間</div>
+                            </div>
+                        </HeaderTemplate>
+                        <ItemTemplate>
 
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <a href="/SeePost.aspx?postID=<%# Eval("postID") %>&actionName=reLoad"><%# Eval("postTitle") %></a>
+                            <div class="row">
+                                <div class="col-2">
+                                    <a href="/SeePost.aspx?postID=<%# Eval("postID") %>&actionName=reLoad"><%# Eval("postTitle") %></a>
 
-                                        </div>
-                                        <div class="col-5">
-                                            <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
-                                        </div>
-                                        <div class="col-4">
-                                            <td><%# Eval("createDate") %></td>
-                                        </div>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:Repeater>
+                                </div>
+                                <div class="col-2">
+                                    <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
+                                </div>
+                                <div class="col-2 ">
+                                    <%#Eval("subCategoryName") %>
+                                </div>
+                                <div class="col-3 postInner" >
+                                    <%#Eval("postText") %>
+                                </div>
+                                <div class="col-3">
+                                    <td><%# Eval("createDate") %></td>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
                            
                 </div>
                 <div class="col-2">

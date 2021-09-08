@@ -11,7 +11,7 @@ namespace UbayProject.SubPage
 {
 
 
-    public partial class Baseball
+    public partial class Soccer
     {
     }
 }

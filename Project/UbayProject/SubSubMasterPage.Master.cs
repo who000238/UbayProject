@@ -78,6 +78,7 @@ namespace UbayProject
                 }
                 else
                 {
+                    this.ucPager.Visible = false;
                     Literal ltMsg = new Literal();
                     this.CenterArea.Controls.Add(ltMsg);
                     ltMsg.Text = "查無貼文!!";
