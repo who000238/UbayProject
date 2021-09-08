@@ -72,38 +72,7 @@ namespace PostAndCommentSource
         }
         /// <summary>取得熱門貼文(根據貼文的瀏覽次數)</summary>
         /// <returns></returns>
-        //public static DataTable GetHotPost() //待刪
-        //{
-        //    string connStr = DBHelper.GetConnectionString();
-        //    string dbCommand =
-        //        $@" 
-        //        SELECT TOP (15) [postID]
-        //              ,[postTitle]
-        //              ,[countOfLikes]
-        //              ,[countOfUnlikes]
-        //              ,[countOfViewers]
-        //              ,[PostTable].[userID]
-        //              ,[subCategoryID]
-        //              ,[PostTable].[createDate]
-        //              ,[postText]
-        //              ,[userName]
-        //          FROM [UBayProject].[dbo].[PostTable]
-        //           INNER JOIN UserTable ON PostTable.userID = UserTable.userID
-        //          ORDER BY countOfViewers DESC
-        //        ";
-        //    List<SqlParameter> list = new List<SqlParameter>();
-
-        //    try
-        //    {
-        //        return DBHelper.ReadDataTable(connStr, dbCommand, list);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Logger.WriteLog(ex);
-        //        return null;
-        //    }
-        //}
-
+        
         public static List<PostModel> GetHotPostByEF()
         {
             try
@@ -174,8 +143,7 @@ namespace PostAndCommentSource
                              postText = item.postText
                          }).ToList();
 
-                    var obj = query;
-                    return obj;
+                    return query;
                 }
             }
             catch (Exception ex)
@@ -291,6 +259,27 @@ namespace PostAndCommentSource
                 Logger.WriteLog(ex);
                 return null;
             }
+        }
+
+        public static void deletePost(int postID)
+        {
+            try
+            {
+                using (ContextModel context = new ContextModel()) 
+                {
+                    var query =
+                         context.PostTables.Where(item => item.postID == postID).FirstOrDefault();
+                    if(query != null)
+                    {
+                        context.PostTables.Remove(query);
+                        context.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+            } 
         }
     }
 }
