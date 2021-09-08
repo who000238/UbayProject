@@ -60,6 +60,12 @@
         .auto-style1 {
             margin-right: 395px;
         }
+        .postInner{
+            max-width:150px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+        }
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -100,31 +106,39 @@
                 <div runat="server" class="col-8" id="CenterArea">
                     <div>
                          <asp:Repeater ID="Repeater1" runat="server">
-                                <HeaderTemplate>
-                                    <div class="row">
-                                        <div class="col-3">標題</div>
-                                        <div class="col-5">發文者</div>
-                                        <div class="col-4">發佈時間</div>
-                                    </div>
-                                </HeaderTemplate>
-                                <ItemTemplate>
+                        <HeaderTemplate>
+                            <div class="row">
+                                <div class="col-2">標題</div>
+                                <div class="col-2">發文者</div>
+                                <div class="col-2">分類名稱</div>
+                                <div class="col-3">內文</div>
+                                <div class="col-3">發佈時間</div>
+                            </div>
+                        </HeaderTemplate>
+                        <ItemTemplate>
 
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <a href="/SeePost.aspx?postID=<%# Eval("postID") %>&actionName=reLoad"><%# Eval("postTitle") %></a>
+                            <div class="row">
+                                <div class="col-2">
+                                    <a href="/SeePost.aspx?postID=<%# Eval("postID") %>&actionName=reLoad"><%# Eval("postTitle") %></a>
 
-                                        </div>
-                                        <div class="col-5">
-                                            <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
-                                        </div>
-                                        <div class="col-4">
-                                            <td><%# Eval("createDate") %></td>
-                                        </div>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:Repeater>
+                                </div>
+                                <div class="col-2">
+                                    <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
+                                </div>
+                                <div class="col-2 ">
+                                    <%#Eval("subCategoryName") %>
+                                </div>
+                                <div class="col-3 postInner" >
+                                    <%#Eval("postText") %>
+                                </div>
+                                <div class="col-3">
+                                    <td><%# Eval("createDate") %></td>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
                             <div style="background-color: aqua">
-                                <uc1:ucPager runat="server" ID="ucPager"  PageSize="10" Url="/SubPage" />
+                                <uc1:ucPager runat="server" ID="ucPager"  PageSize="10" Url="/SearchPage" />
                             </div>
                          <%--   <asp:GridView ID="GridView1" AllowPaging="True" runat="server" AutoGenerateColumns="False" OnRowDataBound="GridView1_RowDataBound" OnPageIndexChanging="GridView1_PageIndexChanging" CssClass="auto-style1">
                                 <PagerSettings Mode="Numeric" Position="Bottom" PageButtonCount="10" />

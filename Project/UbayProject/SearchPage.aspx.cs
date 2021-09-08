@@ -38,7 +38,7 @@ namespace UbayProject.TryFIleFolder
             if (txtMainCateID != null ||
                 txtSubCateID != null)
             {
-                List<PostModel> list = PostHelper.searchPost(txtSearch);
+                List<PostModel> list = PostHelper.searchPost(txtSearch, subCateID);
                 if (list.Count > 0)
                 {
 

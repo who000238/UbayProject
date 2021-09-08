@@ -17,7 +17,7 @@
     <style>
         #div1 {
             height: 180px;
-            background-color: rgba(255,255,255,0.5);
+            ㄏ background-color: rgba(255,255,255,0.5);
         }
 
         /**/
@@ -86,6 +86,12 @@
             width: 200px;
             height: 200px
         }
+         .postInner{
+            max-width:400px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+        }
     </style>
 </head>
 <body>
@@ -120,29 +126,32 @@
             </div>
 
             <div class="row" id="div3">
-                <div class="col-2" id="BoardLink" runat="server">
-                </div>
-                <div class="col-8" runat="server" id="HotPost">
-
+                <div class="col-12" runat="server" id="HotPost">
                     <asp:Repeater ID="Repeater1" runat="server">
                         <HeaderTemplate>
                             <div class="row">
-                                <div class="col-3">標題</div>
-                                <div class="col-5">發文者</div>
-                                <div class="col-4">發佈時間</div>
+                                <div class="col-2">標題</div>
+                                <div class="col-2">發文者</div>
+                                <div class="col-2">分類名稱</div>
+                                <div class="col-4">內文</div>
+                                <div class="col-2">發佈時間</div>
                             </div>
                         </HeaderTemplate>
                         <ItemTemplate>
-
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-2">
                                     <a href="/SeePost.aspx?postID=<%# Eval("postID") %>&actionName=reLoad"><%# Eval("postTitle") %></a>
-
                                 </div>
-                                <div class="col-5">
+                                <div class="col-2">
                                     <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-2">
+                                    <%#Eval("subCategoryName") %>
+                                </div>
+                                <div class="col-4 postInner">
+                                    <%#Eval("postText") %>
+                                </div>
+                                <div class="col-2">
                                     <td><%# Eval("createDate") %></td>
                                 </div>
                             </div>
@@ -152,12 +161,8 @@
                         <uc1:ucPagerForSearch runat="server" ID="ucPagerForSearch" PageSize="10" Url="SearchPage.aspx" />
                     </div>
                 </div>
-                <div class="col-2">
-                    <p>PHOTO/AD</p>
-                </div>
             </div>
         </div>
-
     </form>
 </body>
 </html>

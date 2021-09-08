@@ -130,29 +130,8 @@ namespace UbayProject
             this.postInner.Text = string.Empty;
             Response.Write("<script>document.location=document.location</script>");
         }
-        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            var row = e.Row;
-
-            //var data = e.Row.DataItem as PostTable;
-            //Guid uid = data.userID;
 
 
-            //var userInfo = getUserNameByUserID(uid);
-
-
-            //var lblUserName = row.FindControl("ltlUserName") as Label;
-            //lblUserName.Text = userInfo.account;
-        }
-
-        public void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            string tempQuery3 = Request.QueryString["subCategoryID"];
-            int subCategoryID = Convert.ToInt32(tempQuery3);
-            var list = PostHelper.getPostAndUserName(subCategoryID);
-            this.Repeater1.DataSource = list;
-            Repeater1.DataBind();
-        }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -185,6 +164,9 @@ namespace UbayProject
                 this.ucPager.CurrentMainCategoryID = tempCatID2;
                 this.ucPager.CurrentSubCategoryID = subCategoryID;
                 this.ucPager.Bind();
+                Response.Redirect($"{this.ucPager.Url}.aspx?Search={txtSearch_input}&mainCateID={tempCatID2}&subCateID={subCategoryID}&page=1");
+
+
             }
             else /*if (list.Count ==0)*/
             {
