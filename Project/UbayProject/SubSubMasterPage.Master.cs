@@ -9,6 +9,7 @@ using AccountSource;
 using DBSource;
 using PostAndCommentSource;
 using PostAndCommentSource.Model;
+using Microsoft.Security.Application;
 
 namespace UbayProject
 {
@@ -97,8 +98,8 @@ namespace UbayProject
 
         protected void postSubmit_Click(object sender, EventArgs e)
         {
-            string txtTitle = this.postTitle.Text;
-            string txtInner = this.postInner.Text;
+            string txtTitle = Encoder.HtmlEncode(this.postTitle.Text);
+            string txtInner = Encoder.HtmlEncode(this.postInner.Text);
             string tempQuery2 = Request.QueryString["subCategoryID"];
             int tempCatID2 = Convert.ToInt32(tempQuery2);
             if (txtTitle.Length > 50)

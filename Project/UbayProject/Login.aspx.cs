@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using AccountSource;
+using Microsoft.Security.Application;
 
 namespace UbayProject
 {
@@ -26,8 +27,8 @@ namespace UbayProject
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string inp_acc = this.txtAccount.Text;
-            string inp_pwd = this.txtPassowrd.Text;
+            string inp_acc = Encoder.HtmlEncode(this.txtAccount.Text);
+            string inp_pwd = Encoder.HtmlEncode(this.txtPassowrd.Text);
             string msg;
             if (!UserInfoHelper.TryLogin(inp_acc, inp_pwd, out msg))
             {

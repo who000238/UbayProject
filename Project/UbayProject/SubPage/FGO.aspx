@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SubSubMasterPage.Master" AutoEventWireup="true" CodeBehind="FGO.aspx.cs" Inherits="UbayProject.SubPage.FGO" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SubSubMasterPage.Master" AutoEventWireup="true" CodeBehind="FGO.aspx.cs" Inherits="UbayProject.SubPage.FGO"  ValidateRequest="false" %>
 
 
 

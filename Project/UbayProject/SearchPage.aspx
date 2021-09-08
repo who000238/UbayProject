@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SearchPage.aspx.cs" Inherits="UbayProject.TryFIleFolder.SearchPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SearchPage.aspx.cs" Inherits="UbayProject.TryFIleFolder.SearchPage"  ValidateRequest="false" %>
 
 <%@ Register Src="~/UserControls/ucPager.ascx" TagPrefix="uc1" TagName="ucPager" %>
 <%@ Register Src="~/UserControls/ucPagerForSearch.ascx" TagPrefix="uc1" TagName="ucPagerForSearch" %>

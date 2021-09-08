@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Security.Application;
 
 namespace UbayProject.TryFIleFolder
 {
@@ -77,7 +78,7 @@ namespace UbayProject.TryFIleFolder
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            string txtSearch = this.SearchBar.Text;
+            string txtSearch = Encoder.HtmlEncode(this.SearchBar.Text);
             List<PostModel> list = PostHelper.searchPost(txtSearch);
 
 

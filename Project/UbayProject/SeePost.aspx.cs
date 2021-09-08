@@ -10,6 +10,7 @@ using UbayProject.ORM;
 using AccountSource;
 using DBSource;
 using PostAndCommentSource;
+using Microsoft.Security.Application;
 
 namespace UbayProject
 {
@@ -65,7 +66,7 @@ namespace UbayProject
 
         protected void commentSubmit_Click(object sender, EventArgs e)
         {
-            string txtComment = this.commentInput.Text;
+            string txtComment = Encoder.HtmlEncode(this.commentInput.Text);
             int postID = Convert.ToInt32(this.Request.QueryString["postID"]);
             UserModel currentUser = UserInfoHelper.GetCurrentUser();
             string userID = currentUser.userID;
