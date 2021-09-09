@@ -49,5 +49,6 @@ namespace UbayProject.ORM
         [Required]
         [StringLength(50)]
         public string blackList { get; set; }
+        public string OTP { get; set; }
     }
 }

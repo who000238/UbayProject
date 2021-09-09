@@ -1,18 +1,16 @@
-﻿using System;
+﻿using AccountSource;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using AccountSource;
-using DBSource;
-using Microsoft.Security.Application;
 using UbayProject.ORM;
 
 namespace UbayProject
 {
-    public partial class CreateAccount : System.Web.UI.Page
+    public partial class TryOTP : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,18 +20,34 @@ namespace UbayProject
             {
                 Response.Redirect("MainPage.aspx");
             }
-            else
-            {
-            }
+            
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)
         {
-            string inp_Account = Encoder.HtmlEncode(this.txtAccount.Text);
-            string inp_PWD = Encoder.HtmlEncode(this.txtPWD.Text);
-            string inp_CheckPWD = Encoder.HtmlEncode(this.txtPWDCheck.Text);
-            string inp_email = Encoder.HtmlEncode(this.txtMail.Text);
-            string inp_userName = Encoder.HtmlEncode(this.txtUserName.Text);
+            //string text = this.TextBox1.Text;
+            //using (ContextModel context = new ContextModel())
+            //{
+            //    var query =
+            //          (from item in context.UserTables
+            //           where item.userName == "1234"
+            //           select item);
+            //    foreach (var item in query)
+            //    {
+            //        item.OTP = text;
+            //    }
+
+            //    context.SaveChanges();
+            //}
+        }
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+           
+            string inp_Account = this.txtAccount.Text;
+            string inp_PWD = this.txtPWD.Text;
+            string inp_CheckPWD = this.txtPWDCheck.Text;
+            string inp_email = this.txtMail.Text;
+            string inp_userName = this.txtUserName.Text;
             //按下按鈕後，讀取所有Input內的值
             //有欄位為空的話 顯示錯誤訊息
 
@@ -47,7 +61,7 @@ namespace UbayProject
                 return;
             }
             //比較兩次輸入的密碼有沒有相同
-            if(string.Compare(inp_PWD,inp_CheckPWD) != 0)
+            if (string.Compare(inp_PWD, inp_CheckPWD) != 0)
             {
                 Response.Write($"<script>alert('兩次輸入的密碼並不相同、請確認')</script>");
                 return;
@@ -60,18 +74,19 @@ namespace UbayProject
                 return;
             }
 
-            //產生驗證碼
+            //
             Random myObject = new Random();
             int ranNum = myObject.Next(10000000, 99999999);
-            string emailContent = $@"http://localhost:54101/TryActive.aspx 請在輸入框內輸入{ranNum}";
+            string emailContent = $@"http://localhost:54101/TryActive.aspx
+                                     請在輸入框內輸入{ranNum}";
             string email = "ubayproject2021@gmail.com";
             sendMail(email, emailContent, "OTP");
-            
+            //
 
             //確認所有欄位送出後，跳轉至使用者資訊頁面引導填入完整使用者訊息
             UserInfoHelper.createAccount(inp_Account, inp_PWD, inp_email, inp_userName);
 
-            //存驗證碼進DB
+           
             using (ContextModel context = new ContextModel())
             {
                 var query =
@@ -85,20 +100,11 @@ namespace UbayProject
 
                 context.SaveChanges();
             }
-
             //Response.Write($"<script>alert('申請帳號成功、按下確認前往論壇')</script>");
             Response.Redirect("MainPage.aspx");
+            
 
-        }
-
-        protected void btnClear_Click(object sender, EventArgs e)
-        {
-            //按下欄位，清除所有Input的欄位的輸入值
-            this.txtAccount.Text = string.Empty;
-            this.txtPWD.Text = string.Empty;
-            this.txtPWDCheck.Text = string.Empty;
-            this.txtMail.Text = string.Empty;
-            this.txtUserName.Text = string.Empty;
+           
         }
 
         protected void sendMail(string receiveEmailAddress, string emailHtmlContent, string title)
