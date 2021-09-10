@@ -40,7 +40,7 @@ namespace UbayProject
                     HyperLink link = new HyperLink();
                     this.BoardLink.Controls.Add(link);
                     link.Text = item.mainCategoryName + "</br>";
-                    link.NavigateUrl = $"SubPage/{item.mainCategoryName}.aspx?mainCategoryID={item.mainCategoryID}";
+                    link.NavigateUrl = $"SubPage/MainCategory.aspx?mainCategoryID={item.mainCategoryID}";
                 }
             }
 

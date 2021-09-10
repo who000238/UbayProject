@@ -13,9 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <style>
-        div {
-            /*border: 1px solid #000000;*/
-        }
+
 
         #postInner {
             width: 100%;
@@ -87,7 +85,6 @@
                 </div>
             </div>
 
-
             <div class="input-group mb-3">
                 <asp:TextBox runat="server" ID="SearchBar" class="form-control" placeholder="想找甚麼...?"></asp:TextBox>
                 <div class="input-group-append">
@@ -95,9 +92,8 @@
                 </div>
             </div>
 
-
             <div>
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+                <asp:ContentPlaceHolder ID="Breadcrumbs" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
             <div class="row" id="div3">

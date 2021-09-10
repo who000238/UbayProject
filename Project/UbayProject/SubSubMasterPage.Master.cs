@@ -232,15 +232,15 @@ namespace UbayProject
         {
             string txtMainCategoryID = Request.QueryString["mainCategoryID"];
             int MainCategoryID = Convert.ToInt32(txtMainCategoryID);
-            string NewSunCategoryName = this.AddSubCategoryName.Text;
-            if (!string.IsNullOrWhiteSpace(NewSunCategoryName))
+            string NewSubCategoryName = this.AddSubCategoryName.Text;
+            if (!string.IsNullOrWhiteSpace(NewSubCategoryName))
             {
-                addSubCategory(NewSunCategoryName, MainCategoryID);
+                addSubCategory(NewSubCategoryName, MainCategoryID);
             }
             Response.Write("<script>alert('新增分類成功');location.href='/MainPage.aspx'</script>");
         }
 
-        public static void addSubCategory(string SunCategoryName,int mainCategoryID)
+        public static void addSubCategory(string SubCategoryName,int mainCategoryID)
         {
             string connStr = DBHelper.GetConnectionString();
             string dbCommand =
@@ -263,7 +263,7 @@ namespace UbayProject
                         )
                 ";
             List<SqlParameter> list = new List<SqlParameter>();
-            list.Add(new SqlParameter("@MainCategoryName", SunCategoryName));
+            list.Add(new SqlParameter("@MainCategoryName", SubCategoryName));
             list.Add(new SqlParameter("@mainCategoryID", mainCategoryID));
 
             try
