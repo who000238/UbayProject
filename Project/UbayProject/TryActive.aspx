@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateAccount.aspx.cs" Inherits="UbayProject.CreateAccount"  ValidateRequest="false" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TryActive.aspx.cs" Inherits="UbayProject.TryActive" %>
 
 <!DOCTYPE html>
 
@@ -17,7 +17,6 @@
         #divMain {
             text-align: center;
             align-items: center;
-
         }
 
         body {
@@ -25,15 +24,15 @@
             background-size: cover;
         }
 
-          form {
+        form {
             transform: translateY(0px);
             filter: drop-shadow( 1px 2px 4px hsl(0deg 0% 0% / 0.2) );
         }
 
-        form:focus-within {
-            transform: translateY(-4px);
-            filter: drop-shadow( 2px 4px 16px hsl(0deg 0% 0% / 0.2) );
-        }
+            form:focus-within {
+                transform: translateY(-4px);
+                filter: drop-shadow( 2px 4px 16px hsl(0deg 0% 0% / 0.2) );
+            }
 
         @media (prefers-reduced-motion: no-preference) {
             form {
@@ -44,7 +43,7 @@
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form2" runat="server">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-12 col-sm-12" id="divTitle" style="padding-top: 180px">
@@ -52,13 +51,9 @@
                 </div>
                 <div class="col-4"></div>
                 <div class="col-4" id="divMain">
-                    <asp:TextBox ID="txtAccount" class="form-control" placeholder="帳號" runat="server"></asp:TextBox><br />
-                    <asp:TextBox ID="txtPWD" class="form-control" placeholder="密碼" TextMode="Password" runat="server"></asp:TextBox><br />
-                    <asp:TextBox ID="txtPWDCheck" class="form-control" placeholder="確認密碼" TextMode="Password" runat="server"></asp:TextBox><br />
-                    <asp:TextBox ID="txtMail" class="form-control" placeholder="電子信箱" TextMode="Email" runat="server"></asp:TextBox><br />
-                    <asp:TextBox ID="txtUserName" class="form-control" placeholder="使用者名稱" runat="server"></asp:TextBox><br />
-                    <asp:Button ID="btnSubmit" runat="server" Text="送出" class="btn btn-dark" OnClick="btnSubmit_Click" />
-                    <asp:Button ID="btnClear" runat="server" Text="清除" class="btn btn-dark" OnClick="btnClear_Click" />
+                    <asp:Literal ID="Literal1" runat="server">輸入你的驗證碼</asp:Literal><br />
+                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><br />
+                    <asp:Button ID="Button1" runat="server" Text="確定" OnClick="Button1_Click" />
                 </div>
                 <div class="col-4"></div>
             </div>
@@ -66,3 +61,4 @@
     </form>
 </body>
 </html>
+
