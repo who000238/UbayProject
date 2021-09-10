@@ -64,7 +64,7 @@ namespace UbayProject
             Random myObject = new Random();
             int ranNum = myObject.Next(10000000, 99999999);
             string emailContent = $@"http://localhost:54101/TryActive.aspx 請在輸入框內輸入{ranNum}";
-            string email = "ubayproject2021@gmail.com";
+            string email = inp_email /*"ubayproject2021@gmail.com"*/;
             sendMail(email, emailContent, "OTP");
             
 
@@ -86,8 +86,8 @@ namespace UbayProject
                 context.SaveChanges();
             }
 
-            //Response.Write($"<script>alert('申請帳號成功、按下確認前往論壇')</script>");
-            Response.Redirect("MainPage.aspx");
+            //Response.Write($"<script>alert('申請帳號成功、按下確認前往論壇');location.href='MainPage.aspx'</script>");
+            //Response.Redirect("MainPage.aspx");
 
         }
 
@@ -143,7 +143,7 @@ namespace UbayProject
                 mail.Dispose();
 
                 //提示成功
-                Response.Write("<script type='text/javascript'> alert('已寄出');location.href = 'MainPage.aspx';</script>");
+                Response.Write("<script type='text/javascript'> alert('申請帳號成功，請前往信箱驗證你的帳號並按下確認前往論壇');location.href = 'MainPage.aspx';</script>");
 
 
             }

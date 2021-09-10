@@ -24,6 +24,23 @@
             background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
             background-size: cover;
         }
+
+          form {
+            transform: translateY(0px);
+            filter: drop-shadow( 1px 2px 4px hsl(0deg 0% 0% / 0.2) );
+        }
+
+        form:focus-within {
+            transform: translateY(-4px);
+            filter: drop-shadow( 2px 4px 16px hsl(0deg 0% 0% / 0.2) );
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            form {
+                transition: filter 300ms, transform 300ms;
+                will-change: transform;
+            }
+        }
     </style>
 </head>
 <body>
