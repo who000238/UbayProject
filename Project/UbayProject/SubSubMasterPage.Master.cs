@@ -29,6 +29,10 @@ namespace UbayProject
                     this.postArea.Visible = false;
                 else
                     this.postArea.Visible = true;
+                if (currentUser.userLevel == "0")
+                {
+                    this.AddSubCategoryArea.Visible = true;
+                }
             }
             else
             {
@@ -222,6 +226,54 @@ namespace UbayProject
         {
             int startIndex = (this.GetCurrentPage() - 1) * 10;
             return list.Skip(startIndex).Take(10).ToList();
+        }
+
+        protected void btnAddSubCategory_Click(object sender, EventArgs e)
+        {
+            string txtMainCategoryID = Request.QueryString["mainCategoryID"];
+            int MainCategoryID = Convert.ToInt32(txtMainCategoryID);
+            string NewSunCategoryName = this.AddSubCategoryName.Text;
+            if (!string.IsNullOrWhiteSpace(NewSunCategoryName))
+            {
+                addSubCategory(NewSunCategoryName, MainCategoryID);
+            }
+            Response.Write("<script>alert('新增分類成功');location.href='/MainPage.aspx'</script>");
+        }
+
+        public static void addSubCategory(string SunCategoryName,int mainCategoryID)
+        {
+            string connStr = DBHelper.GetConnectionString();
+            string dbCommand =
+                $@"
+                    INSERT INTO SubCategoryTable
+                        (
+                        subCategoryName,
+                        createDate,
+                        countOfPosts,
+                        countOfViewers,
+                        mainCategoryID
+                        )
+                        VALUES
+                        (
+                        @MainCategoryName
+                        ,GETDATE()
+                        ,0
+                        ,0
+                        ,@mainCategoryID
+                        )
+                ";
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@MainCategoryName", SunCategoryName));
+            list.Add(new SqlParameter("@mainCategoryID", mainCategoryID));
+
+            try
+            {
+                int effectRows = DBHelper.ModifyData(connStr, dbCommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+            }
         }
     }
 

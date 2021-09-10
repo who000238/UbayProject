@@ -69,6 +69,33 @@ namespace UbayProject
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl BoardLink;
 
         /// <summary>
+        /// AddMainCategoryArea 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddMainCategoryArea;
+
+        /// <summary>
+        /// btnAddMainCategory 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddMainCategory;
+
+        /// <summary>
+        /// AddMainCategoryName 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox AddMainCategoryName;
+
+        /// <summary>
         /// ltPager 控制項。
         /// </summary>
         /// <remarks>

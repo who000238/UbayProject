@@ -79,6 +79,10 @@
 
             <div class="row">
                 <div class="col-2" id="BoardLink" runat="server">
+                    <div runat="server" id="AddMainCategoryArea" visible="false">
+                        <asp:Button ID="btnAddMainCategory" runat="server" Text="新增母分類" OnClick="btnAddMainCategory_Click" />
+                        <asp:TextBox ID="AddMainCategoryName" runat="server" placeholder="輸入母分類名稱"></asp:TextBox>
+                    </div>
                 </div>
                 <div class="col-8" id="div3">
                     <div>
@@ -96,16 +100,7 @@
             <div style="text-align: center">
             </div>
         </div>
-        <%-- <div class="row postArea" id="postArea" runat="server">
-            <div class="col-12">
-                <asp:TextBox runat="server" ID="postTitle" TextMode="SingleLine" CssClass="form-control" placeholder="輸入標題"></asp:TextBox>
 
-            </div>
-            <div>
-                <asp:TextBox runat="server" ID="postInner" TextMode="MultiLine" Rows="3" CssClass="form-control" placeholder="輸入內文"></asp:TextBox>
-            </div>
-            <asp:Button runat="server" ID="postSubmit" CssClass="btn btn-outline-primary" Text="送出" OnClick="postSubmit_Click" />
-        </div>--%>
     </form>
 </body>
 </html>

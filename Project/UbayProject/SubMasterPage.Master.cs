@@ -20,6 +20,11 @@ namespace UbayProject
                 this.linkLogout.Visible = true;
                 this.a_Login.Visible = false;
                 //this.postArea.Visible = true;
+                UserModel currentUser = UserInfoHelper.GetCurrentUser();
+                if (currentUser.userLevel == "0")
+                {
+                    this.AddMainCategoryArea.Visible = true;
+                }
             }
             else
             {
@@ -204,6 +209,44 @@ namespace UbayProject
                 dtPaged.Rows.Add(drNew);
             }
             return dtPaged;
+        }
+
+        protected void btnAddMainCategory_Click(object sender, EventArgs e)
+        {
+            string NewMainCategoryName = this.AddMainCategoryName.Text;
+            if (!string.IsNullOrWhiteSpace(NewMainCategoryName))
+            {
+                addMainCategory(NewMainCategoryName);
+            }
+            Response.Write("<script>alert('新增分類成功');location.href='/MainPage.aspx'</script>");
+        }
+
+        public static void addMainCategory(string MainCategoryName)
+        {
+            string connStr = DBHelper.GetConnectionString();
+            string dbCommand =
+                $@"
+                    INSERT INTO MainCategoryTable
+                        (
+                        mainCategoryName,
+                        createDate
+                        )
+                        VALUES
+                        (
+                        @MainCategoryName
+                        ,GETDATE()
+                        )
+                ";
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@MainCategoryName", MainCategoryName));
+            try
+            {
+                int effectRows = DBHelper.ModifyData(connStr, dbCommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+            }
         }
     }
 

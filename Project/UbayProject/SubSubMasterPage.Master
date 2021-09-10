@@ -102,6 +102,10 @@
             </div>
             <div class="row" id="div3">
                 <div class="col-2" id="BoardLink" runat="server">
+                      <div runat="server" id="AddSubCategoryArea" visible="false">
+                        <asp:Button ID="btnAddSubCategory" runat="server" Text="新增子分類" OnClick="btnAddSubCategory_Click" />
+                        <asp:TextBox ID="AddSubCategoryName" runat="server" placeholder="輸入子分類名稱"></asp:TextBox>
+                    </div>
                 </div>
                 <div runat="server" class="col-8" id="CenterArea">
                     <div>
