@@ -31,7 +31,7 @@ namespace UbayProject
             {
                 this.linkLogout.Visible = false;
                 this.a_Login.Visible = true;
-                //this.postArea.Visible = false;ㄏ
+                //this.postArea.Visible = false;
             }
 
             //取得mainCategoryID並轉成INT
@@ -232,6 +232,26 @@ namespace UbayProject
                 return null;
             }
         }
+
+        #region 子分類用圖片上傳區
+        public string GetSaveFoldPath()
+        {
+            return Server.MapPath("~/Pics");
+        }
+
+        protected void btnPicUP_Click(object sender, EventArgs e)
+        {
+            string newCatePicName = this.PicNameInp.Text+".jpg";
+            string PicPath = System.IO.Path.Combine(this.GetSaveFoldPath(), newCatePicName);
+            this.PicUP.SaveAs(PicPath);
+            this.ltMsg.Text = "上傳成功";
+        }
+        //public string setNewCatePicName(FileUpload fileUpload)
+        //{
+        //    string newCatePicName = this.PicNameInp.Text;
+        //    return newCatePicName;
+        //}
+        #endregion
     }
 
 }

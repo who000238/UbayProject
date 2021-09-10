@@ -34,7 +34,7 @@
             height: 180px;
         }
 
-   
+
 
 
         body {
@@ -77,10 +77,14 @@
                         <asp:TextBox ID="AddMainCategoryName" runat="server" placeholder="輸入母分類名稱"></asp:TextBox>
                         <asp:Button ID="btnAddMainCategory" runat="server" Text="新增母分類" OnClick="btnAddMainCategory_Click" />
                     </div>
-                        <div runat="server" id="AddSubCategoryArea" visible="false">
+                    <div runat="server" id="AddSubCategoryArea" visible="false">
                         <asp:TextBox ID="AddSubCategoryName" runat="server" placeholder="輸入子分類名稱"></asp:TextBox>
                         <asp:TextBox ID="AddSubCateUnderMainName" runat="server" placeholder="輸入要加入哪個母分類之中"></asp:TextBox>
-                        <asp:Button ID="btnAddSubCategory" runat="server" Text="新增子分類" OnClick="btnAddSubCategory_Click"/>
+                        <asp:Button ID="btnAddSubCategory" runat="server" Text="新增子分類" OnClick="btnAddSubCategory_Click" />
+                        <asp:FileUpload ID="PicUP" runat="server" />
+                        <asp:Literal ID="ltMsg" runat="server"></asp:Literal>
+                        <asp:TextBox ID="PicNameInp" runat="server" placeholder="輸入圖片檔名"></asp:TextBox>
+                        <asp:Button ID="btnPicUP" runat="server" Text="上傳圖片" OnClick="btnPicUP_Click" />
                     </div>
                 </div>
                 <div class="col-8" id="div3">
