@@ -65,16 +65,11 @@
             opacity: 1;
             transform: translateY(0px);
         }
-        /**/
 
         #div3 {
             height: 550px;
             background-color: rgba(255,255,255,0.5);
-            /* margin-top: 10px;
-            background: -webkit-linear-gradient(yellow,red);
-            background: -o-linear-gradient(yellow,red);
-            background: -moz-linear-gradient(yellow,red);
-            background: linear-gradient(yellow,red);*/
+     
         }
 
         body {

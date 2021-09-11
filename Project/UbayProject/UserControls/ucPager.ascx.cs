@@ -58,8 +58,8 @@ namespace UbayProject.UserControls
                 totalPage += 1;
             }
 
-            this.aLinkFirst.HRef = $"{this.Url}/{CurrentSubCategoryName}.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page=1";           //設定起點頁、預設永遠都有一頁
-            this.aLinkLast.HRef = $"{this.Url}/{CurrentSubCategoryName}.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page={totalPage}";  //設定終點頁、為總頁數
+            this.aLinkFirst.HRef = $"{this.Url}/SubCategory.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page=1";           //設定起點頁、預設永遠都有一頁
+            this.aLinkLast.HRef = $"{this.Url}/SubCategory.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page={totalPage}";  //設定終點頁、為總頁數
 
             //依目前頁數計算
             this.CurrentPage = this.GetCurrentPage();
@@ -73,16 +73,16 @@ namespace UbayProject.UserControls
             int nextP2 = this.CurrentPage + 2;
 
 
-            this.aLink2.HRef = $"{this.Url}/{CurrentSubCategoryName}.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page={prevM1}";
+            this.aLink2.HRef = $"{this.Url}/SubCategory.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page={prevM1}";
             this.aLink2.InnerText = prevM1.ToString();              //修正頁數文字
-            this.aLink1.HRef = $"{this.Url}/{CurrentSubCategoryName}.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page={prevM2}";
+            this.aLink1.HRef = $"{this.Url}/SubCategory.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page={prevM2}";
             this.aLink1.InnerText = prevM2.ToString();
 
 
 
-            this.aLink4.HRef = $"{this.Url}/{CurrentSubCategoryName}.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page={nextP1}";
+            this.aLink4.HRef = $"{this.Url}/SubCategory.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page={nextP1}";
             this.aLink4.InnerText = nextP1.ToString();
-            this.aLink5.HRef = $"{this.Url}/{CurrentSubCategoryName}.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page={nextP2}";
+            this.aLink5.HRef = $"{this.Url}/SubCategory.aspx?mainCategoryID={CurrentMainCategoryID}&subCategoryID={CurrentSubCategoryID}&page={nextP2}";
             this.aLink5.InnerText = nextP2.ToString();
 
             //依頁數，決定是否隱藏超連結，並處理提示文字

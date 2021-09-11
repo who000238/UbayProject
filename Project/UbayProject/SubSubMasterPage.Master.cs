@@ -164,13 +164,12 @@ namespace UbayProject
                 this.Repeater1.DataSource = pagedList;
                 this.Repeater1.DataBind();
 
-
                 this.ucPager.TotalSize = list.Count;
                 this.ucPager.CurrentSubCategoryName = subCategoryName;
                 this.ucPager.CurrentMainCategoryID = tempCatID2;
                 this.ucPager.CurrentSubCategoryID = subCategoryID;
                 this.ucPager.Bind();
-                Response.Redirect($"{this.ucPager.Url}.aspx?Search={txtSearch_input}&mainCateID={tempCatID2}&subCateID={subCategoryID}&page=1");
+                Response.Redirect($"/SearchPage.aspx?Search={txtSearch_input}&mainCateID={tempCatID2}&subCateID={subCategoryID}&page=1");
 
 
             }
