@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
 using System.Net.Mail;
+using System.Web.Security.AntiXss;
+
 
 namespace UbayProject
 {
@@ -30,8 +32,8 @@ namespace UbayProject
 
 
             //查詢輸入帳號、信箱是否同時屬於同一個使用者
-            string inputAccount = this.txtAccount.Text;
-            string inputEmail = this.txtMail.Text;
+            string inputAccount = AntiXssEncoder.HtmlEncode(this.txtAccount.Text,true);
+            string inputEmail = AntiXssEncoder.HtmlEncode(this.txtMail.Text,true);
             bool isUserExist = false;
             string newPassword = "";
             using (ORM.ContextModel content = new ORM.ContextModel())
