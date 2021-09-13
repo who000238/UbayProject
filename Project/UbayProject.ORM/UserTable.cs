@@ -13,7 +13,7 @@ namespace UbayProject.ORM
         public Guid userID { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(100)]
         public string userName { get; set; }
 
         [Required]
