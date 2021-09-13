@@ -99,7 +99,7 @@ namespace PostAndCommentSource
                              countOfViewers = item.countOfViewers,
                              subCategoryID = item.subCategoryID,
                              postText = item.postText
-                         }).Take(15).ToList();
+                         }).Take(10).ToList();
 
                     return query;
                 }

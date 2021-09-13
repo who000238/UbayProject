@@ -34,6 +34,13 @@ namespace UbayProject.TryFIleFolder
             string txtSubCateID = Request.QueryString["subCateID"];
             int subCateID = Convert.ToInt32(txtSubCateID);
 
+            if (string.IsNullOrEmpty(txtSearch))
+            {
+                this.ucPagerForSearch.Visible = false;
+                Response.Write("<script>alert('查無貼文')</script>");
+                return;
+            }
+
 
             if (txtMainCateID != null ||
                 txtSubCateID != null)

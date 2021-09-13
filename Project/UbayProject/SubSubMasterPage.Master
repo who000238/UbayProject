@@ -13,9 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <style>
-        div {
-            /*border: 1px solid #000000;*/
-        }
+
 
         #postInner {
             width: 100%;
@@ -81,12 +79,11 @@
                     <p>PHOTO/AD</p>
                 </div>
                 <div class="col-2">
-                    <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>
-                    <asp:LinkButton ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>
+                    <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>&nbsp;&nbsp;
+                    <asp:LinkButton ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>&nbsp;&nbsp;
                     <a href="/UserInfo.aspx">使用者資訊</a>
                 </div>
             </div>
-
 
             <div class="input-group mb-3">
                 <asp:TextBox runat="server" ID="SearchBar" class="form-control" placeholder="想找甚麼...?"></asp:TextBox>
@@ -95,13 +92,16 @@
                 </div>
             </div>
 
-
             <div>
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+                <asp:ContentPlaceHolder ID="Breadcrumbs" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
             <div class="row" id="div3">
                 <div class="col-2" id="BoardLink" runat="server">
+                      <div runat="server" id="AddSubCategoryArea" visible="false">
+                        <asp:Button ID="btnAddSubCategory" runat="server" Text="新增子分類" OnClick="btnAddSubCategory_Click" />
+                        <asp:TextBox ID="AddSubCategoryName" runat="server" placeholder="輸入子分類名稱"></asp:TextBox>
+                    </div>
                 </div>
                 <div runat="server" class="col-8" id="CenterArea">
                     <div>
@@ -138,7 +138,7 @@
                         </ItemTemplate>
                     </asp:Repeater>
                             <div style="background-color: aqua">
-                                <uc1:ucPager runat="server" ID="ucPager"  PageSize="10" Url="/SearchPage" />
+                                <uc1:ucPager runat="server" ID="ucPager"  PageSize="10" Url="/SubPage" />
                             </div>
                      
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

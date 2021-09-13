@@ -198,20 +198,10 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="Login.aspx" />
     <Content Include="MainPage.aspx" />
+    <Content Include="Pics\default.jpg" />
     <Content Include="SeePost.aspx" />
-    <Content Include="SubPage\Baseball.aspx" />
-    <Content Include="SubPage\Golf.aspx" />
-    <Content Include="SubPage\Life.aspx" />
-    <Content Include="SubPage\Man.aspx" />
-    <Content Include="SubPage\FGO.aspx" />
-    <Content Include="SubPage\Game.aspx" />
-    <Content Include="SubPage\GBF.aspx" />
-    <Content Include="SubPage\Soccer.aspx" />
-    <Content Include="SubPage\Women.aspx" />
-    <Content Include="SubPage\Gossiping.aspx" />
-    <Content Include="SubPage\Politics.aspx" />
-    <Content Include="SubPage\Sports.aspx" />
-    <Content Include="SubPage\YGO.aspx" />
+    <Content Include="SubPage\MainCategory.aspx" />
+    <Content Include="SubPage\SubCategory.aspx" />
     <Content Include="SearchPage.aspx" />
     <Content Include="TryFIleFolder\TryGridView.aspx" />
     <Content Include="TryFIleFolder\TryMainPage.aspx" />
@@ -293,75 +283,19 @@
     <Compile Include="SeePost.aspx.designer.cs">
       <DependentUpon>SeePost.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SubPage\Baseball.aspx.cs">
-      <DependentUpon>Baseball.aspx</DependentUpon>
+    <Compile Include="SubPage\MainCategory.aspx.cs">
+      <DependentUpon>MainCategory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SubPage\Baseball.aspx.designer.cs">
-      <DependentUpon>Baseball.aspx</DependentUpon>
+    <Compile Include="SubPage\MainCategory.aspx.designer.cs">
+      <DependentUpon>MainCategory.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SubPage\Golf.aspx.cs">
-      <DependentUpon>Golf.aspx</DependentUpon>
+    <Compile Include="SubPage\SubCategory.aspx.cs">
+      <DependentUpon>SubCategory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SubPage\Golf.aspx.designer.cs">
-      <DependentUpon>Golf.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SubPage\Life.aspx.cs">
-      <DependentUpon>Life.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SubPage\Life.aspx.designer.cs">
-      <DependentUpon>Life.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SubPage\Man.aspx.cs">
-      <DependentUpon>Man.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SubPage\Man.aspx.designer.cs">
-      <DependentUpon>Man.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SubPage\FGO.aspx.cs">
-      <DependentUpon>FGO.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SubPage\FGO.aspx.designer.cs">
-      <DependentUpon>FGO.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SubPage\GBF.aspx.cs">
-      <DependentUpon>GBF.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SubPage\GBF.aspx.designer.cs">
-      <DependentUpon>GBF.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SubPage\Soccer.aspx.cs">
-      <DependentUpon>Soccer.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SubPage\Soccer.aspx.designer.cs">
-      <DependentUpon>Soccer.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SubPage\Women.aspx.cs">
-      <DependentUpon>Women.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SubPage\Women.aspx.designer.cs">
-      <DependentUpon>Women.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SubPage\Politics.aspx.cs">
-      <DependentUpon>Politics.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SubPage\Politics.aspx.designer.cs">
-      <DependentUpon>Politics.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SubPage\YGO.aspx.cs">
-      <DependentUpon>YGO.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SubPage\YGO.aspx.designer.cs">
-      <DependentUpon>YGO.aspx</DependentUpon>
+    <Compile Include="SubPage\SubCategory.aspx.designer.cs">
+      <DependentUpon>SubCategory.aspx</DependentUpon>
     </Compile>
     <Compile Include="SubSubMasterPage.Master.cs">
       <DependentUpon>SubSubMasterPage.Master</DependentUpon>
@@ -376,27 +310,6 @@
     </Compile>
     <Compile Include="SubMasterPage.Master.designer.cs">
       <DependentUpon>SubMasterPage.Master</DependentUpon>
-    </Compile>
-    <Compile Include="SubPage\Game.aspx.cs">
-      <DependentUpon>Game.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SubPage\Game.aspx.designer.cs">
-      <DependentUpon>Game.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SubPage\Gossiping.aspx.cs">
-      <DependentUpon>Gossiping.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SubPage\Gossiping.aspx.designer.cs">
-      <DependentUpon>Gossiping.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SubPage\Sports.aspx.cs">
-      <DependentUpon>Sports.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SubPage\Sports.aspx.designer.cs">
-      <DependentUpon>Sports.aspx</DependentUpon>
     </Compile>
     <Compile Include="SearchPage.aspx.cs">
       <DependentUpon>SearchPage.aspx</DependentUpon>

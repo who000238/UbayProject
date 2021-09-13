@@ -40,7 +40,7 @@ namespace UbayProject
                     HyperLink link = new HyperLink();
                     this.BoardLink.Controls.Add(link);
                     link.Text = item.mainCategoryName + "</br>";
-                    link.NavigateUrl = $"SubPage/{item.mainCategoryName}.aspx?mainCategoryID={item.mainCategoryID}";
+                    link.NavigateUrl = $"SubPage/MainCategory.aspx?mainCategoryID={item.mainCategoryID}";
                 }
             }
 
@@ -75,14 +75,8 @@ namespace UbayProject
             {
                 Response.Write("<script>alert('搜尋字串不得留空或者輸入空格、請檢查後重新輸入')</script>");
                 Response.Write("<script>document.location=document.location</script>");
-
             }
-            //var list = PostHelper.searchPost(txtSearch_input);
-            //if (list != null)
-            //{
-            //    this.Repeater1.DataSource = list;
-            //    this.Repeater1.DataBind();
-            //}
+       
             Response.Redirect($"SearchPage.aspx?Search={txtSearch_input}");
         }
 

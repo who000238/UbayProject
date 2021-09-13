@@ -15,7 +15,6 @@
             background-color:rgba(255,255,255,0.5);
         }
         
-/**/
 div.container2
 {
     font-family: Raleway;
@@ -24,7 +23,7 @@ div.container2
 	text-align: center;
 }
 
-div.container2 a
+div.container2 
 {
     color: #000000;
     text-decoration: none;
@@ -65,16 +64,11 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
     opacity: 1;
     transform: translateY(0px);
 }
-/**/
         
         #div3 {
             height: 550px;
             background-color:rgba(255,255,255,0.5);
-            /* margin-top: 10px;
-            background: -webkit-linear-gradient(yellow,red);
-            background: -o-linear-gradient(yellow,red);
-            background: -moz-linear-gradient(yellow,red);
-            background: linear-gradient(yellow,red);*/
+      
         }
 
         body {
@@ -108,9 +102,9 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
                     <p>PHOTO/AD</p>
                 </div>
                 <div class="col-2 collapse navbar-collapse justify-content-end" id="navbarNavDropdown"  >
-                    <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>
-                    <asp:LinkButton ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>
-                    <a href="UserInfo.aspx" runat="server" id="UserInfoLink">使用者資訊</a>
+                    <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a> &nbsp;&nbsp;
+                    <asp:LinkButton ID="linkLogout" runat="server" OnClick="linkLogout_Click">Logout</asp:LinkButton>&nbsp;&nbsp;
+                    <a href="UserInfo.aspx" runat="server" id="UserInfoLink">使用者資訊</a> &nbsp;&nbsp;
                     <a href ="Complaint.aspx">申訴</a>
                 </div>
                 </nav>

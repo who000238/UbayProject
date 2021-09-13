@@ -29,6 +29,10 @@ namespace UbayProject
                     this.postArea.Visible = false;
                 else
                     this.postArea.Visible = true;
+                if (currentUser.userLevel == "0")
+                {
+                    this.AddSubCategoryArea.Visible = true;
+                }
             }
             else
             {
@@ -52,7 +56,7 @@ namespace UbayProject
                     HyperLink link = new HyperLink();
                     this.BoardLink.Controls.Add(link);
                     link.Text = item.subCategoryName + "</br>";
-                    link.NavigateUrl = $"/SubPage/{item.subCategoryName}.aspx?mainCategoryID={item.mainCategoryID}&subCategoryID={item.subCategoryID}";
+                    link.NavigateUrl = $"/SubPage/SubCategory.aspx?mainCategoryID={item.mainCategoryID}&subCategoryID={item.subCategoryID}";
                 }
             }
 
@@ -160,13 +164,12 @@ namespace UbayProject
                 this.Repeater1.DataSource = pagedList;
                 this.Repeater1.DataBind();
 
-
                 this.ucPager.TotalSize = list.Count;
                 this.ucPager.CurrentSubCategoryName = subCategoryName;
                 this.ucPager.CurrentMainCategoryID = tempCatID2;
                 this.ucPager.CurrentSubCategoryID = subCategoryID;
                 this.ucPager.Bind();
-                Response.Redirect($"{this.ucPager.Url}.aspx?Search={txtSearch_input}&mainCateID={tempCatID2}&subCateID={subCategoryID}&page=1");
+                Response.Redirect($"/SearchPage.aspx?Search={txtSearch_input}&mainCateID={tempCatID2}&subCateID={subCategoryID}&page=1");
 
 
             }
@@ -222,6 +225,54 @@ namespace UbayProject
         {
             int startIndex = (this.GetCurrentPage() - 1) * 10;
             return list.Skip(startIndex).Take(10).ToList();
+        }
+
+        protected void btnAddSubCategory_Click(object sender, EventArgs e)
+        {
+            string txtMainCategoryID = Request.QueryString["mainCategoryID"];
+            int MainCategoryID = Convert.ToInt32(txtMainCategoryID);
+            string NewSubCategoryName = this.AddSubCategoryName.Text;
+            if (!string.IsNullOrWhiteSpace(NewSubCategoryName))
+            {
+                addSubCategory(NewSubCategoryName, MainCategoryID);
+            }
+            Response.Write("<script>alert('新增分類成功');location.href='/MainPage.aspx'</script>");
+        }
+
+        public static void addSubCategory(string SubCategoryName,int mainCategoryID)
+        {
+            string connStr = DBHelper.GetConnectionString();
+            string dbCommand =
+                $@"
+                    INSERT INTO SubCategoryTable
+                        (
+                        subCategoryName,
+                        createDate,
+                        countOfPosts,
+                        countOfViewers,
+                        mainCategoryID
+                        )
+                        VALUES
+                        (
+                        @MainCategoryName
+                        ,GETDATE()
+                        ,0
+                        ,0
+                        ,@mainCategoryID
+                        )
+                ";
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@MainCategoryName", SubCategoryName));
+            list.Add(new SqlParameter("@mainCategoryID", mainCategoryID));
+
+            try
+            {
+                int effectRows = DBHelper.ModifyData(connStr, dbCommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+            }
         }
     }
 
