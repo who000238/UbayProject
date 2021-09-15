@@ -42,26 +42,7 @@ namespace UbayProject.TryFIleFolder
             }
 
 
-            if (txtMainCateID != null ||
-                txtSubCateID != null)
-            {
-                List<PostModel> list = PostHelper.searchPost(txtSearch, subCateID);
-                if (list.Count > 0)
-                {
-
-                    var pagedList = this.GetPagedDataTable(list);
-
-                    this.Repeater1.DataSource = pagedList;
-                    this.Repeater1.DataBind();
-
-
-                    this.ucPagerForSearch.TotalSize = list.Count;
-                    this.ucPagerForSearch.CurrentMainCategoryID = mainCateID;
-                    this.ucPagerForSearch.CurrentSubCategoryID = subCateID;
-                    this.ucPagerForSearch.Bind();
-                }
-            }
-            else
+            if (txtMainCateID == null && txtSubCateID == null)
             {
                 List<PostModel> list = PostHelper.searchPost(txtSearch);
                 if (list.Count > 0)
@@ -75,7 +56,27 @@ namespace UbayProject.TryFIleFolder
 
                     this.ucPagerForSearch.TotalSize = list.Count;
                     this.ucPagerForSearch.txtSearch = txtSearch;
+
                     this.ucPagerForSearch.Bind();
+                }
+            }
+            else if (txtMainCateID != null && txtSubCateID != null)
+            {
+                List<PostModel> list = PostHelper.searchPost(txtSearch);
+                if (list.Count > 0)
+                {
+
+                    var pagedList = this.GetPagedDataTable(list);
+
+                    this.Repeater1.DataSource = pagedList;
+                    this.Repeater1.DataBind();
+
+
+                    this.ucPagerForSearch.TotalSize = list.Count;
+                    this.ucPagerForSearch.CurrentMainCategoryID = mainCateID;
+                    this.ucPagerForSearch.CurrentSubCategoryID = subCateID;
+                    this.ucPagerForSearch.txtSearch = txtSearch;
+                    this.ucPagerForSearch.BindForSub();
                 }
                 else
                 {
