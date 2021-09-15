@@ -60,10 +60,11 @@ namespace UbayProject
                 return;
             }
 
-            //產生驗證碼
+           
+
             Random myObject = new Random();
             int ranNum = myObject.Next(10000000, 99999999);
-            string emailContent = $@"http://localhost:54101/TryActive.aspx 請在輸入框內輸入{ranNum}";
+            string emailContent = $@"http://localhost:54101/TryActive.aspx 您的驗證碼為:{ranNum}";
             string email = inp_email /*"ubayproject2021@gmail.com"*/;
             sendMail(email, emailContent, "OTP");
             
@@ -155,5 +156,6 @@ namespace UbayProject
 
             }
         }
+       
     }
 }
