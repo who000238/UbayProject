@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Windows;
+using System.Web.Security.AntiXss;
+
 
 namespace UbayProject
 {
@@ -141,7 +143,7 @@ namespace UbayProject
                         case "UpdateUserName":
                             if (this.txtUserName.Text != string.Empty)
                             {
-                                temp.userName = this.txtUserName.Text;
+                                temp.userName = AntiXssEncoder.HtmlEncode(this.txtUserName.Text,true);
                             }
                             else
                             {
@@ -166,14 +168,14 @@ namespace UbayProject
                             break;
                         //UPDATE USER SEX
                         case "UpdateUserIntro":
-                            temp.intro = this.txtUserIntro.Text;
+                            temp.intro = AntiXssEncoder.HtmlEncode(this.txtUserIntro.Text,true);
                             break;
 
                         case "UpdateUserPhoto":
                             string[] imagendnames = { ".jpg", ".png", ".jpeg" };
                             if (imagendnames.Any(x => this.txtImg.Text.EndsWith(x)))
                             {
-                                temp.photoURL = this.txtImg.Text;
+                                temp.photoURL = AntiXssEncoder.HtmlEncode(this.txtImg.Text,true);
                             }
                             else
                             {

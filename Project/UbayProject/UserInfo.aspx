@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserInfo.aspx.cs" Inherits="UbayProject.UserInfo"  %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserInfo.aspx.cs" Inherits="UbayProject.UserInfo" ValidateRequest="false" %>
 
 <!DOCTYPE html>
 

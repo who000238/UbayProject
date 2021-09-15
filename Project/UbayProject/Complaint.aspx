@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Complaint.aspx.cs" Inherits="UbayProject.complaint" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Complaint.aspx.cs" Inherits="UbayProject.complaint" ValidateRequest="false"%>
 
 <!DOCTYPE html>
 

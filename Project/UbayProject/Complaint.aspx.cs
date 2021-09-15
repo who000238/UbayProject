@@ -5,6 +5,7 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security.AntiXss;
 
 namespace UbayProject
 {
@@ -51,8 +52,8 @@ namespace UbayProject
             string emailContent = 
                     $@"
                        <h1>申訴使用者訊息:<h1><br/>
-                       <p>申訴標題:{this.txtContent.Text}<p><br/>
-                       <p>申訴內容:{this.txtTitle.Text}<p>";
+                       <p>申訴標題:{AntiXssEncoder.HtmlEncode(this.txtContent.Text,true)}<p><br/>
+                       <p>申訴內容:{AntiXssEncoder.HtmlEncode(this.txtTitle.Text,true)}<p>";
 
             
             //找出所有使用者中管理員權限為0的使用者(管理員)

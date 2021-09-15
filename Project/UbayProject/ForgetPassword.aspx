@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ForgetPassword.aspx.cs" Inherits="UbayProject.ForgetPassword" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ForgetPassword.aspx.cs" Inherits="UbayProject.ForgetPassword" ValidateRequest="false" %>
 
 <!DOCTYPE html>
 
