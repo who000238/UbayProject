@@ -178,10 +178,6 @@ namespace UbayProject
                 Response.Write("<script>alert('查無貼文!!')</script>");
             }
 
-
-   
-
-
         }
         public static string GetSubCategoryName(int SubCategoryID)
         {
