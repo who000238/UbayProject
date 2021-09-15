@@ -13,7 +13,7 @@ namespace UbayProject.ORM
         public Guid userID { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(50)]
         public string userName { get; set; }
 
         [Required]
@@ -49,6 +49,8 @@ namespace UbayProject.ORM
         [Required]
         [StringLength(50)]
         public string blackList { get; set; }
+
+        [StringLength(8)]
         public string OTP { get; set; }
     }
 }

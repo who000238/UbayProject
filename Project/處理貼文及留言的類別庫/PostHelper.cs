@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using UbayProject.ORM;
 
 
@@ -117,6 +118,8 @@ namespace PostAndCommentSource
         /// <returns></returns>
         public static List<PostModel> searchPost(string Input_txt)
         {
+            string tempInput_txt = HttpUtility.HtmlDecode(Input_txt);
+
             try
             {
                 using (ContextModel context = new ContextModel())
@@ -127,7 +130,7 @@ namespace PostAndCommentSource
                           on item.userID equals UserInfo.userID
                          join SubInfo in context.SubCategoryTables
                         on item.subCategoryID equals SubInfo.subCategoryID
-                         where item.postTitle.Contains(Input_txt) || item.postText.Contains(Input_txt)
+                         where item.postTitle.Contains(tempInput_txt) || item.postText.Contains(tempInput_txt)
                          select new PostModel()
                          {
                              subCategoryName = SubInfo.subCategoryName,
@@ -154,6 +157,7 @@ namespace PostAndCommentSource
         }
         public static List<PostModel> searchPost(string Input_txt, int subCategoryID)
         {
+            string tempInput_txt = HttpUtility.HtmlDecode(Input_txt);
             try
             {
                 using (ContextModel context = new ContextModel())
@@ -164,7 +168,7 @@ namespace PostAndCommentSource
                           on item.userID equals UserInfo.userID
                          join SubInfo in context.SubCategoryTables
                          on item.subCategoryID equals SubInfo.subCategoryID
-                         where item.postTitle.Contains(Input_txt) || item.postText.Contains(Input_txt)
+                         where item.postTitle.Contains(tempInput_txt) || item.postText.Contains(tempInput_txt)
                          where item.subCategoryID == subCategoryID
                          select new PostModel()
                          {

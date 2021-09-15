@@ -47,6 +47,10 @@ namespace UbayProject.ORM
             modelBuilder.Entity<UserTable>()
                 .Property(e => e.blackList)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<UserTable>()
+                .Property(e => e.OTP)
+                .IsFixedLength();
         }
     }
 }

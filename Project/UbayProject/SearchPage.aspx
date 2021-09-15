@@ -152,7 +152,7 @@
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
-                    <div style="background-color: aqua">
+                    <div style="background-color: orange;opacity:0.8;text-align:center">
                         <uc1:ucPagerForSearch runat="server" ID="ucPagerForSearch" PageSize="10" Url="SearchPage.aspx" />
                     </div>
                 </div>

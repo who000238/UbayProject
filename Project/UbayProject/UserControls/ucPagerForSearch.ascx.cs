@@ -93,5 +93,58 @@ namespace UbayProject.UserControls
 
 
         }
+
+        public void BindForSub()
+        {
+            //檢查一頁筆數
+            if (this.PageSize <= 0)                                //總頁數小於零 顯示錯誤訊息
+            {
+                throw new DivideByZeroException();
+            }
+            //算總頁數
+            int totalPage = this.TotalSize / this.PageSize;        //總頁數等於總資料筆數/一頁筆數
+            if (this.TotalSize % this.PageSize > 0)                //資料筆數非一頁筆數的整倍數時頁數加1
+            {
+                totalPage += 1;
+            }
+
+            this.aLinkFirst.HRef = $"/{this.Url}?Search={txtSearch}&mainCateID={CurrentMainCategoryID}&subCateID={CurrentSubCategoryID}&page=1";           //設定起點頁、預設永遠都有一頁
+            this.aLinkLast.HRef = $"/{this.Url}?Search={txtSearch}&mainCateID={CurrentMainCategoryID}&subCateID={CurrentSubCategoryID}&page={totalPage}";  //設定終點頁、為總頁數
+
+            //依目前頁數計算
+            this.CurrentPage = this.GetCurrentPage();
+            this.ltlCurrent.Text = this.CurrentPage.ToString();
+
+            //}
+            //計算頁數
+            int prevM1 = this.CurrentPage - 1;
+            int prevM2 = this.CurrentPage - 2;
+            int nextP1 = this.CurrentPage + 1;
+            int nextP2 = this.CurrentPage + 2;
+
+
+            this.aLink2.HRef = $"/{this.Url}?Search={txtSearch}&mainCateID={CurrentMainCategoryID}&subCateID={CurrentSubCategoryID}&page={prevM1}";
+            this.aLink2.InnerText = prevM1.ToString();              //修正頁數文字
+            this.aLink1.HRef = $"/{this.Url}?Search={txtSearch}&mainCateID={CurrentMainCategoryID}&subCateID={CurrentSubCategoryID}&page={prevM2}";
+            this.aLink1.InnerText = prevM2.ToString();
+
+
+
+            this.aLink4.HRef = $"/{this.Url}?Search={txtSearch}&mainCateID={CurrentMainCategoryID}&subCateID={CurrentSubCategoryID}&page={nextP1}";
+            this.aLink4.InnerText = nextP1.ToString();
+            this.aLink5.HRef = $"/{this.Url}?Search={txtSearch}&mainCateID={CurrentMainCategoryID}&subCateID={CurrentSubCategoryID}&page={nextP2}";
+            this.aLink5.InnerText = nextP2.ToString();
+
+            //依頁數，決定是否隱藏超連結，並處理提示文字
+
+            this.aLink1.Visible = (prevM2 > 0);
+            this.aLink2.Visible = (prevM1 > 0);
+            this.aLink4.Visible = (nextP1 <= totalPage);
+            this.aLink5.Visible = (nextP2 <= totalPage);
+
+            this.ltPager.Text = $"共 {this.TotalSize } 筆， 共 {totalPage}頁，目前在第{this.GetCurrentPage()}頁<br/>";
+
+
+        }
     }
 }

@@ -70,6 +70,10 @@ namespace UbayProject
         {
             //取得使用者搜尋值
             string txtSearch_input = Encoder.HtmlEncode(this.SearchBar.Text);
+            string txtSearch_input2 = Encoder.HtmlAttributeEncode(this.SearchBar.Text);
+            string txtSearch_input3 = Encoder.CssEncode(this.SearchBar.Text);
+            string txtSearch_input4 = Encoder.JavaScriptEncode(this.SearchBar.Text);
+            string txtSearch_input5 = Encoder.HtmlFormUrlEncode(this.SearchBar.Text);
             //檢查輸入值
             if (string.IsNullOrWhiteSpace(txtSearch_input) == true)
             {

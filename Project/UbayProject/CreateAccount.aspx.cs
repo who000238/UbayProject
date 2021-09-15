@@ -67,10 +67,16 @@ namespace UbayProject
             string emailContent = $@"http://localhost:54101/TryActive.aspx 您的驗證碼為:{ranNum}";
             string email = inp_email /*"ubayproject2021@gmail.com"*/;
             sendMail(email, emailContent, "OTP");
-            
+
+
+            string tempInp_Account = HttpUtility.HtmlDecode(this.txtAccount.Text);
+            string tempInp_PWD = HttpUtility.HtmlDecode(this.txtPWD.Text);
+            string tempInp_CheckPWD = HttpUtility.HtmlDecode(this.txtPWDCheck.Text);
+            string tempInp_email = HttpUtility.HtmlDecode(this.txtMail.Text);
+            string tempInp_userName = HttpUtility.HtmlDecode(this.txtUserName.Text);
 
             //確認所有欄位送出後，跳轉至使用者資訊頁面引導填入完整使用者訊息
-            UserInfoHelper.createAccount(inp_Account, inp_PWD, inp_email, inp_userName);
+            UserInfoHelper.createAccount(tempInp_Account, tempInp_PWD, tempInp_email, tempInp_userName);
 
             //存驗證碼進DB
             using (ContextModel context = new ContextModel())
@@ -87,7 +93,7 @@ namespace UbayProject
                 context.SaveChanges();
             }
 
-            //Response.Write($"<script>alert('申請帳號成功、按下確認前往論壇');location.href='MainPage.aspx'</script>");
+            Response.Write("<script type='text/javascript'> alert('申請帳號成功，請前往信箱驗證你的帳號並按下確認前往論壇');location.href = 'MainPage.aspx';</script>");
             //Response.Redirect("MainPage.aspx");
 
         }
@@ -144,7 +150,7 @@ namespace UbayProject
                 mail.Dispose();
 
                 //提示成功
-                Response.Write("<script type='text/javascript'> alert('申請帳號成功，請前往信箱驗證你的帳號並按下確認前往論壇');location.href = 'MainPage.aspx';</script>");
+                //Response.Write("<script type='text/javascript'> alert('申請帳號成功，請前往信箱驗證你的帳號並按下確認前往論壇');location.href = 'MainPage.aspx';</script>");
 
 
             }
