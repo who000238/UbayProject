@@ -78,6 +78,7 @@ namespace UbayProject
         protected void commentSubmit_Click(object sender, EventArgs e)
         {
             string txtComment = Encoder.HtmlEncode(this.commentInput.Text);
+            string tempTxtComment = HttpUtility.HtmlDecode(txtComment);
             int postID = Convert.ToInt32(this.Request.QueryString["postID"]);
             UserModel currentUser = UserInfoHelper.GetCurrentUser();
             string userID = currentUser.userID;
@@ -87,19 +88,19 @@ namespace UbayProject
                 return;
             }
 
-            if (txtComment.Length > 4000)
+            if (tempTxtComment.Length > 4000)
             {
                 Response.Write("<script>alert('超過字數上限、請不要一次輸入過多的訊息!!')</script>");
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtComment))
+            if (string.IsNullOrWhiteSpace(tempTxtComment))
             {
                 Response.Write("<script>alert('你還沒寫下你的留言吧?')</script>");
                 return;
             }
 
-            CommentHelper.addComment(txtComment, userID, postID);
+            CommentHelper.addComment(tempTxtComment, userID, postID);
             this.commentInput.Text = string.Empty;
         }
 
@@ -149,8 +150,6 @@ namespace UbayProject
         {
             string postIDtxt = Request.QueryString["postID"];
             int postID = Convert.ToInt32(postIDtxt);
-
-            Response.Write($"<script>alert('即將刪除貼文編號:{postID}號的貼文')</script>");
 
             PostHelper.deletePost(postID);
             Response.Write("<script>alert('刪除貼文成功!!');location.href='MainPage.aspx'</script>");

@@ -22,9 +22,7 @@ namespace UbayProject
             {
                 Response.Redirect("MainPage.aspx");
             }
-            else
-            {
-            }
+        
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -34,6 +32,15 @@ namespace UbayProject
             string inp_CheckPWD = Encoder.HtmlEncode(this.txtPWDCheck.Text);
             string inp_email = Encoder.HtmlEncode(this.txtMail.Text);
             string inp_userName = Encoder.HtmlEncode(this.txtUserName.Text);
+
+            string checkPWDLength = HttpUtility.HtmlDecode(inp_PWD);
+            if (checkPWDLength.Length < 8)
+            {
+                Response.Write($"<script>alert('密碼太短')</script>");
+                return;
+            }
+
+
             //按下按鈕後，讀取所有Input內的值
             //有欄位為空的話 顯示錯誤訊息
 
@@ -47,7 +54,7 @@ namespace UbayProject
                 return;
             }
             //比較兩次輸入的密碼有沒有相同
-            if(string.Compare(inp_PWD,inp_CheckPWD) != 0)
+            if (string.Compare(inp_PWD, inp_CheckPWD) != 0)
             {
                 Response.Write($"<script>alert('兩次輸入的密碼並不相同、請確認')</script>");
                 return;
@@ -60,7 +67,7 @@ namespace UbayProject
                 return;
             }
 
-           
+
 
             Random myObject = new Random();
             int ranNum = myObject.Next(10000000, 99999999);
@@ -83,7 +90,7 @@ namespace UbayProject
             {
                 var query =
                       (from item in context.UserTables
-                       where item.userName == inp_userName
+                       where item.userName == tempInp_userName
                        select item);
                 foreach (var item in query)
                 {
@@ -162,6 +169,6 @@ namespace UbayProject
 
             }
         }
-       
+
     }
 }

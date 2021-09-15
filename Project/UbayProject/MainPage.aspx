@@ -12,7 +12,7 @@
     <style>
         #div1 {
             height: 180px;
-            background-color:rgba(255,255,255,0.5);
+        
         }
         
 div.container2
@@ -99,7 +99,6 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="col-8">
-                    <p>PHOTO/AD</p>
                 </div>
                 <div class="col-2 collapse navbar-collapse justify-content-end" id="navbarNavDropdown"  >
                     <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a> &nbsp;&nbsp;
@@ -156,7 +155,6 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
                            
                 </div>
                 <div class="col-2">
-                    <p>PHOTO/AD</p>
                 </div>
             </div>
         </div>
