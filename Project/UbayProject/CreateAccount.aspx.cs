@@ -33,10 +33,19 @@ namespace UbayProject
             string inp_email = Encoder.HtmlEncode(this.txtMail.Text);
             string inp_userName = Encoder.HtmlEncode(this.txtUserName.Text);
 
-            string checkPWDLength = HttpUtility.HtmlDecode(inp_PWD);
-            if (checkPWDLength.Length < 8)
+            string checkAccLength = HttpUtility.HtmlDecode(inp_Account);
+            if(checkAccLength.Length <8 || checkAccLength.Length > 20)
             {
-                Response.Write($"<script>alert('密碼太短')</script>");
+                Response.Write($"<script>alert('帳號長度不符合規定，請重新輸入')</script>");
+                return;
+
+            }
+
+
+            string checkPWDLength = HttpUtility.HtmlDecode(inp_PWD);
+            if (checkPWDLength.Length < 8 || checkPWDLength.Length > 20)
+            {
+                Response.Write($"<script>alert('密碼長度不符合規定，請重新輸入')</script>");
                 return;
             }
 
