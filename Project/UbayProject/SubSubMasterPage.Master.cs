@@ -110,13 +110,13 @@ namespace UbayProject
             string tempTxtInner = HttpUtility.HtmlDecode(txtInner);
             string tempQuery2 = Request.QueryString["subCategoryID"];
             int tempCatID2 = Convert.ToInt32(tempQuery2);
-            if (txtTitle.Length > 50)
+            if (tempTxtTitle.Length > 50)
             {
                 Response.Write("<script>alert('標題過長')</script>");
                 return;
 
             }
-            if (txtInner.Length > 4000)
+            if (tempTxtInner.Length > 4000)
             {
                 Response.Write("<script>alert('內文過長')</script>");
                 return;

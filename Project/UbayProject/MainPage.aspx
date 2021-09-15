@@ -119,15 +119,16 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
             <div class="row" id="div3">
                 <div class="col-2" id="BoardLink" runat="server">
                 </div>
-                <div class="col-8" runat="server" id="HotPost">
+                <div class="col-9" runat="server" id="HotPost">
                  <asp:Repeater ID="Repeater1" runat="server">
                         <HeaderTemplate>
                             <div class="row">
                                 <div class="col-2">標題</div>
                                 <div class="col-2">發文者</div>
-                                <div class="col-2">分類名稱</div>
-                                <div class="col-3">內文</div>
+                                <div class="col-1">分類名稱</div>
+                                <div class="col-2">內文</div>
                                 <div class="col-3">發佈時間</div>
+                                <div class="col-2">瀏覽人次</div>
                             </div>
                         </HeaderTemplate>
                         <ItemTemplate>
@@ -140,21 +141,24 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
                                 <div class="col-2">
                                     <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
                                 </div>
-                                <div class="col-2 ">
+                                <div class="col-1 ">
                                     <%#Eval("subCategoryName") %>
                                 </div>
-                                <div class="col-3 postInner" >
+                                <div class="col-2 postInner" >
                                     <%#Eval("postText") %>
                                 </div>
                                 <div class="col-3">
                                     <td><%# Eval("createDate") %></td>
+                                </div>
+                                <div class="col-2">
+                                    <td><%# Eval("countOfViewers") %>人</td>
                                 </div>
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
                            
                 </div>
-                <div class="col-2">
+                <div class="col-1">
                 </div>
             </div>
         </div>
