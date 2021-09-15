@@ -10,6 +10,7 @@ using DBSource;
 using PostAndCommentSource;
 using PostAndCommentSource.Model;
 using Microsoft.Security.Application;
+using System.Web;
 
 namespace UbayProject
 {
@@ -105,6 +106,8 @@ namespace UbayProject
         {
             string txtTitle = Encoder.HtmlEncode(this.postTitle.Text);
             string txtInner = Encoder.HtmlEncode(this.postInner.Text);
+            string tempTxtTitle = HttpUtility.HtmlDecode(txtTitle);
+            string tempTxtInner = HttpUtility.HtmlDecode(txtInner);
             string tempQuery2 = Request.QueryString["subCategoryID"];
             int tempCatID2 = Convert.ToInt32(tempQuery2);
             if (txtTitle.Length > 50)
@@ -131,7 +134,7 @@ namespace UbayProject
             UserModel currentUser = UserInfoHelper.GetCurrentUser();
             string userID = currentUser.userID;
 
-            PostHelper.createPost(txtTitle, txtInner, userID, tempCatID2);
+            PostHelper.createPost(tempTxtTitle, tempTxtInner, userID, tempCatID2);
             this.postTitle.Text = string.Empty;
             this.postInner.Text = string.Empty;
             Response.Write("<script>document.location=document.location</script>");
@@ -144,6 +147,7 @@ namespace UbayProject
             //取得使用者搜尋值&QueryString參數
             int subCategoryID = Convert.ToInt32(Request.QueryString["subCategoryID"]);
             string txtSearch_input = this.SearchBar.Text;
+            string tempTxtSearch_input = HttpUtility.HtmlDecode(txtSearch_input);
             string subCategoryName = GetSubCategoryName(subCategoryID);
             string tempQuery2 = Request.QueryString["mainCategoryID"];
             int tempCatID2 = Convert.ToInt32(tempQuery2);
@@ -155,7 +159,7 @@ namespace UbayProject
 
             }
 
-            var list = PostHelper.searchPost(txtSearch_input, subCategoryID);
+            var list = PostHelper.searchPost(tempTxtSearch_input, subCategoryID);
             if (list.Count  > 0)
             {
 

@@ -91,6 +91,7 @@ namespace UbayProject.TryFIleFolder
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             string txtSearch = Encoder.HtmlEncode(this.SearchBar.Text);
+            string tempTxtSearch = HttpUtility.HtmlDecode(txtSearch);
             List<PostModel> list = PostHelper.searchPost(txtSearch);
 
 
