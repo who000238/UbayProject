@@ -99,13 +99,13 @@ namespace UbayProject
                 }
                 if (!IsPostBack && loginedUserNow != null)
                 {
-                    this.txtUserName.Text = loginedUserNow.userName;
+                    this.txtUserName.Text = Server.HtmlDecode(loginedUserNow.userName);
                     this.txtUserBirthday.Text = loginedUserNow.birthday?.ToString("yyyy/MM/dd");
                     this.ddlUserSex.SelectedValue = loginedUserNow.sex;
-                    this.txtUserIntro.Text = loginedUserNow.intro;
+                    this.txtUserIntro.Text = Server.HtmlDecode(loginedUserNow.intro);
                     this.userImg.ImageUrl = (loginedUserNow.photoURL == null || loginedUserNow.photoURL == string.Empty)
                                             ? "https://freerangestock.com/thumbnail/35900/red-question-mark.jpg"
-                                            : loginedUserNow.photoURL;
+                                            : Server.HtmlDecode(loginedUserNow.photoURL);
                 }
             }
             catch (Exception ex)

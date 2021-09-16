@@ -51,9 +51,8 @@ namespace UbayProject
             //產生寄信內容String
             string emailContent = 
                     $@"
-                       <h1>申訴使用者訊息:<h1><br/>
-                       <p>申訴標題:{AntiXssEncoder.HtmlEncode(this.txtContent.Text,true)}<p><br/>
-                       <p>申訴內容:{AntiXssEncoder.HtmlEncode(this.txtTitle.Text,true)}<p>";
+                       <p>申訴標題:{AntiXssEncoder.HtmlEncode(this.txtTitle.Text,true)}<p><br/>
+                       <p>申訴內容:{AntiXssEncoder.HtmlEncode(this.txtContent.Text,true)}<p>";
 
             
             //找出所有使用者中管理員權限為0的使用者(管理員)
@@ -73,7 +72,7 @@ namespace UbayProject
             //寄出
             foreach (string email in ltAdminEmailAddress)
             {
-                sendMail(email,emailContent,$"論壇使用者{loginedUserNow.userID}申訴");
+                sendMail(email,emailContent,$"[申訴]論壇使用者{loginedUserNow.userID}");
             }
 
         }

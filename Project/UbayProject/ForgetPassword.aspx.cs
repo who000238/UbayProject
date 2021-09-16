@@ -47,7 +47,7 @@ namespace UbayProject
                 {
                     //將使用者密碼改為隨機8位的密碼
                     newPassword = Membership.GeneratePassword(8, 0);
-                    temp.pwd = newPassword;
+                    temp.pwd = AntiXssEncoder.HtmlEncode(newPassword,true);
                     isUserExist = true;
                     content.SaveChanges();
                 }
