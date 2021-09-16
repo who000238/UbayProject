@@ -13,8 +13,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <style>
-
-
         #postInner {
             width: 100%;
             height: 100%;
@@ -45,6 +43,10 @@
             height: 180px;
         }
 
+        #div3 {
+            background-color: rgba(255,255,255,0.5);
+        }
+
 
         body {
             background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
@@ -55,14 +57,16 @@
             width: 200px;
             height: 200px
         }
+
         .auto-style1 {
             margin-right: 395px;
         }
-        .postInner{
-            max-width:150px;
-            overflow:hidden;
-            text-overflow:ellipsis;
-            white-space:nowrap;
+
+        .postInner {
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -76,7 +80,6 @@
                     <img src="/Pics/messageImage_1630311093428-removebg-preview.png" id="Logo" />
                 </div>
                 <div class="col-8">
-                    <p>PHOTO/AD</p>
                 </div>
                 <div class="col-2">
                     <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a>&nbsp;&nbsp;
@@ -98,58 +101,57 @@
             </div>
             <div class="row" id="div3">
                 <div class="col-2" id="BoardLink" runat="server">
-                      <div runat="server" id="AddSubCategoryArea" visible="false">
+                    <div runat="server" id="AddSubCategoryArea" visible="false">
                         <asp:Button ID="btnAddSubCategory" runat="server" Text="新增子分類" OnClick="btnAddSubCategory_Click" />
                         <asp:TextBox ID="AddSubCategoryName" runat="server" placeholder="輸入子分類名稱"></asp:TextBox>
                     </div>
                 </div>
                 <div runat="server" class="col-8" id="CenterArea">
                     <div>
-                         <asp:Repeater ID="Repeater1" runat="server">
-                        <HeaderTemplate>
-                            <div class="row">
-                                <div class="col-2">標題</div>
-                                <div class="col-2">發文者</div>
-                                <div class="col-2">分類名稱</div>
-                                <div class="col-3">內文</div>
-                                <div class="col-3">發佈時間</div>
-                            </div>
-                        </HeaderTemplate>
-                        <ItemTemplate>
+                        <asp:Repeater ID="Repeater1" runat="server">
+                            <HeaderTemplate>
+                                <div class="row">
+                                    <div class="col-2">標題</div>
+                                    <div class="col-2">發文者</div>
+                                    <div class="col-2">分類名稱</div>
+                                    <div class="col-3">內文</div>
+                                    <div class="col-3">發佈時間</div>
+                                </div>
+                            </HeaderTemplate>
+                            <ItemTemplate>
 
-                            <div class="row">
-                                <div class="col-2">
-                                    <a href="/SeePost.aspx?postID=<%# Eval("postID") %>&actionName=reLoad"><%# Eval("postTitle") %></a>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <a href="/SeePost.aspx?postID=<%# Eval("postID") %>&actionName=reLoad"><%# Eval("postTitle") %></a>
 
+                                    </div>
+                                    <div class="col-2">
+                                        <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
+                                    </div>
+                                    <div class="col-2 ">
+                                        <%#Eval("subCategoryName") %>
+                                    </div>
+                                    <div class="col-3 postInner">
+                                        <%#Eval("postText") %>
+                                    </div>
+                                    <div class="col-3">
+                                        <td><%# Eval("createDate") %></td>
+                                    </div>
                                 </div>
-                                <div class="col-2">
-                                    <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
-                                </div>
-                                <div class="col-2 ">
-                                    <%#Eval("subCategoryName") %>
-                                </div>
-                                <div class="col-3 postInner" >
-                                    <%#Eval("postText") %>
-                                </div>
-                                <div class="col-3">
-                                    <td><%# Eval("createDate") %></td>
-                                </div>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                            <div style="background-color: aqua">
-                                <uc1:ucPager runat="server" ID="ucPager"  PageSize="10" Url="/SubPage" />
-                            </div>
-                     
-                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                            </asp:ContentPlaceHolder>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        <div style="background-color: orange; opacity: 0.8; text-align: center">
+                            <uc1:ucPager runat="server" ID="ucPager" PageSize="10" Url="/SubPage" />
+                        </div>
+
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
                     </div>
                 </div>
                 <div class="col-2">
-                    <p>PHOTO/AD</p>
                 </div>
             </div>
-           
+
         </div>
         <div class="row postArea" id="postArea" runat="server">
             <div class="col-12">

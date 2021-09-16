@@ -9,6 +9,7 @@ using AccountSource;
 using DBSource;
 using PostAndCommentSource;
 using Microsoft.Security.Application;
+using System.Web;
 
 namespace UbayProject
 {
@@ -69,7 +70,8 @@ namespace UbayProject
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             //取得使用者搜尋值
-            string txtSearch_input = Encoder.HtmlEncode(this.SearchBar.Text);
+            string txtSearch_input = HttpUtility.HtmlEncode(this.SearchBar.Text);
+
             //檢查輸入值
             if (string.IsNullOrWhiteSpace(txtSearch_input) == true)
             {

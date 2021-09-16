@@ -53,7 +53,7 @@
                 <div class="col-4" id="divMain">
                     <asp:Literal ID="Literal1" runat="server">輸入你的驗證碼</asp:Literal><br />
                     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><br />
-                    <asp:Button ID="Button1" runat="server" Text="確定" OnClick="Button1_Click" />
+                    <asp:Button ID="Button1" runat="server" Text="確定" OnClick="Button1_Click" /><br />
                 </div>
                 <div class="col-4"></div>
             </div>

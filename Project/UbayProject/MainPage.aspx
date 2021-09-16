@@ -12,7 +12,7 @@
     <style>
         #div1 {
             height: 180px;
-            background-color:rgba(255,255,255,0.5);
+        
         }
         
 div.container2
@@ -86,7 +86,6 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
 <body>
     <form id="form1" runat="server">
         <div class="container">
-           <%-- <img src="Pics/messageImage_1630311093428-removebg-preview.png" id="Logo" />--%>
             <div id="div1" class="row container2 topBotomBordersOut">
                 <div class="col-2 ">
                     <img src="Pics/messageImage_1630311093428-removebg-preview.png" id="Logo" />
@@ -99,7 +98,6 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="col-8">
-                    <p>PHOTO/AD</p>
                 </div>
                 <div class="col-2 collapse navbar-collapse justify-content-end" id="navbarNavDropdown"  >
                     <a href="http://localhost:54101/Login.aspx" id="a_Login" runat="server">Login</a> &nbsp;&nbsp;
@@ -120,15 +118,16 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
             <div class="row" id="div3">
                 <div class="col-2" id="BoardLink" runat="server">
                 </div>
-                <div class="col-8" runat="server" id="HotPost">
+                <div class="col-9" runat="server" id="HotPost">
                  <asp:Repeater ID="Repeater1" runat="server">
                         <HeaderTemplate>
                             <div class="row">
                                 <div class="col-2">標題</div>
                                 <div class="col-2">發文者</div>
-                                <div class="col-2">分類名稱</div>
-                                <div class="col-3">內文</div>
+                                <div class="col-1">分類名稱</div>
+                                <div class="col-2">內文</div>
                                 <div class="col-3">發佈時間</div>
+                                <div class="col-2">瀏覽人次</div>
                             </div>
                         </HeaderTemplate>
                         <ItemTemplate>
@@ -141,22 +140,24 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
                                 <div class="col-2">
                                     <a href="/UserInfo.aspx?userID=<%# Eval("userID") %>"><%# Eval("userName") %></a>
                                 </div>
-                                <div class="col-2 ">
+                                <div class="col-1 ">
                                     <%#Eval("subCategoryName") %>
                                 </div>
-                                <div class="col-3 postInner" >
+                                <div class="col-2 postInner" >
                                     <%#Eval("postText") %>
                                 </div>
                                 <div class="col-3">
                                     <td><%# Eval("createDate") %></td>
+                                </div>
+                                <div class="col-2">
+                                    <td><%# Eval("countOfViewers") %>人</td>
                                 </div>
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
                            
                 </div>
-                <div class="col-2">
-                    <p>PHOTO/AD</p>
+                <div class="col-1">
                 </div>
             </div>
         </div>
