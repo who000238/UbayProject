@@ -43,9 +43,6 @@ namespace UbayProject.ORM
         [StringLength(500)]
         public string intro { get; set; }
 
-        [StringLength(200)]
-        public string favoritePosts { get; set; }
-
         [Required]
         [StringLength(50)]
         public string blackList { get; set; }

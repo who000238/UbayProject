@@ -40,9 +40,7 @@ namespace UbayProject.ORM
                 .Property(e => e.photoURL)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UserTable>()
-                .Property(e => e.favoritePosts)
-                .IsUnicode(false);
+
 
             modelBuilder.Entity<UserTable>()
                 .Property(e => e.blackList)

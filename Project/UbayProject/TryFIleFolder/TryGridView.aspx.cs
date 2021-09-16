@@ -77,7 +77,6 @@ namespace UbayProject
                              UserInfo.birthday,
                              UserInfo.photoURL,
                              UserInfo.intro,
-                             UserInfo.favoritePosts,
                              UserInfo.blackList,
                              item.postTitle,
                              item.postID,
