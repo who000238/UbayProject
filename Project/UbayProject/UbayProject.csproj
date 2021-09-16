@@ -210,9 +210,9 @@
     <Content Include="TryFIleFolder\TryRepeater.aspx" />
     <Content Include="TryFIleFolder\TryUcPager.ascx" />
     <Content Include="TryActive.aspx" />
-    <Content Include="TryOTP.aspx" />
-    <Content Include="TryOTP2.aspx" />
-    <Content Include="TryToken.aspx" />
+    <Content Include="TryFIleFolder\TryOTP.aspx" />
+    <Content Include="TryFIleFolder\TryOTP2.aspx" />
+    <Content Include="TryFIleFolder\TryToken.aspx" />
     <Content Include="UpdateUserInfo.aspx" />
     <Content Include="UserControls\ucPager.ascx" />
     <Content Include="UserControls\ucPagerForSearch.ascx" />
@@ -370,25 +370,25 @@
     <Compile Include="TryActive.aspx.designer.cs">
       <DependentUpon>TryActive.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TryOTP.aspx.cs">
+    <Compile Include="TryFIleFolder\TryOTP.aspx.cs">
       <DependentUpon>TryOTP.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TryOTP.aspx.designer.cs">
+    <Compile Include="TryFIleFolder\TryOTP.aspx.designer.cs">
       <DependentUpon>TryOTP.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TryOTP2.aspx.cs">
+    <Compile Include="TryFIleFolder\TryOTP2.aspx.cs">
       <DependentUpon>TryOTP2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TryOTP2.aspx.designer.cs">
+    <Compile Include="TryFIleFolder\TryOTP2.aspx.designer.cs">
       <DependentUpon>TryOTP2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TryToken.aspx.cs">
+    <Compile Include="TryFIleFolder\TryToken.aspx.cs">
       <DependentUpon>TryToken.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TryToken.aspx.designer.cs">
+    <Compile Include="TryFIleFolder\TryToken.aspx.designer.cs">
       <DependentUpon>TryToken.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpdateUserInfo.aspx.cs">
