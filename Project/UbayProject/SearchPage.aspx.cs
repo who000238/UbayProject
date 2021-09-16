@@ -92,7 +92,7 @@ namespace UbayProject.TryFIleFolder
         {
             string txtSearch = Encoder.HtmlEncode(this.SearchBar.Text);
             string tempTxtSearch = HttpUtility.HtmlDecode(txtSearch);
-            List<PostModel> list = PostHelper.searchPost(txtSearch);
+            List<PostModel> list = PostHelper.searchPost(tempTxtSearch);
 
 
             if (list.Count > 0)
@@ -105,9 +105,9 @@ namespace UbayProject.TryFIleFolder
 
 
                 this.ucPagerForSearch.TotalSize = list.Count;
-                this.ucPagerForSearch.txtSearch = txtSearch;
+                this.ucPagerForSearch.txtSearch = tempTxtSearch;
                 this.ucPagerForSearch.Bind();
-                Response.Redirect($"SearchPage.aspx?Search={txtSearch}&page=1");
+                Response.Redirect($"SearchPage.aspx?Search={tempTxtSearch}&page=1");
             }
             else
             {
