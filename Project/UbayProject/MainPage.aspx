@@ -86,7 +86,6 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
 <body>
     <form id="form1" runat="server">
         <div class="container">
-           <%-- <img src="Pics/messageImage_1630311093428-removebg-preview.png" id="Logo" />--%>
             <div id="div1" class="row container2 topBotomBordersOut">
                 <div class="col-2 ">
                     <img src="Pics/messageImage_1630311093428-removebg-preview.png" id="Logo" />

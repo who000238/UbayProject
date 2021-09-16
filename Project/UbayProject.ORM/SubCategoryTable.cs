@@ -16,9 +16,7 @@ namespace UbayProject.ORM
         [StringLength(50)]
         public string subCategoryName { get; set; }
 
-        public int countOfPosts { get; set; }
 
-        public int countOfViewers { get; set; }
 
         public DateTime createDate { get; set; }
 
