@@ -70,7 +70,7 @@ namespace UbayProject
             if (queriedUserNow != null)
             {
                 //依據選取的使用者顯示UserInfo
-                this.lblUserName.Text = HttpUtility.HtmlEncode(queriedUserNow.userName);
+                this.lblUserName.Text = Server.HtmlDecode(HttpUtility.HtmlEncode(queriedUserNow.userName));
                 this.lblBlackList.Text = queriedUserNow.blackList;
                 this.lblUserSex.Text = (queriedUserNow.sex == "無")
                                              ? ("不公開")
@@ -81,18 +81,19 @@ namespace UbayProject
                 if (queriedUserNow.blackList == "Y")
                 {
                 //他人檢視在黑名單的使用者時會看到提示 "(封鎖中)"
-                    this.lblNameAlert.Text += "(封鎖中)";
+                    this.lblNameAlert.Text = "(封鎖中)";
                     this.txtUserIntro.Text = "(該使用者目前封鎖中)";
                 }
                 else
                 {
-                    this.txtUserIntro.Text = queriedUserNow.intro;
+                    this.lblNameAlert.Text = "";
+                    this.txtUserIntro.Text = Server.HtmlDecode(queriedUserNow.intro);
                 }
                 //顯示URL
                 string[] imagendnames = { ".jpg" ,".png",".jpeg"};
                 if (queriedUserNow.photoURL != null && queriedUserNow.photoURL != string.Empty && imagendnames.Any(x => queriedUserNow.photoURL.EndsWith(x) ))
                 {
-                    this.userImg.ImageUrl =queriedUserNow.photoURL;
+                    this.userImg.ImageUrl = Server.HtmlDecode(queriedUserNow.photoURL);
                 }
                 else
                 {
@@ -161,7 +162,15 @@ namespace UbayProject
             //沒找到QuerryString的使用者()或沒找到Session使用者
             else
             {
+                if (loginedUserNow == null)
+                {
                 Response.Write("<script type='text/javascript'> alert('請先登入');location.href = 'MainPage.aspx';</script>");
+                }
+                if (queriedUserNow == null)
+                {
+                    Response.Write("<script type='text/javascript'> alert('查無使用者');location.href = 'MainPage.aspx';</script>");
+                }
+
             }
         }
 
@@ -291,7 +300,6 @@ namespace UbayProject
                     {
                         content.UserTables.Remove(temp);
                         content.SaveChanges();
-                        this.Response.Redirect($"UserInfo.aspx?userid={userIDQueryString}");
                     }
                     else
                     {
@@ -304,6 +312,7 @@ namespace UbayProject
                 DBSource.Logger.WriteLog(ex);
                 return;
             }
+            this.Response.Redirect($"/UserInfo.aspx?userid={userIDQueryString}");
 
 
         }
@@ -343,6 +352,7 @@ namespace UbayProject
                 DBSource.Logger.WriteLog(ex);
                 return;
             }
+            this.Response.Redirect($"UserInfo.aspx?userid={userIDQueryString}");
         }
 
         protected void btnToMain_Click(object sender, EventArgs e)
