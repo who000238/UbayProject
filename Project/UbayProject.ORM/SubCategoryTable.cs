@@ -17,7 +17,6 @@ namespace UbayProject.ORM
         public string subCategoryName { get; set; }
 
 
-
         public DateTime createDate { get; set; }
 
         public int mainCategoryID { get; set; }

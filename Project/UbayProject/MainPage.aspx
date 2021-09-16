@@ -81,6 +81,12 @@ div.topBotomBordersOut a:hover:before, div.topBotomBordersOut a:hover:after
             height: 200px
         }
        
+        .postInner {
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body>
