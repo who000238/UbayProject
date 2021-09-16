@@ -52,8 +52,8 @@
                 </div>
                 <div class="col-4"></div>
                 <div class="col-4" id="divMain">
-                    <asp:TextBox ID="txtAccount" class="form-control" placeholder="帳號" runat="server"></asp:TextBox><br />
-                    <asp:TextBox ID="txtPWD" class="form-control" placeholder="請輸入合計八位數的密碼" TextMode="Password" runat="server"></asp:TextBox><br />
+                    <asp:TextBox ID="txtAccount" class="form-control" placeholder="請輸入8~20位字元的帳號" runat="server"></asp:TextBox><br />
+                    <asp:TextBox ID="txtPWD" class="form-control" placeholder="請輸入8~20位字元的密碼" TextMode="Password" runat="server"></asp:TextBox><br />
                     <asp:TextBox ID="txtPWDCheck" class="form-control" placeholder="請再次輸入密碼" TextMode="Password" runat="server"></asp:TextBox><br />
                     <asp:TextBox ID="txtMail" class="form-control" placeholder="電子信箱" TextMode="Email" runat="server"></asp:TextBox><br />
                     <asp:TextBox ID="txtUserName" class="form-control" placeholder="使用者名稱" runat="server"></asp:TextBox><br />
