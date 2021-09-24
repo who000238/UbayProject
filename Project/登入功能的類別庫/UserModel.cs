@@ -19,7 +19,7 @@ namespace AccountSource
         public DateTime birthday { get; set; }
         public string photoURL { get; set; }
         public string intro { get; set; }
-        public string favoritePosts { get; set; }
+        //public string favoritePosts { get; set; }
         public string blackList { get; set; }
 
         public string OTP { get; set; }

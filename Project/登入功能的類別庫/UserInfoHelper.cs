@@ -47,7 +47,7 @@ namespace AccountSource
             model.birthday = DateTime.Parse(dr["birthday"].ToString());
             model.photoURL = dr["photoURL"].ToString();
             model.intro = dr["intro"].ToString();
-            model.favoritePosts = dr["favoritePosts"].ToString();
+            //model.favoritePosts = dr["favoritePosts"].ToString();
             model.blackList = dr["blackList"].ToString();
 
             return model;
