@@ -183,8 +183,6 @@ namespace UbayProject
                         (
                         subCategoryName,
                         createDate,
-                        countOfPosts,
-                        countOfViewers,
                         mainCategoryID
                         )
                         VALUES
