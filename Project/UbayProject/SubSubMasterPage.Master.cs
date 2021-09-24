@@ -254,8 +254,6 @@ namespace UbayProject
                         (
                         @MainCategoryName
                         ,GETDATE()
-                        ,0
-                        ,0
                         ,@mainCategoryID
                         )
                 ";
