@@ -72,7 +72,6 @@ namespace AccountSource
                         ,[birthday]
                         ,[photoURL]
                         ,[intro]
-                        ,[favoritePosts]
                         ,[blackList]
                     FROM UserTable
                     WHERE [userID] = @userID
